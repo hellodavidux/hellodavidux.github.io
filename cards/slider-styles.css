@@ -90,7 +90,7 @@
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+  transition: max-height 1.3s ease, opacity 0.6s ease, margin 0.7s ease;
 }
 
 .headline-content.active, .design-headline-content.active {
@@ -159,7 +159,7 @@
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+    transition: max-height 0.9s ease, opacity 0.8s ease, margin 0.9s ease;
     display: none; /* Hide all mobile images by default */
   }
   

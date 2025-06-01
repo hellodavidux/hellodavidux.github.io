@@ -756,6 +756,11 @@ video {
   margin-right: auto;
 }
 
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -796,6 +801,10 @@ video {
   margin-bottom: 2rem;
 }
 
+.mb-auto {
+  margin-bottom: auto;
+}
+
 .mr-1 {
   margin-right: 0.25rem;
 }
@@ -822,6 +831,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-auto {
+  margin-top: auto;
 }
 
 .box-border {
@@ -981,6 +994,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.max-h-\[70\%\] {
+  max-height: 70%;
 }
 
 .w-12 {
@@ -2114,6 +2131,11 @@ video {
   background-color: rgb(30 47 47 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#2C2C2C\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(44 44 44 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#2E3E3E\] {
   --tw-bg-opacity: 1;
   background-color: rgb(46 62 62 / var(--tw-bg-opacity));
@@ -2406,6 +2428,10 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
 }
 
 .pl-5 {
@@ -3205,6 +3231,11 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   .sm\:mb-0 {
     margin-bottom: 0px;
   }
@@ -3219,6 +3250,14 @@ video {
 
   .sm\:h-\[500px\] {
     height: 500px;
+  }
+
+  .sm\:h-full {
+    height: 100%;
+  }
+
+  .sm\:max-h-\[100\%\] {
+    max-height: 100%;
   }
 
   .sm\:w-1\/3 {
