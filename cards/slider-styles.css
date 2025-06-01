@@ -1,0 +1,172 @@
+/* Research Slider Styles (Dark Theme) */
+.headline-group, .design-headline-group {
+  position: relative;
+}
+
+.progress-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.design-progress-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Desktop progress line (animated) */
+.progress-line {
+  width: 2px;
+  height: 0%;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: height 10s linear;
+  opacity: 0;
+}
+
+.design-progress-line {
+  width: 2px;
+  height: 0%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: height 10s linear;
+  opacity: 0;
+}
+
+.progress-line.active, .design-progress-line.active {
+  opacity: 1;
+}
+
+/* Mobile active line (full white/black, no animation) */
+@media (max-width: 767px) {
+  .progress-container.active {
+    background-color: white;
+  }
+  
+  .design-progress-container.active {
+    background-color: #000;
+  }
+  
+  .progress-line, .design-progress-line {
+    display: none;
+  }
+}
+
+.headline, .design-headline {
+  transition: color 0.3s ease, font-weight 0.3s ease;
+  cursor: pointer;
+}
+
+.headline.active {
+  color: white;
+  font-weight: 600;
+}
+
+.headline:not(.active) {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.design-headline.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.design-headline:not(.active) {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.headline-content, .design-headline-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+}
+
+.headline-content.active, .design-headline-content.active {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.slide-image, .design-slide-image {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  display: none;
+}
+
+.slide-image.active, .design-slide-image.active {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .slide-image, .design-slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .desktop-image-container, .design-desktop-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mobile-image, .design-mobile-image {
+    display: none;
+  }
+  
+  .slider-container {
+   
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  .design-slider-container {
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 767px) {
+  .desktop-image-container, .design-desktop-image-container {
+    display: none;
+  }
+  
+  .slider-container, .design-slider-container {
+    background-color: transparent;
+  }
+  
+  .mobile-image, .design-mobile-image {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+    display: none; /* Hide all mobile images by default */
+  }
+  
+  .mobile-image.active, .design-mobile-image.active {
+    max-height: 250px;
+    opacity: 1;
+    margin-top: 0.75rem;
+    display: block; /* Show only active mobile images */
+  }
+} 

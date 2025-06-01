@@ -1,0 +1,27 @@
+{
+  "name": "pfl_dav-1305",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./styles.css",
+    "watch": "node ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellodavidux/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hellodavidux/portfolio/issues"
+  },
+  "homepage": "https://github.com/hellodavidux/portfolio#readme",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+  }
+}

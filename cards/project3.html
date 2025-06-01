@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Metadata -->
+   <meta name="description" content="Easy Semester - A circular rental service providing exchange students in Denmark with affordable, sustainable bedding packs.">
+   <meta name="keywords" content="Easy Semester, Circular Economy, Rental Service, Exchange Students, Denmark, Sustainability, Bedding, UX Design, Startup">
+   <meta name="author" content="David">
+   <meta name="robots" content="noindex, nofollow">
+   <meta name="googlebot" content="noindex, nofollow">
+   
+   <!-- Favicon -->
+   <link rel="icon" href="../images/1655921174945.jpeg" type="image/x-icon">
+  <title>Easy Semester - Circular Rental Service for Exchange Students</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slider-styles.css">
+  <link rel="stylesheet" href="animations.css">
+  <script src="project-page.js" defer></script>
+  <script src="research-slider.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="../like-button.js" defer></script>
+  <script src="../logo-color.js" defer></script>
+  <style>
+    .hoverable {
+      transition: transform 0.3s ease;
+    }
+    .left-card:hover {
+      transform: translateX(-8px) translateY(3px);
+    }
+    .right-card:hover {
+      transform: translateX(8px) translateY(3px);
+    }
+    .scroll-spy-section {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .scroll-spy-section.active div {
+      font-weight: 900;
+    }
+    .like-btn {
+      transition: all 0.3s ease;
+    }
+    .like-btn:hover {
+      transform: scale(1.05);
+    }
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgb(119 119 119 / 58%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .back-home:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1) translateY(0);
+    }
+    .back-home.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Custom styles for project3 slider */
+    .project3-slider .headline.active,
+    .project3-slider .headline:not(.active),
+    .project3-slider .headline-content {
+      color: black !important;
+    }
+    
+    .project3-slider .progress-container {
+      background-color: rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .project3-slider .progress-line {
+      background-color: black !important;
+    }
+    
+    @media (max-width: 767px) {
+      .left-card:hover, 
+      .right-card:hover {
+        transform: translateY(-8px);
+      }
+      .scroll-spy {
+        display: none !important;
+      }
+      
+      .project3-slider .progress-container.active {
+        background-color: black !important;
+      }
+    }
+    @media (min-width: 768px) {
+      .back-home {
+        top: 50px;
+        right: 50px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white">
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar-fixed fixed top-0 left-0 w-full px-8 py-4 flex justify-between items-center text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <!-- Left side: Logo and name with fixed width -->
+    <div class="logoname flex items-center w-32">
+        <a href="../index.html" class="flex items-center">
+            <div class="relative mr-3">
+                <!-- Outer yellow circle with larger gap -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] rounded-full border-[3px] border-gray-900"></div>
+                <!-- Image container: 40px × 40px -->
+                <div class="w-[40px] h-[40px] bg-gray-200 rounded-full overflow-hidden relative">
+                    <img src="../images/1655921174945.jpeg" alt="David's Profile Photo" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <h1 class="text-2xl font-black tracking-tight transition-colors duration-300 logo-aurora" id="logo-name">
+                <span>david</span>
+                <div class="aurora">
+                    <div class="aurora__item"></div>
+                    <div class="aurora__item"></div>
+                    <div class="aurora__item"></div>
+                    <div class="aurora__item"></div>
+                </div>
+            </h1>
+        </a>
+    </div>
+    
+    <!-- Center: Navigation Links -->
+    <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="#project1" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
+    </div>
+    
+    <!-- Mobile Navigation Link (only shows Projects on mobile) -->
+    <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="#project1" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
+    </div>
+    
+    <!-- Right side: Like button with fixed width -->
+    <div class="w-32 flex justify-end ">
+        <button class="like-button bg-black text-white px-3 py-1.5 rounded-full flex items-center space-x-2 text-sm cursor-pointer" id="likeButton">
+            <div class="like-wrapper mr-1">
+                <div class="ripple"></div>
+                <svg class="heart w-4 h-4" viewBox="0 0 24 24">
+                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
+                </svg>
+                <div class="particles" style="--total-particles: 6">
+                    <div class="particle" style="--i: 1; --color: #7642F0"></div>
+                    <div class="particle" style="--i: 2; --color: #AFD27F"></div>
+                    <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
+                    <div class="particle" style="--i: 4; --color: #D0516B"></div>
+                    <div class="particle" style="--i: 5; --color: #5686F2"></div>
+                    <div class="particle" style="--i: 6; --color: #D53EF3"></div>
+                </div>
+            </div>
+            <span>Like</span>
+        </button>
+    </div>
+</nav>
+  <!-- Close button to return to homepage -->
+  <a href="../index.html#project3" class="back-home" id="back-home">
+    <i class="fas fa-times"></i>
+  </a>
+  
+  <!-- Floating Table of Contents (scroll spy) -->
+  <div class="scroll-spy fixed left-1/2 transform -translate-x-1/2 bottom-8 z-50 opacity-0 translate-y-10 transition-all duration-300 hidden md:flex" id="scroll-spy">
+    <div class="w-[786px] px-6 py-2 relative bg-gray-200/50 rounded-2xl backdrop-blur-sm inline-flex justify-center items-center gap-8 overflow-hidden">
+      <a href="#intro" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="intro">
+        <div class="justify-start text-black text-base font-normal font-['SF_Pro_Text']">INTRODUCTION</div>
+      </a>
+      <a href="#discovery" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="discovery">
+        <div class="justify-start text-black text-base font-normal font-['SF_Pro_Text']">DISCOVERY</div>
+      </a>
+      <a href="#design-process" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="design-process">
+        <div class="justify-start text-black text-base font-normal font-['SF_Pro_Text']">MVP PROCESS</div>
+      </a>
+      <a href="#insights" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="insights">
+        <div class="justify-start text-black text-base font-normal font-['SF_Pro_Text']">INSIGHTS</div>
+      </a>
+      <div class="w-[786px] h-2 left-0 top-[51px] absolute inline-flex flex-col justify-start items-start gap-2.5">
+        <div class="bg-black h-full transition-all duration-300" id="progress-indicator" style="width: 0"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Introduction Section -->
+  <div id="intro" class="intro lg:pt-24 md:mt-12 p-4 py-32 md:p-16 md:px-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8 text-center">
+        <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">EASY SEMESTER PROJECT</h1>
+        <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
+          I co-founded and launched Easy Semester, a circular rental service providing exchange students in Denmark with affordable, sustainable bedding packs, streamlining their arrival and reducing waste.
+        </p>
+      </header>
+
+      <!-- Video container with no background -->
+      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl video-animation md:p-4 bg-gray-100">
+        <video 
+          class="w-full rounded-xl"
+          autoplay
+          playsinline
+          loop
+          muted>
+          <source src="images/project_3/easy-thumbnail.mp4" type="video/mp4">
+          Your browser does not support the video tag. This video shows the Easy Semester service that provides sustainable bedding rental for exchange students in Denmark.
+        </video>
+      </div>
+
+      <!-- Categories section -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 p-6">
+        <div class="animate-on-scroll delay-100">
+          <p class="text-gray-500 text-sm mb-1">Year</p>
+          <p class="font-medium">2019</p>
+        </div>
+        <div class="animate-on-scroll delay-100">
+          <p class="text-gray-500 text-sm mb-1">Company</p>
+          <p class="font-medium">Easy Semester IVS</p>
+        </div>
+        <div class="animate-on-scroll delay-200">
+          <p class="text-gray-500 text-sm mb-1">Product</p>
+          <p class="font-medium">Linen rental service</p>
+        </div>
+        <div class="animate-on-scroll delay-300">
+          <p class="text-gray-500 text-sm mb-1">My Role</p>
+          <p class="font-medium">Co-founder</p>
+        </div>
+        <div class="animate-on-scroll delay-400">
+          <p class="text-gray-500 text-sm mb-1">Team</p>
+          <p class="font-medium">Three co-founders with student volunteers</p>
+        </div>
+      </div>
+
+      <!-- Info cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Project context card -->
+        <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation">
+          <h3 class="text-gray-500 text-sm mb-4">Project context</h3>
+          <p class="font-medium mb-3">
+            Exchange students in Denmark often arrive without basic household items and spend significant time and money buying new linens, only to discard them at the end of their stay.
+          </p>
+          <p class="text-gray-600">
+            This creates unnecessary waste and inconvenience, putting a financial and logistical burden on students during an already stressful transition period.
+          </p>
+        </div>
+
+        <!-- Goals card -->
+        <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-200">
+          <h3 class="text-gray-500 text-sm mb-4">Goal</h3>
+          <ul class="list-disc pl-5 space-y-2 list-animation">
+            <li class="text-gray-700">Make student arrival easier and more affordable</li>
+            <li class="text-gray-700">Create an environmentally friendly solution</li>
+            <li class="text-gray-700">Minimize waste through circular economy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discovery Section with blue background -->
+  <div id="discovery" class="research bg-[#8CCDC9] pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <!-- Section heading -->
+      <h2 class="text-4xl font-bold mb-16 text-black text-center section-heading">DISCOVERY</h2>
+      
+      <h3 class="text-black text-l mb-4 animate-on-scroll md:w-1/2 mx-auto text-center">Research Question
+      </h3>
+
+      <p class="text-2xl font-bold text-black mb-12 animate-on-scroll delay-100 text-center">How might we minimize waste and make it easy and affordable for exchange students to get essential household items when arriving in Denmark?</p>
+    
+      <h3 class="text-black text-l mb-8 animate-on-scroll md:w-1/2 mx-auto text-center">Users
+      </h3>
+
+       <!-- user cards row -->
+       <div class="intro-grid flex flex-col items-center gap-0 md:gap-8 mb-16">
+        <!-- user Exchange Students Card -->
+        <div class="rounded-2xl sm:w-2/4 overflow-hidden p-4 transition-all duration-300 hoverable left-card card-animation bg-[#A3D7D4] ">
+          <div class="flex flex-col sm:flex-row">
+            <div class="w-full sm:w-1/3 mb-2 sm:mb-0 sm:mr-4">
+              <img 
+                src="images/project_3/exchange-student.png" 
+                alt="Exchange student - International student arriving in Denmark" 
+                class="w-full h-auto rounded-xl image-animation"
+              >
+            </div>
+            <div class="w-full sm:w-2/3">
+              <h4 class="font-bold text-lg sm:text-xl text-black mb-1 sm:mb-2 animate-on-scroll">Exchange Students</h4>
+              <p class="text-black text-xs sm:text-sm animate-on-scroll delay-100">
+                Exchange students aged 19–28, from diverse backgrounds, coming to Denmark for 6–12 months, who value convenience, sustainability, and affordability, and typically purchase their pack before arrival.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- We wanted to know section -->
+      <div class="text-center mb-12">
+        <h3 class="text-black text-l mb-12 animate-on-scroll md:w-1/2 mx-auto text-center">
+          We conducted surveys with exchange students to identify their biggest pain points and needs regarding accommodation essentials, confirming high demand for affordable, sustainable, and convenient solutions.
+        </h3>
+      </div>
+
+      <!-- Research Insights Slider -->
+      <div class="mb-4">
+        <div class="slider-container flex flex-col md:flex-row rounded-xl bg-[#A3D7D4] project3-slider">
+          <!-- Left side - Images (Desktop only) -->
+          <div class="md:w-1/2 relative h-[400px] desktop-image-container">
+            <img id="desktop-image-0" class="w-full h-full object-cover slide-image active image-animation" src="images/project_3/photos-from-our-dorm.png" alt="From Sleeping on the Floor to Circular Solutions - Personal experience photos" >
+            <img id="desktop-image-1" class="w-full h-full object-cover slide-image image-animation" src="images/project_3/survey.png" alt="Understanding Student Needs Before Launch - Survey results" >
+            <img id="desktop-image-2" class="w-full h-full object-cover slide-image image-animation" src="images/project_3/empathy_map.png" alt="Mapping the Exchange Student Journey - Empathy map" >
+          </div>
+          
+          <!-- Right side - Content -->
+          <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
+            <!-- Headlines with vertical lines -->
+            <div class="space-y-6">
+              <!-- Headline 1 -->
+              <div id="headline-group-0" class="headline-group pl-6 relative animate-on-scroll">
+                <div id="progress-container-0" class="progress-container">
+                  <div id="progress-0" class="progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="headline-0" class="headline text-xl font-medium text-black">1. From sleeping on the floor to circular solutions
+                  </h3>
+                  <div id="content-0" class="headline-content text-black text-sm">
+                    During my first week as an international student in Denmark, I had to sleep without basic bedding, which inspired me and my friends to create a service that would ensure no student had to face the same challenge.
+                  </div>
+                  <!-- Mobile image -->
+                  <div id="mobile-image-0" class="mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/photos-from-our-dorm.png" alt="From Sleeping on the Floor to Circular Solutions - Personal experience photos" >
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Headline 2 -->
+              <div id="headline-group-1" class="headline-group pl-6 relative animate-on-scroll delay-100">
+                <div id="progress-container-1" class="progress-container">
+                  <div id="progress-1" class="progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="headline-1" class="headline text-xl font-medium text-black">2. Understanding student needs before Launch
+                  </h3>
+                  <div id="content-1" class="headline-content text-black text-sm">
+                    We surveyed exchange students to identify their biggest pain points and needs regarding accommodation essentials, confirming high demand for affordable, sustainable, and convenient solutions.
+                  </div>
+                  <!-- Mobile image -->
+                  <div id="mobile-image-1" class="mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/survey.png" alt="Understanding Student Needs Before Launch - Survey results" >
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Headline 3 -->
+              <div id="headline-group-2" class="headline-group pl-6 relative animate-on-scroll delay-200">
+                <div id="progress-container-2" class="progress-container">
+                  <div id="progress-2" class="progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="headline-2" class="headline text-xl font-medium text-black">3. Mapping the exchange student Journey
+                  </h3>
+                  <div id="content-2" class="headline-content text-black text-sm">
+                    Using an empathy map, we visualized students' jobs, pains, and gains, highlighting their need for cost-effective, sustainable solutions and the stress caused by sourcing and disposing of household goods.
+                  </div>
+                  <!-- Mobile image -->
+                  <div id="mobile-image-2" class="mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/empathy_map.png" alt="Mapping the Exchange Student Journey - Empathy map" >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- End of research div -->
+  
+  <!-- Design Process Section -->
+  <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto border-b border-gray-200">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl font-bold mb-16 text-black text-center section-heading">MVP PROCESS</h2>
+      
+      <!-- Design Process Slider -->
+      <div class="mb-12">
+        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
+          <!-- Left side - Images (Desktop only) -->
+          <div class="md:w-1/2 relative h-[400px] design-desktop-image-container">
+            <img id="design-desktop-image-0" class="w-full h-full object-cover design-slide-image active image-animation" src="images/project_3/BUSINESS-CANVAS.png" alt="Designing a Circular, Student-Centric Service - Business model canvas" >
+            <img id="design-desktop-image-1" class="w-full h-full object-cover design-slide-image image-animation" src="images/project_3/model.png" alt="The Business Blueprint - Service blueprint for Easy Semester" >
+            <img id="design-desktop-image-2" class="w-full h-full object-cover design-slide-image image-animation" src="images/project_3/mvp.png" alt="Our MVP - Minimum viable product of rental service" >
+            <img id="design-desktop-image-3" class="w-full h-full object-cover design-slide-image image-animation" src="images/project_3/delivery.png" alt="The Website We Built - Easy Semester web platform" >
+          </div>
+          
+          <!-- Right side - Content -->
+          <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
+            <!-- Headlines with vertical lines -->
+            <div class="space-y-6">
+              <!-- Headline 1 -->
+              <div id="design-headline-group-0" class="design-headline-group pl-6 relative animate-on-scroll">
+                <div id="design-progress-container-0" class="design-progress-container">
+                  <div id="design-progress-0" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Designing a Circular, Student-Centric Service</h3>
+                  <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
+                    We used the Business Model Canvas to map out our value proposition, key partners, activities, resources, channels, customer relationships, cost structure, and revenue streams, ensuring a holistic and scalable solution.
+                  </div>
+                  <!-- Mobile image -->
+                  <div id="design-mobile-image-0" class="design-mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/BUSINESS-CANVAS.png" alt="Designing a Circular, Student-Centric Service - Business model canvas" >
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Headline 2 -->
+              <div id="design-headline-group-1" class="design-headline-group pl-6 relative animate-on-scroll delay-100">
+                <div id="design-progress-container-1" class="design-progress-container">
+                  <div id="design-progress-1" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. The solution</h3>
+                  <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
+                    The plan was to reuse material from leaving exchange students, and sell it to incoming students. We reached out to our university housing office, but they didn't want to collaborate, as they were selling their own new linen packs. </div>
+                  <!-- Mobile image -->
+                  <div id="design-mobile-image-1" class="design-mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/model.png" alt="The Business Blueprint - Service blueprint for Easy Semester" >
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Headline 3 -->
+              <div id="design-headline-group-2" class="design-headline-group pl-6 relative animate-on-scroll delay-200">
+                <div id="design-progress-container-2" class="design-progress-container">
+                  <div id="design-progress-2" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. We made a landing page and sent 800 emails to exchange students</h3>
+                  <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
+                    A simple e-commerce site allowed students to reserve linen packs before arrival. We sent 800 emails to exchange students promoting our service. We got the email addresses by figuring out the university email structure.
+                  </div>
+                  <!-- Mobile image -->
+                  <div id="design-mobile-image-2" class="design-mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/mvp.png" alt="Our MVP - Minimum viable product of rental service" >
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Headline 4 -->
+              <div id="design-headline-group-3" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
+                <div id="design-progress-container-3" class="design-progress-container">
+                  <div id="design-progress-3" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. We had a busy summer, collecting, cleaning and delivering linen packs</h3>
+                  <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
+                    We launched a minimum viable product by collecting donated linens, preparing rental packs, building a basic website for orders, and managing logistics and deliveries ourselves, primarily by bike and GreenMobility
+
+                  </div>
+                  <!-- Mobile image -->
+                  <div id="design-mobile-image-3" class="design-mobile-image">
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/delivery.png" alt="The Website We Built - Easy Semester web platform" >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- insights -->
+ <div id="insights" class="py-24 p-4 md:p-16 lg:p-24 mx-auto">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8 text-black text-center section-heading">INSIGHTS</h2>
+    
+    <div class="self-stretch inline-flex justify-start items-start gap-4 md:gap-12 flex-col md:flex-row content-start mt-8">
+      <div class="flex-1 flex justify-start items-center gap-4">
+        <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold font-['SF_Pro_Text']">Circular Economy Impact</div>
+          <div class="self-stretch justify-start text-color-base-black text-base font-normal font-['SF_Pro_Text']">The service was well-received: 74 students donated materials, 1,250 students from 40+ nationalities visited the site, and 60 orders were completed in two semesters.</div>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-start items-center gap-4">
+        <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold font-['SF_Pro_Text']">Feedback and future plans</div>
+          <div class="self-stretch justify-start text-color-base-black text-base font-normal font-['SF_Pro_Text']">We received positive feedback in surveys and casual chats. We were soexcited that were planning to increase our offering to furniture, other items and even create student community events.</div>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-start items-center gap-4">
+        <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold font-['SF_Pro_Text']">COVID-19 Impact</div>
+          <div class="self-stretch justify-start text-color-base-black text-base font-normal font-['SF_Pro_Text']">The pandemic effectively halted our operations as international exchange programs were suspended for over a year, resulting in no new students arriving to study in Denmark.</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+  <!-- next project  -->
+  <div id="next-project" class="py-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-3xl font-bold mb-16 text-black text-center section-heading">OTHER PROJECTS</h3>
+      
+      <!-- Project cards container with new layout -->
+      <div class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full">
+        
+        <!-- Holistic Training Builder Card -->
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="project1.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="images/project_1/cover.mp4" type="video/mp4">
+                Your browser does not support the video tag. This video showcases the Holistic Training Builder application.
+              </video>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black font-['SF_Pro_Text']">HOLISTIC TRAINING BUILDER</div>
+          </a>
+        </div>
+        
+        <!-- Sports Media Concepts Card -->
+        <div class="w-full hoverable right-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="project2.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                  <source src="images/project_2/thumbnail.mp4" type="video/mp4">
+                  Your browser does not support the video tag. This video showcases Sports Media Concepts designed for Generation Z.
+                </video>
+              </div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black font-['SF_Pro_Text']">SPORTS MEDIA CONCEPTS FOR GEN Z</div>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</body>
+</html> 
