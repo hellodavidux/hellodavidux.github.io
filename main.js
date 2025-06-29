@@ -121,34 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle direct hash navigation as the first operation
     handleDirectHashNavigation();
     
-    // Handle scroll and update active section
-    let currentSection = 0;
-    let isScrolling = false;
-    
-    // Function to update the navigation based on the current section
-    function updateNavigation(sectionId) {
-        // Determine the background color for inactive indicators based on current section
-        const inactiveClass = (sectionId === 'intro' || sectionId === 'project3' || sectionId === 'contact') 
-            ? 'bg-zinc-300' 
-            : 'bg-white/30';
-        
-        indicators.forEach(indicator => {
-            if (indicator.getAttribute('data-section') === sectionId) {
-                // Active indicator
-                indicator.classList.add('bg-gray-500');
-                indicator.classList.remove('bg-white/30', 'bg-zinc-300');
-            } else {
-                // Inactive indicator - color depends on current section
-                indicator.classList.add(inactiveClass);
-                indicator.classList.remove('bg-gray-500', inactiveClass === 'bg-zinc-300' ? 'bg-white/30' : 'bg-zinc-300');
-            }
-        });
-        
-        // Reset animations when navigating to intro section
-        if (sectionId === 'intro') {
-            resetIntroAnimations();
-        }
-    }
+    // Make sure the initial section is properly visible
+    updateSections();
     
     // Handle hash changes
     window.addEventListener('hashchange', function() {
@@ -169,41 +143,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Initial setup based on hash
-    if (window.location.hash) {
-        const sectionId = window.location.hash.substring(1);
-        for (let i = 0; i < sections.length; i++) {
-            if (sections[i].getAttribute('id') === sectionId) {
-                currentSection = i;
-                updateNavigation(sectionId);
-                break;
-            }
-        }
-    } else {
-        updateNavigation('intro');
-    }
-    
     // Handle indicator clicks
     indicators.forEach(indicator => {
         indicator.addEventListener('click', function(e) {
             const sectionId = this.getAttribute('data-section');
             
-            // Only set hash if not the intro section
-            if (sectionId === 'intro') {
-                history.replaceState("", document.title, window.location.pathname + window.location.search);
-            } else {
-                window.location.hash = sectionId;
-            }
+            // Find the index of the section
+            let targetIndex = 0;
+            Array.from(sections).forEach((section, index) => {
+                if (section.id === sectionId) {
+                    targetIndex = index;
+                }
+            });
             
-            updateNavigation(sectionId);
+            // Navigate to the section
+            navigateToSection(targetIndex);
         });
     });
-    
-    // Initialize sections positioning
-    updateSections();
-    
-    // Initialize indicators
-    updateIndicators();
     
     // Set up scroll down indicator visibility
     updateScrollDownIndicator();
@@ -309,21 +265,18 @@ function handleScroll(scrollDown) {
     }
 }
 
-// Navigate to a specific section
+// Function to navigate to a specific section
 function navigateToSection(index) {
-    if (index < 0 || index >= sections.length || isScrolling) return;
+    // Ensure index is within bounds
+    if (index < 0) {
+        index = 0;
+    } else if (index >= sections.length) {
+        index = sections.length - 1;
+    }
     
+    // Set scrolling state and update current section index
     isScrolling = true;
     currentSectionIndex = index;
-    
-    // Update history without adding entry to history stack
-    if (sections[index].id === 'intro') {
-        // For intro section, remove the hash completely
-        history.replaceState("", document.title, window.location.pathname + window.location.search);
-    } else {
-        // For other sections, update the hash
-        history.replaceState(null, null, `#${sections[index].id}`);
-    }
     
     // Update sections visibility
     updateSections();
@@ -337,13 +290,13 @@ function navigateToSection(index) {
     // Update navbar links
     updateNavbarLinks();
     
-    // Reset scrolling flag after animation completes - increased to match cooldown
+    // Reset scrolling state after animation completes
     setTimeout(() => {
         isScrolling = false;
-    }, 900); // Match with scrollCooldown value
+    }, 1000);
 }
 
-// Update sections positioning
+// Function to update sections visibility
 function updateSections() {
     sections.forEach((section, index) => {
         // Position each section based on the current section index
@@ -351,6 +304,13 @@ function updateSections() {
         section.style.transition = isScrolling ? 'transform 1s cubic-bezier(0.23, 1, 0.32, 1)' : 'none';
         section.style.transform = `translateY(${offset}vh)`;
         section.style.zIndex = sections.length - Math.abs(index - currentSectionIndex);
+        
+        // Add/remove active class for additional styling
+        if (index === currentSectionIndex) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
     });
 
     // Trigger contact section highlight when navigating to it
@@ -365,6 +325,14 @@ function updateSections() {
                 thankYouElement.classList.add('highlight');
             }, 2000);
         }
+    }
+    
+    // Update the URL hash
+    const currentSectionId = sections[currentSectionIndex].id;
+    if (currentSectionId === 'intro') {
+        history.replaceState(null, null, ' ');
+    } else {
+        history.replaceState(null, null, `#${currentSectionId}`);
     }
 }
 

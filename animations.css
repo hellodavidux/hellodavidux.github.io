@@ -16,6 +16,15 @@
   opacity: 0;
 }
 
+/* Section transition styles */
+.section {
+  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.section.active {
+  /* Active section styles */
+}
+
 @keyframes drawLine {
   from {
     opacity: 0;

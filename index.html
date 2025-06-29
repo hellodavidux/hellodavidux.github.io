@@ -50,6 +50,14 @@
     <script src="dynamic-text.js"></script>
     <script src="like-button.js"></script>
     <script src="logo-color.js" defer></script>
+    <style>
+        /* Initial section positioning before JavaScript loads */
+        #intro { transform: translateY(0); }
+        #project1 { transform: translateY(100vh); }
+        #project2 { transform: translateY(200vh); }
+        #project3 { transform: translateY(300vh); }
+        #contact { transform: translateY(400vh); }
+    </style>
 </head>
 <body class="overflow-hidden">
     <!-- Google Tag Manager (noscript) -->
@@ -126,7 +134,7 @@
         </div>
 
         <!-- Intro Section -->
-        <section id="intro" class="section h-screen w-full absolute top-0 left-0 bg-gray-50 flex items-center justify-center p-8 ">
+        <section id="intro" class="section h-screen w-full absolute top-0 left-0 bg-gray-50 flex items-center justify-center p-8 active">
             <div class="intro-content w-full max-w-5xl flex flex-col items-center">
                 <p class="text-sm font-extralight md:text-base text-gray-400 mb-8 fade-in-up">Hi!</p>
                 
