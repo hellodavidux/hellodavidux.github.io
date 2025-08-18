@@ -114,6 +114,31 @@
         right: 50px;
       }
     }
+    
+    /* Slider control button styles */
+    .slider-control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      color: inherit;
+      display: none; /* Hidden by default */
+    }
+    
+    .slider-control-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .slider-control-btn.paused i {
+      opacity: 1 !important;
+    }
+    
+    /* Design section button styles (different color scheme) */
+    .design-headline-group .slider-control-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body class="bg-white">
@@ -366,8 +391,13 @@
                   <div id="progress-0" class="progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="headline-0" class="headline text-xl font-medium">1. Usability & workflow challenges
-                  </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="headline-0" class="headline text-xl font-medium">1. Usability & workflow challenges
+                    </h3>
+                    <button class="slider-control-btn" data-slider="research" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="content-0" class="headline-content text-white/80 text-sm">
                     Coaches struggle with too much scrolling, confusing navigation, and awkward drag-and-drop when creating or editing plans.
                   </div>
@@ -384,8 +414,13 @@
                   <div id="progress-1" class="progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="headline-1" class="headline text-xl font-medium">2. Lack of training options and flexibility
-                  </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="headline-1" class="headline text-xl font-medium">2. Lack of training options and flexibility
+                    </h3>
+                    <button class="slider-control-btn" data-slider="research" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="content-1" class="headline-content text-white/80 text-sm">
                     Builder lacks support for key training formats like AMRAP, EMOM, Tabata, and progression, which forces coaches to use workarounds or external tools.
                   </div>
@@ -402,8 +437,13 @@
                   <div id="progress-2" class="progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="headline-2" class="headline text-xl font-medium">3. Limitations in assigning plans to clients and setting plan progressions
-                  </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="headline-2" class="headline text-xl font-medium">3. Limitations in assigning plans to clients and setting plan progressions
+                    </h3>
+                    <button class="slider-control-btn" data-slider="research" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="content-2" class="headline-content text-white/80 text-sm">
                     Coaches want to create new exercises on the fly, adjust sets and reps per client, and easily organize or reuse templates, but current options are limited and require manual, repetitive work.
                   </div>
@@ -469,7 +509,12 @@
                   <div id="design-progress-0" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Team brainstorming workshop</h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Team brainstorming workshop</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
                     I organized a workshop where the team sketched solutions to address our most critical, prioritized user opportunities.
                   </div>
@@ -486,7 +531,12 @@
                   <div id="design-progress-1" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. Mockups and feedback session</h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. Mockups and feedback session</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
                     We created initial Figma wireframes and ran a team session where everyone gave feedback using "I like, I wish, I wonder" sticky notes.
                   </div>
@@ -503,7 +553,12 @@
                   <div id="design-progress-2" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. Listing and prioritizing assumptions </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. Listing and prioritizing assumptions </h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
                     We identified and ranked the key assumptions behind our solutions to test what must be true for the solution to succeed.
                   </div>
@@ -520,7 +575,12 @@
                   <div id="design-progress-3" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. Validating solution assumptions with Coaches</h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. Validating solution assumptions with Coaches</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
                     We tested critical assumptions directly with coaches, using their feedback to refine and improve our designs.
                   </div>

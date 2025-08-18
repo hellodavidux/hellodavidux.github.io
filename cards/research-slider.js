@@ -11,6 +11,10 @@ let designPreviousSlide = 0;
 let designSlideInterval;
 let designIsTransitioning = false;
 
+// Pause state variables
+let researchSliderPaused = false;
+let designSliderPaused = false;
+
 function startProgress() {
   const researchSlideCount = document.querySelectorAll('[id^="desktop-image-"]').length;
   if (isMobile) {
@@ -43,11 +47,14 @@ function startProgress() {
         if (index === currentSlide) {
           line.classList.add('active');
           
-          // Force reflow to restart the animation
-          void line.offsetWidth;
-          
-          // Start progress animation
-          line.style.height = '100%';
+          // Only start progress animation if not paused
+          if (!researchSliderPaused) {
+            // Force reflow to restart the animation
+            void line.offsetWidth;
+            
+            // Start progress animation
+            line.style.height = '100%';
+          }
         }
       }
     });
@@ -86,11 +93,14 @@ function startDesignProgress() {
         if (index === designCurrentSlide) {
           line.classList.add('active');
           
-          // Force reflow to restart the animation
-          void line.offsetWidth;
-          
-          // Start progress animation
-          line.style.height = '100%';
+          // Only start progress animation if not paused
+          if (!designSliderPaused) {
+            // Force reflow to restart the animation
+            void line.offsetWidth;
+            
+            // Start progress animation
+            line.style.height = '100%';
+          }
         }
       }
     });
@@ -236,6 +246,9 @@ function showSlide(index) {
   updateHeadlines();
   updateImages();
   
+  // Update button visibility
+  updateResearchSliderButtons(researchSliderPaused);
+  
   // Start progress indicator (different for mobile and desktop)
   startProgress();
   
@@ -257,6 +270,9 @@ function showDesignSlide(index) {
   // Update headlines and images immediately
   updateDesignHeadlines();
   updateDesignImages();
+  
+  // Update button visibility
+  updateDesignSliderButtons(designSliderPaused);
   
   // Start progress indicator (different for mobile and desktop)
   startDesignProgress();
@@ -287,16 +303,27 @@ function goToSlide(index) {
   // Only proceed if not currently transitioning
   const researchSlideCount = document.querySelectorAll('[id^="desktop-image-"]').length;
   if (!isTransitioning && index >= 0 && index < researchSlideCount) {
-    // Reset the interval if on desktop
-    if (!isMobile && slideInterval) {
+    // If slider was paused, resume it when user clicks on a headline
+    if (researchSliderPaused) {
+      researchSliderPaused = false;
+      if (!isMobile) {
+        slideInterval = setInterval(() => {
+          const nextIndex = (currentSlide + 1) % researchSlideCount;
+          showSlide(nextIndex);
+        }, 10000);
+      }
+    }
+    
+    // Reset the interval if on desktop and not paused
+    if (!isMobile && slideInterval && !researchSliderPaused) {
       clearInterval(slideInterval);
     }
     
     // Show the selected slide
     showSlide(index);
     
-    // Restart the interval if on desktop
-    if (!isMobile) {
+    // Restart the interval if on desktop and not paused
+    if (!isMobile && !researchSliderPaused) {
       slideInterval = setInterval(() => {
         const nextIndex = (currentSlide + 1) % researchSlideCount;
         showSlide(nextIndex);
@@ -309,16 +336,27 @@ function goToDesignSlide(index) {
   // Only proceed if not currently transitioning
   const designSlideCount = document.querySelectorAll('[id^="design-desktop-image-"]').length;
   if (!designIsTransitioning && index >= 0 && index < designSlideCount) {
-    // Reset the interval if on desktop
-    if (!isMobile && designSlideInterval) {
+    // If slider was paused, resume it when user clicks on a headline
+    if (designSliderPaused) {
+      designSliderPaused = false;
+      if (!isMobile) {
+        designSlideInterval = setInterval(() => {
+          const nextIndex = (designCurrentSlide + 1) % designSlideCount;
+          showDesignSlide(nextIndex);
+        }, 10000);
+      }
+    }
+    
+    // Reset the interval if on desktop and not paused
+    if (!isMobile && designSlideInterval && !designSliderPaused) {
       clearInterval(designSlideInterval);
     }
     
     // Show the selected slide
     showDesignSlide(index);
     
-    // Restart the interval if on desktop
-    if (!isMobile) {
+    // Restart the interval if on desktop and not paused
+    if (!isMobile && !designSliderPaused) {
       designSlideInterval = setInterval(() => {
         const nextIndex = (designCurrentSlide + 1) % designSlideCount;
         showDesignSlide(nextIndex);
@@ -334,6 +372,9 @@ function initSliders() {
   
   // Initialize design slider
   initDesignSlider();
+  
+  // Initialize slider control buttons
+  initSliderControlButtons();
 }
 
 // Initialize research slider
@@ -403,6 +444,9 @@ function initResearchSlider() {
   
   // Start progress indicators
   startProgress();
+  
+  // Update button visibility for initial state
+  updateResearchSliderButtons(researchSliderPaused);
   
   // Start auto-rotation only if on desktop
   if (!isMobile) {
@@ -481,6 +525,9 @@ function initDesignSlider() {
   // Start progress indicators
   startDesignProgress();
   
+  // Update button visibility for initial state
+  updateDesignSliderButtons(designSliderPaused);
+  
   // Start auto-rotation only if on desktop
   if (!isMobile) {
     designSlideInterval = setInterval(() => {
@@ -495,16 +542,20 @@ window.addEventListener('resize', () => {
   const wasMobile = isMobile;
   isMobile = window.innerWidth < 768;
   
-  // If switching from mobile to desktop, start auto-rotation
+  // If switching from mobile to desktop, start auto-rotation (if not paused)
   if (wasMobile && !isMobile) {
     // Research slider
-    if (slideInterval) clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 10000);
+    if (!researchSliderPaused) {
+      if (slideInterval) clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 10000);
+    }
     startProgress();
     
     // Design slider
-    if (designSlideInterval) clearInterval(designSlideInterval);
-    designSlideInterval = setInterval(nextDesignSlide, 10000);
+    if (!designSliderPaused) {
+      if (designSlideInterval) clearInterval(designSlideInterval);
+      designSlideInterval = setInterval(nextDesignSlide, 10000);
+    }
     startDesignProgress();
   }
   
@@ -539,4 +590,144 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDesignImages();
     console.log('Sliders initialized');
   }, 100);
-}); 
+});
+
+// Pause/Resume functionality
+function toggleResearchSlider() {
+  researchSliderPaused = !researchSliderPaused;
+  
+  if (researchSliderPaused) {
+    // Pause the slider
+    if (slideInterval) {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
+    // Stop the progress line animation
+    const currentProgressLine = document.querySelector(`#progress-${currentSlide}`);
+    if (currentProgressLine) {
+      currentProgressLine.style.transition = 'none';
+      currentProgressLine.style.height = currentProgressLine.style.height || '0%';
+    }
+    // Update all research slider buttons to show play icon
+    updateResearchSliderButtons(true);
+  } else {
+    // Resume the slider
+    if (!isMobile) {
+      const researchSlideCount = document.querySelectorAll('[id^="desktop-image-"]').length;
+      slideInterval = setInterval(() => {
+        const nextIndex = (currentSlide + 1) % researchSlideCount;
+        showSlide(nextIndex);
+      }, 10000);
+    }
+    // Resume the progress line animation
+    const currentProgressLine = document.querySelector(`#progress-${currentSlide}`);
+    if (currentProgressLine) {
+      currentProgressLine.style.transition = 'height 10s linear';
+      currentProgressLine.style.height = '100%';
+    }
+    // Update all research slider buttons to show pause icon
+    updateResearchSliderButtons(false);
+  }
+}
+
+function toggleDesignSlider() {
+  designSliderPaused = !designSliderPaused;
+  
+  if (designSliderPaused) {
+    // Pause the slider
+    if (designSlideInterval) {
+      clearInterval(designSlideInterval);
+      designSlideInterval = null;
+    }
+    // Stop the progress line animation
+    const currentProgressLine = document.querySelector(`#design-progress-${designCurrentSlide}`);
+    if (currentProgressLine) {
+      currentProgressLine.style.transition = 'none';
+      currentProgressLine.style.height = currentProgressLine.style.height || '0%';
+    }
+    // Update all design slider buttons to show play icon
+    updateDesignSliderButtons(true);
+  } else {
+    // Resume the slider
+    if (!isMobile) {
+      const designSlideCount = document.querySelectorAll('[id^="design-desktop-image-"]').length;
+      designSlideInterval = setInterval(() => {
+        const nextIndex = (designCurrentSlide + 1) % designSlideCount;
+        showDesignSlide(nextIndex);
+      }, 10000);
+    }
+    // Resume the progress line animation
+    const currentProgressLine = document.querySelector(`#design-progress-${designCurrentSlide}`);
+    if (currentProgressLine) {
+      currentProgressLine.style.transition = 'height 10s linear';
+      currentProgressLine.style.height = '100%';
+    }
+    // Update all design slider buttons to show pause icon
+    updateDesignSliderButtons(false);
+  }
+}
+
+function updateResearchSliderButtons(isPaused) {
+  const buttons = document.querySelectorAll('.slider-control-btn[data-slider="research"]');
+  buttons.forEach((button, index) => {
+    const icon = button.querySelector('i');
+    const isActive = index === currentSlide;
+    
+    // Only show button if headline is active
+    if (isActive) {
+      button.style.display = 'flex';
+      if (isPaused) {
+        icon.className = 'fas fa-play text-xs opacity-60 hover:opacity-100 transition-opacity';
+        button.classList.add('paused');
+      } else {
+        icon.className = 'fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity';
+        button.classList.remove('paused');
+      }
+    } else {
+      button.style.display = 'none';
+    }
+  });
+}
+
+function updateDesignSliderButtons(isPaused) {
+  const buttons = document.querySelectorAll('.slider-control-btn[data-slider="design"]');
+  buttons.forEach((button, index) => {
+    const icon = button.querySelector('i');
+    const isActive = index === designCurrentSlide;
+    
+    // Only show button if headline is active
+    if (isActive) {
+      button.style.display = 'flex';
+      if (isPaused) {
+        icon.className = 'fas fa-play text-xs opacity-60 hover:opacity-100 transition-opacity';
+        button.classList.add('paused');
+      } else {
+        icon.className = 'fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity';
+        button.classList.remove('paused');
+      }
+    } else {
+      button.style.display = 'none';
+    }
+  });
+}
+
+// Add event listeners for slider control buttons
+function initSliderControlButtons() {
+  // Research slider buttons
+  const researchButtons = document.querySelectorAll('.slider-control-btn[data-slider="research"]');
+  researchButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent headline click
+      toggleResearchSlider();
+    });
+  });
+  
+  // Design slider buttons
+  const designButtons = document.querySelectorAll('.slider-control-btn[data-slider="design"]');
+  designButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent headline click
+      toggleDesignSlider();
+    });
+  });
+} 

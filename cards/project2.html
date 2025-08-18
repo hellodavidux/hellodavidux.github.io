@@ -114,6 +114,31 @@
         right: 50px;
       }
     }
+    
+    /* Slider control button styles */
+    .slider-control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      color: inherit;
+      display: none; /* Hidden by default */
+    }
+    
+    .slider-control-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .slider-control-btn.paused i {
+      opacity: 1 !important;
+    }
+    
+    /* Design section button styles (different color scheme) */
+    .design-headline-group .slider-control-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body class="bg-white">
@@ -367,8 +392,13 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="progress-0" class="progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="headline-0" class="headline text-xl font-medium">1. Desk Research
-                  </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="headline-0" class="headline text-xl font-medium">1. Desk Research
+                    </h3>
+                    <button class="slider-control-btn" data-slider="research" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="content-0" class="headline-content text-white/80 text-sm">
                     We conducted an initial round of general research analyzing existing documentation from research agencies, helping us narrow down the problem space and define our subsequent research phases.
             
@@ -386,8 +416,13 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="progress-1" class="progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="headline-1" class="headline text-xl font-medium">2. Conducted own research using Job-to-be-done framework
-                  </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="headline-1" class="headline text-xl font-medium">2. Conducted own research using Job-to-be-done framework
+                    </h3>
+                    <button class="slider-control-btn" data-slider="research" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="content-1" class="headline-content text-white/80 text-sm">
                     We conducted interviews with several football 'fluid' fans using the Jobs-to-be-Done framework, exploring what they wanted to achieve as fans (watch, play, learn) and which tools they currently used to fulfill these needs.
                   </div>
@@ -404,8 +439,13 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="progress-2" class="progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="headline-2" class="headline text-xl font-medium">3. Finding 2 underserved opportunities
-                  </h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="headline-2" class="headline text-xl font-medium">3. Finding 2 underserved opportunities
+                    </h3>
+                    <button class="slider-control-btn" data-slider="research" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="content-2" class="headline-content text-white/80 text-sm">
                     We ran a survey based on JTBD insights from interviews to quantify job importance and satisfaction with existing tools. We identified two underserved opportunities (high importance, low satisfaction) which became the starting points for our ideation process.
                   </div>
@@ -461,7 +501,12 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="design-progress-0" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Team Brainstorming</h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Team Brainstorming</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
                     I organized a workshop where together with different stakeholders in the company, we brainstormed solutions to address these 2 opportunities by separate. 
                   </div>
@@ -478,7 +523,12 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="design-progress-1" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. Testing of the concepts</h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. Testing of the concepts</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
                     We ran small scale tests with the concepts, and validated the assumptions for both concepts.
                   </div>
@@ -495,7 +545,12 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="design-progress-2" class="design-progress-line"></div>
                 </div>
                 <div>
-                  <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. TikTok ad + Painted door landing page</h3>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. TikTok ad + Painted door landing page</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
                   <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
                     We created a TikTok ad and a painted door landing page to test the concepts with our target audience. The TikTok ad directed users to the landing page featuring a visual representation of the app, where they could sign up for beta access. This allowed us to collect contact details for follow-up interviews.
                   </div>
