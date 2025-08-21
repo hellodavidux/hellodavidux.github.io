@@ -139,6 +139,50 @@
     .design-headline-group .slider-control-btn:hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
+    
+    /* Before/After Comparison Styles */
+    .before-after-container {
+      user-select: none;
+    }
+    
+    .divider {
+      transition: none;
+    }
+    
+    .divider-handle {
+      transition: transform 0.2s ease;
+    }
+    
+    .divider:hover .divider-handle {
+      transform: scale(1.1);
+    }
+    
+    .divider:active .divider-handle {
+      transform: scale(1.05);
+    }
+    
+    /* Divider animation when not being used */
+    .divider.animate {
+      animation: dividerWiggle 2s ease-in-out infinite;
+    }
+    
+    @keyframes dividerWiggle {
+      0%, 100% { transform: translateX(-50%) translateX(0px); }
+      25% { transform: translateX(-50%) translateX(-8px); }
+      75% { transform: translateX(-50%) translateX(8px); }
+    }
+    
+    /* Increased draggable area */
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -20px;
+      right: -20px;
+      bottom: 0;
+      cursor: ew-resize;
+      z-index: 1;
+    }
   </style>
 </head>
 <body class="bg-white">
@@ -604,6 +648,50 @@
         <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded-sm inline-block section-heading">SOLUTION</h2>
       </div>
       
+      <!-- Before/After Comparison Component -->
+      <div class="text-center mb-12">
+        <h3 class="text-white text-xl mb-8 animate-on-scroll">Before vs After Interface Comparison</h3>
+      </div>
+      
+      <!-- Before/After Comparison Container -->
+      <div class="w-full mb-12 bg-[#2E3E3E] py-4 rounded-2xl image-animation">
+        <div class="before-after-container relative w-full rounded-xl overflow-hidden" style="aspect-ratio: 16/9; border-radius: 12px;">
+          <!-- Before Image (Background) -->
+          <img 
+            src="images/project_1/before.png" 
+            alt="Before - Old interface design" 
+            class="absolute top-0 left-0 w-full h-full object-contain"
+          >
+          
+          <!-- After Image (Overlay with clip-path) -->
+          <div class="after-image-container absolute top-0 left-0 w-full h-full">
+            <img 
+              src="images/project_1/after.png" 
+              alt="After - New interface design" 
+              class="w-full h-full object-contain"
+              style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)"
+            >
+          </div>
+          
+          <!-- Draggable Divider -->
+          <div class="divider absolute top-0 bottom-0 w-1 cursor-ew-resize flex items-center justify-center" style="left: 50%; transform: translateX(-50%); background-color: #1E2F2F;">
+            <div class="divider-handle w-8 h-16 rounded-full flex items-center justify-center shadow-lg" style="background-color: #1E2F2F;">
+              <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l2-2l2 2V5H8zm6 0v14l2-2l2 2V5h-4z"/>
+              </svg>
+            </div>
+            
+            <!-- Labels that move with the divider -->
+            <div class="absolute bottom-4 -left-24 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium whitespace-nowrap">
+              BEFORE
+            </div>
+            <div class="absolute bottom-4 -right-20 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium whitespace-nowrap">
+              AFTER
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <!-- We wanted to know section -->
       <div class="text-center mb-12">
         <h3 class="text-white text-xl mb-8 animate-on-scroll">Unified Layout for Better Overview</h3>
@@ -712,7 +800,7 @@
         </svg>
         <span class="sr-only">Info</span>
         <div class="ms-3 text-sm font-medium">
-          I left the company before we could measure the full impact of the redesign.
+          This data is from only 3 months after implementation. As I left the company after that.
 
         </div>
           <button type="button" class="alert-close-button ms-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-1" aria-label="Close">
@@ -728,20 +816,20 @@
     <div class="self-stretch inline-flex justify-start items-start gap-4 md:gap-12 flex-col md:flex-row content-start mt-8">
       <div class="flex-1 flex justify-start items-center gap-4">
         <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
-          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold    ">Increase coach efficiency</div>
-          <div class="self-stretch justify-start text-color-base-black text-base font-normal ">Reduced average time to create and assign a workout plan. Fewer support requests related to usability and plan-building limitations. Increased coach satisfaction (survey score improvement).</div>
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold    ">Increased coach efficiency</div>
+          <div class="self-stretch justify-start text-color-base-black text-base font-normal ">Reduced average time to create a workout plan by 30%. Fewer support requests related to usability and plan-building limitations. </div>
         </div>
       </div>
       <div class="flex-1 flex justify-start items-center gap-4">
         <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
-          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold ">Increase number of coaches</div>
-          <div class="self-stretch justify-start text-color-base-black text-base font-normal ">Higher adoption and engagement rates among coaches, especially those previously underserved (e.g., CrossFit, HIIT coaches).</div>
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold ">Increased usage</div>
+          <div class="self-stretch justify-start text-color-base-black text-base font-normal ">Higher adoption and engagement rates among coaches, with around 10% more coaches creating at least 3 templates.</div>
         </div>
       </div>
       <div class="flex-1 flex justify-start items-center gap-4">
         <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
-          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold ">Increase user engagement</div>
-          <div class="self-stretch justify-start text-color-base-black text-base font-normal ">Improved client outcomes and satisfaction as a result of better-tailored plans.</div>
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold ">Increased coach satisfaction</div>
+          <div class="self-stretch justify-start text-color-base-black text-base font-normal ">NPS Survey score improvement from 3.7 to 4.1.</div>
         </div>
       </div>
     </div>
@@ -788,6 +876,75 @@
       </div>
     </div>
   </div>
+
+  <!-- Before/After Comparison JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.querySelector('.before-after-container');
+      const divider = document.querySelector('.divider');
+      const afterImage = document.querySelector('.after-image-container img');
+      
+      if (!container || !divider || !afterImage) return;
+      
+      let isDragging = false;
+      let startX, startLeft;
+      let hasBeenInteracted = false;
+      
+      // Add animation class initially
+      divider.classList.add('animate');
+      
+      function updateClipPath(percentage) {
+        afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+        divider.style.left = `${percentage}%`;
+      }
+      
+      function handleMouseDown(e) {
+        // Remove animation when user starts interacting
+        if (!hasBeenInteracted) {
+          hasBeenInteracted = true;
+          divider.classList.remove('animate');
+        }
+        
+        isDragging = true;
+        startX = e.clientX || e.touches[0].clientX;
+        startLeft = parseFloat(divider.style.left) || 50;
+        
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('touchmove', handleMouseMove);
+        document.addEventListener('touchend', handleMouseUp);
+        
+        e.preventDefault();
+      }
+      
+      function handleMouseMove(e) {
+        if (!isDragging) return;
+        
+        const currentX = e.clientX || e.touches[0].clientX;
+        const deltaX = currentX - startX;
+        const containerRect = container.getBoundingClientRect();
+        const percentage = Math.max(0, Math.min(100, ((startLeft / 100) * containerRect.width + deltaX) / containerRect.width * 100));
+        
+        updateClipPath(percentage);
+      }
+      
+      function handleMouseUp() {
+        isDragging = false;
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('touchmove', handleMouseMove);
+        document.removeEventListener('touchend', handleMouseUp);
+      }
+      
+      // Add event listeners
+      divider.addEventListener('mousedown', handleMouseDown);
+      divider.addEventListener('touchstart', handleMouseDown);
+      
+      // Prevent text selection while dragging
+      divider.addEventListener('selectstart', e => e.preventDefault());
+      divider.addEventListener('dragstart', e => e.preventDefault());
+    });
+  </script>
 
 </body>
 </html> 
