@@ -56,7 +56,8 @@
         #project1 { transform: translateY(100vh); }
         #project2 { transform: translateY(200vh); }
         #project3 { transform: translateY(300vh); }
-        #contact { transform: translateY(400vh); }
+        #project4 { transform: translateY(400vh); }
+        #contact { transform: translateY(500vh); }
     </style>
 </head>
 <body class="overflow-hidden">
@@ -130,6 +131,7 @@
             <a href="#project1" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project1"></a>
             <a href="#project2" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project2"></a>
             <a href="#project3" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project3"></a>
+            <a href="#project4" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project4"></a>
             <a href="#contact" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="contact"></a>
         </div>
 
@@ -227,6 +229,38 @@
             </div>
         </section>
 
+        <!-- Project 4 Section -->
+        <section id="project4" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center md:pt-0 pt-0 px-8 pb-8" style="background-color: #284d60;">
+            <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
+                <div class="h-96 w-full md:h-[493px] md:w-[700px] projectcard bg-cyan-50/5 flex flex-col justify-start items-start gap-2.5">
+                    <div class="w-full h-full rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] flex flex-col justify-end items-center overflow-hidden hover:scale-110 transition-transform duration-500 cursor-pointer" onclick="showComingSoonModal()">
+                        <div class="w-full bg-[#262626] h-full flex justify-center rounded-xl video-animation p-4 md:p-8">
+                            <video 
+                            class="w-full"
+                            autoplay
+                            playsinline
+                            loop
+                            muted>
+                            <source src="cards/images/project_4/hvidovre2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                          </div>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col justify-start items-center gap-4">
+                    <div class="text-center">
+                        <span class="inline-block bg-gray-600 text-white text-xs font-medium px-3 py-1 rounded-full ">Project in progress</span>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" onclick="event.preventDefault(); showComingSoonModal();" class="self-stretch text-center justify-center text-white text-2xl md:text-4xl font-black project-title-hover hover-title leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)] cursor-pointer" 
+                           style="transition: all 0.3s ease;"
+                           onmouseover="this.style.fontWeight='900'; this.style.textDecoration='underline'; this.style.textDecorationThickness='4px'; this.style.textUnderlineOffset='8px'; this.style.transform='scale(1.02)';"
+                           onmouseout="this.style.fontWeight=''; this.style.textDecoration=''; this.style.textDecorationThickness=''; this.style.textUnderlineOffset=''; this.style.transform='';">REDESIGN OF<br>HVIDOVRE TENNIS CLUB</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8  bg-white text-gray-900">
             <div class="w-full max-w-md flex flex-col items-center text-center">
@@ -248,6 +282,41 @@
         </div>
     </div>
 
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000020] hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Coming Soon!</h3>
+            <p class="text-gray-600 mb-6">This project is currently in progress. Check back later for the full case study.</p>
+            <button onclick="hideComingSoonModal()" class="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
     <script src="main.js"></script>
+    <script>
+        function showComingSoonModal() {
+            document.getElementById('comingSoonModal').classList.remove('hidden');
+        }
+        
+        function hideComingSoonModal() {
+            document.getElementById('comingSoonModal').classList.add('hidden');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('comingSoonModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideComingSoonModal();
+            }
+        });
+        
+        // Prevent modal from affecting scroll position
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('comingSoonModal');
+            modal.addEventListener('show', function(e) {
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html> 
