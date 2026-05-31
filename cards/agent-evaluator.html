@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PLQ3MHWM');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ7T5YRB90"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VJ7T5YRB90');
+  </script>
+  
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "rsqscwp7sc");
+  </script>
+  
+   <!-- Metadata -->
+   <meta name="description" content="StackAI Workflow Analytics 2.0 and Evaluator 2.0 — org-wide observability and continuous quality as a deployment gate.">
+   <meta name="keywords" content="UX Design, Portfolio, Project">
+   <meta name="author" content="David">
+   <meta name="robots" content="noindex, nofollow">
+   <meta name="googlebot" content="noindex, nofollow">
+   
+   <!-- Favicon -->
+   <link rel="icon" href="../images/1655921174945.jpeg" type="image/x-icon">
+  <title>Workflow Analytics &amp; Agent Evaluator — StackAI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slider-styles.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="media-lightbox.css">
+  <script src="project-page.js" defer></script>
+  <script src="research-slider.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="media-lightbox.js" defer></script>
+  <script src="../logo-color.js" defer></script>
+  <script src="../logo-name-animation.js" defer></script>
+  <style>
+    .hoverable {
+      transition: transform 0.3s ease;
+    }
+    .left-card:hover {
+      transform: translateX(-8px) translateY(3px);
+    }
+    .right-card:hover {
+      transform: translateX(8px) translateY(3px);
+    }
+    .scroll-spy-section {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .scroll-spy-section.active div {
+      font-weight: 900;
+    }
+    .like-btn {
+      transition: all 0.3s ease;
+    }
+    .like-btn:hover {
+      transform: scale(1.05);
+    }
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgb(119 119 119 / 58%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .back-home:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1) translateY(0);
+    }
+    .back-home.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .left-card:hover, 
+      .right-card:hover {
+        transform: translateY(-8px);
+      }
+      .scroll-spy {
+        display: none !important;
+      }
+    }
+    @media (min-width: 768px) {
+      .back-home {
+        top: 50px;
+        right: 50px;
+      }
+    }
+    
+    /* Slider control button styles */
+    .slider-control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      color: inherit;
+      display: none; /* Hidden by default */
+    }
+    
+    .slider-control-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .slider-control-btn.paused i {
+      opacity: 1 !important;
+    }
+    
+    /* Design section button styles (different color scheme) */
+    .design-headline-group .slider-control-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Before/After Comparison Styles */
+    .before-after-container {
+      user-select: none;
+    }
+    
+    .divider {
+      transition: none;
+    }
+    
+    .divider-handle {
+      transition: transform 0.2s ease;
+    }
+    
+    .divider:hover .divider-handle {
+      transform: scale(1.1);
+    }
+    
+    .divider:active .divider-handle {
+      transform: scale(1.05);
+    }
+
+    /* Benchmark analytics / evaluator side-by-side showcase */
+    .benchmark-copy {
+      display: grid;
+    }
+    .benchmark-copy-panel {
+      grid-column: 1;
+      grid-row: 1;
+      transition: opacity 0.35s ease;
+      text-align: center;
+    }
+    .benchmark-copy-panel--evaluator {
+      opacity: 0;
+    }
+    .benchmark-showcase.benchmark-showcase--evaluator .benchmark-copy-panel--analytics {
+      opacity: 0;
+    }
+    .benchmark-showcase.benchmark-showcase--evaluator .benchmark-copy-panel--evaluator {
+      opacity: 1;
+    }
+    .benchmark-panels {
+      position: relative;
+      cursor: ew-resize;
+      user-select: none;
+    }
+    .benchmark-comparison__base {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .benchmark-comparison__overlay {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .benchmark-comparison__overlay img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .benchmark-divider {
+      position: absolute;
+      top: -2%;
+      bottom: -2%;
+      left: 50%;
+      width: 8px;
+      background: #fff;
+      transform: translateX(-50%) rotate(-2.5deg);
+      transform-origin: center center;
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    /* Divider animation when not being used */
+    .divider.animate {
+      animation: dividerWiggle 2s ease-in-out infinite;
+    }
+    
+    @keyframes dividerWiggle {
+      0%, 100% { transform: translateX(-50%) translateX(0px); }
+      25% { transform: translateX(-50%) translateX(-8px); }
+      75% { transform: translateX(-50%) translateX(8px); }
+    }
+    
+    /* Increased draggable area */
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -20px;
+      right: -20px;
+      bottom: 0;
+      cursor: ew-resize;
+      z-index: 1;
+    }
+
+    .scroll-spy-wide {
+      width: min(920px, calc(100vw - 2rem));
+    }
+    .scroll-spy-wide .scroll-spy-section div {
+      font-size: 0.8125rem;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLQ3MHWM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar-fixed fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <div class="navbar-inner flex justify-between items-center">
+      <div class="logoname flex items-center w-auto">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="logo-avatar">
+            <img src="../images/profile-navbar.jpeg" alt="Profile" class="logo-avatar-img logo-avatar-img-default">
+            <img src="../images/profile-navbar-bgnone.png" alt="" class="logo-avatar-img logo-avatar-img-hover" aria-hidden="true">
+          </div>
+          <h1 class="logo-name logo-name-light transition-colors duration-300" id="logo-name"><span class="logo-name-default"><span class="logo-name-first"><span class="logo-d logo-d-first">d</span><span class="logo-name-core">avi</span><span class="logo-d logo-d-last">d</span></span><span class="logo-name-rest"> ruiz</span></span><span class="logo-name-greeting" aria-hidden="true"><span class="logo-greeting-hey">hey</span><span class="logo-greeting-there"> there</span> 👋</span></h1>
+        </a>
+      </div>
+
+      <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project-agent-evaluator" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
+      </div>
+
+      <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project-agent-evaluator" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
+      </div>
+
+      <div class="flex justify-end items-center gap-4">
+        <a href="../index.html" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
+        <a href="../index.html#project-agent-evaluator" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Close button to return to homepage -->
+  <a href="../index.html#project-agent-evaluator" class="back-home" id="back-home">
+    <i class="fas fa-times"></i>
+  </a>
+  
+  <!-- Floating Table of Contents (scroll spy) -->
+  <div class="scroll-spy fixed left-1/2 transform -translate-x-1/2 bottom-8 z-50 opacity-0 translate-y-10 transition-all duration-300 hidden md:flex" id="scroll-spy">
+    <div class="scroll-spy-wide px-6 py-2 relative bg-gray-200/50 rounded-2xl backdrop-blur-sm inline-flex justify-center items-center gap-4 overflow-hidden">
+      <a href="#intro" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="intro">
+        <div class="justify-start text-black text-base font-normal ">INTRODUCTION</div>
+      </a>
+      <a href="#personas" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="personas">
+        <div class="justify-start text-black text-base font-normal ">PERSONAS</div>
+      </a>
+      <a href="#design-process" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="design-process">
+        <div class="justify-start text-black text-base font-normal ">DESIGN PROCESS</div>
+      </a>
+      <a href="#solution" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="solution">
+        <div class="justify-start text-black text-base font-normal ">SOLUTION</div>
+      </a>
+      <a href="#insights" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="insights">
+        <div class="justify-start text-black text-base font-normal ">INSIGHTS</div>
+      </a>
+      <div class="scroll-spy-wide h-2 left-0 top-[51px] absolute inline-flex flex-col justify-start items-start gap-2.5">
+        <div class="bg-black h-full transition-all duration-300" id="progress-indicator" style="width: 0"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Introduction Section -->
+  <div id="intro" class="intro lg:pt-24 p-4 pt-32 md:p-16 md:px-24 mx-auto pb-24">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8 text-center">
+        <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">WORKFLOW ANALYTICS &amp;<br>AGENT EVALUATOR</h1>
+        <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
+          Two interconnected initiatives to transform StackAI's observability and quality story — org-wide analytics and continuous evaluation as a deployment gate.
+        </p>
+      </header>
+
+      <!-- Video container with no background -->
+      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl  video-animation  md:p-4 bg-white">
+        <video
+          class="w-full rounded-xl"
+          autoplay
+          playsinline
+          loop
+          muted>
+          <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Categories section -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6">
+        <div class="animate-on-scroll delay-100">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Company</p>
+          <p class="font-medium">StackAI</p>
+        </div>
+        <div class="animate-on-scroll delay-200">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Product</p>
+          <p class="font-medium">Enterprise AI workflow platform</p>
+        </div>
+        <div class="animate-on-scroll delay-300">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Role</p>
+          <p class="font-medium">Product Designer</p>
+        </div>
+        <div class="animate-on-scroll delay-400">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Year</p>
+          <p class="font-medium">2026</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Personas Section -->
+  <div id="personas" class="personas pt-24 p-4 md:p-16 lg:p-24 mx-auto bg-gray-950 text-gray-100">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-black bg-white px-6 py-2 rounded inline-block section-heading">Discovery</h2>
+      </div>
+
+      <p class="text-gray-400 text-xs uppercase tracking-wide mb-4 text-center">Personas</p>
+
+      <div class="grid grid-cols-4 gap-4 animate-on-scroll mb-8">
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-center">
+          <p class="font-semibold text-gray-100 mb-3">Executive Sponsors</p>
+          <p class="text-gray-300 text-sm">Prove AI adoption + ROI across teams</p>
+        </div>
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-center">
+          <p class="font-semibold text-gray-100 mb-3">Admins</p>
+          <p class="text-gray-300 text-sm">Quickly monitor production health</p>
+        </div>
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-center">
+          <p class="font-semibold text-gray-100 mb-3">Builders</p>
+          <p class="text-gray-300 text-sm">Debug, iterate, and improve workflows</p>
+        </div>
+        <div class="bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-300 text-center">
+          <p class="font-semibold text-gray-100 mb-3">Internal Teams (StackAI)</p>
+          <p class="text-gray-300 text-sm">Understand platform usage</p>
+        </div>
+      </div>
+
+      <img
+        src="images/agent-evaluator/journeys-ersonas.png"
+        alt="Persona journeys across executive sponsors, admins, builders, and internal teams"
+        class="w-full rounded-xl mb-8 image-animation ring-1 ring-gray-800">
+
+      <div class="flex flex-col gap-6 mt-8 animate-on-scroll">
+        <div class="text-center">
+          <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">Analytics</p>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Split across two surfaces with no org-wide view. Run logs buried under charts, missing caller context, and timezone bugs across the UI and exports.
+          </p>
+        </div>
+        <div class="text-center">
+          <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">Evaluator</p>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Barely used — manual test uploads and deployment friction. Competitors had moved to continuous, trace-native evaluation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Process Section -->
+  <div id="design-process" class="design-process bg-white pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+      </div>
+      
+      <div class="space-y-12 md:space-y-16 mb-12">
+        <div class="card-animation benchmark-showcase">
+          <div class="benchmark-copy mb-6">
+            <div class="benchmark-copy-panel benchmark-copy-panel--analytics">
+              <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">Benchmark Analytics</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                Mapped the opportunity space in FigJam, ran multiple design iterations across global and project-level views, and validated with stakeholders before handing off specs to engineering.
+              </p>
+            </div>
+            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator">
+              <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">Benchmark Evaluator</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                Conducted competitive research (Laminar, Langfuse, Arize Phoenix), mapped the full eval journey, iterated from lo-fi proposal → interactive prototype → stakeholder testing → engineering handoff.
+              </p>
+            </div>
+          </div>
+          <div class="benchmark-panels rounded-xl overflow-hidden" style="background-color: #fff;">
+            <img
+              src="images/agent-evaluator/benchmark-analytics.png"
+              alt="Benchmark analytics"
+              class="benchmark-comparison__base image-animation"
+            >
+            <div class="benchmark-comparison__overlay">
+              <img
+                src="images/agent-evaluator/benckmark-evaluator.png"
+                alt="Benchmark evaluators"
+                class="image-animation"
+                style="clip-path: polygon(47.5% 0%, 100% 0%, 100% 100%, 52.5% 100%)"
+              >
+            </div>
+            <div class="benchmark-divider" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="card-animation delay-100">
+          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide text-center">Designing the user flow for the AI agent evaluator</h3>
+          <div class="rounded-xl overflow-hidden bg-gray-100">
+            <img src="images/agent-evaluator/evaluate-user-flow.png" alt="Evaluate user flow" class="w-full h-auto image-animation">
+          </div>
+        </div>
+
+        <div class="card-animation delay-200">
+          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide text-center">Ideation with PM + Eng</h3>
+          <div class="rounded-xl overflow-hidden bg-gray-100">
+            <img src="images/agent-evaluator/ideas.png" alt="Design ideas" class="w-full h-auto image-animation">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution Section -->
+  <div id="solution" class="solution bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agent-evaluator/grey-dot-bg.svg'); background-repeat: repeat;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
+      </div>
+      
+      <div class="text-center mb-8">
+        <h3 class="text-gray-300 text-sm mb-4 uppercase tracking-wide animate-on-scroll">Improved Analytics</h3>
+        <p class="text-2xl font-bold text-gray-400 mb-2 animate-on-scroll delay-200">Org-wide analytics with caller context, feedback filtering, and a simplified layout that puts debugging first.</p>
+      </div>
+
+      <div class="w-full flex justify-center mb-12 bg-black p-4 rounded-2xl video-animation">
+        <video
+          class="w-full rounded-xl"
+          autoplay
+          playsinline
+          loop
+          muted>
+          <source src="images/agent-evaluator/analytics.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div id="solution2" class="bg-gray-100 pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-8">
+        <h3 class="text-gray-500 text-sm mb-4 uppercase tracking-wide animate-on-scroll">Analytics View a la Temporal</h3>
+        <p class="text-2xl font-bold text-gray-600 mb-2 animate-on-scroll delay-100">Time-series metrics and workflow health across your org — success rates, latency percentiles, and error trends at a glance.</p>
+      </div>
+
+      <div class="w-full flex justify-center bg-gray-200 p-4 rounded-2xl image-animation">
+        <img src="images/agent-evaluator/gantt.png" alt="Org-wide analytics view inspired by Temporal workflow metrics" class="w-full rounded-xl image-animation">
+      </div>
+    </div>
+  </div>
+  
+  <div id="solution4" class="bg-black pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-8">
+        <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide animate-on-scroll">Agent Evaluator</h3>
+        <p class="text-2xl font-bold text-white mb-2 animate-on-scroll delay-100">A run can be viewed in analytics, sent to an evaluator, and used to build a test dataset — one shared data model by design.</p>
+      </div>
+
+      <div class="w-full bg-neutral-900 rounded-2xl flex justify-center mb-12 p-4">
+        <div class="w-full bg-black flex justify-center rounded-xl video-animation p-4 md:p-8">
+          <video
+            class="w-full rounded-xl"
+            autoplay
+            playsinline
+            loop
+            muted>
+            <source src="images/agent-evaluator/test-evaluator.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- insights -->
+ <div id="insights" class="pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-8 text-white bg-black px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8">
+      <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation">
+        <div class="text-lg font-extrabold mb-3">Two sides of the same coin</div>
+        <p class="text-gray-700 text-base">Analytics and evaluation are interconnected. A run can be viewed in analytics, sent to an evaluator, and used to build a test dataset — the two systems share a data model by design.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-100">
+        <div class="text-lg font-extrabold mb-3">Adoption ≠ debugging</div>
+        <p class="text-gray-700 text-base">Executive sponsors and builders need separate views of the same data, not just more filters.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation delay-200">
+        <div class="text-lg font-extrabold mb-3">Friction kills good ideas</div>
+        <p class="text-gray-700 text-base">The evaluator existed but went unused because deploying it required infrastructure work. The new model makes signals zero-configuration.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-300">
+        <div class="text-lg font-extrabold mb-3">ADLC makes evaluation strategic</div>
+        <p class="text-gray-700 text-base">When evals are deployment gates, defining "good" becomes a required step before shipping — not a retrospective.</p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+  <!-- next project  -->
+  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
+      </div>
+      
+      <!-- Project cards container with new layout -->
+      <div class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full">
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="agentic-lifecycle.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Agentic Development Lifecycle preview">
+                  <source src="images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">AGENTIC DEVELOPMENT LIFECYCLE</div>
+          </a>
+        </div>
+        
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="project1.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden"><div class="w-full h-full bg-cover bg-center" style="background-image: url('images/project_1/thumbnail.gif');"></div></div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">HOLISTIC TRAINING BUILDER REDESIGN</div>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Benchmark comparison + Before/After JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const benchmarkContainer = document.querySelector('.benchmark-panels');
+      if (benchmarkContainer) {
+        const overlayImg = benchmarkContainer.querySelector('.benchmark-comparison__overlay img');
+        const divider = benchmarkContainer.querySelector('.benchmark-divider');
+        const showcase = benchmarkContainer.closest('.benchmark-showcase');
+        const SLANT = 2.5;
+
+        function updateBenchmarkPosition(clientX) {
+          const rect = benchmarkContainer.getBoundingClientRect();
+          const percentage = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+          const topX = percentage - SLANT;
+          const bottomX = percentage + SLANT;
+
+          overlayImg.style.clipPath = `polygon(${topX}% 0%, 100% 0%, 100% 100%, ${bottomX}% 100%)`;
+          divider.style.left = `${percentage}%`;
+
+          if (showcase) {
+            showcase.classList.toggle('benchmark-showcase--evaluator', percentage >= 50);
+          }
+        }
+
+        function resetBenchmarkPosition() {
+          updateBenchmarkPosition(
+            benchmarkContainer.getBoundingClientRect().left + benchmarkContainer.offsetWidth / 2
+          );
+        }
+
+        benchmarkContainer.addEventListener('mousemove', (e) => updateBenchmarkPosition(e.clientX));
+        benchmarkContainer.addEventListener('mouseleave', resetBenchmarkPosition);
+        benchmarkContainer.addEventListener('touchmove', (e) => {
+          if (e.touches[0]) updateBenchmarkPosition(e.touches[0].clientX);
+        }, { passive: true });
+        benchmarkContainer.addEventListener('touchend', resetBenchmarkPosition);
+
+        resetBenchmarkPosition();
+      }
+
+      const container = document.querySelector('.before-after-container');
+      const divider = document.querySelector('.divider');
+      const afterImage = document.querySelector('.after-image-container img');
+      
+      if (!container || !divider || !afterImage) return;
+      
+      let isDragging = false;
+      let startX, startLeft;
+      let hasBeenInteracted = false;
+      
+      // Add animation class initially
+      divider.classList.add('animate');
+      
+      function updateClipPath(percentage) {
+        afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+        divider.style.left = `${percentage}%`;
+      }
+      
+      function handleMouseDown(e) {
+        // Remove animation when user starts interacting
+        if (!hasBeenInteracted) {
+          hasBeenInteracted = true;
+          divider.classList.remove('animate');
+        }
+        
+        isDragging = true;
+        startX = e.clientX || e.touches[0].clientX;
+        startLeft = parseFloat(divider.style.left) || 50;
+        
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('touchmove', handleMouseMove);
+        document.addEventListener('touchend', handleMouseUp);
+        
+        e.preventDefault();
+      }
+      
+      function handleMouseMove(e) {
+        if (!isDragging) return;
+        
+        const currentX = e.clientX || e.touches[0].clientX;
+        const deltaX = currentX - startX;
+        const containerRect = container.getBoundingClientRect();
+        const percentage = Math.max(0, Math.min(100, ((startLeft / 100) * containerRect.width + deltaX) / containerRect.width * 100));
+        
+        updateClipPath(percentage);
+      }
+      
+      function handleMouseUp() {
+        isDragging = false;
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('touchmove', handleMouseMove);
+        document.removeEventListener('touchend', handleMouseUp);
+      }
+      
+      // Add event listeners
+      divider.addEventListener('mousedown', handleMouseDown);
+      divider.addEventListener('touchstart', handleMouseDown);
+      
+      // Prevent text selection while dragging
+      divider.addEventListener('selectstart', e => e.preventDefault());
+      divider.addEventListener('dragstart', e => e.preventDefault());
+    });
+  </script>
+
+</body>
+</html> 

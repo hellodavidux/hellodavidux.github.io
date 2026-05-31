@@ -48,16 +48,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="dynamic-text.js"></script>
-    <script src="like-button.js"></script>
     <script src="logo-color.js" defer></script>
+    <script src="logo-name-animation.js" defer></script>
     <style>
         /* Initial section positioning before JavaScript loads */
         #intro { transform: translateY(0); }
-        #project1 { transform: translateY(100vh); }
-        #project2 { transform: translateY(200vh); }
-        #project3 { transform: translateY(300vh); }
-        #project4 { transform: translateY(400vh); }
-        #contact { transform: translateY(500vh); }
+        #project-agentic-lifecycle { transform: translateY(100vh); }
+        #project-agent-evaluator { transform: translateY(200vh); }
+        #project1 { transform: translateY(300vh); }
+        #project2 { transform: translateY(400vh); }
+        #project3 { transform: translateY(500vh); }
+        #contact { transform: translateY(600vh); }
     </style>
 </head>
 <body class="overflow-hidden">
@@ -66,98 +67,151 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Navigation Bar -->
-    <nav class="navbar-fixed fixed top-0 left-0 w-full px-8 py-4 flex justify-between items-center text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <nav class="navbar-fixed fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+        <div class="navbar-inner flex justify-between items-center">
         <!-- Left side: Logo and name with fixed width -->
-        <div class="logoname flex items-center w-32">
-            <a href="" class="flex items-center">
-                <div class="relative mr-3">
-                    <!-- Outer yellow circle with larger gap -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] rounded-full border-[3px] border-gray-900"></div>
-                    <!-- Image container: 40px × 40px -->
-                    <div class="w-[40px] h-[40px] bg-gray-200 rounded-full overflow-hidden relative">
-                        <img src="images/1655921174945.jpeg" alt="Profile" class="w-full h-full object-cover">
-                    </div>
+        <div class="logoname flex items-center w-auto">
+            <a href="" class="flex items-center gap-3">
+                <div class="logo-avatar">
+                    <img src="images/profile-navbar.jpeg" alt="Profile" class="logo-avatar-img logo-avatar-img-default">
+                    <img src="images/profile-navbar-bgnone.png" alt="" class="logo-avatar-img logo-avatar-img-hover" aria-hidden="true">
                 </div>
-                <h1 class="text-2xl font-black tracking-tight transition-colors duration-300 logo-aurora" id="logo-name">
-                    <span>david</span>
-                    <div class="aurora">
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                    </div>
-                </h1>
+                <h1 class="logo-name logo-name-light transition-colors duration-300" id="logo-name"><span class="logo-name-default"><span class="logo-name-first"><span class="logo-d logo-d-first">d</span><span class="logo-name-core">avi</span><span class="logo-d logo-d-last">d</span></span><span class="logo-name-rest"> ruiz</span></span><span class="logo-name-greeting" aria-hidden="true"><span class="logo-greeting-hey">hey</span><span class="logo-greeting-there"> there</span> 👋</span></h1>
             </a>
         </div>
         
         <!-- Center: Navigation Links -->
         <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
-            <a href="#project1" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+            <a href="#project-agentic-lifecycle" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
             <a href="#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
         </div>
         
         <!-- Mobile Navigation Link (only shows Projects on mobile) -->
         <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
-            <a href="#project1" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
+            <a href="#project-agentic-lifecycle" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
         </div>
         
-        <!-- Right side: Like button with fixed width -->
-        <div class="w-32 flex justify-end ">
-            <button class="like-button bg-black text-white px-3 py-1.5 rounded-full flex items-center space-x-2 text-sm cursor-pointer" id="likeButton">
-                <div class="like-wrapper mr-1">
-                    <div class="ripple"></div>
-                    <svg class="heart w-4 h-4" viewBox="0 0 24 24">
-                        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
-                    </svg>
-                    <div class="particles" style="--total-particles: 6">
-                        <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                        <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                        <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                        <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                        <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                        <div class="particle" style="--i: 6; --color: #D53EF3"></div>
-                    </div>
-                </div>
-                <span>Like</span>
-            </button>
+        <!-- Right side: Home, Projects & About links -->
+        <div class="flex justify-end items-center gap-4">
+            <a href="#intro" class="text-sm font-medium text-gray-600 hover:text-gray-600 transition-colors">Home</a>
+            <a href="#project-agentic-lifecycle" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+            <a href="#contact" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+        </div>
         </div>
     </nav>
 
     <!-- Full page sections container -->
     <div class="sections-container h-screen w-full relative overflow-hidden" id="fullpage">
         <!-- Section Indicators -->
-        <div class="fixed right-3 md:right-8 top-1/2 transform -translate-y-1/2 z-50 w-2 inline-flex flex-col justify-start items-start gap-[5px]" id="section-indicators">
+        <div class="hidden absolute right-3 md:right-8 top-1/2 transform -translate-y-1/2 z-50 w-2 inline-flex flex-col justify-start items-start gap-[5px]" id="section-indicators">
             <a href="#intro" class="section-indicator self-stretch h-4 bg-gray-500 rounded-lg transition-all duration-300" data-section="intro"></a>
+            <a href="#project-agentic-lifecycle" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agentic-lifecycle"></a>
+            <a href="#project-agent-evaluator" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agent-evaluator"></a>
             <a href="#project1" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project1"></a>
             <a href="#project2" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project2"></a>
             <a href="#project3" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project3"></a>
-            <a href="#project4" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project4"></a>
             <a href="#contact" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="contact"></a>
         </div>
 
         <!-- Intro Section -->
-        <section id="intro" class="section h-screen w-full absolute top-0 left-0 bg-gray-50 flex items-center justify-center p-8 active">
-            <div class="intro-content w-full max-w-5xl flex flex-col items-center">
-                <p class="text-sm font-extralight md:text-base text-gray-400 mb-8 fade-in-up">Hej, hola, hello!</p>
-                
-                <div class="text-center space-y-3">
-                    <h2 class="text-2xl md:text-5xl text-gray-600 font-light fade-in-up delay-200">
-                        I'm David, a <span class="text-gray-900 font-bold">UX Designer</span>
+        <section id="intro" class="section h-screen w-full absolute top-0 left-0 flex flex-col items-center justify-between pt-8 pb-6 md:pb-8 active overflow-hidden">
+            <div class="intro-hero-stack flex-1 flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-10 md:gap-10 min-h-0">
+                <div class="intro-content w-full md:flex-1 md:min-w-0 text-left">
+                    <h2 class="intro-hero-headline text-gray-900 fade-in-up delay-200">
+                        <span class="intro-hero-item" data-description="6 years of experience hands-on and lately leading the pod of designers and frontend engineers">Product Design</span><span class="intro-hero-sep" aria-hidden="true"><img src="images/letter.svg" alt="" width="24" height="24" /></span><span class="intro-hero-item" data-description="Focusing on business value and the journey experience over pixel perfect">Product Strategy</span><span class="intro-hero-sep" aria-hidden="true"><img src="images/dots.svg" alt="" width="24" height="24" /></span><span class="intro-hero-item" data-description="I jump into weekly customer sessions, and have passion for continuous discovery">User Research</span><span class="intro-hero-sep" aria-hidden="true"><img src="images/bc.svg" alt="" width="24" height="24" /></span><span class="intro-hero-item intro-hero-current" data-description="Joined a YC startup at an early stage as the first product designer before being acquired">Currently at StackAI</span><span class="intro-hero-sep" aria-hidden="true"><img src="images/cube.svg" alt="" width="24" height="24" /></span>
                     </h2>
-                    
-                    <h2 class="text-2xl md:text-5xl text-gray-600 font-light fade-in-up delay-300">
-                        passionate about <span class="text-gray-900 font-bold"><span id="changing-text">continuous discovery</span></span>
-                    </h2>
-                    
-                    <h2 class="text-2xl md:text-5xl text-gray-600 font-light fade-in-up delay-400">
-                        to create <span class="relative z-10 text-gray-900 font-bold">
-                            meaningful products
-                            <img src="images/line.svg" class="absolute -bottom-1 left-0 w-full h-4 -z-10 draw-line">
-                        </span>
-                    </h2>
+                    <div class="intro-hero-subheadline-wrap fade-in-up delay-200">
+                        <p class="intro-hero-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400" data-default="Passionate about sports tech and enterprise tools">
+                            Passionate about sports tech and enterprise tools
+                        </p>
+                    </div>
                 </div>
-                
-                <p class="text-sm md:text-base font-extralight text-center text-gray-400 mt-12 fade-in-up delay-500">Copenhagen based - Sports fanatic - Building digital products</p>
+                <div class="intro-hero-cards hidden md:flex w-full md:w-auto md:flex-shrink-0 justify-center md:justify-end fade-in-up delay-300">
+                    <a href="#project-agentic-lifecycle" class="intro-hero-cards__stack intro-hero-cards__link" aria-label="View projects">
+                        <div class="intro-hero-card intro-hero-card--1">
+                            <div class="intro-hero-card__media">
+                                <img src="images/home1.jpg" alt="" width="2986" height="1670" />
+                            </div>
+                        </div>
+                        <div class="intro-hero-card intro-hero-card--2">
+                            <div class="intro-hero-card__media">
+                                <img src="images/home3.jpg" alt="" width="1579" height="1173" />
+                            </div>
+                        </div>
+                        <div class="intro-hero-card intro-hero-card--3">
+                            <div class="intro-hero-card__media">
+                                <img src="images/home2.jpg" alt="" width="1440" height="900" />
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="intro-company-logos w-full flex-shrink-0 fade-in-up delay-400" aria-label="Companies I have worked with">
+                <p class="intro-company-logos__label">Trusted by</p>
+                <div class="intro-company-logos__marquee">
+                    <div class="intro-company-logos__track">
+                        <ul class="intro-company-logos__group">
+                            <li><img class="intro-company-logo" src="images/asana.png" alt="Asana" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/bc.png" alt="Better Collective" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/stackai.png" alt="Stack AI" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/jabra.png" alt="Jabra" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/lenus.png" alt="Lenus" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/asana.png" alt="" width="80" height="28" aria-hidden="true" /></li>
+                            <li><img class="intro-company-logo" src="images/bc.png" alt="" width="80" height="28" aria-hidden="true" /></li>
+                            <li><img class="intro-company-logo" src="images/stackai.png" alt="" width="80" height="28" aria-hidden="true" /></li>
+                            <li><img class="intro-company-logo" src="images/jabra.png" alt="" width="80" height="28" aria-hidden="true" /></li>
+                            <li><img class="intro-company-logo" src="images/lenus.png" alt="" width="80" height="28" aria-hidden="true" /></li>
+                        </ul>
+                        <ul class="intro-company-logos__group" aria-hidden="true">
+                            <li><img class="intro-company-logo" src="images/asana.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/bc.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/stackai.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/jabra.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/lenus.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/asana.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/bc.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/stackai.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/jabra.png" alt="" width="80" height="28" /></li>
+                            <li><img class="intro-company-logo" src="images/lenus.png" alt="" width="80" height="28" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agentic Development Lifecycle Section -->
+        <section id="project-agentic-lifecycle" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-black text-white">
+            <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
+                <div class="h-96 w-full md:h-[493px] md:w-[700px] projectcard flex flex-col justify-start items-start gap-2.5">
+                    <div class="project-agentic-lifecycle__card w-full h-full rounded-lg flex flex-col justify-center items-center overflow-hidden hover:scale-110 transition-transform duration-500">
+                        <a href="cards/agentic-lifecycle.html" class="w-full h-full flex">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="/cards/images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
+                            </video>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col justify-start items-center gap-8">
+                    <a href="cards/agentic-lifecycle.html" class="inline-block w-fit mx-auto text-center text-white text-2xl md:text-4xl font-black project-title-hover leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">AGENTIC DEVELOPMENT<br>LIFECYCLE</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent Evaluator Section -->
+        <section id="project-agent-evaluator" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 text-gray-900">
+            <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
+                <div class="projectcard projectcard--agent-evaluator flex flex-col justify-start items-start gap-2.5">
+                    <div class="project-agent-evaluator__card w-full h-full rounded-lg flex flex-col justify-center items-center overflow-hidden hover:scale-110 transition-transform duration-500">
+                        <a href="cards/agent-evaluator.html" class="w-full h-full flex">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                                <source src="/cards/images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+                            </video>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col justify-start items-center gap-8">
+                    <a href="cards/agent-evaluator.html" class="inline-block w-fit mx-auto text-center text-gray-900 text-2xl md:text-4xl font-black project-title-hover leading-[30px]">WORKFLOW ANALYTICS AND AGENT<br>EVALUATOR</a>
+                </div>
             </div>
         </section>
 
@@ -172,10 +226,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
-                    <a href="cards/project1.html" class="self-stretch text-center justify-center text-white text-2xl md:text-4xl font-black project-title-hover hover-title  leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)] " 
-                       style="transition: all 0.3s ease;"
-                       onmouseover="this.style.fontWeight='900'; this.style.textDecoration='underline'; this.style.textDecorationThickness='4px'; this.style.textUnderlineOffset='8px'; this.style.transform='scale(1.02)';"
-                       onmouseout="this.style.fontWeight=''; this.style.textDecoration=''; this.style.textDecorationThickness=''; this.style.textUnderlineOffset=''; this.style.transform='';">HOLISTIC TRAINING<br>BUILDER REDESIGN</a>
+                    <a href="cards/project1.html" class="inline-block w-fit mx-auto text-center text-white text-2xl md:text-4xl font-black project-title-hover leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">HOLISTIC TRAINING<br>BUILDER REDESIGN</a>
                 </div>
             </div>
         </section>
@@ -200,10 +251,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
-                    <a href="cards/project2.html" class="self-stretch text-center justify-center text-white text-2xl md:text-4xl font-black project-title-hover hover-title  leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]" 
-                       style="transition: all 0.3s ease;"
-                       onmouseover="this.style.fontWeight='900'; this.style.textDecoration='underline'; this.style.textDecorationThickness='4px'; this.style.textUnderlineOffset='8px'; this.style.transform='scale(1.02)';"
-                       onmouseout="this.style.fontWeight=''; this.style.textDecoration=''; this.style.textDecorationThickness=''; this.style.textUnderlineOffset=''; this.style.transform='';">SPORTS MEDIA CONCEPTS<br>FOR GEN Z</a>
+                    <a href="cards/project2.html" class="inline-block w-fit mx-auto text-center text-white text-2xl md:text-4xl font-black project-title-hover leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">SPORTS MEDIA CONCEPTS<br>FOR GEN Z</a>
                 </div>
             </div>
         </section>
@@ -221,42 +269,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
-                    <a href="cards/project3.html" class="self-stretch text-center justify-center text-white text-2xl md:text-4xl font-black project-title-hover hover-title  leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]"
-                       style="transition: all 0.3s ease;"
-                       onmouseover="this.style.fontWeight='900'; this.style.textDecoration='underline'; this.style.textDecorationThickness='4px'; this.style.textUnderlineOffset='8px'; this.style.transform='scale(1.02)';"
-                       onmouseout="this.style.fontWeight=''; this.style.textDecoration=''; this.style.textDecorationThickness=''; this.style.textUnderlineOffset=''; this.style.transform='';">RENTAL SERVICE<br>FOR EXCHANGE STUDENTS</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Project 4 Section -->
-        <section id="project4" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center md:pt-0 pt-0 px-8 pb-8" style="background-color: #284d60;">
-            <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
-                <div class="h-96 w-full md:h-[493px] md:w-[700px] projectcard bg-cyan-50/5 flex flex-col justify-start items-start gap-2.5">
-                    <div class="w-full h-full rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] flex flex-col justify-end items-center overflow-hidden hover:scale-110 transition-transform duration-500 cursor-pointer" onclick="showComingSoonModal()">
-                        <div class="w-full bg-[#262626] h-full flex justify-center rounded-xl video-animation p-4 md:p-8">
-                            <video 
-                            class="w-full"
-                            autoplay
-                            playsinline
-                            loop
-                            muted>
-                            <source src="cards/images/project_4/hvidovre2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                          </video>
-                          </div>
-                    </div>
-                </div>
-                <div class="w-full flex flex-col justify-start items-center gap-4">
-                    <div class="text-center">
-                        <span class="inline-block bg-gray-600 text-white text-xs font-medium px-3 py-1 rounded-full ">Project in progress</span>
-                    </div>
-                    <div class="text-center">
-                        <a href="#" onclick="event.preventDefault(); showComingSoonModal();" class="self-stretch text-center justify-center text-white text-2xl md:text-4xl font-black project-title-hover hover-title leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)] cursor-pointer" 
-                           style="transition: all 0.3s ease;"
-                           onmouseover="this.style.fontWeight='900'; this.style.textDecoration='underline'; this.style.textDecorationThickness='4px'; this.style.textUnderlineOffset='8px'; this.style.transform='scale(1.02)';"
-                           onmouseout="this.style.fontWeight=''; this.style.textDecoration=''; this.style.textDecorationThickness=''; this.style.textUnderlineOffset=''; this.style.transform='';">REDESIGN OF<br>HVIDOVRE TENNIS CLUB</a>
-                    </div>
+                    <a href="cards/project3.html" class="inline-block w-fit mx-auto text-center text-white text-2xl md:text-4xl font-black project-title-hover leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">RENTAL SERVICE<br>FOR EXCHANGE STUDENTS</a>
                 </div>
             </div>
         </section>
@@ -275,48 +288,6 @@
         </section>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="flex flex-col items-center fixed bottom-12 left-1/2 transform -translate-x-1/2 z-50" id="scroll-down-indicator">
-        <div class="flex items-center justify-center w-12 h-12  ">
-            <i class="fas fa-chevron-down chevron-down text-gray-400"></i>
-        </div>
-    </div>
-
-    <!-- Coming Soon Modal -->
-    <div id="comingSoonModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000020] hidden">
-        <div class="bg-white rounded-lg p-8 max-w-md mx-4 text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Coming Soon!</h3>
-            <p class="text-gray-600 mb-6">This project is currently in progress. Check back later for the full case study.</p>
-            <button onclick="hideComingSoonModal()" class="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                Close
-            </button>
-        </div>
-    </div>
-
     <script src="main.js"></script>
-    <script>
-        function showComingSoonModal() {
-            document.getElementById('comingSoonModal').classList.remove('hidden');
-        }
-        
-        function hideComingSoonModal() {
-            document.getElementById('comingSoonModal').classList.add('hidden');
-        }
-        
-        // Close modal when clicking outside
-        document.getElementById('comingSoonModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideComingSoonModal();
-            }
-        });
-        
-        // Prevent modal from affecting scroll position
-        document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('comingSoonModal');
-            modal.addEventListener('show', function(e) {
-                e.preventDefault();
-            });
-        });
-    </script>
 </body>
 </html> 

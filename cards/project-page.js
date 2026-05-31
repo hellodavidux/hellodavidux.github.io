@@ -5,9 +5,20 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Get references to DOM elements
-  const sections = document.querySelectorAll('#intro, #discovery, #design-process, #solution, #solution2, #solution3, #solution4, #insights');
-  const mainSections = document.querySelectorAll('#intro, #discovery, #design-process, #solution, #insights'); // For navigation purposes
   const navItems = document.querySelectorAll('.scroll-spy-section');
+  const mainSections = Array.from(navItems)
+    .map(item => document.getElementById(item.dataset.section))
+    .filter(Boolean);
+  const solutionSections = document.querySelectorAll('#solution, #solution2, #solution3, #solution4');
+  const sections = [];
+  mainSections.forEach(section => {
+    sections.push(section);
+    if (section.id === 'solution') {
+      solutionSections.forEach(subsection => {
+        if (subsection.id !== 'solution') sections.push(subsection);
+      });
+    }
+  });
   const navbar = document.getElementById('navbar');
   const scrollSpy = document.getElementById('scroll-spy');
   const progressIndicator = document.getElementById('progress-indicator');
@@ -150,12 +161,12 @@ document.addEventListener('DOMContentLoaded', function() {
       // Get the section ID
       const sectionId = currentSection.id;
       
-      // Adjust index based on which section we're in
-      if (sectionId === 'intro') adjustedSectionIndex = 0;
-      else if (sectionId === 'discovery') adjustedSectionIndex = 1;
-      else if (sectionId === 'design-process') adjustedSectionIndex = 2;
-      else if (sectionId.startsWith('solution')) {
-        adjustedSectionIndex = 3;
+      const mainSectionIndex = Array.from(mainSections).findIndex(section => section.id === sectionId);
+      if (mainSectionIndex >= 0) {
+        adjustedSectionIndex = mainSectionIndex;
+      } else if (sectionId.startsWith('solution')) {
+        adjustedSectionIndex = Array.from(mainSections).findIndex(section => section.id === 'solution');
+        if (adjustedSectionIndex < 0) adjustedSectionIndex = mainSections.length - 2;
         
         // Calculate sub-progress within all solution sections
         const allSolutionSections = Array.from(document.querySelectorAll('#solution, #solution2, #solution3, #solution4'));
@@ -184,7 +195,10 @@ document.addEventListener('DOMContentLoaded', function() {
         progressIndicator.style.width = `${progressWidth}%`;
         return; // Exit early since we've calculated the width
       }
-      else if (sectionId === 'insights') adjustedSectionIndex = 4;
+      else if (sectionId === 'insights') {
+        adjustedSectionIndex = Array.from(mainSections).findIndex(section => section.id === 'insights');
+        if (adjustedSectionIndex < 0) adjustedSectionIndex = mainSections.length - 1;
+      }
       
       // For non-solution sections, calculate progress within the section
       const sectionTop = currentSection.offsetTop - 400;

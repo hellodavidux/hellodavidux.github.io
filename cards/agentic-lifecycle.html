@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PLQ3MHWM');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ7T5YRB90"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VJ7T5YRB90');
+  </script>
+  
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "rsqscwp7sc");
+  </script>
+  
+   <!-- Metadata -->
+   <meta name="description" content="David's portfolio showcasing UX design projects and skills.">
+   <meta name="keywords" content="UX Design, Portfolio, Project">
+   <meta name="author" content="David">
+   <meta name="robots" content="noindex, nofollow">
+   <meta name="googlebot" content="noindex, nofollow">
+   
+   <!-- Favicon -->
+   <link rel="icon" href="../images/1655921174945.jpeg" type="image/x-icon">
+  <title>Agentic Development Lifecycle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slider-styles.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="media-lightbox.css">
+  <script src="project-page.js" defer></script>
+  <script src="research-slider.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="media-lightbox.js" defer></script>
+  <script src="../logo-color.js" defer></script>
+  <script src="../logo-name-animation.js" defer></script>
+  <style>
+    .hoverable {
+      transition: transform 0.3s ease;
+    }
+    .left-card:hover {
+      transform: translateX(-8px) translateY(3px);
+    }
+    .right-card:hover {
+      transform: translateX(8px) translateY(3px);
+    }
+    .scroll-spy-section {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .scroll-spy-section.active div {
+      font-weight: 900;
+    }
+    .like-btn {
+      transition: all 0.3s ease;
+    }
+    .like-btn:hover {
+      transform: scale(1.05);
+    }
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgb(119 119 119 / 58%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .back-home:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1) translateY(0);
+    }
+    .back-home.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .left-card:hover, 
+      .right-card:hover {
+        transform: translateY(-8px);
+      }
+      .scroll-spy {
+        display: none !important;
+      }
+    }
+    @media (min-width: 768px) {
+      .back-home {
+        top: 50px;
+        right: 50px;
+      }
+    }
+
+    .slider-control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      color: inherit;
+      display: none;
+    }
+
+    .slider-control-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .slider-control-btn.paused i {
+      opacity: 1 !important;
+    }
+
+    .design-headline-group .slider-control-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLQ3MHWM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar-fixed fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <div class="navbar-inner flex justify-between items-center">
+      <div class="logoname flex items-center w-auto">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="logo-avatar">
+            <img src="../images/profile-navbar.jpeg" alt="Profile" class="logo-avatar-img logo-avatar-img-default">
+            <img src="../images/profile-navbar-bgnone.png" alt="" class="logo-avatar-img logo-avatar-img-hover" aria-hidden="true">
+          </div>
+          <h1 class="logo-name logo-name-light transition-colors duration-300" id="logo-name"><span class="logo-name-default"><span class="logo-name-first"><span class="logo-d logo-d-first">d</span><span class="logo-name-core">avi</span><span class="logo-d logo-d-last">d</span></span><span class="logo-name-rest"> ruiz</span></span><span class="logo-name-greeting" aria-hidden="true"><span class="logo-greeting-hey">hey</span><span class="logo-greeting-there"> there</span> 👋</span></h1>
+        </a>
+      </div>
+
+      <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project-agentic-lifecycle" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
+      </div>
+
+      <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project-agentic-lifecycle" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
+      </div>
+
+      <div class="flex justify-end items-center gap-4">
+        <a href="../index.html" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
+        <a href="../index.html#project-agentic-lifecycle" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Close button to return to homepage -->
+  <a href="../index.html#project-agentic-lifecycle" class="back-home" id="back-home">
+    <i class="fas fa-times"></i>
+  </a>
+  
+  <!-- Floating Table of Contents (scroll spy) -->
+  <div class="scroll-spy fixed left-1/2 transform -translate-x-1/2 bottom-8 z-50 opacity-0 translate-y-10 transition-all duration-300 hidden md:flex" id="scroll-spy">
+    <div class="w-[786px] px-6 py-2 relative bg-gray-200/50 rounded-2xl backdrop-blur-sm inline-flex justify-center items-center gap-8 overflow-hidden">
+      <a href="#intro" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="intro">
+        <div class="justify-start text-black text-base font-normal ">INTRODUCTION</div>
+      </a>
+      <a href="#discovery" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="discovery">
+        <div class="justify-start text-black text-base font-normal ">DISCOVERY</div>
+      </a>
+      <a href="#design-process" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="design-process">
+        <div class="justify-start text-black text-base font-normal ">DESIGN PROCESS</div>
+      </a>
+      <a href="#solution" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="solution">
+        <div class="justify-start text-black text-base font-normal ">SOLUTION</div>
+      </a>
+      <a href="#insights" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="insights">
+        <div class="justify-start text-black text-base font-normal ">INSIGHTS</div>
+      </a>
+      <div class="w-[786px] h-2 left-0 top-[51px] absolute inline-flex flex-col justify-start items-start gap-2.5">
+        <div class="bg-black h-full transition-all duration-300" id="progress-indicator" style="width: 0"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Introduction Section -->
+  <div id="intro" class="intro lg:pt-24 p-4 pt-32 md:p-16 md:px-24 mx-auto pb-24">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8 text-center">
+        <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">AGENTIC DEVELOPMENT<br>LIFECYCLE</h1>
+        <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
+            ADLC (Agentic Development Life Cycle) brings the discipline of software engineering — versioning, staging environments, PR approvals — to AI agent deployment on StackAI.
+        </p>
+      </header>
+
+      <!-- Video container with no background -->
+      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl  video-animation  md:p-4 bg-gray-200">
+        <video 
+          class="w-full rounded-xl"
+          autoplay
+          playsinline
+          loop
+          muted>
+          <source src="images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Categories section -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6">
+        <div class="animate-on-scroll delay-100">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Company</p>
+          <p class="font-medium">StackAI</p>
+        </div>
+        <div class="animate-on-scroll delay-200">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Role</p>
+          <p class="font-medium">Product Design Lead</p>
+        </div>
+        <div class="animate-on-scroll delay-300">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Team</p>
+          <p class="font-medium">Design, Engineering, Product, Field Delivery</p>
+        </div>
+        <div class="animate-on-scroll delay-400">
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Timeline</p>
+          <p class="font-medium">Q1–Q2 2026</p>
+        </div>
+      </div>
+
+      <!-- Info cards -->
+      <div class="grid grid-cols-1 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation">
+          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">The core problem</h3>
+          <p class="text-gray-600">
+            Enterprises were pushing AI agents to production with no governance. No version history, no approval process, no rollback. Agents failing in front of customers with no safety net.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discovery Section with dark background -->
+  <div id="discovery" class="research bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
+    <div class="max-w-5xl mx-auto">
+      <!-- Section heading -->
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto mb-12 space-y-8">
+        <div class="rounded-2xl bg-neutral-800/50 p-6 md:p-10 animate-on-scroll text-center">
+          <p class="text-lg text-white/90 mb-6">
+            We discovered an enterprise customer governing AI agent deployments entirely by hand — a 6-phase process their CISO had built outside StackAI. After interviewing his team and mapping how they worked, we saw the potential to turn it into a product feature. He called it the Agentic Development Life Cycle.
+          </p>
+
+          <blockquote class="mb-6">
+            <p class="text-xl md:text-2xl font-bold text-white italic">"We need to build this into the product."</p>
+            <p class="text-white/60 text-sm mt-2">agreement between Designer, PM and Founders</p>
+          </blockquote>
+
+          <img
+            src="images/agentic-lifecycle/personas%20and%20mental%20models.jpg"
+            alt="Personas and mental models"
+            class="w-full h-auto rounded-xl image-animation mb-6"
+          >
+
+          <p class="text-lg text-white/90">
+            We co-designed the solution with users like this customer's — enterprise security and platform teams — so the product reflected how those teams actually govern agent deployments.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- End of research div -->
+  
+  <!-- Design Process Section -->
+  <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+      </div>
+      
+      <!-- Design Process Slider -->
+      <div class="mb-12">
+        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
+          <div class="md:w-1/2 relative h-[400px] design-desktop-image-container">
+            <img id="design-desktop-image-0" class="w-full h-full object-contain bg-gray-100 design-slide-image active image-animation" src="images/agentic-lifecycle/benchmark.png" alt="Benchmark — GitBook and other product inspiration">
+            <img id="design-desktop-image-1" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/agentic-lifecycle/proposal%201.png" alt="Iteration 1 — first design iteration">
+            <img id="design-desktop-image-2" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/agentic-lifecycle/Proposal%202.png" alt="Iteration 2 — second design iteration">
+            <img id="design-desktop-image-3" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/agentic-lifecycle/Proposal%203.png" alt="Iteration 3 — third design iteration">
+          </div>
+
+          <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
+            <div class="space-y-6">
+              <div id="design-headline-group-0" class="design-headline-group pl-6 relative animate-on-scroll">
+                <div id="design-progress-container-0" class="design-progress-container">
+                  <div id="design-progress-0" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Benchmark</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
+                    Drew from GitBook (not GitHub), aimed for granularity over binary on/off, fixed the naming inconsistency (product said "SDLC", marketing said "ADLC").
+                  </div>
+                  <div id="design-mobile-image-0" class="design-mobile-image">
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/agentic-lifecycle/benchmark.png" alt="Benchmark — GitBook and other product inspiration">
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-1" class="design-headline-group pl-6 relative animate-on-scroll delay-100">
+                <div id="design-progress-container-1" class="design-progress-container">
+                  <div id="design-progress-1" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. Iteration 1</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
+                    First design iteration — exploring layout, stage granularity, and how ADLC settings map to the existing project model.
+                  </div>
+                  <div id="design-mobile-image-1" class="design-mobile-image">
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/agentic-lifecycle/proposal%201.png" alt="Iteration 1 — first design iteration">
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-2" class="design-headline-group pl-6 relative animate-on-scroll delay-200">
+                <div id="design-progress-container-2" class="design-progress-container">
+                  <div id="design-progress-2" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. Iteration 2</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
+                    Second iteration — refining environment stages, diff views, and the convert-to-ADLC onboarding flow.
+                  </div>
+                  <div id="design-mobile-image-2" class="design-mobile-image">
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/agentic-lifecycle/Proposal%202.png" alt="Iteration 2 — second design iteration">
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-3" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
+                <div id="design-progress-container-3" class="design-progress-container">
+                  <div id="design-progress-3" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. Iteration 3</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
+                    Third iteration — final direction for per-project settings, approval workflow, and environment variable handling.
+                  </div>
+                  <div id="design-mobile-image-3" class="design-mobile-image">
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/agentic-lifecycle/Proposal%203.png" alt="Iteration 3 — third design iteration">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-8 mb-12 text-center">
+        <div class="animate-on-scroll delay-100">
+          <h3 class="text-xl font-bold mb-2">Structured feedback from the field</h3>
+          <p class="text-gray-600">Consolidated signals from FDEs demoing to customers into 4 patterns: discoverability, terminology, diff quality, and environment variable confusion.</p>
+        </div>
+        <div class="animate-on-scroll delay-200">
+          <h3 class="text-xl font-bold mb-2">Ran a UX improvement sprint</h3>
+          <p class="text-gray-600">Per-project settings, convert-to-ADLC flow, diff filtering, in-product stage explanations, cross-project promotion UX.</p>
+        </div>
+        <div class="animate-on-scroll delay-300">
+          <h3 class="text-xl font-bold mb-2">Built a roadmap</h3>
+          <p class="text-gray-600">Captured open questions: default-on ADLC, configurable environments, env vars formally linked to stages, reviewer assignment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution Section -->
+  <div id="solution" class="solution bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
+      </div>
+      
+      <div class="max-w-3xl mx-auto mb-12 space-y-16">
+        <div class="animate-on-scroll">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center section-heading">Create Pull Request</h2>
+          <div class="mb-4 space-y-1 text-sm text-white/80 text-center">
+            <p>Editor users have to request approval to admins when pushing changes to Staging, Development or Production</p>
+          </div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
+            <video
+              class="w-full rounded-xl"
+              autoplay
+              playsinline
+              loop
+              muted>
+              <source src="images/agentic-lifecycle/builder.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <div class="animate-on-scroll delay-100">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center section-heading">Review &amp; Accept</h2>
+          <div class="mb-4 space-y-1 text-sm text-white/80 text-center">
+            <p>Admins go through the Requests, inspect changes and approve the changes into Production</p>
+          </div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
+            <video
+              class="w-full rounded-xl"
+              autoplay
+              playsinline
+              loop
+              muted>
+              <source src="images/agentic-lifecycle/approvals.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Environments Section -->
+  <div id="environments" class="environments bg-black pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="max-w-3xl mx-auto">
+        <div class="animate-on-scroll">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center section-heading">Environment Variables</h2>
+          <p class="text-white/80 mb-6 animate-on-scroll delay-200 text-center">
+            Environment variables store configuration values — such as API keys, service URLs, and feature flags — outside your agent workflow. They let the same agent run across development, staging, and production without hardcoding secrets or stage-specific settings.
+          </p>
+          <div class="w-full flex justify-center bg-gray-800 p-4 rounded-2xl video-animation">
+            <video
+              class="w-full rounded-xl"
+              autoplay
+              playsinline
+              loop
+              muted>
+              <source src="images/agentic-lifecycle/environments.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent Grid Section -->
+  <div id="agent-grid" class="agent-grid bg-gray-100 pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="max-w-3xl mx-auto">
+        <div class="animate-on-scroll">
+          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900 text-center section-heading">Agent Grid</h2>
+          <p class="text-gray-600 mb-6 animate-on-scroll delay-200 text-center">
+            Agent grid is for user builders to share the agentic workflows with users across the organization.
+          </p>
+          <div class="w-full flex justify-center bg-gray-200 p-4 rounded-2xl video-animation">
+            <video
+              class="w-full rounded-xl"
+              autoplay
+              playsinline
+              loop
+              muted>
+              <source src="images/agentic-lifecycle/agent%20grid.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ <!-- insights -->
+ <div id="insights" class="bg-white pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold mb-8 text-white bg-black px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+    </div>
+    <div class="self-stretch inline-flex justify-start items-start gap-4 md:gap-12 flex-col md:flex-row content-start mt-8">
+      <div class="flex-1 flex justify-start items-center gap-4">
+        <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold">Became a standard requirement in every enterprise sales conversation</div>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-start items-center gap-4">
+        <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold">Concept validated externally before it was built — a customer coined it first</div>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-start items-center gap-4">
+        <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
+          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold">The "I need governance now, but I built this without it" case turned out to be universal</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+  <!-- next project  -->
+  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
+      </div>
+      
+      <!-- Project cards container with new layout -->
+      <div class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full">
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="agent-evaluator.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Workflow Analytics and Agent Evaluator preview">
+                  <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">WORKFLOW ANALYTICS AND AGENT EVALUATOR</div>
+          </a>
+        </div>
+        
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="project1.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden"><div class="w-full h-full bg-cover bg-center" style="background-image: url('images/project_1/thumbnail.gif');"></div></div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">HOLISTIC TRAINING BUILDER REDESIGN</div>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</body>
+</html> 

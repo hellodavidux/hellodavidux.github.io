@@ -50,8 +50,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="dynamic-text.js"></script>
-    <script src="like-button.js"></script>
     <script src="logo-color.js" defer></script>
+    <script src="logo-name-animation.js" defer></script>
 </head>
 <body class="overflow-hidden">
     <!-- Google Tag Manager (noscript) -->
@@ -61,25 +61,12 @@
     <!-- Navigation Bar -->
     <nav class="navbar-fixed fixed top-0 left-0 w-full px-8 py-4 flex justify-between items-center text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
         <!-- Left side: Logo and name with fixed width -->
-        <div class="logoname flex items-center w-32">
-            <a href="portfolio-95dh15rm22rn.html" class="flex items-center">
-                <div class="relative mr-3">
-                    <!-- Outer yellow circle with larger gap -->
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] rounded-full border-[3px] border-gray-900"></div>
-                    <!-- Image container: 40px × 40px -->
-                    <div class="w-[40px] h-[40px] bg-gray-200 rounded-full overflow-hidden relative">
-                        <img src="images/1655921174945.jpeg" alt="Profile" class="w-full h-full object-cover">
-                    </div>
+        <div class="logoname flex items-center w-auto">
+            <a href="portfolio-95dh15rm22rn.html" class="flex items-center gap-3">
+                <div class="logo-avatar">
+                    <img src="images/1655921174945.jpeg" alt="Profile" class="logo-avatar-img">
                 </div>
-                <h1 class="text-2xl font-black tracking-tight transition-colors duration-300 logo-aurora" id="logo-name">
-                    <span>david</span>
-                    <div class="aurora">
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                        <div class="aurora__item"></div>
-                    </div>
-                </h1>
+                <h1 class="logo-name logo-name-light transition-colors duration-300" id="logo-name"><span class="logo-name-first"><span class="logo-d logo-d-first">d</span><span class="logo-name-core">avi</span><span class="logo-d logo-d-last">d</span></span><span class="logo-name-rest"> ruiz</span></h1>
             </a>
         </div>
         
@@ -94,32 +81,18 @@
             <a href="#project1" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
         </div>
         
-        <!-- Right side: Like button with fixed width -->
-        <div class="w-32 flex justify-end ">
-            <button class="like-button bg-black text-white px-3 py-1.5 rounded-full flex items-center space-x-2 text-sm cursor-pointer" id="likeButton">
-                <div class="like-wrapper mr-1">
-                    <div class="ripple"></div>
-                    <svg class="heart w-4 h-4" viewBox="0 0 24 24">
-                        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
-                    </svg>
-                    <div class="particles" style="--total-particles: 6">
-                        <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                        <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                        <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                        <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                        <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                        <div class="particle" style="--i: 6; --color: #D53EF3"></div>
-                    </div>
-                </div>
-                <span>Like</span>
-            </button>
+        <!-- Right side: Home, Projects & About links -->
+        <div class="flex justify-end items-center gap-4">
+            <a href="#intro" class="text-sm font-medium text-gray-600 hover:text-gray-600 transition-colors">Home</a>
+            <a href="#project1" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+            <a href="#contact" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
         </div>
     </nav>
 
     <!-- Full page sections container -->
     <div class="sections-container h-screen w-full relative overflow-hidden" id="fullpage">
         <!-- Section Indicators -->
-        <div class="fixed right-3 md:right-8 top-1/2 transform -translate-y-1/2 z-50 w-2 inline-flex flex-col justify-start items-start gap-[5px]" id="section-indicators">
+        <div class="hidden fixed right-3 md:right-8 top-1/2 transform -translate-y-1/2 z-50 w-2 inline-flex flex-col justify-start items-start gap-[5px]" id="section-indicators">
             <a href="#intro" class="section-indicator self-stretch h-4 bg-gray-500 rounded-lg transition-all duration-300" data-section="intro"></a>
             <a href="#project1" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project1"></a>
             <a href="#project2" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project2"></a>

@@ -1,9 +1,13 @@
 // DOM Elements
 const sections = document.querySelectorAll('.section');
 const sectionIndicators = document.querySelectorAll('.section-indicator');
-const scrollDownIndicator = document.getElementById('scroll-down-indicator');
 const navbar = document.getElementById('navbar');
 const navbarLinks = document.querySelectorAll('.navbar-links');
+const rightNavLinks = navbar ? navbar.querySelector('.flex.justify-end.items-center.gap-4') : null;
+const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"]') : null;
+const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-agentic-lifecycle"]') : null;
+const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
+const DARK_NAV_SECTIONS = new Set(['project-agentic-lifecycle', 'project1', 'project2']);
 const logoName = document.getElementById('logo-name');
 
 // State variables
@@ -63,7 +67,6 @@ function handleDirectHashNavigation() {
         // Update everything immediately
         updateSections();
         updateIndicators();
-        updateScrollDownIndicator();
         updateNavbarLinks();
     }
 }
@@ -96,12 +99,192 @@ const observeProjectCards = () => {
   });
 };
 
+function setupIntroHeroHover() {
+    const headline = document.querySelector('.intro-hero-headline');
+    const subheadline = document.querySelector('.intro-hero-subheadline');
+    const subheadlineWrap = document.querySelector('.intro-hero-subheadline-wrap');
+    if (!headline || !subheadline || !subheadlineWrap) return;
+
+    const defaultText = subheadline.dataset.default || subheadline.textContent.trim();
+    const allTexts = [
+        defaultText,
+        ...Array.from(headline.querySelectorAll('.intro-hero-item'))
+            .map(item => item.dataset.description)
+            .filter(Boolean)
+    ];
+
+    const lockSubheadlineHeight = () => {
+        const width = subheadline.offsetWidth;
+        if (!width) return;
+
+        const probe = subheadline.cloneNode(false);
+        probe.className = subheadline.className;
+        probe.setAttribute('aria-hidden', 'true');
+        probe.style.cssText = `visibility:hidden;position:absolute;inset:0 auto auto 0;pointer-events:none;width:${width}px;margin:0;`;
+        subheadlineWrap.appendChild(probe);
+
+        let maxHeight = 0;
+        allTexts.forEach(text => {
+            probe.textContent = text;
+            maxHeight = Math.max(maxHeight, probe.offsetHeight);
+        });
+
+        probe.remove();
+        subheadlineWrap.style.minHeight = `${maxHeight}px`;
+    };
+
+    lockSubheadlineHeight();
+    new ResizeObserver(lockSubheadlineHeight).observe(subheadline);
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(lockSubheadlineHeight);
+    }
+
+    headline.querySelectorAll('.intro-hero-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const description = item.dataset.description;
+            if (description) subheadline.textContent = description;
+        });
+    });
+
+    headline.addEventListener('mouseleave', () => {
+        subheadline.textContent = defaultText;
+    });
+}
+
+function getSectionIndex(sectionId) {
+    return Array.from(sections).findIndex(section => section.id === sectionId);
+}
+
+function setupNavbarLinkNavigation() {
+    if (!navbar) return;
+
+    navbar.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+
+            const sectionId = href.slice(1);
+            const targetIndex = getSectionIndex(sectionId);
+            if (targetIndex === -1) return;
+
+            e.preventDefault();
+            if (!isScrolling) {
+                navigateToSection(targetIndex);
+            }
+        });
+    });
+}
+
+let cursorFollowingTooltip = null;
+let cursorFollowingTooltipActiveCount = 0;
+
+function getCursorFollowingTooltip() {
+    if (cursorFollowingTooltip) return cursorFollowingTooltip;
+
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!finePointer || reducedMotion) return null;
+
+    cursorFollowingTooltip = document.createElement('div');
+    cursorFollowingTooltip.className = 'intro-hero-cards-tooltip';
+    cursorFollowingTooltip.setAttribute('role', 'tooltip');
+    cursorFollowingTooltip.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cursorFollowingTooltip);
+    return cursorFollowingTooltip;
+}
+
+function setupCursorFollowingTooltip(targets, text, options) {
+    const elements = targets.filter(Boolean);
+    const tooltip = getCursorFollowingTooltip();
+    if (!elements.length || !tooltip) return;
+
+    const offsetX = 14;
+    const offsetY = 14;
+    const variantClass = options && options.variant === 'light'
+        ? 'intro-hero-cards-tooltip--light'
+        : null;
+
+    function resolveText(target) {
+        return typeof text === 'function' ? text(target) : text;
+    }
+
+    function positionAt(clientX, clientY) {
+        tooltip.style.transform =
+            'translate3d(' + (clientX + offsetX) + 'px, ' + (clientY + offsetY) + 'px, 0)';
+    }
+
+    elements.forEach(function(target) {
+        target.addEventListener('mouseenter', function(e) {
+            const message = resolveText(target);
+            if (!message) return;
+
+            cursorFollowingTooltipActiveCount += 1;
+            tooltip.textContent = message;
+            tooltip.classList.remove('intro-hero-cards-tooltip--light');
+            if (variantClass) tooltip.classList.add(variantClass);
+            tooltip.classList.add('is-visible');
+            positionAt(e.clientX, e.clientY);
+        });
+
+        target.addEventListener('mousemove', function(e) {
+            if (!cursorFollowingTooltipActiveCount) return;
+            positionAt(e.clientX, e.clientY);
+        });
+
+        target.addEventListener('mouseleave', function() {
+            cursorFollowingTooltipActiveCount = Math.max(0, cursorFollowingTooltipActiveCount - 1);
+            if (!cursorFollowingTooltipActiveCount) {
+                // Keep --light during fade-out; removing it instantly swaps to the dark
+                // "View projects" palette while opacity is still animating to 0.
+                tooltip.classList.remove('is-visible');
+            }
+        });
+    });
+}
+
+const INTRO_COMPANY_LOGO_TOOLTIPS = {
+    stackai: 'AI agent no-code workflow builder for Enterprises',
+    jabra: 'Ecommerce digital design for Audio Equipment',
+    asana: 'Acquired StackAI, joined the team as designer',
+    lenus: 'Fitness & Health tools and dashboards for coaches and their clients',
+    bc: 'Sports Media, Fantasy and iGaming, and Affiliate Marketing'
+};
+
+function getIntroCompanyLogoTooltip(logo) {
+    const src = logo.getAttribute('src') || '';
+    const key = src.split('/').pop().replace(/\.png$/i, '');
+    return INTRO_COMPANY_LOGO_TOOLTIPS[key] || '';
+}
+
+function setupIntroCompanyLogosTooltips() {
+    const logos = document.querySelectorAll('.intro-company-logo');
+    if (!logos.length) return;
+
+    setupCursorFollowingTooltip([...logos], getIntroCompanyLogoTooltip, { variant: 'light' });
+}
+
+function setupIntroHeroCardsLink() {
+    const link = document.querySelector('.intro-hero-cards__link');
+    if (!link) return;
+
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (!isScrolling) {
+            navigateToSection(getSectionIndex('project-agentic-lifecycle'));
+        }
+    });
+
+    setupCursorFollowingTooltip([link], 'View projects');
+
+    const projectCardLinks = document.querySelectorAll('.projectcard a.w-full.h-full');
+    setupCursorFollowingTooltip([...projectCardLinks], 'View project');
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
     // Get all sections and indicators
     const sections = document.querySelectorAll('.section');
     const indicators = document.querySelectorAll('.section-indicator');
-    const scrollDownIndicator = document.getElementById('scroll-down-indicator');
     const navbar = document.getElementById('navbar');
     const logoName = document.getElementById('logo-name');
     
@@ -118,11 +301,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    setupIntroHeroHover();
+    setupIntroHeroCardsLink();
+    setupIntroCompanyLogosTooltips();
+    setupNavbarLinkNavigation();
+
     // Handle direct hash navigation as the first operation
     handleDirectHashNavigation();
     
     // Make sure the initial section is properly visible
     updateSections();
+    updateIndicators();
+    updateNavbarLinks();
     
     // Handle hash changes
     window.addEventListener('hashchange', function() {
@@ -160,9 +350,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navigateToSection(targetIndex);
         });
     });
-    
-    // Set up scroll down indicator visibility
-    updateScrollDownIndicator();
     
     // Set up navbar scroll behavior
     setupNavbarScroll();
@@ -214,11 +401,6 @@ window.addEventListener('keydown', function(e) {
         e.preventDefault();
         handleScroll(false);
     }
-});
-
-// Handle scroll down indicator click
-scrollDownIndicator.addEventListener('click', function() {
-    handleScroll(true);
 });
 
 // Handle indicator clicks
@@ -284,9 +466,6 @@ function navigateToSection(index) {
     // Update indicators
     updateIndicators();
     
-    // Update scroll down indicator
-    updateScrollDownIndicator();
-    
     // Update navbar links
     updateNavbarLinks();
     
@@ -339,9 +518,14 @@ function updateSections() {
 // Update section indicators
 function updateIndicators() {
     const currentSection = sections[currentSectionIndex].id;
+
+    const sectionIndicatorsContainer = document.getElementById('section-indicators');
+    if (sectionIndicatorsContainer) {
+        sectionIndicatorsContainer.classList.toggle('hidden', !currentSection.startsWith('project'));
+    }
     
     // Determine the background color for inactive indicators based on current section
-    const inactiveClass = (currentSection === 'intro' || currentSection === 'project3' || currentSection === 'contact') 
+    const inactiveClass = (currentSection === 'intro' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') 
         ? 'bg-zinc-300' 
         : 'bg-white/30';
     
@@ -356,7 +540,7 @@ function updateIndicators() {
             indicator.classList.add('h-12');
             
             // Set active indicator color based on section
-            if (currentSection === 'intro' || currentSection === 'project3' || currentSection === 'contact') {
+            if (currentSection === 'intro' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') {
                 indicator.className = 'section-indicator self-stretch h-14 bg-gray-500 rounded-lg transition-all duration-300';
             } else {
                 // Dark background sections (other projects)
@@ -364,7 +548,7 @@ function updateIndicators() {
             }
         } else {
             // Set inactive indicator color based on section
-            if (currentSection === 'intro' || currentSection === 'project3' || currentSection === 'contact') {
+            if (currentSection === 'intro' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') {
                 indicator.className = 'section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300';
             } else {
                 // Dark background sections (other projects)
@@ -374,24 +558,42 @@ function updateIndicators() {
     });
 }
 
-// Update scroll down indicator visibility
-function updateScrollDownIndicator() {
-    if (currentSectionIndex === 0) {
-        scrollDownIndicator.style.opacity = '1';
-        scrollDownIndicator.style.pointerEvents = 'auto';
+function setNavLinkState(link, isActive, onDarkBg) {
+    if (!link) return;
+
+    link.classList.toggle('font-medium', isActive);
+    link.classList.toggle('font-normal', !isActive);
+
+    if (onDarkBg) {
+        link.classList.toggle('text-white', isActive);
+        link.classList.toggle('text-gray-400', !isActive);
+        link.classList.remove('text-gray-600');
     } else {
-        scrollDownIndicator.style.opacity = '0';
-        scrollDownIndicator.style.pointerEvents = 'none';
+        link.classList.toggle('text-gray-600', isActive);
+        link.classList.toggle('text-gray-400', !isActive);
+        link.classList.remove('text-white');
     }
 }
 
-// Update navbar links visibility
+// Update navbar links visibility and scroll-spy emphasis
 function updateNavbarLinks() {
     // Always keep navbar links visible
     navbarLinks.forEach(link => {
         link.style.opacity = '1';
         link.style.pointerEvents = 'auto';
     });
+
+    if (!sections[currentSectionIndex]) return;
+
+    const sectionId = sections[currentSectionIndex].id;
+    const onDarkBg = DARK_NAV_SECTIONS.has(sectionId);
+    const isIntro = sectionId === 'intro';
+    const isProjects = sectionId.startsWith('project');
+    const isContact = sectionId === 'contact';
+
+    setNavLinkState(homeNavLink, isIntro, onDarkBg);
+    setNavLinkState(projectsNavLink, isProjects, onDarkBg);
+    setNavLinkState(aboutNavLink, isContact, onDarkBg);
 }
 
 // Set up the navbar scroll behavior

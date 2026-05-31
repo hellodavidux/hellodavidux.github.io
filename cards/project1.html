@@ -42,15 +42,18 @@
   <title>Holistic Training Builder</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../animations.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="slider-styles.css">
   <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="media-lightbox.css">
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
-  <script src="../like-button.js" defer></script>
+  <script src="media-lightbox.js" defer></script>
   <script src="../logo-color.js" defer></script>
+  <script src="../logo-name-animation.js" defer></script>
   <style>
     .hoverable {
       transition: transform 0.3s ease;
@@ -185,69 +188,41 @@
     }
   </style>
 </head>
-<body class="bg-white">
+<body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLQ3MHWM"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   
   <!-- Navigation Bar -->
-  <nav class="navbar-fixed fixed top-0 left-0 w-full px-8 py-4 flex justify-between items-center text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
-    <!-- Left side: Logo and name with fixed width -->
-    <div class="logoname flex items-center w-32">
-        <a href="../index.html" class="flex items-center">
-            <div class="relative mr-3">
-                <!-- Outer yellow circle with larger gap -->
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[52px] h-[52px] rounded-full border-[3px] border-gray-900"></div>
-                <!-- Image container: 40px × 40px -->
-                <div class="w-[40px] h-[40px] bg-gray-200 rounded-full overflow-hidden relative">
-                    <img src="/images/1655921174945.jpeg" alt="David's Profile Photo" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <h1 class="text-2xl font-black tracking-tight transition-colors duration-300 logo-aurora" id="logo-name">
-                <span>david</span>
-                <div class="aurora">
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                    <div class="aurora__item"></div>
-                </div>
-            </h1>
+  <nav class="navbar-fixed fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <div class="navbar-inner flex justify-between items-center">
+      <div class="logoname flex items-center w-auto">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="logo-avatar">
+            <img src="../images/profile-navbar.jpeg" alt="Profile" class="logo-avatar-img logo-avatar-img-default">
+            <img src="../images/profile-navbar-bgnone.png" alt="" class="logo-avatar-img logo-avatar-img-hover" aria-hidden="true">
+          </div>
+          <h1 class="logo-name logo-name-light transition-colors duration-300" id="logo-name"><span class="logo-name-default"><span class="logo-name-first"><span class="logo-d logo-d-first">d</span><span class="logo-name-core">avi</span><span class="logo-d logo-d-last">d</span></span><span class="logo-name-rest"> ruiz</span></span><span class="logo-name-greeting" aria-hidden="true"><span class="logo-greeting-hey">hey</span><span class="logo-greeting-there"> there</span> 👋</span></h1>
         </a>
+      </div>
+
+      <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project1" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
+      </div>
+
+      <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project1" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
+      </div>
+
+      <div class="flex justify-end items-center gap-4">
+        <a href="../index.html" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
+        <a href="../index.html#project1" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+      </div>
     </div>
-    
-    <!-- Center: Navigation Links -->
-    <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
-        <a href="#project1" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
-        <a href="#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
-    </div>
-    
-    <!-- Mobile Navigation Link (only shows Projects on mobile) -->
-    <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
-        <a href="#project1" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
-    </div>
-    
-    <!-- Right side: Like button with fixed width -->
-    <div class="w-32 flex justify-end ">
-        <button class="like-button bg-black text-white px-3 py-1.5 rounded-full flex items-center space-x-2 text-sm cursor-pointer" id="likeButton">
-            <div class="like-wrapper mr-1">
-                <div class="ripple"></div>
-                <svg class="heart w-4 h-4" viewBox="0 0 24 24">
-                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
-                </svg>
-                <div class="particles" style="--total-particles: 6">
-                    <div class="particle" style="--i: 1; --color: #7642F0"></div>
-                    <div class="particle" style="--i: 2; --color: #AFD27F"></div>
-                    <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
-                    <div class="particle" style="--i: 4; --color: #D0516B"></div>
-                    <div class="particle" style="--i: 5; --color: #5686F2"></div>
-                    <div class="particle" style="--i: 6; --color: #D53EF3"></div>
-                </div>
-            </div>
-            <span>Like</span>
-        </button>
-    </div>
-</nav>
+  </nav>
   <!-- Close button to return to homepage -->
   <a href="../index.html#project1" class="back-home" id="back-home">
     <i class="fas fa-times"></i>
@@ -278,11 +253,11 @@
   </div>
   
   <!-- Introduction Section -->
-  <div id="intro" class="intro lg:pt-24 md:mt-12 p-4 pt-32 md:p-16 md:px-24 mx-auto pb-24">
+  <div id="intro" class="intro lg:pt-24 p-4 pt-32 md:p-16 md:px-24 mx-auto pb-24">
     <div class="max-w-5xl mx-auto">
       <!-- Header -->
       <header class="mb-8 text-center">
-        <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">HOLISTIC TRAINING BUILDER REDESIGN</h1>
+        <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">HOLISTIC TRAINING<br>BUILDER REDESIGN</h1>
         <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
           I led the redesign of the holistic training builder, making it easier and faster for coaches to create flexible, personalized workout plans with more training formats and better client integration.
         </p>
@@ -304,19 +279,19 @@
       <!-- Categories section -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6">
         <div class="animate-on-scroll delay-100">
-          <p class="text-gray-500 text-sm mb-1">Company</p>
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Company</p>
           <p class="font-medium">Lenus</p>
         </div>
         <div class="animate-on-scroll delay-200">
-          <p class="text-gray-500 text-sm mb-1">Product</p>
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Product</p>
           <p class="font-medium">Coach platform</p>
         </div>
         <div class="animate-on-scroll delay-300">
-          <p class="text-gray-500 text-sm mb-1">My Role</p>
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">My Role</p>
           <p class="font-medium">UX designer</p>
         </div>
         <div class="animate-on-scroll delay-400">
-          <p class="text-gray-500 text-sm mb-1">Team</p>
+          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Team</p>
           <p class="font-medium">Software engineers, QA, PM and UXD</p>
         </div>
       </div>
@@ -325,18 +300,18 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Project context card -->
         <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation">
-          <h3 class="text-gray-500 text-sm mb-4">Project context</h3>
+          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">Project context</h3>
           <p class="font-medium mb-3">
-            The challenge is to redesign a digital workout builder platform used by coaches to create, customize, and assign workout plans to clients.
+            Redesign the workout builder coaches use to create, customize, and assign plans to clients.
           </p>
           <p class="text-gray-600">
-            The current system is widely seen as inflexible, inefficient, and lacking in features needed to support the diverse training styles and workflows of modern coaches, particularly those working with functional training, HIIT, CrossFit, or clients with special needs.
+            The current system is inflexible and lacks features for diverse coaching styles—from HIIT and CrossFit to clients with special needs.
           </p>
         </div>
 
         <!-- Goals card -->
         <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-200">
-          <h3 class="text-gray-500 text-sm mb-4">Goal</h3>
+          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">Goal</h3>
           <ul class="list-disc pl-5 space-y-2 list-animation">
             <li class="text-gray-700">Increase Coach Efficiency</li>
             <li class="text-gray-700">Expand Format Flexibility</li>
@@ -352,23 +327,23 @@
     <div class="max-w-5xl mx-auto">
       <!-- Section heading -->
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded-sm inline-block section-heading">DISCOVERY</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
       </div>
       
-      <h3 class="text-white text-l mb-8 animate-on-scroll md:w-1/2 mx-auto text-center"> Research Questions
+      <h3 class="text-gray-300 text-l mb-8 uppercase tracking-wide animate-on-scroll md:w-1/2 mx-auto text-center"> Research Questions
       </h3>
 
       <p class="text-2xl font-bold text-white mb-4 animate-on-scroll delay-100 text-center">What do coaches want to achieve with the training builder but currently can't?</p>
       <p class="text-2xl font-bold text-white mb-12 animate-on-scroll delay-200 text-center">What are the biggest pains and blockers in their use of the training builder?</p>
     
-      <h3 class="text-white text-l mb-8 animate-on-scroll md:w-1/2 mx-auto text-center"> Users
+      <h3 class="text-gray-300 text-l mb-8 uppercase tracking-wide animate-on-scroll md:w-1/2 mx-auto text-center"> Users
       </h3>
 
       <!-- Coach cards row -->
       <div class="intro-grid grid grid-cols-2 md:grid-cols-2 gap-0 md:gap-8 mb-24">
         <!-- Holistic Coaches Card -->
-        <div class="rounded-2xl overflow-hidden p-4 transition-all duration-300 hoverable left-card card-animation bg-[#2e3e3e80]">
-          <div class="flex flex-col sm:flex-row">
+        <div class="rounded-2xl overflow-hidden p-4 transition-all duration-300 hoverable left-card card-animation bg-[#2e3e3e80] flex items-center">
+          <div class="flex flex-col sm:flex-row sm:items-center w-full">
             <div class="w-full sm:w-1/3 mb-2 sm:mb-0 sm:mr-4">
               <img 
                 src="images/project_1/coach.png" 
@@ -386,8 +361,8 @@
         </div>
         
         <!-- Coaches' Clients Card -->
-        <div class="rounded-2xl overflow-hidden p-4 transition-all duration-300 hoverable right-card card-animation delay-200 bg-[#2e3e3e80]">
-          <div class="flex flex-col sm:flex-row">
+        <div class="rounded-2xl overflow-hidden p-4 transition-all duration-300 hoverable right-card card-animation delay-200 bg-[#2e3e3e80] flex items-center">
+          <div class="flex flex-col sm:flex-row sm:items-center w-full">
             <div class="w-full sm:w-1/3 mb-2 sm:mb-0 sm:mr-4">
               <img 
                 src="images/project_1/client.png" 
@@ -408,7 +383,7 @@
       <!-- We wanted to know section -->
       <div class="text-center mb-12">
        
-        <h3 class="text-white text-l mb-12 animate-on-scroll md:w-1/2 mx-auto text-center">                    We conducted user interviews, analyzed Hotjar recordings, and reviewed survey feedback and platform usage data to identify key pain points and opportunities.
+        <h3 class="text-gray-300 text-l mb-8 uppercase tracking-wide animate-on-scroll md:w-1/2 mx-auto text-center"> Research process
         </h3>
         
         
@@ -528,7 +503,7 @@
   <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white bg-black px-6 py-2 rounded-sm inline-block section-heading">DESIGN PROCESS</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
       </div>
       
       <!-- Design Process Slider -->
@@ -645,12 +620,7 @@
   <div id="solution" class="solution bg-[#1E2F2F] pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/project_1/grey-square-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded-sm inline-block section-heading">SOLUTION</h2>
-      </div>
-      
-      <!-- Before/After Comparison Component -->
-      <div class="text-center mb-12">
-        <h3 class="text-white text-xl mb-8 animate-on-scroll">Before vs After Interface Comparison</h3>
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
       </div>
       
       <!-- Before/After Comparison Container -->
@@ -694,8 +664,6 @@
       
       <!-- We wanted to know section -->
       <div class="text-center mb-12">
-        <h3 class="text-white text-xl mb-8 animate-on-scroll">Unified Layout for Better Overview</h3>
-        
         <p class="text-2xl font-bold text-white mb-4 animate-on-scroll delay-100">The new interface brings everything into one view. Plan sessions on the left, exercises in the center, and client information on the right</p>
       </div>
 
@@ -718,8 +686,6 @@
     <div class="max-w-5xl mx-auto">
       <!-- We wanted to know section -->
       <div class="text-center mb-12">
-        <h3 class="text-black text-xl mb-8 animate-on-scroll">Streamlined Exercise Selection</h3>
-        
         <p class="text-2xl font-bold text-black mb-4 animate-on-scroll delay-100">The exercise selector now sits in the right panel making it faster and easier to search for and add exercises</p>
       </div>      
       
@@ -742,8 +708,6 @@
     <div class="max-w-5xl mx-auto">
       <!-- We wanted to know section -->
       <div class="text-center mb-12">
-        <h3 class="text-white text-xl mb-8 animate-on-scroll">Expanded Training Formats for Holistic Coaching</h3>
-        
         <p class="text-2xl font-bold text-white mb-4 animate-on-scroll delay-100">We've added new formats like TABATA, EMOM, AMRAP, and video-based sessions to support a broader range of training styles</p>
       </div>
      
@@ -762,8 +726,6 @@
     <div class="max-w-5xl mx-auto">
       <!-- We wanted to know section -->
       <div class="text-center mb-12">
-        <h3 class="text-white text-xl mb-8 animate-on-scroll">Enhanced Client Experience</h3>
-        
         <p class="text-2xl font-bold text-white mb-4 animate-on-scroll delay-100">Clients will be able to follow along with their coach's video during workouts, creating a more interactive and engaging training experience</p>
       </div>      
       
@@ -790,7 +752,7 @@
  <div id="insights" class="pt-24 p-4 md:p-16 lg:p-24 mx-auto">
   <div class="max-w-5xl mx-auto">
     <div class="text-center">
-      <h2 class="text-3xl font-bold mb-8 text-white bg-black px-6 py-2 rounded-sm inline-block section-heading">INSIGHTS</h2>
+      <h2 class="text-3xl font-bold mb-8 text-white bg-black px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
     </div>
     
     <div class="md:h-[52px]">
@@ -841,7 +803,7 @@
   <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded-sm inline-block section-heading">OTHER PROJECTS</h3>
+        <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
       </div>
       
       <!-- Project cards container with new layout -->

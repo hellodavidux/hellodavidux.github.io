@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = hash.substring(1);
             
             // Apply logic based on section ID (same as in the original main.js)
-            if (sectionId === 'intro' || sectionId === 'project2' || sectionId === 'contact') {
-                logoName.classList.remove('text-white');
-                logoName.classList.add('text-black');
+            if (sectionId === 'intro' || sectionId === 'project-agent-evaluator' || sectionId === 'project2' || sectionId === 'contact') {
+                logoName.classList.remove('logo-name-dark');
+                logoName.classList.add('logo-name-light');
             } else {
-                logoName.classList.remove('text-black');
-                logoName.classList.add('text-white');
+                logoName.classList.remove('logo-name-light');
+                logoName.classList.add('logo-name-dark');
             }
             
             return;
@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set text color based on background
         if (isDark) {
-            logoName.classList.remove('text-black');
-            logoName.classList.add('text-white');
+            logoName.classList.remove('logo-name-light');
+            logoName.classList.add('logo-name-dark');
         } else {
-            logoName.classList.remove('text-white');
-            logoName.classList.add('text-black');
+            logoName.classList.remove('logo-name-dark');
+            logoName.classList.add('logo-name-light');
         }
     }
     

@@ -4,8 +4,12 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./styles.css",
-    "watch": "node ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./styles.css --watch"
+    "build": "npm run build:css && npm run build:hero",
+    "build:css": "node ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./styles.css",
+    "build:hero": "vite build",
+    "watch": "node ./node_modules/.bin/tailwindcss -i ./src/input.css -o ./styles.css --watch",
+    "dev:hero": "vite",
+    "preview:hero": "vite --open /hero-preview.html"
   },
   "repository": {
     "type": "git",
@@ -20,8 +24,16 @@
   "homepage": "https://github.com/hellodavidux/portfolio#readme",
   "description": "",
   "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.16",
+    "framer-motion": "^11.15.0",
     "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
   }
 }

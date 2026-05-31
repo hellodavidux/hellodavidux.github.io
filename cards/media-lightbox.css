@@ -1,0 +1,220 @@
+.media-expandable {
+  cursor: pointer;
+}
+
+/* Subtle zoom on hover for project images (not before/after or comparison widgets) */
+@media (hover: hover) and (pointer: fine) {
+  img.image-animation.visible:hover {
+    transform: scale(1.04);
+    transition: opacity 1s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  img.slide-image.active.image-animation.visible:hover,
+  img.design-slide-image.active.image-animation.visible:hover {
+    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .before-after-container img.image-animation.visible:hover,
+  .benchmark-panels img.image-animation.visible:hover {
+    transform: scale(1);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img.image-animation.visible:hover {
+    transform: scale(1);
+  }
+}
+
+.rounded-xl:has(> img.image-animation),
+.rounded-2xl:has(> img.image-animation),
+.rounded-lg:has(> img.image-animation),
+.mobile-image:has(> img.image-animation),
+.design-mobile-image:has(> img.image-animation) {
+  overflow: hidden;
+}
+
+.media-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.media-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.media-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.media-lightbox__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(96vw, 1600px);
+  max-height: 96vh;
+  width: 100%;
+}
+
+.media-lightbox__media-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: calc(96vh - 3rem);
+}
+
+.media-lightbox__media-wrap img,
+.media-lightbox__media-wrap video {
+  display: block;
+  max-width: 100%;
+  max-height: calc(96vh - 3rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.media-lightbox__caption {
+  margin-top: 0.75rem;
+  max-width: 48rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.media-lightbox__close,
+.media-lightbox__nav {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.media-lightbox__close:hover,
+.media-lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.media-lightbox__close {
+  top: 1rem;
+  right: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+}
+
+.media-lightbox__nav {
+  top: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+
+.media-lightbox__nav--prev {
+  left: 1rem;
+}
+
+.media-lightbox__nav--next {
+  right: 1rem;
+}
+
+.media-lightbox__nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.media-lightbox__counter {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.media-lightbox-expand-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.media-lightbox-expand-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: scale(1.05);
+}
+
+.media-lightbox__compare {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-height: calc(96vh - 3rem);
+  overflow: auto;
+}
+
+.media-lightbox__compare-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.media-lightbox__compare-label {
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .media-lightbox__nav {
+    display: none;
+  }
+
+  .media-lightbox__close {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}

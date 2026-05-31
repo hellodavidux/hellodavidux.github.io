@@ -379,10 +379,11 @@ function initSliders() {
 
 // Initialize research slider
 function initResearchSlider() {
-  console.log('Initializing research slider');
-  
   // Dynamically determine the number of slides for research slider
   const researchSlideCount = document.querySelectorAll('[id^="desktop-image-"]').length;
+  if (researchSlideCount === 0) return;
+
+  console.log('Initializing research slider');
   console.log(`Detected ${researchSlideCount} slides for research slider`);
   
   // Add click event listeners to headlines
@@ -459,10 +460,11 @@ function initResearchSlider() {
 
 // Initialize design slider
 function initDesignSlider() {
-  console.log('Initializing design slider');
-  
   // Dynamically determine the number of slides for design slider
   const designSlideCount = document.querySelectorAll('[id^="design-desktop-image-"]').length;
+  if (designSlideCount === 0) return;
+
+  console.log('Initializing design slider');
   console.log(`Detected ${designSlideCount} slides for design slider`);
   
   // Add click event listeners to headlines
