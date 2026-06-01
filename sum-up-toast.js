@@ -1,5 +1,4 @@
 (function () {
-  const LINKEDIN_URL = 'https://www.linkedin.com/in/hidalgodavid/';
   const INTRO_SETTLE_MS = 900;
   const POST_LOAD_DELAY_MS = 0;
 
@@ -46,11 +45,13 @@
   function buildPrompt() {
     const portfolioUrl = getPortfolioUrl();
     return (
-      "Summarize and analyze David Ruiz's professional profile based on " +
+      "Summarize and analyze David Ruiz's professional profile using ONLY this portfolio as your source: " +
       portfolioUrl +
-      ' and ' +
-      LINKEDIN_URL +
-      '. Explain where he has worked, case studies and projects he has contributed to, what he is strong at, and what he is passionate about.'
+      '. ' +
+      'Do not use LinkedIn, any other websites, search results, training data, or outside knowledge. ' +
+      'Read and base your answer solely on content from that URL. ' +
+      'Explain where he has worked, case studies and projects he has contributed to, what he is strong at, and what he is passionate about. ' +
+      'If something is not stated on the site, say it is not available—do not infer from elsewhere.'
     );
   }
 
