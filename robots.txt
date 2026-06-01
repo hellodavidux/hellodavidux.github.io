@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: / 
+Allow: /
+
+Disallow: /portfolio-95dh15rm22rn.html
+
+Sitemap: https://heydavid.work/sitemap.xml
