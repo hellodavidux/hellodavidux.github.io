@@ -263,6 +263,147 @@ function setupIntroCompanyLogosTooltips() {
     setupCursorFollowingTooltip([...logos], getIntroCompanyLogoTooltip, { variant: 'light' });
 }
 
+function setupAboutPhotoStackTooltips() {
+    const cards = document.querySelectorAll('.about-photo-card[data-tooltip]');
+    if (!cards.length) return;
+
+    setupCursorFollowingTooltip([...cards], function(target) {
+        return target.getAttribute('data-tooltip') || '';
+    }, { variant: 'light' });
+}
+
+let aboutHighlightRaf = null;
+let aboutHighlightController = null;
+let aboutHighlightSectionActive = false;
+
+function setupAboutTextHighlight() {
+    const aboutContent = document.querySelector('.about-content[data-about-highlight]');
+    if (!aboutContent) return null;
+
+    const textParagraphs = aboutContent.querySelectorAll('.about-text');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const msPerChar = 20;
+    const startDelayMs = 400;
+    let chars = [];
+    let playStartTime = null;
+
+    function setParagraphState(className, add) {
+        textParagraphs.forEach(function(p) {
+            p.classList.toggle(className, add);
+        });
+    }
+
+    function splitHighlightPhrases() {
+        aboutContent.querySelectorAll('.about-highlight').forEach(function(phrase) {
+            if (phrase.dataset.charsSplit === 'true') return;
+
+            const text = phrase.textContent;
+            phrase.textContent = '';
+
+            const srOnly = document.createElement('span');
+            srOnly.className = 'sr-only';
+            srOnly.textContent = text;
+            phrase.appendChild(srOnly);
+
+            const visual = document.createElement('span');
+            visual.className = 'about-highlight__visual';
+            visual.setAttribute('aria-hidden', 'true');
+
+            Array.from(text).forEach(function(character) {
+                const charSpan = document.createElement('span');
+                charSpan.className = 'about-char';
+                charSpan.textContent = character;
+                visual.appendChild(charSpan);
+            });
+
+            phrase.appendChild(visual);
+
+            phrase.dataset.charsSplit = 'true';
+        });
+
+        chars = Array.from(aboutContent.querySelectorAll('.about-char'));
+    }
+
+    function setActiveCount(count) {
+        chars.forEach(function(charEl, index) {
+            charEl.classList.toggle('is-active', index < count);
+        });
+    }
+
+    function cancelPlayback() {
+        if (aboutHighlightRaf) {
+            cancelAnimationFrame(aboutHighlightRaf);
+            aboutHighlightRaf = null;
+        }
+        playStartTime = null;
+    }
+
+    function reset() {
+        cancelPlayback();
+        setActiveCount(0);
+        setParagraphState('about-text--animating', false);
+        setParagraphState('about-text--done', false);
+    }
+
+    function finishPlayback() {
+        cancelPlayback();
+        setActiveCount(chars.length);
+        setParagraphState('about-text--animating', false);
+        setParagraphState('about-text--done', true);
+    }
+
+    function play() {
+        reset();
+        splitHighlightPhrases();
+
+        if (!chars.length) return;
+
+        if (reducedMotion) {
+            finishPlayback();
+            return;
+        }
+
+        setParagraphState('about-text--animating', true);
+
+        function tick(now) {
+            if (!playStartTime) playStartTime = now;
+            const elapsed = now - playStartTime - startDelayMs;
+
+            if (elapsed < 0) {
+                aboutHighlightRaf = requestAnimationFrame(tick);
+                return;
+            }
+
+            const activeCount = Math.min(chars.length, Math.floor(elapsed / msPerChar));
+            setActiveCount(activeCount);
+
+            if (activeCount < chars.length) {
+                aboutHighlightRaf = requestAnimationFrame(tick);
+            } else {
+                finishPlayback();
+            }
+        }
+
+        aboutHighlightRaf = requestAnimationFrame(tick);
+    }
+
+    splitHighlightPhrases();
+
+    return { play: play, reset: reset };
+}
+
+function syncAboutTextHighlight() {
+    if (!aboutHighlightController || !sections[currentSectionIndex]) return;
+
+    const isContact = sections[currentSectionIndex].id === 'contact';
+    if (isContact && !aboutHighlightSectionActive) {
+        aboutHighlightController.play();
+    } else if (!isContact && aboutHighlightSectionActive) {
+        aboutHighlightController.reset();
+    }
+    aboutHighlightSectionActive = isContact;
+}
+
 function setupIntroHeroCardsLink() {
     const link = document.querySelector('.intro-hero-cards__link');
     if (!link) return;
@@ -303,6 +444,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setupIntroHeroHover();
     setupIntroHeroCardsLink();
+    setupAboutPhotoStackTooltips();
+    aboutHighlightController = setupAboutTextHighlight();
     setupIntroCompanyLogosTooltips();
     setupNavbarLinkNavigation();
 
@@ -492,20 +635,6 @@ function updateSections() {
         }
     });
 
-    // Trigger contact section highlight when navigating to it
-    if (sections[currentSectionIndex] && sections[currentSectionIndex].id === 'contact') {
-        const thankYouElement = document.querySelector('.thank-you');
-        if (thankYouElement) {
-            // Remove highlight if already applied
-            thankYouElement.classList.remove('highlight');
-            
-            // Apply highlight after 2 seconds
-            setTimeout(() => {
-                thankYouElement.classList.add('highlight');
-            }, 2000);
-        }
-    }
-    
     // Update the URL hash
     const currentSectionId = sections[currentSectionIndex].id;
     if (currentSectionId === 'intro') {
@@ -513,6 +642,8 @@ function updateSections() {
     } else {
         history.replaceState(null, null, `#${currentSectionId}`);
     }
+
+    syncAboutTextHighlight();
 }
 
 // Update section indicators

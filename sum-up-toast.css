@@ -1,0 +1,338 @@
+/* Sum Up — AI profile summary control (bottom-right) */
+
+.sum-up-toast {
+  --sum-up-bg: #ffffff;
+  --sum-up-fg: #3d3832;
+  --sum-up-border: rgba(61, 56, 50, 0.1);
+  --sum-up-shadow: 0 2px 8px rgba(61, 56, 50, 0.1), 0 8px 24px rgba(61, 56, 50, 0.08);
+  --sum-up-shadow-hover: 0 4px 12px rgba(61, 56, 50, 0.14), 0 12px 32px rgba(61, 56, 50, 0.1);
+  --sum-up-shimmer-gradient: linear-gradient(
+    90deg,
+    var(--sum-up-fg) 0%,
+    var(--sum-up-fg) 38%,
+    rgba(61, 56, 50, 0.42) 50%,
+    var(--sum-up-fg) 62%,
+    var(--sum-up-fg) 100%
+  );
+  --sum-up-shimmer-size: 220% 100%;
+  --sum-up-shimmer-icon-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3Cpath d='M20 2v4'/%3E%3Cpath d='M22 4h-4'/%3E%3Ccircle cx='4' cy='20' r='2'/%3E%3C/svg%3E");
+  --sum-up-provider-size: 2.25rem;
+  --sum-up-provider-gap: 0.125rem;
+  --sum-up-pad: 0.3125rem;
+  --sum-up-providers-width: calc(
+    3 * var(--sum-up-provider-size) + 2 * var(--sum-up-provider-gap)
+  );
+  --sum-up-width: calc(var(--sum-up-providers-width) + 2 * var(--sum-up-pad));
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1000005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--sum-up-width);
+  min-width: var(--sum-up-width);
+  max-width: var(--sum-up-width);
+  padding-block: var(--sum-up-pad);
+  padding-inline: var(--sum-up-pad);
+  background: var(--sum-up-bg);
+  border: 1px solid var(--sum-up-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--sum-up-shadow);
+  color: var(--sum-up-fg);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  cursor: default;
+  transition:
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  overflow: visible;
+}
+
+.sum-up-toast:hover {
+  box-shadow: var(--sum-up-shadow-hover);
+}
+
+.sum-up-toast:active {
+  box-shadow: var(--sum-up-shadow);
+}
+
+.sum-up-toast[hidden] {
+  display: none;
+}
+
+.sum-up-toast--pending {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem) scale(0.92);
+  pointer-events: none;
+}
+
+.sum-up-toast--visible {
+  visibility: visible;
+  pointer-events: auto;
+  animation: sum-up-toast-enter 0.85s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+}
+
+@keyframes sum-up-toast-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.92);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-0.35rem) scale(1.04);
+  }
+  75% {
+    transform: translateY(0.1rem) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.sum-up-toast__inner {
+  display: grid;
+  place-items: center;
+  width: var(--sum-up-providers-width);
+  height: var(--sum-up-provider-size);
+}
+
+.sum-up-toast:hover .sum-up-toast__inner {
+  overflow: visible;
+}
+
+.sum-up-toast__preview {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: var(--sum-up-provider-size);
+  transition: opacity 0.2s ease;
+}
+
+.sum-up-toast:hover .sum-up-toast__preview {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sum-up-toast__icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.sum-up-toast__magic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.sum-up-toast__magic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--sum-up-shimmer-gradient);
+  background-size: var(--sum-up-shimmer-size);
+  -webkit-mask-image: var(--sum-up-shimmer-icon-mask);
+  mask-image: var(--sum-up-shimmer-icon-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  animation: sum-up-label-shimmer 2.8s ease-in-out infinite;
+}
+
+.sum-up-toast__magic svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  opacity: 0;
+}
+
+.sum-up-toast__label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  background-image: var(--sum-up-shimmer-gradient);
+  background-size: var(--sum-up-shimmer-size);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: sum-up-label-shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes sum-up-label-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.sum-up-toast__providers {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sum-up-provider-gap);
+  height: var(--sum-up-provider-size);
+  opacity: 0;
+  pointer-events: none;
+  overflow: visible;
+  transition: opacity 0.2s ease;
+}
+
+.sum-up-toast:hover .sum-up-toast__providers {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sum-up-toast__provider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sum-up-provider-size);
+  height: var(--sum-up-provider-size);
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  color: var(--sum-up-fg);
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sum-up-toast__provider[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 0.375rem);
+  right: 100%;
+  left: auto;
+  margin-right: 0.25rem;
+  z-index: 2;
+  padding: 0.3125rem 0.5rem;
+  border-radius: 0.375rem;
+  background: #ffffff;
+  color: var(--sum-up-fg);
+  border: 1px solid var(--sum-up-border);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(2px);
+  box-shadow: var(--sum-up-shadow);
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease,
+    transform 0.15s ease;
+}
+
+.sum-up-toast__provider[data-tooltip]:hover::after,
+.sum-up-toast__provider[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.sum-up-toast:hover .sum-up-toast__provider {
+  opacity: 1;
+}
+
+.sum-up-toast__provider:hover {
+  background: rgba(61, 56, 50, 0.08);
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+.sum-up-toast__provider:focus-visible {
+  outline: 2px solid var(--sum-up-fg);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+.sum-up-toast__provider svg {
+  width: 1.375rem;
+  height: 1.375rem;
+  fill: currentColor;
+}
+
+.sum-up-toast__provider--gemini svg {
+  fill: none;
+}
+
+@media (min-width: 768px) {
+  .sum-up-toast {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sum-up-toast,
+  .sum-up-toast__inner,
+  .sum-up-toast__preview,
+  .sum-up-toast__providers,
+  .sum-up-toast__provider,
+  .sum-up-toast__provider[data-tooltip]::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .sum-up-toast--pending {
+    transform: none;
+  }
+
+  .sum-up-toast--visible {
+    animation: sum-up-toast-enter-reduced 0.2s ease forwards;
+  }
+
+  @keyframes sum-up-toast-enter-reduced {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .sum-up-toast__magic::after,
+  .sum-up-toast__label {
+    animation: none;
+  }
+
+  .sum-up-toast__magic::after {
+    content: none;
+  }
+
+  .sum-up-toast__magic svg {
+    opacity: 0.72;
+    stroke: var(--sum-up-fg);
+  }
+
+  .sum-up-toast__label {
+    background-image: none;
+    -webkit-text-fill-color: var(--sum-up-fg);
+    color: var(--sum-up-fg);
+  }
+
+}
