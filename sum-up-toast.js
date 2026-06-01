@@ -1,9 +1,16 @@
 (function () {
+  const SUM_UP_ENABLED = false;
+
   const INTRO_SETTLE_MS = 900;
   const POST_LOAD_DELAY_MS = 0;
 
   const toast = document.getElementById('sum-up-toast');
   if (!toast) return;
+
+  if (!SUM_UP_ENABLED) {
+    toast.setAttribute('hidden', '');
+    return;
+  }
 
   function revealToast() {
     if (!toast.classList.contains('sum-up-toast--pending')) return;
