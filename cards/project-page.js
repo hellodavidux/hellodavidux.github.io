@@ -24,10 +24,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const progressIndicator = document.getElementById('progress-indicator');
   const backButton = document.getElementById('back-home');
   
+  function navigateToHome() {
+    window.location.href = backButton.getAttribute('href');
+  }
+
   // Handle back button click - return to previous page
   backButton.addEventListener('click', function(e) {
     e.preventDefault();
-    window.location.href = backButton.getAttribute('href');
+    navigateToHome();
+  });
+
+  // Allow Esc to close the project page, unless another overlay owns Esc
+  document.addEventListener('keydown', function(event) {
+    if (event.key !== 'Escape' || event.defaultPrevented) {
+      return;
+    }
+
+    const lightboxOpen = document.querySelector('.media-lightbox.is-open');
+    if (lightboxOpen) {
+      return;
+    }
+
+    event.preventDefault();
+    navigateToHome();
   });
   
   // Smooth scrolling for anchor links
