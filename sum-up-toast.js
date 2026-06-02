@@ -1,5 +1,5 @@
 (function () {
-  const SUM_UP_ENABLED = false;
+  const SUM_UP_ENABLED = true;
 
   const INTRO_SETTLE_MS = 900;
   const POST_LOAD_DELAY_MS = 0;
@@ -14,6 +14,7 @@
 
   function revealToast() {
     if (!toast.classList.contains('sum-up-toast--pending')) return;
+    toast.removeAttribute('hidden');
     toast.classList.remove('sum-up-toast--pending');
     toast.classList.add('sum-up-toast--visible');
     toast.removeAttribute('aria-hidden');
@@ -41,34 +42,28 @@
 
   scheduleReveal();
 
-  function getPortfolioUrl() {
-    const origin = window.location.origin;
-    if (origin && origin !== 'null' && !origin.startsWith('file:')) {
-      return origin.replace(/\/$/, '') + '/';
-    }
-    return 'https://hellodavidux.github.io/';
-  }
-
   function buildPrompt() {
-    const portfolioUrl = getPortfolioUrl();
     return (
-      "Summarize and analyze David Ruiz's professional profile using ONLY this portfolio as your source: " +
-      portfolioUrl +
-      '. ' +
-      'Do not use LinkedIn, any other websites, search results, training data, or outside knowledge. ' +
-      'Read and base your answer solely on content from that URL. ' +
-      'Explain where he has worked, case studies and projects he has contributed to, what he is strong at, and what he is passionate about. ' +
-      'If something is not stated on the site, say it is not available—do not infer from elsewhere.'
+      'Please summarize David Ruiz’s profile based only on content from:\n\n' +
+      'https://heydavid.work/llms.txt\n' +
+      'https://heydavid.work\n\n' +
+      'Keep it concise and professional. Include:\n\n' +
+      'A 2-3 sentence professional summary\n' +
+      'Core strengths (bullet points)\n' +
+      'Notable projects and outcomes (bullet points)\n' +
+      'Industries/domains of experience\n' +
+      'Suggested roles David is a strong fit for\n' +
+      'Do not use outside sources. If any information is missing, write: "Not available on provided sources."'
     );
   }
 
-  const encodedPrompt = encodeURIComponent(buildPrompt());
+  const prompt = buildPrompt();
+  const encodedPrompt = encodeURIComponent(prompt);
 
   const providerUrls = {
     chatgpt: 'https://chatgpt.com/?q=' + encodedPrompt,
+    chatdk: 'https://chat.dk/?q=' + encodedPrompt,
     claude: 'https://claude.ai/new?q=' + encodedPrompt,
-    gemini:
-      'https://www.google.com/search?udm=50&aep=11&q=' + encodedPrompt,
   };
 
   toast.querySelectorAll('.sum-up-toast__provider').forEach(function (link) {
@@ -77,4 +72,22 @@
       link.href = providerUrls[provider];
     }
   });
+
+  const chatDkLink = toast.querySelector('.sum-up-toast__provider[data-provider="chatdk"]');
+  if (chatDkLink) {
+    chatDkLink.addEventListener('click', function () {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+      navigator.clipboard
+        .writeText(prompt)
+        .then(function () {
+          chatDkLink.setAttribute(
+            'data-tooltip',
+            'Prompt copied. Paste in chat.dk'
+          );
+        })
+        .catch(function () {
+          // Ignore clipboard failures to avoid blocking navigation.
+        });
+    });
+  }
 })();
