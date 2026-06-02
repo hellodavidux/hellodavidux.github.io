@@ -3,7 +3,7 @@ const sections = document.querySelectorAll('.section');
 const sectionIndicators = document.querySelectorAll('.section-indicator');
 const navbar = document.getElementById('navbar');
 const navbarLinks = document.querySelectorAll('.navbar-links');
-const rightNavLinks = navbar ? navbar.querySelector('.flex.justify-end.items-center.gap-4') : null;
+const rightNavLinks = navbar ? navbar.querySelector('div.hidden.md\\:flex.justify-end.items-center.gap-4') : null;
 const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"]') : null;
 const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-agentic-lifecycle"]') : null;
 const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
@@ -276,6 +276,19 @@ let aboutHighlightRaf = null;
 let aboutHighlightController = null;
 let aboutHighlightSectionActive = false;
 
+function isMobileViewport() {
+    return window.matchMedia('(max-width: 767px)').matches;
+}
+
+function shouldAllowNativeAboutScroll(event) {
+    if (!isMobileViewport()) return false;
+    const activeSection = sections[currentSectionIndex];
+    if (!activeSection || activeSection.id !== 'contact') return false;
+    if (event.target && !activeSection.contains(event.target)) return false;
+
+    return activeSection.scrollHeight > activeSection.clientHeight + 1;
+}
+
 function setupAboutTextHighlight() {
     const aboutContent = document.querySelector('.about-content[data-about-highlight]');
     if (!aboutContent) return null;
@@ -522,10 +535,16 @@ window.addEventListener('touchstart', function(e) {
 });
 
 window.addEventListener('touchmove', function(e) {
+    if (shouldAllowNativeAboutScroll(e)) {
+        return;
+    }
     e.preventDefault(); // Prevent default scrolling behavior
 }, { passive: false });
 
 window.addEventListener('touchend', function(e) {
+    if (shouldAllowNativeAboutScroll(e)) {
+        return;
+    }
     touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
     

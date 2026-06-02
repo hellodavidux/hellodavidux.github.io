@@ -474,6 +474,29 @@ body:has(#fullpage) #contact {
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
 }
 
+@media (max-width: 767px) {
+  #contact.about-section {
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 5.5rem;
+    padding-bottom: 2rem;
+  }
+
+  #contact .about-layout {
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: -moz-max-content;
+    min-height: max-content;
+  }
+
+  #contact .about-content {
+    max-height: none;
+  }
+}
+
 @media (min-width: 768px) {
   .about-section {
     padding-top: 6rem;
@@ -765,6 +788,35 @@ body:has(#fullpage) #intro {
 .intro-hero-subheadline {
   letter-spacing: -0.02em;
   margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  #intro {
+    padding-top: 5.25rem;
+    padding-bottom: 1rem;
+    justify-content: flex-start;
+  }
+
+  #intro .intro-hero-stack {
+    gap: 1.5rem;
+    justify-content: flex-start;
+  }
+
+  .intro-hero-headline {
+    font-size: 1.5rem;
+    line-height: 1.22;
+  }
+
+  .intro-hero-subheadline-wrap {
+    margin-top: 1.25rem;
+  }
+
+  .intro-company-logos {
+    margin-top: auto;
+    margin-bottom: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .intro-hero-item {
