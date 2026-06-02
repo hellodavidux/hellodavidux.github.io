@@ -277,6 +277,20 @@
   fill: currentColor;
 }
 
+.sum-up-toast__provider img {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.sum-up-toast__provider--perplexity {
+  color: #20b8a6;
+}
+
+.sum-up-toast__provider--perplexity img {
+  filter: brightness(0) saturate(100%) invert(58%) sepia(38%) saturate(676%)
+    hue-rotate(125deg) brightness(96%) contrast(89%);
+}
+
 .sum-up-toast__provider--gemini svg {
   fill: none;
 }

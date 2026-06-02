@@ -61,7 +61,7 @@
   const encodedPrompt = encodeURIComponent(prompt);
 
   const providerUrls = {
-    chatgpt: 'https://chatgpt.com/?q=' + encodedPrompt,
+    perplexity: 'https://www.perplexity.ai/?q=' + encodedPrompt,
     chatdk: 'https://chat.dk/?q=' + encodedPrompt,
     claude: 'https://claude.ai/new?q=' + encodedPrompt,
   };
