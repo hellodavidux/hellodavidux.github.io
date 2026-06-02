@@ -1,0 +1,379 @@
+# David Ruiz Portfolio (`heydavid.work`)
+
+This file summarizes the public content available on `https://heydavid.work/` for LLM and crawler consumption.
+
+Primary site URL: `https://heydavid.work/`
+
+## Profile Summary
+
+David Ruiz is a digital product specialist with a background in industrial design engineering. He started by designing physical products (including air fresheners and lamps) and repairing 3D printers, then transitioned into digital product design and strategy. He describes his work as grounded in systems thinking, principles, and craft.
+
+Current positioning on the homepage:
+- Product Design
+- Product Strategy
+- User Research
+- Currently at StackAI
+
+Stated focus:
+- Passionate about sports tech and enterprise tools
+
+Companies shown on the homepage as trusted by / worked with:
+- Asana
+- Better Collective
+- StackAI
+- Jabra
+- Lenus
+
+Industries mentioned in the About section:
+- Sports media
+- iGaming
+- Affiliate marketing
+- E-commerce
+- AI enterprise SaaS
+- B2B services
+
+Personal interests mentioned:
+- Coaching tennis
+- Playing football and padel
+- Following Real Madrid
+- Interest in urban mobility, utopian history, and behavioural psychology (especially nudging)
+- Inspired by Growth.Design
+
+LinkedIn:
+- `https://www.linkedin.com/in/hidalgodavid/`
+
+## LinkedIn Profile Information (Provided by David)
+
+Source profile:
+- `https://www.linkedin.com/in/hidalgodavid/`
+
+### Experience
+
+#### Product Design and Pod Lead - StackAI
+- Nov 2025 - Present (8 mos)
+- Leading product design for an enterprise AI platform used to build and operate LLM-powered workflows.
+- Owns end-to-end design across workflow builder, observability, and enterprise controls (permissions, auditability, compliance).
+- Designed features including Agent Evaluator, trace debugging, Organisation Shared Agents grid, ADLC (Agent Development Life Cycle), and multi-source knowledge bases.
+- Optimizes critical journeys for builders, admins, and end users.
+- Defines UX patterns for complex systems (multi-step pipelines, data ingestion, agent orchestration).
+- Partners with engineering and product to translate ambiguous AI capabilities into deterministic, production-ready interfaces.
+- Drives enterprise UX for regulated industries where reliability and explainability are critical.
+- Works directly with customers to validate workflow usability in real operations.
+
+#### Tennis Coach - Hvidovre Tennis Klub (Seasonal)
+- Jan 2025 - Present (1 yr 6 mos)
+- Hvidovre, Capital Region of Denmark, Denmark
+
+#### Senior User Experience Designer - Better Collective (Full-time)
+- Aug 2023 - Oct 2025 (2 yrs 3 mos), on-site
+- Researched and conceptualized features for sports fans across a portfolio of websites and apps.
+- Ran A/B testing and experimentation on tips products, sportsbook comparison pages, and media sites.
+- Led brainstorming workshops, built MVPs, and tested assumptions through user testing, painted door tests, MVEs, and A/B testing.
+- Pitched concepts to business stakeholders and site owners.
+
+#### UX Designer - Lenus (Full-time)
+- Dec 2022 - Jul 2023 (8 mos)
+- Built product tools for online coaching businesses as part of the Lenus Product Team.
+- Project highlights:
+  - Redesigned the Training Builder so coaches can prepare holistic training plans.
+  - Designed a dashboard client-progress overview to track body data, mental health, training performance, steps, and activity.
+- End-to-end process highlights:
+  - Conducted exploratory interviews and user tests with around 50 online health coaches.
+  - Ran ideation and story-mapping workshops with the development team.
+
+#### Better Collective (2 yrs 1 mo)
+- User Experience Designer: Nov 2021 - Nov 2022 (1 yr 1 mo), Copenhagen, Denmark
+  - Translated UX research insights into products and features.
+  - Performed user testing of existing sites and prototypes.
+  - Pitched concepts to product owners, developers, and stakeholders.
+  - Wireframed betting features and built front-end MVPs in HTML/CSS/JS.
+  - Led CRO experimentation and analysis.
+  - Defined specs and requirements for new functionality.
+  - Advised site managers on implementation, scalability, and UX improvements.
+  - Collaborated on design system development.
+- Junior UX Designer: Nov 2020 - Nov 2021 (1 yr 1 mo), Copenhagen Municipality, Denmark
+
+#### Marketing Designer - Jabra (Internship)
+- Jun 2020 - Oct 2020 (5 mos), Ballerup Municipality, Denmark
+- Worked in the Digital Platform Team (Global Marketing).
+- Designed digital content for Jabra.com (Sitecore CMS) and retail platforms (Amazon, eBay).
+- Wireframed in Adobe XD and implemented website features in HTML/CSS.
+- Conducted qualitative and quantitative UX testing (think-aloud sessions, Hotjar, Google Optimize).
+- Created local/global campaign and landing pages with marketing managers and external partners.
+
+#### Sports Reporter - InPlay Sports Data (Part-time)
+- Jan 2017 - Dec 2017 (1 yr), Barcelona, Catalonia, Spain
+- Gathered live football match data (goals, cards, possession, corners, throw-ins, etc.) via app/phone.
+- Covered 20+ Catalan 3rd division matches live from venues; validated data was sent to bookmakers.
+
+#### Technical Designer - Parachilna (Full-time)
+- Jan 2017 - Nov 2017 (11 mos), Barcelona, Spain (on-site)
+- Transformed lamp sketches into 3D models and technical specs for production.
+- Coordinated with manufacturers on-site for verification and implementation.
+
+#### Technical Support Specialist - BCN3D Technologies (Full-time)
+- Jul 2016 - Jan 2017 (7 mos), Barcelona, Spain
+
+#### Product Design Summer Intern - Studio Mango
+- Jun 2015 - Sep 2015 (4 mos), Breda, North Brabant, Netherlands
+- Contributed to a kitchen product line (accessories and cookware): ideation, sketching, 3D modeling, technical drawings, and client presentations.
+- Designed a neoprene protection band for suitcases and prototyped with fabrics.
+- Supported teammates with workshop tasks and assembly.
+- Featured project: Princess Luggage Sleeve
+  - Portfolio link: `http://www.studiomango.nl/portfolio-items/princess-luggage-sleeve/`
+
+### Education
+
+#### DTU - Technical University of Denmark
+- MSc, Design and Innovation (2018 - 2020)
+- Activities: DTU Futsal Club, DTU Klatring
+- Courses included UX Design Prototyping, Staging Co-creation and Creativity, Holistic Design of Engineering Systems, Strategy Design and Market, Design and Development in an Organizational Context, X-Tech Entrepreneurship, Management of Change in Engineering Systems, and Smart City mobility projects.
+- Thesis: Data Driven Design
+
+#### Monash University
+- Exchange Master Student, Industrial and Product Design (2019)
+- Activities: Monash Social Indoor Soccer, Monash Entrepreneurs Club (MED)
+- Courses included Design Thinking Approaches, Designing Interactive Systems, and Design for Social Impact.
+
+#### Elisava School of Design and Engineering
+- Industrial Design Engineering (2013 - 2017), specialization in Product Development
+- Bachelor thesis in collaboration with Zinc Design Lab:
+  - Prototyped a wearable product to reduce commuter stress by guiding breathing patterns and connecting to an app.
+- Talk mention: WT Wearable Technologies Picnic 2017 Barcelona
+  - Link: `http://www.elisava.net/en/center/news/students-degree-engineering-industrial-design-participate-wearable-technologies-picnic`
+
+#### Norwegian University of Science and Technology (NTNU)
+- Bachelor's Exchange Semester, Industrial and Product Design (2016)
+- Activities: NTNU Buddy Programme, NTNUI Fotball Exchange Team
+- Included projects with moonwalk.me and nestingsafe.com.
+
+### Recommendations (Received)
+
+#### Zbigniew Czerwonka (Nov 18, 2022)
+- Worked with David on the same team.
+- Notes David is proactive, reliable, and collaborative.
+- Highlights contribution to designing/developing an internal Agile Knowledge Base website that became clear and well-received.
+- Mentions advocacy for embedding UX in development and strengths in WordPress and presentation skills.
+
+#### Freja Enggard Christiansen (Sep 28, 2021)
+- Worked with David on the same team.
+- Describes David as a talented UX designer and caring colleague.
+- Highlights curiosity, calm approach, strong questioning skills, loyalty, dedication, and commitment.
+
+### Languages
+
+- Catalan - Native or bilingual proficiency
+- Danish - Limited working proficiency
+- English - Full professional proficiency
+- Spanish - Native or bilingual proficiency
+
+## Public Case Studies
+
+### 1) Agentic Development Lifecycle
+URL: `https://heydavid.work/cards/agentic-lifecycle.html`
+
+Project framing:
+- ADLC (Agentic Development Life Cycle) applies software engineering discipline (versioning, staging, approvals) to AI agent deployment on StackAI.
+- Context: enterprises deploying agents without governance, with no version history, approval process, or rollback safeguards.
+
+Project details:
+- Company: StackAI
+- Role: Product Design Lead
+- Team: Design, Engineering, Product, Field Delivery
+- Timeline: Q1-Q2 2026
+
+Discovery highlights:
+- The concept originated from observing an enterprise customer running a manual 6-phase governance process designed by their CISO.
+- Interviews and workflow mapping suggested this should become a productized capability.
+- Co-design was done with enterprise security and platform teams.
+
+Design process highlights:
+- Benchmarked patterns (including GitBook-style granularity concepts).
+- Iterated multiple times on stages, diffs, onboarding, approval workflow, and environment variable handling.
+- Consolidated field feedback into discoverability, terminology, diff quality, and environment variable clarity.
+
+Solution highlights:
+- Create Pull Request flow for pushing changes toward controlled environments.
+- Review and approval flow for admins before production.
+- Environment variable handling across development, staging, and production.
+- Agent Grid support for sharing workflows across an organization.
+
+Insights/outcomes presented:
+- Became a standard requirement in enterprise sales conversations.
+- Concept was externally validated before implementation (customer-originated language and need).
+- The governance pain pattern appeared broadly applicable across customers.
+
+### 2) Workflow Analytics and Agent Evaluator
+URL: `https://heydavid.work/cards/agent-evaluator.html`
+
+Project framing:
+- Two connected initiatives at StackAI: analytics observability and evaluator-driven quality gating for AI workflows.
+
+Project details:
+- Company: StackAI
+- Product: Enterprise AI workflow platform
+- Role: Product Designer
+- Year: 2026
+
+Discovery/personas:
+- Executive sponsors: prove AI adoption and ROI.
+- Admins: monitor production health quickly.
+- Builders: debug and improve workflows.
+- Internal StackAI teams: understand usage.
+
+Problem statements:
+- Analytics was split across surfaces, lacked org-wide coherence, and had context/timezone issues.
+- Evaluator had low adoption due to manual setup friction.
+
+Design process:
+- Opportunity mapping and multiple design iterations.
+- Competitive benchmark for evaluator space (including Laminar, Langfuse, Arize Phoenix).
+- User-flow design, ideation with PM/engineering, stakeholder validation, and handoff.
+
+Solution highlights:
+- Org-wide analytics view with caller context, filtering, and debugging-oriented layout.
+- Temporal-inspired time-series and workflow health view for success rate, latency, and errors.
+- Unified data model: a run can move from analytics into evaluator and into test dataset creation.
+
+Insights:
+- Analytics and evaluation should be treated as one connected system.
+- Stakeholders need different views of shared data (executive vs builder needs).
+- Reducing setup friction is critical for evaluator adoption.
+- ADLC turns evaluation into a strategic pre-ship requirement.
+
+### 3) Holistic Training Builder Redesign
+URL: `https://heydavid.work/cards/project1.html`
+
+Project framing:
+- Redesign of a coach workout builder to improve speed, flexibility, and personalization.
+
+Project details:
+- Company: Lenus
+- Product: Coach platform
+- Role: UX designer
+- Team: Software engineers, QA, PM, UXD
+
+Project context:
+- Existing builder was inflexible and poorly supported diverse coaching styles and special needs.
+
+Goals:
+- Increase coach efficiency
+- Expand format flexibility
+- Future-proof competitiveness
+
+Discovery:
+- Research questions focused on coach goals, blockers, and unmet needs.
+- User groups: holistic coaches and their clients.
+- Key findings:
+  - Scrolling/navigation/drag-and-drop friction.
+  - Missing key formats (AMRAP, EMOM, Tabata, progression).
+  - Limited support for reusable templates and per-client adjustment workflows.
+
+Design process:
+- Team brainstorming workshop.
+- Wireframes and structured feedback sessions.
+- Assumption listing/prioritization.
+- Validation with coaches.
+
+Solution highlights:
+- Consolidated layout with sessions, exercises, and client context in one view.
+- Exercise selector moved to improve search/add workflows.
+- Added new workout formats (TABATA, EMOM, AMRAP) and video-based sessions.
+- Improved guided workout experience for clients.
+
+Reported outcomes (3 months post-implementation):
+- ~30% reduction in average workout-plan creation time.
+- Fewer support requests on usability and plan-building limitations.
+- ~10% increase in coaches creating at least 3 templates.
+- NPS increased from 3.7 to 4.1.
+
+### 4) Sports Media Concepts for Gen Z
+URL: `https://heydavid.work/cards/project2.html`
+
+Project framing:
+- Innovation work focused on new sports media concepts for users aged 18-24.
+- Some details are intentionally generalized/masked for confidentiality.
+
+Project details:
+- Company: Sports Media
+- Product area: Football websites/apps
+- Role: Design Strategist
+- Team: Designer, Researcher, PMs, stakeholders
+
+Goals:
+- Understand Gen Z behavior in sports media consumption.
+- Create new concepts.
+- Validate concepts and pitch internally.
+
+Discovery:
+- Methods: desk research, interviews, JTBD-based research, and surveys.
+- Core question: how Gen Z follows matches/news and interacts with media channels.
+- Identified underserved opportunities from importance vs satisfaction analysis.
+
+Design process:
+- Cross-functional brainstorming workshops.
+- Concept tests and assumption validation.
+- TikTok ad + painted-door landing page for demand testing and beta-signup collection.
+
+Solutions presented:
+- Concept 1: highlight sports app concept.
+- Concept 2: follow-players app concept.
+- Landing page prototype for concept testing.
+
+Insights/outcomes shown:
+- One concept pitched to a third-party company for further development.
+- A feature inspired by research launched on an existing company platform.
+- An A/B test launched based on one concept.
+
+### 5) Rental Service for Exchange Students (Easy Semester)
+URL: `https://heydavid.work/cards/project3.html`
+
+Project framing:
+- Co-founded Easy Semester, a circular rental service for exchange students in Denmark.
+
+Project details:
+- Year: 2019
+- Company: Easy Semester IVS
+- Product: Linen rental service
+- Role: Co-founder
+- Team: Three co-founders with student volunteers
+
+Problem context:
+- Exchange students often arrive without essentials, buy items for short stays, then discard them.
+- This creates cost, stress, and waste.
+
+Goals:
+- Easier and more affordable student arrival
+- Environmentally friendly service
+- Circular economy model
+
+Discovery:
+- Surveys with exchange students to identify needs.
+- Empathy mapping and journey understanding.
+- Found strong demand for affordable, sustainable, convenient setup support.
+
+MVP process:
+- Business model design using Business Model Canvas.
+- Initial reuse-model attempt challenged by lack of institutional partnership.
+- Built a simple ordering website and promoted via direct outreach (including ~800 emails).
+- Executed collection, cleaning, packing, and delivery operations manually.
+
+Insights/outcomes shown:
+- 74 students donated materials.
+- 1,250 students from 40+ nationalities visited the site.
+- 60 orders completed across two semesters.
+- Positive feedback and expansion ideas (furniture, more items, community activity).
+- Operations were halted by COVID-19 due to paused exchange programs.
+
+## Homepage Project Links
+
+- `https://heydavid.work/cards/agentic-lifecycle.html`
+- `https://heydavid.work/cards/agent-evaluator.html`
+- `https://heydavid.work/cards/project1.html`
+- `https://heydavid.work/cards/project2.html`
+- `https://heydavid.work/cards/project3.html`
+
+## Notes
+
+- Content in this file is based only on public site content available on `heydavid.work`.
+- Some project details are intentionally abstracted on the website for confidentiality.
