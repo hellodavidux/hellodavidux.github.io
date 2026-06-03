@@ -43,6 +43,15 @@
   transform: translateY(0);
 }
 
+/* Badge section labels (DISCOVERY, DESIGN PROCESS, etc.) — smaller on mobile */
+@media (max-width: 767px) {
+  h2.section-heading.inline-block,
+  h3.section-heading.inline-block {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+}
+
 /* Card animations */
 .card-animation {
   opacity: 0;

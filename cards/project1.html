@@ -151,48 +151,45 @@
       color: #6b7280;
     }
     
-    /* Before/After Comparison Styles */
+    /* Before/After Comparison Styles (hover, benchmark-style divider) */
     .before-after-container {
+      cursor: ew-resize;
       user-select: none;
     }
-    
-    .divider {
-      transition: none;
-    }
-    
-    .divider-handle {
-      transition: transform 0.2s ease;
-    }
-    
-    .divider:hover .divider-handle {
-      transform: scale(1.1);
-    }
-    
-    .divider:active .divider-handle {
-      transform: scale(1.05);
-    }
-    
-    /* Divider animation when not being used */
-    .divider.animate {
-      animation: dividerWiggle 2s ease-in-out infinite;
-    }
-    
-    @keyframes dividerWiggle {
-      0%, 100% { transform: translateX(-50%) translateX(0px); }
-      25% { transform: translateX(-50%) translateX(-8px); }
-      75% { transform: translateX(-50%) translateX(8px); }
-    }
-    
-    /* Increased draggable area */
-    .divider::before {
-      content: '';
+
+    .before-after-divider {
       position: absolute;
-      top: 0;
-      left: -20px;
-      right: -20px;
-      bottom: 0;
-      cursor: ew-resize;
-      z-index: 1;
+      top: -2%;
+      bottom: -2%;
+      left: 50%;
+      width: 8px;
+      background: #2E3E3E;
+      transform: translateX(-50%) rotate(-2.5deg);
+      transform-origin: center center;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .before-after-label {
+      position: absolute;
+      bottom: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      white-space: nowrap;
+      line-height: 1.25;
+      transform: rotate(2.5deg);
+    }
+
+    .before-after-label--before {
+      right: calc(100% + 0.75rem);
+    }
+
+    .before-after-label--after {
+      left: calc(100% + 0.75rem);
     }
   </style>
 </head>
@@ -225,9 +222,9 @@
       </div>
 
       <div class="flex justify-end items-center gap-4">
-        <a href="../index.html" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
-        <a href="../index.html#project1" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
-        <a href="../index.html#contact" class="text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+        <a href="../index.html" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
+        <a href="../index.html#project1" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
         <button type="button" data-cal-link="david-hr-15min-chat/15min" data-cal-namespace="15min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="nav-book-btn" aria-label="Book a 15-minute call">Book 15-min</button>
       </div>
     </div>
@@ -648,25 +645,13 @@
               src="images/project_1/after.png" 
               alt="After - New interface design" 
               class="w-full h-full object-contain"
-              style="clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)"
+              style="clip-path: polygon(47.5% 0%, 100% 0%, 100% 100%, 52.5% 100%)"
             >
           </div>
           
-          <!-- Draggable Divider -->
-          <div class="divider absolute top-0 bottom-0 w-1 cursor-ew-resize flex items-center justify-center" style="left: 50%; transform: translateX(-50%); background-color: #1E2F2F;">
-            <div class="divider-handle w-8 h-16 rounded-full flex items-center justify-center shadow-lg" style="background-color: #1E2F2F;">
-              <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l2-2l2 2V5H8zm6 0v14l2-2l2 2V5h-4z"/>
-              </svg>
-            </div>
-            
-            <!-- Labels that move with the divider -->
-            <div class="absolute bottom-4 -left-24 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium whitespace-nowrap">
-              BEFORE
-            </div>
-            <div class="absolute bottom-4 -right-20 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium whitespace-nowrap">
-              AFTER
-            </div>
+          <div class="before-after-divider" aria-hidden="true">
+            <span class="before-after-label before-after-label--before">BEFORE</span>
+            <span class="before-after-label before-after-label--after">AFTER</span>
           </div>
         </div>
       </div>
@@ -721,11 +706,11 @@
       </div>
      
       <!-- Builder Tabata Image -->
-      <div class="w-full mb-12 bg-[#2E3E3E] p-4 rounded-2xl image-animation">
+      <div class="w-full mb-12 bg-[#2E3E3E] p-4 rounded-2xl">
         <img 
           src="images/project_1/builder-tabata.png" 
           alt="Tabata Workout Builder Interface - Redesigned UI for creating interval-based training sessions" 
-          class="w-full h-auto rounded-xl shadow-lg"
+          class="w-full h-auto rounded-xl shadow-lg image-animation"
         >
       </div>
     </div>
@@ -852,68 +837,37 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const container = document.querySelector('.before-after-container');
-      const divider = document.querySelector('.divider');
+      const divider = document.querySelector('.before-after-divider');
       const afterImage = document.querySelector('.after-image-container img');
-      
+
       if (!container || !divider || !afterImage) return;
-      
-      let isDragging = false;
-      let startX, startLeft;
-      let hasBeenInteracted = false;
-      
-      // Add animation class initially
-      divider.classList.add('animate');
-      
-      function updateClipPath(percentage) {
-        afterImage.style.clipPath = `polygon(${percentage}% 0%, 100% 0%, 100% 100%, ${percentage}% 100%)`;
+
+      const SLANT = 2.5;
+
+      function updatePosition(clientX) {
+        const rect = container.getBoundingClientRect();
+        const percentage = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+        const topX = percentage - SLANT;
+        const bottomX = percentage + SLANT;
+
+        afterImage.style.clipPath = `polygon(${topX}% 0%, 100% 0%, 100% 100%, ${bottomX}% 100%)`;
         divider.style.left = `${percentage}%`;
       }
-      
-      function handleMouseDown(e) {
-        // Remove animation when user starts interacting
-        if (!hasBeenInteracted) {
-          hasBeenInteracted = true;
-          divider.classList.remove('animate');
-        }
-        
-        isDragging = true;
-        startX = e.clientX || e.touches[0].clientX;
-        startLeft = parseFloat(divider.style.left) || 50;
-        
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('touchmove', handleMouseMove);
-        document.addEventListener('touchend', handleMouseUp);
-        
-        e.preventDefault();
+
+      function resetPosition() {
+        updatePosition(
+          container.getBoundingClientRect().left + container.offsetWidth / 2
+        );
       }
-      
-      function handleMouseMove(e) {
-        if (!isDragging) return;
-        
-        const currentX = e.clientX || e.touches[0].clientX;
-        const deltaX = currentX - startX;
-        const containerRect = container.getBoundingClientRect();
-        const percentage = Math.max(0, Math.min(100, ((startLeft / 100) * containerRect.width + deltaX) / containerRect.width * 100));
-        
-        updateClipPath(percentage);
-      }
-      
-      function handleMouseUp() {
-        isDragging = false;
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-        document.removeEventListener('touchmove', handleMouseMove);
-        document.removeEventListener('touchend', handleMouseUp);
-      }
-      
-      // Add event listeners
-      divider.addEventListener('mousedown', handleMouseDown);
-      divider.addEventListener('touchstart', handleMouseDown);
-      
-      // Prevent text selection while dragging
-      divider.addEventListener('selectstart', e => e.preventDefault());
-      divider.addEventListener('dragstart', e => e.preventDefault());
+
+      container.addEventListener('mousemove', (e) => updatePosition(e.clientX));
+      container.addEventListener('mouseleave', resetPosition);
+      container.addEventListener('touchmove', (e) => {
+        if (e.touches[0]) updatePosition(e.touches[0].clientX);
+      }, { passive: true });
+      container.addEventListener('touchend', resetPosition);
+
+      resetPosition();
     });
   </script>
 

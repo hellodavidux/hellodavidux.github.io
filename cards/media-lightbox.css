@@ -239,4 +239,12 @@
     top: 0.75rem;
     right: 0.75rem;
   }
+
+  .media-lightbox__panel {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .media-lightbox__media-wrap.is-zoomed {
+    touch-action: auto;
+  }
 }

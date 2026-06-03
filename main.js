@@ -3,7 +3,7 @@ const sections = document.querySelectorAll('.section');
 const sectionIndicators = document.querySelectorAll('.section-indicator');
 const navbar = document.getElementById('navbar');
 const navbarLinks = document.querySelectorAll('.navbar-links');
-const rightNavLinks = navbar ? navbar.querySelector('div.hidden.md\\:flex.justify-end.items-center.gap-4') : null;
+const rightNavLinks = navbar ? navbar.querySelector('div.flex.justify-end.items-center.gap-4') : null;
 const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"]') : null;
 const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-agentic-lifecycle"]') : null;
 const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
@@ -281,13 +281,43 @@ function isMobileViewport() {
     return window.matchMedia('(max-width: 767px)').matches;
 }
 
-function shouldAllowNativeAboutScroll(event) {
-    if (!isMobileViewport()) return false;
+function getSectionOffsetUnit() {
+    return isMobileViewport() ? 'dvh' : 'vh';
+}
+
+function isActiveContactSection() {
     const activeSection = sections[currentSectionIndex];
-    if (!activeSection || activeSection.id !== 'contact') return false;
+    return Boolean(activeSection && activeSection.id === 'contact');
+}
+
+function shouldAllowNativeContactScroll(event) {
+    if (!isActiveContactSection()) return false;
+    const activeSection = sections[currentSectionIndex];
     if (event.target && !activeSection.contains(event.target)) return false;
 
-    return activeSection.scrollHeight > activeSection.clientHeight + 1;
+    return true;
+}
+
+function getAboutSectionScrollEdges() {
+    const section = sections[currentSectionIndex];
+    if (!section || section.id !== 'contact') {
+        return { atTop: true, atBottom: true };
+    }
+
+    const maxScroll = Math.max(0, section.scrollHeight - section.clientHeight);
+    return {
+        atTop: section.scrollTop <= 1,
+        atBottom: section.scrollTop >= maxScroll - 1
+    };
+}
+
+function shouldNavigateFromAboutSwipe(deltaY) {
+    if (!isActiveContactSection()) return true;
+
+    const { atTop, atBottom } = getAboutSectionScrollEdges();
+    if (deltaY > 0 && !atBottom) return false;
+    if (deltaY < 0 && !atTop) return false;
+    return true;
 }
 
 function setupAboutTextHighlight() {
@@ -525,8 +555,10 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('wheel', function(e) {
     // Only trigger scroll if the delta is significant enough to be intentional
     if (Math.abs(e.deltaY) > 15) {
-        e.preventDefault(); // Prevent default scrolling behavior
-        handleScroll(e.deltaY > 0);
+        if (shouldNavigateFromAboutSwipe(e.deltaY)) {
+            e.preventDefault();
+            handleScroll(e.deltaY > 0);
+        }
     }
 }, { passive: false });
 
@@ -536,21 +568,25 @@ window.addEventListener('touchstart', function(e) {
 });
 
 window.addEventListener('touchmove', function(e) {
-    if (shouldAllowNativeAboutScroll(e)) {
+    if (shouldAllowNativeContactScroll(e)) {
         return;
     }
     e.preventDefault(); // Prevent default scrolling behavior
 }, { passive: false });
 
 window.addEventListener('touchend', function(e) {
-    if (shouldAllowNativeAboutScroll(e)) {
-        return;
-    }
     touchEndY = e.changedTouches[0].clientY;
     const deltaY = touchStartY - touchEndY;
-    
-    // Increased threshold for swipe detection to avoid accidental swipes
-    if (Math.abs(deltaY) > touchThreshold) {
+
+    if (!shouldNavigateFromAboutSwipe(deltaY)) {
+        return;
+    }
+
+    const { atTop, atBottom } = getAboutSectionScrollEdges();
+    const atScrollEdge = (deltaY > 0 && atBottom) || (deltaY < 0 && atTop);
+    const threshold = isActiveContactSection() && atScrollEdge ? 35 : touchThreshold;
+
+    if (Math.abs(deltaY) > threshold) {
         handleScroll(deltaY > 0);
     }
 });
@@ -644,7 +680,7 @@ function updateSections() {
         // Position each section based on the current section index
         const offset = (index - currentSectionIndex) * 100;
         section.style.transition = isScrolling ? 'transform 1s cubic-bezier(0.23, 1, 0.32, 1)' : 'none';
-        section.style.transform = `translateY(${offset}vh)`;
+        section.style.transform = `translateY(${offset}${getSectionOffsetUnit()})`;
         section.style.zIndex = sections.length - Math.abs(index - currentSectionIndex);
         
         // Add/remove active class for additional styling
@@ -664,6 +700,15 @@ function updateSections() {
     }
 
     syncAboutTextHighlight();
+    resetContactSectionScrollIfNeeded();
+}
+
+function resetContactSectionScrollIfNeeded() {
+    const contact = document.getElementById('contact');
+    if (!contact) return;
+    if (!isActiveContactSection()) {
+        contact.scrollTop = 0;
+    }
 }
 
 // Update section indicators

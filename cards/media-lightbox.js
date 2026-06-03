@@ -7,11 +7,17 @@
   const MEDIA_SELECTOR =
     'img.image-animation, img.slide-image, img.design-slide-image, .video-animation video, .video-animation img';
 
+  const SWIPE_THRESHOLD_PX = 48;
+
   let lightbox = null;
   let gallery = [];
   let currentIndex = 0;
   let activeVideo = null;
   let lastFocusedElement = null;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchTracking = false;
+  let suppressImageClickUntil = 0;
 
   function isExcluded(element) {
     return Boolean(element.closest(EXCLUDED_ANCESTORS));
@@ -87,7 +93,80 @@
     overlay.querySelector('.media-lightbox__nav--prev').addEventListener('click', () => showItem(currentIndex - 1));
     overlay.querySelector('.media-lightbox__nav--next').addEventListener('click', () => showItem(currentIndex + 1));
 
+    setupTouchNavigation(overlay);
+
     return overlay;
+  }
+
+  function canSwipeGallery() {
+    return (
+      lightbox &&
+      lightbox.classList.contains('is-open') &&
+      gallery.length > 1 &&
+      !lightbox.querySelector('.media-lightbox__media-wrap')?.classList.contains('is-zoomed')
+    );
+  }
+
+  function setupTouchNavigation(overlay) {
+    overlay.addEventListener(
+      'touchstart',
+      (event) => {
+        if (!canSwipeGallery() || event.touches.length !== 1) {
+          touchTracking = false;
+          return;
+        }
+
+        touchTracking = true;
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+      },
+      { passive: true }
+    );
+
+    overlay.addEventListener(
+      'touchend',
+      (event) => {
+        if (!touchTracking || event.changedTouches.length !== 1) {
+          touchTracking = false;
+          return;
+        }
+
+        touchTracking = false;
+
+        if (!canSwipeGallery()) {
+          return;
+        }
+
+        const touch = event.changedTouches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) {
+          return;
+        }
+
+        if (Math.abs(deltaY) >= Math.abs(deltaX)) {
+          return;
+        }
+
+        suppressImageClickUntil = Date.now() + 400;
+
+        if (deltaX < 0) {
+          showItem(currentIndex + 1);
+        } else {
+          showItem(currentIndex - 1);
+        }
+      },
+      { passive: true }
+    );
+
+    overlay.addEventListener(
+      'touchcancel',
+      () => {
+        touchTracking = false;
+      },
+      { passive: true }
+    );
   }
 
   const ZOOM_SCALE = 2;
@@ -126,6 +205,10 @@
 
   function toggleImageZoom(image, event) {
     event.stopPropagation();
+
+    if (Date.now() < suppressImageClickUntil) {
+      return;
+    }
 
     const mediaWrap = image.closest('.media-lightbox__media-wrap');
     const willZoom = !image.classList.contains('is-zoomed');
@@ -297,6 +380,7 @@
     clearMedia();
     lightbox.classList.remove('is-open');
     document.body.style.overflow = '';
+    touchTracking = false;
 
     if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
       lastFocusedElement.focus();
