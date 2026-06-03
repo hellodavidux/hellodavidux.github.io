@@ -98,6 +98,98 @@ body {
   position: relative;
 }
 
+/* Navbar CTA — overrides Tailwind preflight (transparent bg, zero padding on button) */
+#navbar .nav-book-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background-color 0.2s ease;
+}
+
+#navbar .nav-book-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 72%;
+  height: 240%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 10%,
+    rgba(255, 255, 255, 0.1) 24%,
+    rgba(255, 255, 255, 0.22) 38%,
+    rgba(255, 255, 255, 0.38) 46%,
+    rgba(255, 255, 255, 0.48) 50%,
+    rgba(255, 255, 255, 0.38) 54%,
+    rgba(255, 255, 255, 0.22) 62%,
+    rgba(255, 255, 255, 0.1) 76%,
+    rgba(255, 255, 255, 0.03) 90%,
+    transparent 100%
+  );
+  transform: translate(-130%, -50%) rotate(32deg);
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+#navbar .nav-book-btn:hover {
+  background-color: #242424;
+}
+
+#navbar .nav-book-btn:hover::before {
+  animation: nav-book-btn-sweep 1.15s ease-out;
+}
+
+@keyframes nav-book-btn-sweep {
+  to {
+    transform: translate(270%, -50%) rotate(32deg);
+  }
+}
+
+#navbar .nav-book-btn.nav-book-btn--light {
+  color: #111827;
+  background-color: #fff;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+#navbar .nav-book-btn.nav-book-btn--light:hover {
+  background-color: #f3f4f6;
+}
+
+#navbar .nav-book-btn.nav-book-btn--light::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(17, 24, 39, 0.02) 10%,
+    rgba(17, 24, 39, 0.05) 24%,
+    rgba(17, 24, 39, 0.1) 38%,
+    rgba(17, 24, 39, 0.16) 46%,
+    rgba(17, 24, 39, 0.2) 50%,
+    rgba(17, 24, 39, 0.16) 54%,
+    rgba(17, 24, 39, 0.1) 62%,
+    rgba(17, 24, 39, 0.05) 76%,
+    rgba(17, 24, 39, 0.02) 90%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #navbar .nav-book-btn::before {
+    display: none;
+  }
+}
+
 /* Solid bar on project pages — transparent navbar would show #intro's white radial gradient */
 .navbar-fixed {
   background-color: #f0f1f3;
@@ -293,6 +385,20 @@ body:has(#fullpage) #contact {
   padding: 5rem 0 2rem;
 }
 
+.about-section--with-footer {
+  justify-content: space-between;
+}
+
+.about-layout--main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: 100%;
+}
+
 .about-layout {
   display: flex;
   flex-direction: column;
@@ -367,52 +473,6 @@ body:has(#fullpage) #contact {
   margin-bottom: 2rem;
 }
 
-.about-connect {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: gap 0.3s ease, transform 0.3s ease;
-}
-
-.about-connect__label {
-  font-size: 0.875rem;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: color 0.3s ease;
-}
-
-.about-connect__icon {
-  font-size: 1.75rem;
-  color: #374151;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.about-connect:hover,
-.about-connect:focus-visible {
-  gap: 1.25rem;
-  transform: translateX(4px);
-}
-
-.about-connect:hover .about-connect__label,
-.about-connect:focus-visible .about-connect__label {
-  color: #111827;
-}
-
-.about-connect:hover .about-connect__icon,
-.about-connect:focus-visible .about-connect__icon {
-  color: #0a66c2;
-  transform: scale(1.1);
-}
-
-.about-connect:focus-visible {
-  outline: 2px solid #0a66c2;
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
 .about-photo-wrap {
   flex-shrink: 0;
   display: flex;
@@ -485,11 +545,16 @@ body:has(#fullpage) #contact {
     padding-bottom: 2rem;
   }
 
-  #contact .about-layout {
+  #contact .about-layout,
+  #contact .about-layout--main {
     align-items: flex-start;
     justify-content: flex-start;
     min-height: -moz-max-content;
     min-height: max-content;
+  }
+
+  #contact .about-sum-up-footer {
+    padding-bottom: 1rem;
   }
 
   #contact .about-content {
@@ -502,7 +567,8 @@ body:has(#fullpage) #contact {
     padding-top: 6rem;
   }
 
-  .about-layout {
+  .about-layout,
+  .about-layout--main {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -727,10 +793,19 @@ body:has(#fullpage) #intro {
   box-shadow: 0 0 1.5px rgba(255, 255, 255, 0.12), 0 6px 12px rgba(0, 0, 0, 0.14);
 }
 
-#project-agent-evaluator {
+#project-agent-evaluator,
+#intro.intro--agent-evaluator {
   background-color: #e4e4e7;
   background-image: radial-gradient(circle, #c8c8cc 1px, transparent 1px);
   background-size: 22px 22px;
+}
+
+body.page-agent-evaluator:not(:has(#fullpage)) {
+  background-color: #e4e4e7;
+}
+
+body.page-agent-evaluator .navbar-fixed {
+  background-color: #e4e4e7;
 }
 
 #project-agent-evaluator .projectcard--agent-evaluator {

@@ -90,6 +90,66 @@
     return overlay;
   }
 
+  const ZOOM_SCALE = 2;
+
+  function resetImageZoom(image) {
+    image.classList.remove('is-zoomed');
+    image.style.width = '';
+    image.style.height = '';
+    image.style.maxWidth = '';
+    image.style.maxHeight = '';
+  }
+
+  function resetZoom() {
+    if (!lightbox) {
+      return;
+    }
+
+    const mediaWrap = lightbox.querySelector('.media-lightbox__media-wrap');
+    mediaWrap.classList.remove('is-zoomed');
+    mediaWrap.querySelectorAll('img').forEach(resetImageZoom);
+  }
+
+  function getZoomScale(image) {
+    const fittedWidth = image.offsetWidth;
+    if (!fittedWidth || !image.naturalWidth) {
+      return ZOOM_SCALE;
+    }
+
+    const naturalScale = image.naturalWidth / fittedWidth;
+    if (naturalScale <= 1.05) {
+      return ZOOM_SCALE;
+    }
+
+    return Math.min(ZOOM_SCALE, naturalScale);
+  }
+
+  function toggleImageZoom(image, event) {
+    event.stopPropagation();
+
+    const mediaWrap = image.closest('.media-lightbox__media-wrap');
+    const willZoom = !image.classList.contains('is-zoomed');
+
+    mediaWrap.querySelectorAll('img').forEach(resetImageZoom);
+
+    if (willZoom) {
+      const scale = getZoomScale(image);
+      image.classList.add('is-zoomed');
+      image.style.maxWidth = 'none';
+      image.style.maxHeight = 'none';
+      image.style.width = `${image.offsetWidth * scale}px`;
+      image.style.height = 'auto';
+      mediaWrap.classList.add('is-zoomed');
+    } else {
+      mediaWrap.classList.remove('is-zoomed');
+    }
+  }
+
+  function setupImageZoom(image) {
+    image.classList.add('media-lightbox__zoomable');
+    image.addEventListener('click', (event) => toggleImageZoom(image, event));
+  }
+
   function clearMedia() {
     if (!lightbox) {
       return;
@@ -100,6 +160,7 @@
       activeVideo.pause();
       activeVideo = null;
     }
+    resetZoom();
     mediaWrap.innerHTML = '';
   }
 
@@ -119,6 +180,7 @@
       const clone = document.createElement('img');
       clone.src = image.getAttribute('src');
       clone.alt = image.getAttribute('alt') || '';
+      setupImageZoom(clone);
 
       item.appendChild(label);
       item.appendChild(clone);
@@ -159,6 +221,7 @@
       image.src = item.src;
       image.alt = item.alt;
       mediaWrap.appendChild(image);
+      setupImageZoom(image);
     }
 
     if (item.alt) {
@@ -277,6 +340,11 @@
 
     if (event.key === 'Escape') {
       event.preventDefault();
+      const mediaWrap = lightbox.querySelector('.media-lightbox__media-wrap');
+      if (mediaWrap?.classList.contains('is-zoomed')) {
+        resetZoom();
+        return;
+      }
       closeLightbox();
       return;
     }

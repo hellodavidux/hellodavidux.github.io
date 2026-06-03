@@ -76,6 +76,14 @@
   justify-content: center;
   width: 100%;
   max-height: calc(96vh - 3rem);
+  overflow: hidden;
+}
+
+.media-lightbox__media-wrap.is-zoomed {
+  overflow: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  -webkit-overflow-scrolling: touch;
 }
 
 .media-lightbox__media-wrap img,
@@ -88,6 +96,20 @@
   object-fit: contain;
   border-radius: 0.5rem;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.media-lightbox__media-wrap img.media-lightbox__zoomable {
+  cursor: zoom-in;
+}
+
+.media-lightbox__media-wrap img.media-lightbox__zoomable.is-zoomed {
+  cursor: zoom-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-lightbox__media-wrap img.media-lightbox__zoomable {
+    transition: none;
+  }
 }
 
 .media-lightbox__caption {

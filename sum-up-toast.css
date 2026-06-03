@@ -1,4 +1,4 @@
-/* Sum Up — AI profile summary control (bottom-right) */
+/* Sum Up — opens chat.dk with profile summary prompt */
 
 .sum-up-toast {
   --sum-up-bg: #ffffff;
@@ -16,33 +16,25 @@
   );
   --sum-up-shimmer-size: 220% 100%;
   --sum-up-shimmer-icon-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3Cpath d='M20 2v4'/%3E%3Cpath d='M22 4h-4'/%3E%3Ccircle cx='4' cy='20' r='2'/%3E%3C/svg%3E");
-  --sum-up-provider-size: 2.25rem;
-  --sum-up-provider-gap: 0.125rem;
-  --sum-up-pad: 0.3125rem;
-  --sum-up-providers-width: calc(
-    3 * var(--sum-up-provider-size) + 2 * var(--sum-up-provider-gap)
-  );
-  --sum-up-width: calc(var(--sum-up-providers-width) + 2 * var(--sum-up-pad));
   position: fixed;
   right: 1rem;
   bottom: 1rem;
   z-index: 1000005;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.375rem;
   box-sizing: border-box;
-  width: var(--sum-up-width);
-  min-width: var(--sum-up-width);
-  max-width: var(--sum-up-width);
-  padding-block: var(--sum-up-pad);
-  padding-inline: var(--sum-up-pad);
+  height: 2.25rem;
+  padding: 0.3125rem 0.75rem;
   background: var(--sum-up-bg);
   border: 1px solid var(--sum-up-border);
   border-radius: 0.75rem;
   box-shadow: var(--sum-up-shadow);
   color: var(--sum-up-fg);
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  cursor: default;
+  text-decoration: none;
+  cursor: pointer;
   transition:
     box-shadow 0.2s ease,
     background-color 0.2s ease;
@@ -90,41 +82,6 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-.sum-up-toast__inner {
-  display: grid;
-  place-items: center;
-  width: var(--sum-up-providers-width);
-  height: var(--sum-up-provider-size);
-}
-
-.sum-up-toast:hover .sum-up-toast__inner {
-  overflow: visible;
-}
-
-.sum-up-toast__preview {
-  grid-area: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.375rem;
-  height: var(--sum-up-provider-size);
-  transition: opacity 0.2s ease;
-}
-
-.sum-up-toast:hover .sum-up-toast__preview {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.sum-up-toast__icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  flex-shrink: 0;
 }
 
 .sum-up-toast__magic {
@@ -185,127 +142,170 @@
   }
 }
 
-.sum-up-toast__providers {
-  grid-area: 1 / 1;
+.sum-up-toast:focus-visible {
+  outline: 2px solid var(--sum-up-fg);
+  outline-offset: 2px;
+}
+
+/* Footer — bottom of About section */
+.about-sum-up-footer {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 2rem 1.25rem;
+  border-top: 1px solid rgba(61, 56, 50, 0.08);
+}
+
+.about-sum-up-footer__left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.about-sum-up-footer__right {
+  --footer-action-color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.about-sum-up-footer__credit {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.about-sum-up-footer__heart {
+  color: #9ca3af;
+}
+
+.about-sum-up-footer__linkedin,
+.about-sum-up-footer__behance {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--sum-up-provider-gap);
-  height: var(--sum-up-provider-size);
-  opacity: 0;
-  pointer-events: none;
-  overflow: visible;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.25rem;
+  color: var(--footer-action-color);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.about-sum-up-footer__linkedin i,
+.about-sum-up-footer__behance i {
+  font-size: 1.125rem;
+}
+
+.about-sum-up-footer__linkedin:hover,
+.about-sum-up-footer__linkedin:focus-visible {
+  color: #0a66c2;
+  transform: scale(1.08);
+}
+
+.about-sum-up-footer__linkedin:focus-visible {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+}
+
+.about-sum-up-footer__behance:hover,
+.about-sum-up-footer__behance:focus-visible {
+  color: #1769ff;
+  transform: scale(1.08);
+}
+
+.about-sum-up-footer__behance:focus-visible {
+  outline: 2px solid #1769ff;
+  outline-offset: 2px;
+}
+
+.sum-up-toast--footer {
+  --sum-up-fg: var(--footer-action-color, #6b7280);
+  --sum-up-shimmer-gradient: linear-gradient(
+    90deg,
+    var(--sum-up-fg) 0%,
+    var(--sum-up-fg) 38%,
+    rgba(107, 114, 128, 0.45) 50%,
+    var(--sum-up-fg) 62%,
+    var(--sum-up-fg) 100%
+  );
+  position: static;
+  right: auto;
+  bottom: auto;
+  flex-shrink: 0;
+  z-index: 1;
+  height: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  animation: none;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
   transition: opacity 0.2s ease;
 }
 
-.sum-up-toast:hover .sum-up-toast__providers {
-  opacity: 1;
-  pointer-events: auto;
+.sum-up-toast--footer:hover,
+.sum-up-toast--footer:active {
+  background: none;
+  box-shadow: none;
+  opacity: 0.8;
 }
 
-.sum-up-toast__provider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--sum-up-provider-size);
-  height: var(--sum-up-provider-size);
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  color: var(--sum-up-fg);
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.85;
-  transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+.sum-up-toast--footer:focus-visible {
+  outline-color: var(--sum-up-fg);
 }
 
-.sum-up-toast__provider[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: calc(100% + 0.375rem);
-  right: 100%;
-  left: auto;
-  margin-right: 0.25rem;
-  z-index: 2;
-  padding: 0.3125rem 0.5rem;
-  border-radius: 0.375rem;
-  background: #ffffff;
-  color: var(--sum-up-fg);
-  border: 1px solid var(--sum-up-border);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(2px);
-  box-shadow: var(--sum-up-shadow);
-  transition:
-    opacity 0.15s ease,
-    visibility 0.15s ease,
-    transform 0.15s ease;
-}
-
-.sum-up-toast__provider[data-tooltip]:hover::after,
-.sum-up-toast__provider[data-tooltip]:focus-visible::after {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.sum-up-toast:hover .sum-up-toast__provider {
-  opacity: 1;
-}
-
-.sum-up-toast__provider:hover {
-  background: rgba(61, 56, 50, 0.08);
-  transform: scale(1.06);
-  opacity: 1;
-}
-
-.sum-up-toast__provider:focus-visible {
-  outline: 2px solid var(--sum-up-fg);
-  outline-offset: 2px;
-  opacity: 1;
-}
-
-.sum-up-toast__provider svg {
-  width: 1.375rem;
-  height: 1.375rem;
-  fill: currentColor;
-}
-
-.sum-up-toast__provider img {
-  width: 1.375rem;
-  height: 1.375rem;
-}
-
-.sum-up-toast__provider--gemini svg {
-  fill: none;
+.sum-up-toast--footer.sum-up-toast--visible {
+  animation: none;
 }
 
 @media (min-width: 768px) {
-  .sum-up-toast {
-    right: 1.5rem;
-    bottom: 1.5rem;
+  .about-sum-up-footer {
+    padding-bottom: 1.5rem;
   }
 }
 
 @media (max-width: 767px) {
-  .sum-up-toast {
+  .sum-up-toast:not(.sum-up-toast--footer) {
     display: none !important;
+  }
+
+  .about-sum-up-footer {
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 0.875rem;
+    padding-bottom: 1rem;
+  }
+
+  .about-sum-up-footer__right {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .about-sum-up-footer__credit {
+    font-size: 0.6875rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sum-up-toast,
-  .sum-up-toast__inner,
-  .sum-up-toast__preview,
-  .sum-up-toast__providers,
-  .sum-up-toast__provider,
-  .sum-up-toast__provider[data-tooltip]::after {
+  .sum-up-toast {
     transition-duration: 0.01ms !important;
   }
 
@@ -345,5 +345,4 @@
     -webkit-text-fill-color: var(--sum-up-fg);
     color: var(--sum-up-fg);
   }
-
 }

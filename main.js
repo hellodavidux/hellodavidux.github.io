@@ -7,6 +7,7 @@ const rightNavLinks = navbar ? navbar.querySelector('div.hidden.md\\:flex.justif
 const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"]') : null;
 const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-agentic-lifecycle"]') : null;
 const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
+const navBookBtn = rightNavLinks ? rightNavLinks.querySelector('.nav-book-btn') : null;
 const DARK_NAV_SECTIONS = new Set(['project-agentic-lifecycle', 'project1', 'project2']);
 const logoName = document.getElementById('logo-name');
 
@@ -744,6 +745,10 @@ function updateNavbarLinks() {
     setNavLinkState(homeNavLink, isIntro, onDarkBg);
     setNavLinkState(projectsNavLink, isProjects, onDarkBg);
     setNavLinkState(aboutNavLink, isContact, onDarkBg);
+
+    if (navBookBtn) {
+        navBookBtn.classList.toggle('nav-book-btn--light', onDarkBg);
+    }
 }
 
 // Set up the navbar scroll behavior
