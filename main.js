@@ -1,6 +1,6 @@
 // DOM Elements
-const sections = document.querySelectorAll('.section');
-const sectionIndicators = document.querySelectorAll('.section-indicator');
+const sections = document.querySelectorAll('.section:not(.section--hidden)');
+const sectionIndicators = document.querySelectorAll('.section-indicator:not(.section-indicator--hidden)');
 const navbar = document.getElementById('navbar');
 const navbarLinks = document.querySelectorAll('.navbar-links');
 const rightNavLinks = navbar ? navbar.querySelector('div.flex.justify-end.items-center.gap-4') : null;
@@ -73,6 +73,31 @@ function handleDirectHashNavigation() {
 }
 
 // Animation for project cards when they enter viewport
+const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
+
+function syncProjectCardVideos() {
+  const useVideo = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
+  document.querySelectorAll('.projectcard video').forEach((video) => {
+    const source = video.querySelector('source[data-src]');
+    if (!source) return;
+
+    if (useVideo) {
+      if (!source.getAttribute('src')) {
+        source.setAttribute('src', source.dataset.src);
+        video.load();
+        video.play().catch(() => {});
+      }
+    } else {
+      if (source.getAttribute('src')) {
+        source.removeAttribute('src');
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      }
+    }
+  });
+}
+
 const observeProjectCards = () => {
   const projectCards = document.querySelectorAll('.projectcard');
   
@@ -468,8 +493,8 @@ function setupIntroHeroCardsLink() {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
     // Get all sections and indicators
-    const sections = document.querySelectorAll('.section');
-    const indicators = document.querySelectorAll('.section-indicator');
+    const sections = document.querySelectorAll('.section:not(.section--hidden)');
+    const indicators = document.querySelectorAll('.section-indicator:not(.section-indicator--hidden)');
     const navbar = document.getElementById('navbar');
     const logoName = document.getElementById('logo-name');
     
@@ -492,6 +517,8 @@ document.addEventListener('DOMContentLoaded', function() {
     aboutHighlightController = setupAboutTextHighlight();
     setupIntroCompanyLogosTooltips();
     setupNavbarLinkNavigation();
+    syncProjectCardVideos();
+    window.matchMedia(PROJECT_CARD_VIDEO_QUERY).addEventListener('change', syncProjectCardVideos);
 
     // Handle direct hash navigation as the first operation
     handleDirectHashNavigation();

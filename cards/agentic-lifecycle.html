@@ -242,19 +242,19 @@
       <!-- Categories section -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6">
         <div class="animate-on-scroll delay-100">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Company</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Company</p>
           <p class="font-medium">StackAI</p>
         </div>
         <div class="animate-on-scroll delay-200">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Role</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Role</p>
           <p class="font-medium">Product Design Lead</p>
         </div>
         <div class="animate-on-scroll delay-300">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Team</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Team</p>
           <p class="font-medium">Design, Engineering, Product, Field Delivery</p>
         </div>
         <div class="animate-on-scroll delay-400">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Timeline</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Timeline</p>
           <p class="font-medium">Q1–Q2 2026</p>
         </div>
       </div>
@@ -262,7 +262,7 @@
       <!-- Info cards -->
       <div class="grid grid-cols-1 gap-6">
         <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation">
-          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">The core problem</h3>
+          <h3 class="text-gray-400 text-sm mb-4 tracking-wide">The core problem</h3>
           <p class="text-gray-600">
             Enterprises were pushing AI agents to production with no governance. No version history, no approval process, no rollback. Agents failing in front of customers with no safety net.
           </p>
@@ -280,15 +280,15 @@
       </div>
       
       <div class="max-w-4xl mx-auto mb-12 space-y-8">
-        <div class="rounded-2xl bg-neutral-800/50 p-6 md:p-10 animate-on-scroll text-center">
-          <p class="text-lg text-white/90 mb-6">
-            We discovered an enterprise customer governing AI agent deployments entirely by hand — a 6-phase process their CISO had built outside StackAI. After interviewing his team and mapping how they worked, we saw the potential to turn it into a product feature. He called it the Agentic Development Life Cycle.
-          </p>
-
-          <blockquote class="mb-6">
-            <p class="text-xl md:text-2xl font-bold text-white italic">"We need to build this into the product."</p>
-            <p class="text-white/60 text-sm mt-2">agreement between Designer, PM and Founders</p>
-          </blockquote>
+        <div class="rounded-2xl bg-neutral-800/50 p-6 md:p-10 animate-on-scroll">
+          <div class="feature-header-row mb-6">
+            <blockquote class="feature-header-row__title m-0">
+              <p class="text-xl md:text-2xl font-bold text-white italic">"We need to build this into the product."</p>
+            </blockquote>
+            <p class="text-white/90 feature-header-row__text">
+              We discovered an enterprise customer governing AI agent deployments entirely by hand — a 6-phase process their CISO had built outside StackAI. After interviewing his team and mapping how they worked, we saw the potential to turn it into a product feature. He called it the Agentic Development Life Cycle.
+            </p>
+          </div>
 
           <img
             src="images/agentic-lifecycle/personas%20and%20mental%20models.jpg"
@@ -407,18 +407,18 @@
         </div>
       </div>
 
-      <div class="max-w-3xl mx-auto space-y-8 mb-12 text-center">
-        <div class="animate-on-scroll delay-100">
-          <h3 class="text-xl font-bold mb-2">Structured feedback from the field</h3>
-          <p class="text-gray-600">Consolidated signals from FDEs demoing to customers into 4 patterns: discoverability, terminology, diff quality, and environment variable confusion.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="animate-on-scroll delay-100 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
+          <h3 class="text-base font-bold mb-2">Structured feedback from the field</h3>
+          <p class="text-sm text-gray-600">Consolidated signals from FDEs demoing to customers into 4 patterns: discoverability, terminology, diff quality, and environment variable confusion.</p>
         </div>
-        <div class="animate-on-scroll delay-200">
-          <h3 class="text-xl font-bold mb-2">Ran a UX improvement sprint</h3>
-          <p class="text-gray-600">Per-project settings, convert-to-ADLC flow, diff filtering, in-product stage explanations, cross-project promotion UX.</p>
+        <div class="animate-on-scroll delay-200 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
+          <h3 class="text-base font-bold mb-2">Ran a UX improvement sprint</h3>
+          <p class="text-sm text-gray-600">Per-project settings, convert-to-ADLC flow, diff filtering, in-product stage explanations, cross-project promotion UX.</p>
         </div>
-        <div class="animate-on-scroll delay-300">
-          <h3 class="text-xl font-bold mb-2">Built a roadmap</h3>
-          <p class="text-gray-600">Captured open questions: default-on ADLC, configurable environments, env vars formally linked to stages, reviewer assignment.</p>
+        <div class="animate-on-scroll delay-300 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
+          <h3 class="text-base font-bold mb-2">Built a roadmap</h3>
+          <p class="text-sm text-gray-600">Captured open questions: default-on ADLC, configurable environments, env vars formally linked to stages, reviewer assignment.</p>
         </div>
       </div>
     </div>
@@ -431,11 +431,11 @@
         <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
       </div>
       
-      <div class="max-w-3xl mx-auto mb-12 space-y-16">
+      <div class="max-w-5xl mx-auto mb-12 space-y-16">
         <div class="animate-on-scroll">
-          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center section-heading">Create Pull Request</h2>
-          <div class="mb-4 space-y-1 text-sm text-white/80 text-center">
-            <p>Editor users have to request approval to admins when pushing changes to Staging, Development or Production</p>
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Submit a Pull<br>Request for Review</h2>
+            <p class="text-white/80 feature-header-row__text">Editor users have to request approval to admins when pushing changes to Staging, Development or Production</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
             <video
@@ -451,9 +451,9 @@
         </div>
 
         <div class="animate-on-scroll delay-100">
-          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center section-heading">Review &amp; Accept</h2>
-          <div class="mb-4 space-y-1 text-sm text-white/80 text-center">
-            <p>Admins go through the Requests, inspect changes and approve the changes into Production</p>
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Review Requests<br>&amp; Accept Changes</h2>
+            <p class="text-white/80 feature-header-row__text">Admins go through the Requests, inspect changes and approve the changes into Production</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
             <video
@@ -475,12 +475,14 @@
   <!-- Environments Section -->
   <div id="environments" class="environments bg-black pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-5xl mx-auto">
         <div class="animate-on-scroll">
-          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white text-center section-heading">Environment Variables</h2>
-          <p class="text-white/80 mb-6 animate-on-scroll delay-200 text-center">
-            Environment variables store configuration values — such as API keys, service URLs, and feature flags — outside your agent workflow. They let the same agent run across development, staging, and production without hardcoding secrets or stage-specific settings.
-          </p>
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Per-Stage<br>Environment Variables</h2>
+            <p class="text-white/80 animate-on-scroll delay-200 feature-header-row__text">
+              Environment variables store configuration values — such as API keys, service URLs, and feature flags — outside your agent workflow. They let the same agent run across development, staging, and production without hardcoding secrets or stage-specific settings.
+            </p>
+          </div>
           <div class="w-full flex justify-center bg-gray-800 p-4 rounded-2xl video-animation">
             <video
               class="w-full rounded-xl"
@@ -500,12 +502,14 @@
   <!-- Agent Grid Section -->
   <div id="agent-grid" class="agent-grid bg-gray-100 pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-5xl mx-auto">
         <div class="animate-on-scroll">
-          <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900 text-center section-heading">Agent Grid</h2>
-          <p class="text-gray-600 mb-6 animate-on-scroll delay-200 text-center">
-            Agent grid is for user builders to share the agentic workflows with users across the organization.
-          </p>
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Share Agents<br>via Agent Grid</h2>
+            <p class="text-gray-600 animate-on-scroll delay-200 feature-header-row__text">
+              Agent grid is for user builders to share the agentic workflows with users across the organization.
+            </p>
+          </div>
           <div class="w-full flex justify-center bg-gray-200 p-4 rounded-2xl video-animation">
             <video
               class="w-full rounded-xl"
@@ -532,17 +536,17 @@
     <div class="self-stretch inline-flex justify-start items-start gap-4 md:gap-12 flex-col md:flex-row content-start mt-8">
       <div class="flex-1 flex justify-start items-center gap-4">
         <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
-          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold">Became a standard requirement in every enterprise sales conversation</div>
+          <p class="text-gray-600">Became a standard requirement in every enterprise sales conversation</p>
         </div>
       </div>
       <div class="flex-1 flex justify-start items-center gap-4">
         <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
-          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold">Concept validated externally before it was built — a customer coined it first</div>
+          <p class="text-gray-600">Concept validated externally before it was built — a customer coined it first</p>
         </div>
       </div>
       <div class="flex-1 flex justify-start items-center gap-4">
         <div class="flex-1 py-2 inline-flex flex-col justify-start items-start gap-5">
-          <div class="self-stretch justify-center text-color-base-black text-lg font-extrabold">The "I need governance now, but I built this without it" case turned out to be universal</div>
+          <p class="text-gray-600">The "I need governance now, but I built this without it" case turned out to be universal</p>
         </div>
       </div>
     </div>

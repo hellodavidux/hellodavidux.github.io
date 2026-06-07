@@ -670,7 +670,7 @@ body:has(#fullpage) #contact {
     margin-inline: auto;
     box-sizing: border-box;
     padding-inline: 0.25rem;
-    font-size: clamp(0.6875rem, 3.8vw, 1.125rem) !important;
+    font-size: clamp(0.8125rem, 5vw, 1.4375rem) !important;
     line-height: 1.2 !important;
     letter-spacing: -0.01em;
   }
@@ -802,6 +802,18 @@ body:has(#fullpage) #intro {
   background-color: #050505;
 }
 
+#project-agentic-lifecycle .projectcard--agentic-lifecycle {
+  width: min(100%, 20rem);
+  margin-inline: auto;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  #project-agentic-lifecycle .projectcard--agentic-lifecycle {
+    width: 43.75rem;
+  }
+}
+
 #project-agentic-lifecycle .project-agentic-lifecycle__card {
   background: linear-gradient(135deg, #111111 0%, #0a0a0a 50%, #050505 100%);
   box-shadow: 0 0 1.5px rgba(255, 255, 255, 0.12), 0 6px 12px rgba(0, 0, 0, 0.14);
@@ -823,11 +835,15 @@ body.page-agent-evaluator .navbar-fixed {
 }
 
 #project-agent-evaluator .projectcard--agent-evaluator {
-  width: min(100%, 43.75rem);
-  max-width: 43.75rem;
-  aspect-ratio: 16 / 9;
+  width: min(100%, 20rem);
   margin-inline: auto;
   min-width: 0;
+}
+
+@media (min-width: 768px) {
+  #project-agent-evaluator .projectcard--agent-evaluator {
+    width: 43.75rem;
+  }
 }
 
 #project-agent-evaluator .project-agent-evaluator__card {
@@ -903,6 +919,7 @@ body.page-agent-evaluator .navbar-fixed {
     flex: 1 1 0;
     min-height: 0;
     gap: 1.5rem;
+    padding-top: 1.5rem;
     justify-content: flex-start;
     overflow-x: hidden;
     overflow-y: auto;
@@ -910,7 +927,7 @@ body.page-agent-evaluator .navbar-fixed {
   }
 
   .intro-content {
-    text-align: center;
+    text-align: left;
   }
 
   .intro-hero-headline {

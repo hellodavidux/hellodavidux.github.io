@@ -3447,6 +3447,10 @@ video {
     display: flex;
   }
 
+  .md\:block {
+    display: block;
+  }
+
   .md\:hidden {
     display: none;
   }
@@ -3653,4 +3657,10 @@ video {
   .xl\:w-1\/4 {
     width: 25%;
   }
-} 
+}
+
+@media (max-width: 767px) {
+  #section-indicators {
+    display: none !important;
+  }
+}

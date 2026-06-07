@@ -43,6 +43,46 @@
   transform: translateY(0);
 }
 
+/* Feature header row: title left, description right */
+.feature-header-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .feature-header-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  .feature-header-row__title {
+    flex: 0 0 auto;
+    width: 42%;
+    max-width: 42%;
+    text-align: left !important;
+    margin-bottom: 0 !important;
+  }
+
+  .feature-header-row__text {
+    flex: 0 0 auto;
+    width: 50%;
+    max-width: 50%;
+    text-align: left !important;
+    margin-bottom: 0 !important;
+    font-size: 1.125rem;
+    line-height: 1.625;
+  }
+}
+
+.feature-header-row__text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 /* Badge section labels (DISCOVERY, DESIGN PROCESS, etc.) — smaller on mobile */
 @media (max-width: 767px) {
   h2.section-heading.inline-block,

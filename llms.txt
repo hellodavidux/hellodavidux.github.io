@@ -179,7 +179,7 @@ Project framing:
 Project details:
 - Company: StackAI
 - Role: Product Design Lead
-- Team: Design, Engineering, Product, Field Delivery
+- Team: Platform Team
 - Timeline: Q1-Q2 2026
 
 Discovery highlights:

@@ -224,7 +224,6 @@
       grid-column: 1;
       grid-row: 1;
       transition: opacity 0.35s ease;
-      text-align: center;
     }
     .benchmark-copy-panel--evaluator {
       opacity: 0;
@@ -370,19 +369,19 @@
       <!-- Categories section -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6">
         <div class="animate-on-scroll delay-100">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Company</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Company</p>
           <p class="font-medium">StackAI</p>
         </div>
         <div class="animate-on-scroll delay-200">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Product</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Product</p>
           <p class="font-medium">Enterprise AI workflow platform</p>
         </div>
         <div class="animate-on-scroll delay-300">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Role</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Role</p>
           <p class="font-medium">Product Designer</p>
         </div>
         <div class="animate-on-scroll delay-400">
-          <p class="text-gray-400 text-sm mb-1 uppercase tracking-wide">Year</p>
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Year</p>
           <p class="font-medium">2026</p>
         </div>
       </div>
@@ -397,22 +396,22 @@
         <h2 class="text-4xl font-bold text-black bg-white px-6 py-2 rounded inline-block section-heading">Discovery</h2>
       </div>
 
-      <p class="text-gray-400 text-xs uppercase tracking-wide mb-4 text-center">Personas</p>
+      <p class="text-gray-400 text-xs tracking-wide mb-4 text-center">Personas</p>
 
-      <div class="grid grid-cols-4 gap-4 animate-on-scroll mb-8">
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-on-scroll mb-8">
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-left">
           <p class="font-semibold text-gray-100 mb-3">Executive Sponsors</p>
           <p class="text-gray-300 text-sm">Prove AI adoption + ROI across teams</p>
         </div>
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-center">
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-left">
           <p class="font-semibold text-gray-100 mb-3">Admins</p>
           <p class="text-gray-300 text-sm">Quickly monitor production health</p>
         </div>
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-center">
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-left">
           <p class="font-semibold text-gray-100 mb-3">Builders</p>
           <p class="text-gray-300 text-sm">Debug, iterate, and improve workflows</p>
         </div>
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-300 text-center">
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-300 text-left">
           <p class="font-semibold text-gray-100 mb-3">Internal Teams (StackAI)</p>
           <p class="text-gray-300 text-sm">Understand platform usage</p>
         </div>
@@ -423,15 +422,15 @@
         alt="Persona journeys across executive sponsors, admins, builders, and internal teams"
         class="w-full rounded-xl mb-8 image-animation ring-1 ring-gray-800">
 
-      <div class="flex flex-col gap-6 mt-8 animate-on-scroll">
-        <div class="text-center">
-          <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">Analytics</p>
+      <div class="grid grid-cols-2 gap-6 mt-8 animate-on-scroll">
+        <div class="text-left">
+          <p class="text-gray-400 text-xs tracking-wide mb-2">Analytics</p>
           <p class="text-gray-300 text-sm leading-relaxed">
             Split across two surfaces with no org-wide view. Run logs buried under charts, missing caller context, and timezone bugs across the UI and exports.
           </p>
         </div>
-        <div class="text-center">
-          <p class="text-gray-400 text-xs uppercase tracking-wide mb-2">Evaluator</p>
+        <div class="text-left">
+          <p class="text-gray-400 text-xs tracking-wide mb-2">Evaluator</p>
           <p class="text-gray-300 text-sm leading-relaxed">
             Barely used — manual test uploads and deployment friction. Competitors had moved to continuous, trace-native evaluation.
           </p>
@@ -450,15 +449,15 @@
       <div class="space-y-12 md:space-y-16 mb-12">
         <div class="card-animation benchmark-showcase">
           <div class="benchmark-copy mb-6">
-            <div class="benchmark-copy-panel benchmark-copy-panel--analytics">
-              <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">Benchmark Analytics</h3>
-              <p class="text-gray-700 text-sm leading-relaxed">
+            <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark analytics</h2>
+              <p class="text-gray-600 feature-header-row__text">
                 Mapped the opportunity space in FigJam, ran multiple design iterations across global and project-level views, and validated with stakeholders before handing off specs to engineering.
               </p>
             </div>
-            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator">
-              <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide">Benchmark Evaluator</h3>
-              <p class="text-gray-700 text-sm leading-relaxed">
+            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark evaluator</h2>
+              <p class="text-gray-600 feature-header-row__text">
                 Conducted competitive research (Laminar, Langfuse, Arize Phoenix), mapped the full eval journey, iterated from lo-fi proposal → interactive prototype → stakeholder testing → engineering handoff.
               </p>
             </div>
@@ -482,14 +481,14 @@
         </div>
 
         <div class="card-animation delay-100">
-          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide text-center">Designing the user flow for the AI agent evaluator</h3>
+          <h3 class="text-gray-400 text-sm mb-4 tracking-wide text-center">Designing the user flow for the AI agent evaluator</h3>
           <div class="rounded-xl overflow-hidden bg-gray-100">
             <img src="images/agent-evaluator/evaluate-user-flow.png" alt="Evaluate user flow" class="w-full h-auto image-animation">
           </div>
         </div>
 
         <div class="card-animation delay-200">
-          <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide text-center">Ideation with PM + Eng</h3>
+          <h3 class="text-gray-400 text-sm mb-4 tracking-wide text-center">Ideation with PM + Eng</h3>
           <div class="rounded-xl overflow-hidden bg-gray-100">
             <img src="images/agent-evaluator/ideas.png" alt="Design ideas" class="w-full h-auto image-animation">
           </div>
@@ -505,9 +504,9 @@
         <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
       </div>
       
-      <div class="text-center mb-8">
-        <h3 class="text-gray-300 text-sm mb-4 uppercase tracking-wide animate-on-scroll">Improved Analytics</h3>
-        <p class="text-2xl font-bold text-gray-400 mb-2 animate-on-scroll delay-200">Org-wide analytics with caller context, feedback filtering, and a simplified layout that puts debugging first.</p>
+      <div class="feature-header-row mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title animate-on-scroll">Improved analytics</h2>
+        <p class="text-white/80 animate-on-scroll delay-200 feature-header-row__text">Org-wide analytics with caller context, feedback filtering, and a simplified layout that puts debugging first.</p>
       </div>
 
       <div class="w-full flex justify-center mb-12 bg-black p-4 rounded-2xl video-animation">
@@ -526,9 +525,9 @@
 
   <div id="solution2" class="bg-gray-100 pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-8">
-        <h3 class="text-gray-500 text-sm mb-4 uppercase tracking-wide animate-on-scroll">Analytics View a la Temporal</h3>
-        <p class="text-2xl font-bold text-gray-600 mb-2 animate-on-scroll delay-100">Time-series metrics and workflow health across your org — success rates, latency percentiles, and error trends at a glance.</p>
+      <div class="feature-header-row mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title animate-on-scroll">Analytics view a la Temporal</h2>
+        <p class="text-gray-600 animate-on-scroll delay-100 feature-header-row__text">Time-series metrics and workflow health across your org — success rates, latency percentiles, and error trends at a glance.</p>
       </div>
 
       <div class="w-full flex justify-center bg-gray-200 p-4 rounded-2xl image-animation">
@@ -539,9 +538,9 @@
   
   <div id="solution4" class="bg-black pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agent-evaluator/grey-dot-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-8">
-        <h3 class="text-gray-400 text-sm mb-4 uppercase tracking-wide animate-on-scroll">Agent Evaluator</h3>
-        <p class="text-2xl font-bold text-white mb-2 animate-on-scroll delay-100">A run can be viewed in analytics, sent to an evaluator, and used to build a test dataset — one shared data model by design.</p>
+      <div class="feature-header-row mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title animate-on-scroll">Agent evaluator</h2>
+        <p class="text-white/80 animate-on-scroll delay-100 feature-header-row__text">A run can be viewed in analytics, sent to an evaluator, and used to build a test dataset — one shared data model by design.</p>
       </div>
 
       <div class="w-full bg-neutral-900 rounded-2xl flex justify-center mb-12 p-4">
