@@ -682,6 +682,7 @@ body:has(#fullpage) #contact {
   text-decoration: none;
 }
 
+#project-new .project-title-hover:hover,
 #project-agent-evaluator .project-title-hover:hover {
   color: #6b7280;
 }
@@ -817,6 +818,99 @@ body:has(#fullpage) #intro {
 #project-agentic-lifecycle .project-agentic-lifecycle__card {
   background: linear-gradient(135deg, #111111 0%, #0a0a0a 50%, #050505 100%);
   box-shadow: 0 0 1.5px rgba(255, 255, 255, 0.12), 0 6px 12px rgba(0, 0, 0, 0.14);
+}
+
+#project-new {
+  background-color: #ffffff;
+  background-image: radial-gradient(circle, #d4d4d8 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+#project-new .projectcard--new {
+  width: min(100%, calc(100vw - 4rem));
+  margin-inline: auto;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  #project-new .projectcard--new {
+    width: 43.75rem;
+  }
+}
+
+#project-new .project-new__card {
+  width: 100%;
+  line-height: 0;
+  background-color: #f4f4f5;
+  border: 1px solid rgba(209, 213, 219, 0.8);
+  box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+#project-new .project-new__card a {
+  display: block;
+  line-height: 0;
+}
+
+#project-new .project-new__video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#project-new .project-new__video:not(.hidden) {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  #project-new .project-new__video.md\:hidden {
+    display: none;
+  }
+}
+
+#project-org-agent-library {
+  background-color: #000000;
+}
+
+#project-org-agent-library .projectcard--org-agent-library {
+  width: min(100%, calc(100vw - 4rem));
+  margin-inline: auto;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  #project-org-agent-library .projectcard--org-agent-library {
+    width: 43.75rem;
+  }
+}
+
+#project-org-agent-library .project-org-agent-library__card {
+  width: 100%;
+  line-height: 0;
+  background: linear-gradient(135deg, #171717 0%, #0a0a0a 50%, #000000 100%);
+  box-shadow: 0 0 1.5px rgba(255, 255, 255, 0.12), 0 6px 12px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+#project-org-agent-library .project-org-agent-library__card a {
+  display: block;
+  line-height: 0;
+}
+
+#project-org-agent-library .project-org-agent-library__video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#project-org-agent-library .project-org-agent-library__video:not(.hidden) {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  #project-org-agent-library .project-org-agent-library__video.md\:hidden {
+    display: none;
+  }
 }
 
 #project-agent-evaluator,

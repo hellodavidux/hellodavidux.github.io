@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PLQ3MHWM');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ7T5YRB90"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-VJ7T5YRB90');
+  </script>
+  
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "rsqscwp7sc");
+  </script>
+  
+   <!-- Metadata -->
+   <meta name="description" content="Prompt to Flow — redesigning StackAI's new project experience with text-to-workflow generation, an in-builder AI assistant, and improved template discovery.">
+   <meta name="keywords" content="UX Design, Portfolio, Project">
+   <meta name="author" content="David">
+   <meta name="robots" content="index, follow">
+   <meta name="googlebot" content="index, follow">
+   
+   <!-- Favicon -->
+   <link rel="icon" href="../images/1655921174945.jpeg" type="image/x-icon">
+  <title>Prompt to Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../animations.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="slider-styles.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="media-lightbox.css">
+  <script src="../video-autoplay.js" defer></script>
+  <script src="project-page.js" defer></script>
+  <script src="research-slider.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="media-lightbox.js" defer></script>
+  <script src="../logo-color.js" defer></script>
+  <script src="../logo-name-animation.js" defer></script>
+  <style>
+    .hoverable {
+      transition: transform 0.3s ease;
+    }
+    .left-card:hover {
+      transform: translateX(-8px) translateY(3px);
+    }
+    .right-card:hover {
+      transform: translateX(8px) translateY(3px);
+    }
+    .scroll-spy-section {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .scroll-spy-section.active div {
+      font-weight: 900;
+    }
+    .like-btn {
+      transition: all 0.3s ease;
+    }
+    .like-btn:hover {
+      transform: scale(1.05);
+    }
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: rgb(119 119 119 / 58%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .back-home:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1) translateY(0);
+    }
+    .back-home.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .left-card:hover, 
+      .right-card:hover {
+        transform: translateY(-8px);
+      }
+      .scroll-spy {
+        display: none !important;
+      }
+    }
+    @media (min-width: 768px) {
+      .back-home {
+        top: 50px;
+        right: 50px;
+      }
+    }
+
+    .slider-control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      color: #d1d5db;
+      display: none;
+    }
+    
+    .slider-control-btn i {
+      opacity: 0.9;
+    }
+
+    .slider-control-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .slider-control-btn.paused i {
+      opacity: 1 !important;
+    }
+
+    .design-headline-group .slider-control-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .design-headline-group .slider-control-btn {
+      color: #6b7280;
+    }
+
+    .placeholder-media {
+      background-color: #e5e7eb;
+      border: 1px dashed #d1d5db;
+    }
+
+    #personas .persona-card {
+      cursor: default;
+      transition:
+        opacity 0.8s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease,
+        background-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    #personas .persona-card.visible:hover {
+      transform: translateY(-6px);
+      border-color: #525252;
+      background-color: #262626;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      transition-delay: 0s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #personas .persona-card.visible:hover {
+        transform: none;
+      }
+    }
+
+    .scroll-spy-wide {
+      width: min(920px, calc(100vw - 2rem));
+    }
+    .scroll-spy-wide .scroll-spy-section div {
+      font-size: 0.8125rem;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLQ3MHWM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar-fixed fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <div class="navbar-inner flex justify-between items-center">
+      <div class="logoname flex items-center w-auto">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="logo-avatar">
+            <img src="../images/profile-navbar.jpeg" alt="Profile" class="logo-avatar-img logo-avatar-img-default">
+            <img src="../images/profile-navbar-bgnone.png" alt="" class="logo-avatar-img logo-avatar-img-hover" aria-hidden="true">
+          </div>
+          <h1 class="logo-name logo-name-light transition-colors duration-300" id="logo-name"><span class="logo-name-default"><span class="logo-name-first"><span class="logo-d logo-d-first">d</span><span class="logo-name-core">avi</span><span class="logo-d logo-d-last">d</span></span><span class="logo-name-rest"> ruiz</span></span><span class="logo-name-greeting" aria-hidden="true"><span class="logo-greeting-hey">hey</span><span class="logo-greeting-there"> there</span> 👋</span></h1>
+        </a>
+      </div>
+
+      <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project-new" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
+      </div>
+
+      <div class="navbar-links hidden md:hidden absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
+        <a href="../index.html#project-new" class="text-sm font-medium hover:text-gray-600 transition-colors">Projects</a>
+      </div>
+
+      <div class="flex justify-end items-center gap-4">
+        <a href="../index.html" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
+        <a href="../index.html#project-new" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
+        <a href="../index.html#contact" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+        <button type="button" data-cal-link="david-hr-15min-chat/15min" data-cal-namespace="15min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="nav-book-btn" aria-label="Book a 15-minute call">Book 15-min</button>
+      </div>
+    </div>
+  </nav>
+  <!-- Close button to return to homepage -->
+  <a href="../index.html#project-new" class="back-home" id="back-home">
+    <i class="fas fa-times"></i>
+  </a>
+  
+  <!-- Floating Table of Contents (scroll spy) -->
+  <div class="scroll-spy fixed left-1/2 transform -translate-x-1/2 bottom-8 z-50 opacity-0 translate-y-10 transition-all duration-300 hidden md:flex" id="scroll-spy">
+    <div class="scroll-spy-wide px-6 py-2 relative bg-gray-200/50 rounded-2xl backdrop-blur-sm inline-flex justify-center items-center gap-4 overflow-hidden">
+      <a href="#intro" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="intro">
+        <div class="justify-start text-black text-base font-normal ">INTRODUCTION</div>
+      </a>
+      <a href="#personas" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="personas">
+        <div class="justify-start text-black text-base font-normal ">PERSONAS</div>
+      </a>
+      <a href="#discovery" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="discovery">
+        <div class="justify-start text-black text-base font-normal ">DISCOVERY</div>
+      </a>
+      <a href="#design-process" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="design-process">
+        <div class="justify-start text-black text-base font-normal ">DESIGN PROCESS</div>
+      </a>
+      <a href="#solution" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="solution">
+        <div class="justify-start text-black text-base font-normal ">SOLUTION</div>
+      </a>
+      <a href="#insights" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="insights">
+        <div class="justify-start text-black text-base font-normal ">INSIGHTS</div>
+      </a>
+      <div class="scroll-spy-wide h-2 left-0 top-[51px] absolute inline-flex flex-col justify-start items-start gap-2.5">
+        <div class="bg-black h-full transition-all duration-300" id="progress-indicator" style="width: 0"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Introduction Section -->
+  <div id="intro" class="intro lg:pt-24 p-4 pt-32 md:p-16 md:px-24 mx-auto pb-24">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8 text-center">
+        <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">PROMPT TO FLOW</h1>
+        <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
+            The moment a builder decides to create something new is one of the most critical in the product. This project covers the full "new project" experience: a redesigned creation modal, a text-to-workflow entry point (Prompt to Flow) that lets users describe what they want and have it generated automatically, an AI assistant embedded inside the workflow builder itself, and improved template discovery and previewing.
+        </p>
+      </header>
+
+      <!-- Placeholder media -->
+      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl video-animation md:p-4 bg-gray-200">
+        <div class="w-full aspect-video rounded-xl placeholder-media" aria-hidden="true"></div>
+      </div>
+
+      <!-- Categories section -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 p-6">
+        <div class="animate-on-scroll delay-100">
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Company</p>
+          <p class="font-medium">StackAI</p>
+        </div>
+        <div class="animate-on-scroll delay-200">
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Product</p>
+          <p class="font-medium">Enterprise AI workflow platform</p>
+        </div>
+        <div class="animate-on-scroll delay-300">
+          <p class="text-gray-400 text-sm mb-1 tracking-wide">Role</p>
+          <p class="font-medium">Product Designer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personas Section -->
+  <div id="personas" class="personas pt-24 p-4 md:p-16 lg:p-24 mx-auto bg-gray-950 text-gray-100">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-black bg-white px-6 py-2 rounded inline-block section-heading">PERSONAS</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-on-scroll">
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-left">
+          <p class="font-semibold text-gray-100 mb-1">New builders</p>
+          <p class="text-gray-400 text-xs tracking-wide mb-3">Goal</p>
+          <p class="text-gray-300 text-sm">Get started without facing a blank canvas</p>
+        </div>
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-left">
+          <p class="font-semibold text-gray-100 mb-1">Experienced builders</p>
+          <p class="text-gray-400 text-xs tracking-wide mb-3">Goal</p>
+          <p class="text-gray-300 text-sm">Move fast — skip setup, describe what they want</p>
+        </div>
+        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-left">
+          <p class="font-semibold text-gray-100 mb-1">Template users</p>
+          <p class="text-gray-400 text-xs tracking-wide mb-3">Goal</p>
+          <p class="text-gray-300 text-sm">Browse options, preview before committing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discovery Section -->
+  <div id="discovery" class="research bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto mb-12 space-y-8">
+        <div class="rounded-2xl bg-neutral-800/50 p-6 md:p-10 animate-on-scroll">
+          <div class="feature-header-row mb-6">
+            <h3 class="feature-header-row__title m-0 text-xl md:text-2xl font-bold text-white">What was broken</h3>
+            <p class="text-white/90 feature-header-row__text">
+              The new project modal had no clear hierarchy — buttons didn't look interactive, copy was repetitive and unhelpful, and there were no hover states or animations. Templates were hard to discover: users didn't know they existed, and those who found them couldn't tell the category sidebar was a filter. Prompt to Flow existed as a backend capability but had no front-door entry point — builders had no obvious way to know they could just describe a workflow and have it generated. Inside the builder, the AskAI assistant had usability gaps around discoverability and clarity of what it could do.
+            </p>
+          </div>
+
+          <div class="w-full aspect-[16/10] rounded-xl placeholder-media image-animation" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Design Process Section -->
+  <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+      </div>
+      
+      <div class="mb-12">
+        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
+          <div class="md:w-1/2 relative h-[400px] design-desktop-image-container">
+            <div id="design-desktop-image-0" class="w-full h-full placeholder-media design-slide-image active image-animation" aria-hidden="true"></div>
+            <div id="design-desktop-image-1" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+            <div id="design-desktop-image-2" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+            <div id="design-desktop-image-3" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+            <div id="design-desktop-image-4" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+            <div id="design-desktop-image-5" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+          </div>
+
+          <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
+            <div class="space-y-6">
+              <div id="design-headline-group-0" class="design-headline-group pl-6 relative animate-on-scroll">
+                <div id="design-progress-container-0" class="design-progress-container">
+                  <div id="design-progress-0" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-0" class="design-headline text-xl font-medium">1. Research + UX audit</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
+                    Mapped all current issues with the new project flow and AskAI assistant in FigJam, analyzed usage patterns of what builders were asking the AI assistant to do, and reviewed competitors for blank-canvas-paralysis solutions.
+                  </div>
+                  <div id="design-mobile-image-0" class="design-mobile-image">
+                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-1" class="design-headline-group pl-6 relative animate-on-scroll delay-100">
+                <div id="design-progress-container-1" class="design-progress-container">
+                  <div id="design-progress-1" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. New project modal redesign</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
+                    Established a clear hierarchy: P2F text input as the primary action at the top, three distinct options below (New Workflow, Use Template, New Agent), and quickstart prompt suggestions to help users get started without overthinking.
+                  </div>
+                  <div id="design-mobile-image-1" class="design-mobile-image">
+                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-2" class="design-headline-group pl-6 relative animate-on-scroll delay-200">
+                <div id="design-progress-container-2" class="design-progress-container">
+                  <div id="design-progress-2" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. P2F entry point design</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
+                    Designed the integration of P2F into the new project modal, including the prompt field, send behavior, and the transition into a new workflow. Added PostHog tracking across every path to measure which options users actually take.
+                  </div>
+                  <div id="design-mobile-image-2" class="design-mobile-image">
+                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-3" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
+                <div id="design-progress-container-3" class="design-progress-container">
+                  <div id="design-progress-3" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. AskAI in the builder</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
+                    Designed the in-builder experience for modifying or extending an existing workflow through conversation, mapping the three key journeys: starting fresh with AI, recovering from an error, and getting help mid-build.
+                  </div>
+                  <div id="design-mobile-image-3" class="design-mobile-image">
+                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-4" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
+                <div id="design-progress-container-4" class="design-progress-container">
+                  <div id="design-progress-4" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-4" class="design-headline text-xl font-medium">5. Template preview improvements</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-4" class="design-headline-content text-gray-600 text-sm">
+                    Redesigned the template preview panel (clearer back/use-template navigation, better node rendering) and fixed the category sidebar to read as a filter rather than navigation. Improved the "Save as Template" flow from within a workflow.
+                  </div>
+                  <div id="design-mobile-image-4" class="design-mobile-image">
+                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="design-headline-group-5" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
+                <div id="design-progress-container-5" class="design-progress-container">
+                  <div id="design-progress-5" class="design-progress-line"></div>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 id="design-headline-5" class="design-headline text-xl font-medium">6. Dashboard spotlight (in progress)</h3>
+                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
+                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
+                    </button>
+                  </div>
+                  <div id="design-content-5" class="design-headline-content text-gray-600 text-sm">
+                    Exploring P2F as the centerpiece of the projects landing page — replacing a static, dull list with an active prompt-first entry that makes the builder's first action generating something.
+                  </div>
+                  <div id="design-mobile-image-5" class="design-mobile-image">
+                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div class="animate-on-scroll delay-100 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
+          <h3 class="text-base font-bold mb-2">The entry point shapes expectations</h3>
+          <p class="text-sm text-gray-600">When P2F is the primary action in the creation modal, builders frame the whole experience as "describe → generate → refine" rather than "build from scratch."</p>
+        </div>
+        <div class="animate-on-scroll delay-200 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
+          <h3 class="text-base font-bold mb-2">Tracking is part of the design</h3>
+          <p class="text-sm text-gray-600">PostHog events were built into the design spec from the start — measuring which creation paths users take was treated as a first-class requirement, not an afterthought.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution Section -->
+  <div id="solution" class="solution bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
+      </div>
+      
+      <div class="max-w-5xl mx-auto mb-12 space-y-8">
+        <div class="animate-on-scroll rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">New project modal</h3>
+          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
+            <li>P2F prompt field is the primary visual element — the first thing a builder sees when creating a project</li>
+            <li>Three clear options below: New Workflow, Use Template, New Agent — with proper hover states, icons, and short descriptions</li>
+            <li>Quickstart prompt suggestions to tackle blank canvas paralysis</li>
+            <li>Same component reused on empty folder states</li>
+          </ul>
+          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        </div>
+
+        <div class="animate-on-scroll delay-100 rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Prompt to Flow</h3>
+          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
+            <li>Builder describes what they want to build in natural language; the system generates a complete workflow on the canvas</li>
+            <li>Nodes stream to the canvas in real-time as the LLM generates them — no waiting for a full response</li>
+            <li>Handles triggers, HITL nodes, subflows, and integrations as part of generation</li>
+            <li>A/B tested against the old creation popup to measure impact</li>
+          </ul>
+          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        </div>
+
+        <div class="animate-on-scroll delay-200 rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">AskAI in the workflow builder</h3>
+          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
+            <li>Embedded AI assistant for modifying, extending, or debugging a workflow mid-build</li>
+            <li>Mapped to three core jobs: generate from scratch, fix an error, get contextual help</li>
+            <li>Discoverability and feedback improvements based on usage analysis</li>
+          </ul>
+          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        </div>
+
+        <div class="animate-on-scroll delay-300 rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
+          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Template experience</h3>
+          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
+            <li>Template preview redesigned: proper back/use-template navigation, expand prompt box, and correct node rendering in standard mode</li>
+            <li>Category sidebar clarified as a multi-select filter, not navigation</li>
+            <li>"Save as Template" accessible from within any workflow</li>
+            <li>Template discoverability improved with separate entry points for browsing vs. starting blank</li>
+          </ul>
+          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div id="insights" class="bg-white pt-24 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold mb-8 text-white bg-black px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8">
+        <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation">
+          <div class="text-lg font-extrabold mb-3">The blank canvas is the real competitor</div>
+          <p class="text-gray-700 text-base">Most drop-off in workflow creation isn't from poor UX — it's from not knowing where to start. Quickstart suggestions and P2F directly address this.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-100">
+          <div class="text-lg font-extrabold mb-3">The entry point shapes expectations</div>
+          <p class="text-gray-700 text-base">When P2F is the primary action in the creation modal, builders frame the whole experience as "describe → generate → refine" rather than "build from scratch." That mental model shift matters.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation delay-200">
+          <div class="text-lg font-extrabold mb-3">Templates need to be felt, not just listed</div>
+          <p class="text-gray-700 text-base">A category sidebar that looks like navigation and a static screenshot preview both fail to communicate what a template actually does. The redesign prioritized interactivity and clarity before the user commits.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-300">
+          <div class="text-lg font-extrabold mb-3">Tracking is part of the design</div>
+          <p class="text-gray-700 text-base">PostHog events were built into the design spec from the start — measuring which creation paths users take was treated as a first-class requirement, not an afterthought.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other projects -->
+  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center">
+        <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
+      </div>
+      
+      <div class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full">
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="organization-agent-library.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-neutral-900 flex justify-center rounded-xl p-1 overflow-hidden">
+                <div class="w-full h-full bg-neutral-800 rounded-lg" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">ORGANIZATION AGENT LIBRARY</div>
+          </a>
+        </div>
+
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="agentic-lifecycle.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Agentic Development Lifecycle preview">
+                  <source src="images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">AGENTIC DEVELOPMENT LIFECYCLE</div>
+          </a>
+        </div>
+        
+        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
+          <a href="agent-evaluator.html" class="flex justify-start items-center gap-8 w-full">
+            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
+              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Workflow Analytics and Agent Evaluator preview">
+                  <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">WORKFLOW ANALYTICS AND AGENT EVALUATOR</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

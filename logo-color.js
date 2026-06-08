@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = hash.substring(1);
             
             // Apply logic based on section ID (same as in the original main.js)
-            if (sectionId === 'intro' || sectionId === 'project-agent-evaluator' || sectionId === 'project2' || sectionId === 'contact') {
+            if (sectionId === 'intro' || sectionId === 'project-new' || sectionId === 'project-agent-evaluator' || sectionId === 'project2' || sectionId === 'contact') {
                 logoName.classList.remove('logo-name-dark');
                 logoName.classList.add('logo-name-light');
             } else {

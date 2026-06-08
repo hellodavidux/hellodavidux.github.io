@@ -142,10 +142,12 @@
         /* Initial section positioning before JavaScript loads */
         #intro { transform: translateY(0); }
         #project-agentic-lifecycle { transform: translateY(100vh); }
-        #project-agent-evaluator { transform: translateY(200vh); }
-        #project1 { transform: translateY(300vh); }
-        #project2 { transform: translateY(400vh); }
-        #contact { transform: translateY(500vh); }
+        #project-new { transform: translateY(200vh); }
+        #project-org-agent-library { transform: translateY(300vh); }
+        #project-agent-evaluator { transform: translateY(400vh); }
+        #project1 { transform: translateY(500vh); }
+        #project2 { transform: translateY(600vh); }
+        #contact { transform: translateY(700vh); }
         .section--hidden,
         .section-indicator--hidden { display: none !important; }
     </style>
@@ -193,6 +195,8 @@
         <div class="hidden absolute right-3 md:right-8 top-1/2 transform -translate-y-1/2 z-50 w-2 inline-flex flex-col justify-start items-start gap-[5px]" id="section-indicators">
             <a href="#intro" class="section-indicator self-stretch h-4 bg-gray-500 rounded-lg transition-all duration-300" data-section="intro"></a>
             <a href="#project-agentic-lifecycle" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agentic-lifecycle"></a>
+            <a href="#project-new" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-new"></a>
+            <a href="#project-org-agent-library" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-org-agent-library"></a>
             <a href="#project-agent-evaluator" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agent-evaluator"></a>
             <a href="#project1" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project1"></a>
             <a href="#project2" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project2"></a>
@@ -283,6 +287,48 @@
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
                     <a href="cards/agentic-lifecycle.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">AGENTIC DEVELOPMENT<br>LIFECYCLE</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prompt to Flow Section -->
+        <section id="project-new" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 text-gray-900">
+            <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
+                <div class="w-full md:w-[700px] projectcard projectcard--new flex flex-col justify-start items-center gap-2.5">
+                    <div class="project-new__card rounded-lg hover:scale-110 transition-transform duration-500">
+                        <a href="cards/new-project.html" class="block">
+                            <video class="project-new__video md:hidden" autoplay loop muted playsinline preload="auto" width="1316" height="1076">
+                                <source src="cards/images/prompt-to-flow/mboile.mp4" type="video/mp4">
+                            </video>
+                            <video class="project-new__video hidden md:block" autoplay loop muted playsinline preload="none" width="1920" height="1080">
+                                <source data-src="/cards/images/prompt-to-flow/desktop.mp4" type="video/mp4">
+                            </video>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col justify-start items-center gap-8">
+                    <a href="cards/new-project.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-gray-900 text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">PROMPT TO FLOW</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Organization Agent Library Section -->
+        <section id="project-org-agent-library" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-black text-white">
+            <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
+                <div class="w-full md:w-[700px] projectcard projectcard--org-agent-library flex flex-col justify-start items-center gap-2.5">
+                    <div class="project-org-agent-library__card rounded-lg hover:scale-110 transition-transform duration-500">
+                        <a href="cards/organization-agent-library.html" class="block" aria-label="Organization Agent Library project preview">
+                            <video class="project-org-agent-library__video md:hidden" autoplay loop muted playsinline preload="auto" width="486" height="360">
+                                <source src="cards/images/organization-agent-library/thumbnail_mobile.mp4" type="video/mp4">
+                            </video>
+                            <video class="project-org-agent-library__video hidden md:block" autoplay loop muted playsinline preload="none" width="640" height="360">
+                                <source data-src="/cards/images/organization-agent-library/output_progressive_d2a819fa-ad2d-4904-8980-cbf79df8bacc (1).mp4" type="video/mp4">
+                            </video>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col justify-start items-center gap-8">
+                    <a href="cards/organization-agent-library.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">ORGANIZATION AGENT<br>LIBRARY</a>
                 </div>
             </div>
         </section>

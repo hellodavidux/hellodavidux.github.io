@@ -8,7 +8,7 @@ const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"
 const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-agentic-lifecycle"]') : null;
 const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
 const navBookBtn = rightNavLinks ? rightNavLinks.querySelector('.nav-book-btn') : null;
-const DARK_NAV_SECTIONS = new Set(['project-agentic-lifecycle', 'project1', 'project2']);
+const DARK_NAV_SECTIONS = new Set(['project-agentic-lifecycle', 'project-org-agent-library', 'project1', 'project2']);
 const logoName = document.getElementById('logo-name');
 
 // State variables
@@ -778,7 +778,7 @@ function updateIndicators() {
     }
     
     // Determine the background color for inactive indicators based on current section
-    const inactiveClass = (currentSection === 'intro' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') 
+    const inactiveClass = (currentSection === 'intro' || currentSection === 'project-new' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') 
         ? 'bg-zinc-300' 
         : 'bg-white/30';
     
@@ -793,7 +793,7 @@ function updateIndicators() {
             indicator.classList.add('h-12');
             
             // Set active indicator color based on section
-            if (currentSection === 'intro' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') {
+            if (currentSection === 'intro' || currentSection === 'project-new' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') {
                 indicator.className = 'section-indicator self-stretch h-14 bg-gray-500 rounded-lg transition-all duration-300';
             } else {
                 // Dark background sections (other projects)
@@ -801,7 +801,7 @@ function updateIndicators() {
             }
         } else {
             // Set inactive indicator color based on section
-            if (currentSection === 'intro' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') {
+            if (currentSection === 'intro' || currentSection === 'project-new' || currentSection === 'project-agent-evaluator' || currentSection === 'project3' || currentSection === 'contact') {
                 indicator.className = 'section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300';
             } else {
                 // Dark background sections (other projects)
