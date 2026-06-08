@@ -1,24 +1,12 @@
 /**
- * Mobile-friendly muted video autoplay.
- * On mobile project pages, videos play when they enter the viewport and pause when they leave.
- * Browsers may still block programmatic play() without a user gesture; unlock listeners retry on first touch.
+ * Muted video autoplay when videos enter the viewport.
+ * Videos pause when they leave the viewport. Browsers may block programmatic play()
+ * without a user gesture on mobile; unlock listeners retry on first touch.
  */
 (function () {
   const MOBILE_QUERY = '(max-width: 767px)';
   let gestureUnlocked = false;
   let viewportObserver = null;
-
-  function isMobile() {
-    return window.matchMedia(MOBILE_QUERY).matches;
-  }
-
-  function isFullpageHome() {
-    return Boolean(document.getElementById('fullpage'));
-  }
-
-  function shouldUseViewportAutoplay() {
-    return isMobile() && !isFullpageHome();
-  }
 
   function prepareMutedInlineVideo(video) {
     video.muted = true;
@@ -56,8 +44,6 @@
   }
 
   function playVisibleAutoplayVideos() {
-    if (!shouldUseViewportAutoplay()) return;
-
     document.querySelectorAll('video[autoplay]').forEach((video) => {
       if (isVideoInViewport(video)) {
         attemptPlayWhenReady(video);
@@ -65,19 +51,18 @@
     });
   }
 
-  function playAllAutoplayVideos() {
-    if (isFullpageHome()) {
-      document.dispatchEvent(new CustomEvent('video-autoplay:unlock'));
-      return;
-    }
-
-    document.querySelectorAll('video[autoplay]').forEach(attemptPlayWhenReady);
+  function pauseOffscreenAutoplayVideos() {
+    document.querySelectorAll('video[autoplay]').forEach((video) => {
+      if (!isVideoInViewport(video)) {
+        pauseVideo(video);
+      }
+    });
   }
 
   function unlockFromUserGesture() {
     if (gestureUnlocked) return;
     gestureUnlocked = true;
-    playAllAutoplayVideos();
+    document.dispatchEvent(new CustomEvent('video-autoplay:unlock'));
     playVisibleAutoplayVideos();
   }
 
@@ -92,8 +77,6 @@
   }
 
   function observeAutoplayVideos() {
-    if (isFullpageHome()) return;
-
     const videos = document.querySelectorAll('video[autoplay]');
     if (!videos.length) return;
 
@@ -101,17 +84,13 @@
       viewportObserver.disconnect();
     }
 
-    const useViewportAutoplay = shouldUseViewportAutoplay();
-
     viewportObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const video = entry.target;
           if (entry.isIntersecting) {
-            if (useViewportAutoplay || gestureUnlocked) {
-              attemptPlayWhenReady(video);
-            }
-          } else if (useViewportAutoplay) {
+            attemptPlayWhenReady(video);
+          } else {
             pauseVideo(video);
           }
         });
@@ -125,21 +104,25 @@
     });
   }
 
+  function refreshVisible() {
+    pauseOffscreenAutoplayVideos();
+    playVisibleAutoplayVideos();
+  }
+
   function handleViewportModeChange() {
     observeAutoplayVideos();
-    if (shouldUseViewportAutoplay()) {
-      playVisibleAutoplayVideos();
-    } else if (gestureUnlocked) {
-      playAllAutoplayVideos();
-    }
+    refreshVisible();
   }
 
   function init() {
-    document.querySelectorAll('video[autoplay]').forEach(prepareMutedInlineVideo);
+    document.querySelectorAll('video[autoplay]').forEach((video) => {
+      prepareMutedInlineVideo(video);
+      video.pause();
+    });
     observeAutoplayVideos();
     registerPassiveUnlockListeners();
-    playVisibleAutoplayVideos();
-    window.addEventListener('load', playVisibleAutoplayVideos, { once: true });
+    refreshVisible();
+    window.addEventListener('load', refreshVisible, { once: true });
     window.matchMedia(MOBILE_QUERY).addEventListener('change', handleViewportModeChange);
   }
 
@@ -151,6 +134,7 @@
 
   window.VideoAutoplay = {
     attemptPlay: attemptPlayWhenReady,
+    refreshVisible,
     unlockFromUserGesture,
   };
 })();

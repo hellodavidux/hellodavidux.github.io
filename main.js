@@ -75,18 +75,6 @@ function handleDirectHashNavigation() {
 // Animation for project cards when they enter viewport
 const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
 
-function playProjectCardVideo(video) {
-  if (window.VideoAutoplay) {
-    window.VideoAutoplay.attemptPlay(video);
-    return;
-  }
-
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
-  video.play().catch(() => {});
-}
-
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
@@ -96,22 +84,19 @@ function syncProjectCardVideos() {
     if (isMobileOnly && !lazySource) {
       if (isDesktop) {
         video.pause();
-      } else {
-        playProjectCardVideo(video);
       }
       return;
     }
 
     if (!lazySource) return;
 
-    const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
+    const shouldLoad = isMobileOnly ? !isDesktop : isDesktop;
 
-    if (shouldPlay) {
+    if (shouldLoad) {
       if (!lazySource.getAttribute('src')) {
         lazySource.setAttribute('src', lazySource.dataset.src);
         video.load();
       }
-      playProjectCardVideo(video);
     } else if (lazySource.getAttribute('src')) {
       lazySource.removeAttribute('src');
       video.pause();
@@ -119,6 +104,10 @@ function syncProjectCardVideos() {
       video.load();
     }
   });
+
+  if (window.VideoAutoplay) {
+    window.VideoAutoplay.refreshVisible();
+  }
 }
 
 const observeProjectCards = () => {

@@ -34,6 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize animations
   animateOnScroll();
+
+  document.querySelectorAll('.video-animation > video').forEach((video) => {
+    video.parentElement.classList.add('video-frame');
+  });
+
+  document.querySelectorAll('.video-animation .video-animation > video').forEach((video) => {
+    const outer = video.parentElement?.parentElement;
+    if (outer?.classList.contains('video-animation')) {
+      outer.classList.add('video-frame-outer');
+    }
+  });
   
   // Handle any dynamically loaded content
   document.addEventListener('load', animateOnScroll);

@@ -5,7 +5,7 @@
   const EXCLUDED_ANCESTORS =
     '#navbar, #next-project, .before-after-container, .logo-avatar, nav';
   const MEDIA_SELECTOR =
-    'img.image-animation, img.slide-image, img.design-slide-image, .video-animation video, .video-animation img';
+    'img.image-animation, .image-animation > img, img.slide-image, img.design-slide-image, .video-animation video, .video-animation img';
 
   const SWIPE_THRESHOLD_PX = 48;
 

@@ -412,7 +412,7 @@
         <h2 class="text-4xl font-bold text-black bg-white px-6 py-2 rounded inline-block section-heading">Discovery</h2>
       </div>
 
-      <p class="text-gray-400 text-xs tracking-wide mb-4 text-center">Personas</p>
+      <p class="text-gray-400 text-xs tracking-wide mb-4 text-left">Personas</p>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-on-scroll mb-8">
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-left">
@@ -433,20 +433,15 @@
         </div>
       </div>
 
-      <img
-        src="images/agent-evaluator/journeys-ersonas.png"
-        alt="Persona journeys across executive sponsors, admins, builders, and internal teams"
-        class="w-full rounded-xl mb-8 image-animation ring-1 ring-gray-800">
-
       <div class="grid grid-cols-2 gap-6 mt-8 animate-on-scroll">
         <div class="text-left">
-          <p class="text-gray-400 text-xs tracking-wide mb-2">Analytics</p>
+          <p class="text-gray-400 text-xs tracking-wide mb-2">Insights Analytics</p>
           <p class="text-gray-300 text-sm leading-relaxed">
             Split across two surfaces with no org-wide view. Run logs buried under charts, missing caller context, and timezone bugs across the UI and exports.
           </p>
         </div>
         <div class="text-left">
-          <p class="text-gray-400 text-xs tracking-wide mb-2">Evaluator</p>
+          <p class="text-gray-400 text-xs tracking-wide mb-2">Insights Evaluator</p>
           <p class="text-gray-300 text-sm leading-relaxed">
             Barely used — manual test uploads and deployment friction. Competitors had moved to continuous, trace-native evaluation.
           </p>
@@ -466,15 +461,15 @@
         <div class="card-animation benchmark-showcase">
           <div class="benchmark-copy mb-6">
             <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
-              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark analytics</h2>
-              <p class="text-gray-600 feature-header-row__text">
-                Mapped the opportunity space in FigJam, ran multiple design iterations across global and project-level views, and validated with stakeholders before handing off specs to engineering.
-              </p>
-            </div>
-            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark evaluator</h2>
               <p class="text-gray-600 feature-header-row__text">
                 Conducted competitive research (Laminar, Langfuse, Arize Phoenix), mapped the full eval journey, iterated from lo-fi proposal → interactive prototype → stakeholder testing → engineering handoff.
+              </p>
+            </div>
+            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark analytics</h2>
+              <p class="text-gray-600 feature-header-row__text">
+                Mapped the opportunity space in FigJam, ran multiple design iterations across global and project-level views, and validated with stakeholders before handing off specs to engineering.
               </p>
             </div>
           </div>
@@ -496,17 +491,69 @@
           </div>
         </div>
 
-        <div class="card-animation delay-100">
-          <h3 class="text-gray-400 text-sm mb-4 tracking-wide text-center">Designing the user flow for the AI agent evaluator</h3>
-          <div class="rounded-xl overflow-hidden bg-gray-100">
-            <img src="images/agent-evaluator/evaluate-user-flow.png" alt="Evaluate user flow" class="w-full h-auto image-animation">
+        <div class="card-animation delay-100 benchmark-showcase">
+          <div class="benchmark-copy mb-6">
+            <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Evaluator user flow</h2>
+              <p class="text-gray-600 feature-header-row__text">
+                Mapped the end-to-end journey from sandbox testing through production — covering build, publish, monitor, and continuous evaluation with human-in-the-loop gates.
+              </p>
+            </div>
+            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">User journeys</h2>
+              <p class="text-gray-600 feature-header-row__text">
+                Documented how builders run workflows, debug failures, and loop back through analytics to audit runs and fix issues.
+              </p>
+            </div>
+          </div>
+          <div class="benchmark-panels rounded-xl overflow-hidden" style="background-color: #fff;">
+            <img
+              src="images/agent-evaluator/journeys-ersonas.png"
+              alt="User journeys for builders debugging and auditing runs"
+              class="benchmark-comparison__base image-animation"
+            >
+            <div class="benchmark-comparison__overlay">
+              <img
+                src="images/agent-evaluator/evaluate-user-flow.png"
+                alt="Evaluator user flow from sandbox to production"
+                class="image-animation"
+                style="clip-path: polygon(47.5% 0%, 100% 0%, 100% 100%, 52.5% 100%)"
+              >
+            </div>
+            <div class="benchmark-divider" aria-hidden="true"></div>
           </div>
         </div>
 
-        <div class="card-animation delay-200">
-          <h3 class="text-gray-400 text-sm mb-4 tracking-wide text-center">Ideation with PM + Eng</h3>
-          <div class="rounded-xl overflow-hidden bg-gray-100">
-            <img src="images/agent-evaluator/ideas.png" alt="Design ideas" class="w-full h-auto image-animation">
+        <div class="card-animation delay-200 benchmark-showcase">
+          <div class="benchmark-copy mb-6">
+            <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Analytics concepts</h2>
+              <p class="text-gray-600 feature-header-row__text">
+                Sketched run-level detail views, trace timelines, and error clustering patterns for the analytics experience.
+              </p>
+            </div>
+            <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
+              <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Ideation with PM + Eng</h2>
+              <p class="text-gray-600 feature-header-row__text">
+                Ran collaborative design sessions exploring multiple UI directions — annotating trade-offs across node editors, data tables, and evaluation workflows before converging on a shared concept.
+              </p>
+            </div>
+          </div>
+          <div class="benchmark-panels rounded-xl overflow-hidden" style="background-color: #fff;">
+            <img
+              src="images/agent-evaluator/ideas.png"
+              alt="Design ideation with PM and engineering"
+              class="benchmark-comparison__base image-animation"
+            >
+            <div class="benchmark-comparison__overlay">
+              <img
+                src="images/agent-evaluator/analytics-idea.png"
+                alt="Analytics UI concept explorations"
+                class="image-animation"
+                style="clip-path: polygon(47.5% 0%, 100% 0%, 100% 100%, 52.5% 100%)"
+              >
+            </div>
+            <div class="benchmark-divider" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -525,9 +572,9 @@
         <p class="text-white/80 animate-on-scroll delay-200 feature-header-row__text">Org-wide analytics with caller context, feedback filtering, and a simplified layout that puts debugging first.</p>
       </div>
 
-      <div class="w-full flex justify-center mb-12 bg-black p-4 rounded-2xl video-animation">
+      <div class="w-full flex justify-center mb-12 video-animation md:bg-black md:p-4 md:rounded-2xl">
         <video
-          class="w-full rounded-xl"
+          class="w-full md:rounded-xl"
           autoplay
           playsinline
           loop
@@ -546,8 +593,8 @@
         <p class="text-gray-600 animate-on-scroll delay-100 feature-header-row__text">Time-series metrics and workflow health across your org — success rates, latency percentiles, and error trends at a glance.</p>
       </div>
 
-      <div class="w-full flex justify-center bg-gray-200 p-4 rounded-2xl image-animation">
-        <img src="images/agent-evaluator/gantt.png" alt="Org-wide analytics view inspired by Temporal workflow metrics" class="w-full rounded-xl image-animation">
+      <div class="w-full flex justify-center image-animation md:bg-gray-200 md:p-4 md:rounded-2xl">
+        <img src="images/agent-evaluator/gantt.png" alt="Org-wide analytics view inspired by Temporal workflow metrics" class="w-full md:rounded-xl">
       </div>
     </div>
   </div>
@@ -559,18 +606,16 @@
         <p class="text-white/80 animate-on-scroll delay-100 feature-header-row__text">A run can be viewed in analytics, sent to an evaluator, and used to build a test dataset — one shared data model by design.</p>
       </div>
 
-      <div class="w-full bg-neutral-900 rounded-2xl flex justify-center mb-12 p-4">
-        <div class="w-full bg-black flex justify-center rounded-xl video-animation p-4 md:p-8">
-          <video
-            class="w-full rounded-xl"
-            autoplay
-            playsinline
-            loop
-            muted>
-            <source src="images/agent-evaluator/test-evaluator.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+      <div class="w-full flex justify-center mb-12 video-animation md:bg-black md:p-8 md:rounded-xl">
+        <video
+          class="w-full md:rounded-xl"
+          autoplay
+          playsinline
+          loop
+          muted>
+          <source src="images/agent-evaluator/test-evaluator.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>
@@ -643,12 +688,14 @@
   <!-- Benchmark comparison + Before/After JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const benchmarkContainer = document.querySelector('.benchmark-panels');
-      if (benchmarkContainer) {
+      const SLANT = 2.5;
+
+      document.querySelectorAll('.benchmark-panels').forEach((benchmarkContainer) => {
         const overlayImg = benchmarkContainer.querySelector('.benchmark-comparison__overlay img');
         const divider = benchmarkContainer.querySelector('.benchmark-divider');
         const showcase = benchmarkContainer.closest('.benchmark-showcase');
-        const SLANT = 2.5;
+
+        if (!overlayImg || !divider) return;
 
         function updateBenchmarkPosition(clientX) {
           const rect = benchmarkContainer.getBoundingClientRect();
@@ -678,15 +725,13 @@
         benchmarkContainer.addEventListener('touchend', resetBenchmarkPosition);
 
         resetBenchmarkPosition();
-      }
+      });
 
       const container = document.querySelector('.before-after-container');
       const divider = document.querySelector('.before-after-divider');
       const afterImage = document.querySelector('.after-image-container img');
 
       if (!container || !divider || !afterImage) return;
-
-      const SLANT = 2.5;
 
       function updatePosition(clientX) {
         const rect = container.getBoundingClientRect();
