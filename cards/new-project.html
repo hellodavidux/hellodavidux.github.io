@@ -155,30 +155,6 @@
       border: 1px dashed #d1d5db;
     }
 
-    #personas .persona-card {
-      cursor: default;
-      transition:
-        opacity 0.8s ease,
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.35s ease,
-        background-color 0.35s ease,
-        box-shadow 0.35s ease;
-    }
-
-    #personas .persona-card.visible:hover {
-      transform: translateY(-6px);
-      border-color: #525252;
-      background-color: #262626;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-      transition-delay: 0s;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #personas .persona-card.visible:hover {
-        transform: none;
-      }
-    }
-
     .scroll-spy-wide {
       width: min(920px, calc(100vw - 2rem));
     }
@@ -234,9 +210,6 @@
     <div class="scroll-spy-wide px-6 py-2 relative bg-gray-200/50 rounded-2xl backdrop-blur-sm inline-flex justify-center items-center gap-4 overflow-hidden">
       <a href="#intro" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="intro">
         <div class="justify-start text-black text-base font-normal ">INTRODUCTION</div>
-      </a>
-      <a href="#personas" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="personas">
-        <div class="justify-start text-black text-base font-normal ">PERSONAS</div>
       </a>
       <a href="#discovery" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="discovery">
         <div class="justify-start text-black text-base font-normal ">DISCOVERY</div>
@@ -309,12 +282,6 @@
     </div>
   </div>
 
-  <!-- Personas Section -->
-  <div id="personas" class="personas pt-24 p-4 md:p-16 lg:p-24 mx-auto bg-gray-950 text-gray-100">
-    <div class="max-w-5xl mx-auto">
-    </div>
-  </div>
-
   <!-- Discovery Section -->
   <div id="discovery" class="research bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
@@ -344,14 +311,11 @@
       
       <div class="mb-12">
         <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
-          <div class="md:w-1/2 relative h-[400px] design-desktop-image-container">
-            <img id="design-desktop-image-0" class="w-full h-full object-contain bg-gray-100 design-slide-image active image-animation" src="images/prompt-to-flow/ask-ai-ux-issues.png" alt="Ask AI UX audit — discoverability, flow, and UI issues mapped in FigJam">
-            <div id="design-desktop-image-1" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
-            <div id="design-desktop-image-2" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
-            <img id="design-desktop-image-3" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/prompt-to-flow/flow-design.png" alt="AskAI analysis and proposal for in-builder chat flow">
-            <div id="design-desktop-image-4" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
-            <div id="design-desktop-image-5" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
-            <div id="design-desktop-image-6" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+          <div class="md:w-1/2 relative h-[400px] design-desktop-image-container bg-gray-100">
+            <img id="design-desktop-image-0" class="w-full h-full object-contain bg-gray-100 design-slide-image active image-animation" src="images/prompt-to-flow/discovery-ux-issues.png" alt="UX audit — discoverability, flow, and UI issues mapped in FigJam">
+            <img id="design-desktop-image-1" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/prompt-to-flow/competitor-mappin.png" alt="Competitor mapping — blank-canvas and guided-setup patterns">
+            <img id="design-desktop-image-2" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/prompt-to-flow/ux-flow-figjam.png" alt="UX flow mapping — new project modal, P2F entry, and AskAI journeys in FigJam">
+            <img id="design-desktop-image-3" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/prompt-to-flow/flow-design.png" alt="Flow design — in-builder AskAI, templates, and dashboard explorations">
           </div>
 
           <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
@@ -368,10 +332,10 @@
                     </button>
                   </div>
                   <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
-                    Mapped all current issues with the new project flow and AskAI assistant in FigJam, analyzed usage patterns of what builders were asking the AI assistant to do, and reviewed competitors for blank-canvas-paralysis solutions.
+                    Mapped all current issues with the new project flow and AskAI assistant in FigJam, and analyzed usage patterns of what builders were asking the AI assistant to do.
                   </div>
                   <div id="design-mobile-image-0" class="design-mobile-image">
-                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/prompt-to-flow/ask-ai-ux-issues.png" alt="Ask AI UX audit — discoverability, flow, and UI issues mapped in FigJam">
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/prompt-to-flow/discovery-ux-issues.png" alt="UX audit — discoverability, flow, and UI issues mapped in FigJam">
                   </div>
                 </div>
               </div>
@@ -382,16 +346,16 @@
                 </div>
                 <div>
                   <div class="flex items-center gap-2">
-                    <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. New project modal redesign</h3>
+                    <h3 id="design-headline-1" class="design-headline text-xl font-medium">2. Competitor mapping</h3>
                     <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
                       <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
                     </button>
                   </div>
                   <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
-                    Established a clear hierarchy: P2F text input as the primary action at the top, three distinct options below (New Workflow, Use Template, New Agent), and quickstart prompt suggestions to help users get started without overthinking.
+                    Reviewed competitors for blank-canvas-paralysis solutions, and benchmarked how Relay.app, n8n, Lindy, and Zapier handle guided setup and template onboarding.
                   </div>
                   <div id="design-mobile-image-1" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/prompt-to-flow/competitor-mappin.png" alt="Competitor mapping — blank-canvas and guided-setup patterns">
                   </div>
                 </div>
               </div>
@@ -402,16 +366,16 @@
                 </div>
                 <div>
                   <div class="flex items-center gap-2">
-                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. P2F entry point design</h3>
+                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. UX flow mapping</h3>
                     <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
                       <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
                     </button>
                   </div>
                   <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
-                    Designed the integration of P2F into the new project modal, including the prompt field, send behavior, and the transition into a new workflow. Added PostHog tracking across every path to measure which options users actually take.
+                    Mapped the end-to-end experience in FigJam: P2F as the primary action in the new project modal, prompt-to-workflow entry behavior with PostHog tracking, and the three in-builder AskAI journeys — starting fresh, recovering from errors, and getting help mid-build.
                   </div>
                   <div id="design-mobile-image-2" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/prompt-to-flow/ux-flow-figjam.png" alt="UX flow mapping — new project modal, P2F entry, and AskAI journeys in FigJam">
                   </div>
                 </div>
               </div>
@@ -422,76 +386,16 @@
                 </div>
                 <div>
                   <div class="flex items-center gap-2">
-                    <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. AskAI in the builder</h3>
+                    <h3 id="design-headline-3" class="design-headline text-xl font-medium">4. Flow design</h3>
                     <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
                       <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
                     </button>
                   </div>
                   <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
-                    Designed the in-builder experience for modifying or extending an existing workflow through conversation, mapping the three key journeys: starting fresh with AI, recovering from an error, and getting help mid-build.
+                    Designed the in-builder AskAI experience, redesigned template preview and category filters, built a contextual checklist prototype for template setup, and began exploring P2F as the centerpiece of the projects landing page.
                   </div>
                   <div id="design-mobile-image-3" class="design-mobile-image">
-                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/prompt-to-flow/flow-design.png" alt="AskAI analysis and proposal for in-builder chat flow">
-                  </div>
-                </div>
-              </div>
-
-              <div id="design-headline-group-4" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
-                <div id="design-progress-container-4" class="design-progress-container">
-                  <div id="design-progress-4" class="design-progress-line"></div>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h3 id="design-headline-4" class="design-headline text-xl font-medium">5. Template preview improvements</h3>
-                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
-                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
-                    </button>
-                  </div>
-                  <div id="design-content-4" class="design-headline-content text-gray-600 text-sm">
-                    Redesigned the template preview panel (clearer back/use-template navigation, better node rendering) and fixed the category sidebar to read as a filter rather than navigation. Improved the "Save as Template" flow from within a workflow.
-                  </div>
-                  <div id="design-mobile-image-4" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div id="design-headline-group-5" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
-                <div id="design-progress-container-5" class="design-progress-container">
-                  <div id="design-progress-5" class="design-progress-line"></div>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h3 id="design-headline-5" class="design-headline text-xl font-medium">6. Template checklist</h3>
-                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
-                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
-                    </button>
-                  </div>
-                  <div id="design-content-5" class="design-headline-content text-gray-600 text-sm">
-                    Identified through usage data that users who open templates regularly hit errors immediately after — not because the template was broken, but because they didn't know what to configure before running. Researched how tools like Relay.app, n8n, Lindy, and Zapier handle guided setup, designed a contextual checklist panel, built a prototype, and tested it before shipping.
-                  </div>
-                  <div id="design-mobile-image-5" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div id="design-headline-group-6" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
-                <div id="design-progress-container-6" class="design-progress-container">
-                  <div id="design-progress-6" class="design-progress-line"></div>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h3 id="design-headline-6" class="design-headline text-xl font-medium">7. Dashboard spotlight (in progress)</h3>
-                    <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
-                      <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
-                    </button>
-                  </div>
-                  <div id="design-content-6" class="design-headline-content text-gray-600 text-sm">
-                    Exploring P2F as the centerpiece of the projects landing page — replacing a static, dull list with an active prompt-first entry that makes the builder's first action generating something.
-                  </div>
-                  <div id="design-mobile-image-6" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/prompt-to-flow/flow-design.png" alt="Flow design — in-builder AskAI, templates, and dashboard explorations">
                   </div>
                 </div>
               </div>
@@ -513,7 +417,7 @@
       <div class="max-w-5xl mx-auto mb-12 space-y-16">
         <div class="animate-on-scroll">
           <div class="feature-header-row mb-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">New Project<br>Modal</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">New project creation<br>modal</h2>
             <p class="text-white/80 feature-header-row__text">Prompt-first entry with three clear paths — New Workflow, Use Template, New Agent — plus quickstart suggestions to reduce blank-canvas friction. The same pattern carries over to empty folder states.</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
@@ -541,7 +445,7 @@
 
         <div class="animate-on-scroll delay-300">
           <div class="feature-header-row mb-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Template<br>Experience</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Project template<br>experience</h2>
             <p class="text-white/80 feature-header-row__text">Template preview redesigned: proper back/use-template navigation, expand prompt box, and correct node rendering in standard mode. Category sidebar clarified as a multi-select filter, not navigation. Save as Template accessible from within any workflow, with separate entry points for browsing vs. starting blank.</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
@@ -551,11 +455,11 @@
             <img src="images/prompt-to-flow/template-preview.png" alt="Template preview with workflow nodes and use-template navigation" class="w-full rounded-xl">
           </div>
           <div class="feature-header-row mb-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Template<br>checklist</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Project setup<br>checklist</h2>
             <p class="text-white/80 feature-header-row__text">Auto-opens when a builder loads a template, surfaces what's missing — connections, knowledge bases, empty inputs, node configs, LLM variables — and guides run, interface, and publish before first run. Dismisses when complete, skips interface for trigger workflows, and collapses for experienced users.</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
-            <img src="images/prompt-to-flow/checklist.jpg" alt="Template checklist panel guiding setup before first run" class="w-full rounded-xl">
+            <img src="images/prompt-to-flow/checklist.jpg" alt="Project setup checklist panel guiding setup before first run" class="w-full rounded-xl">
           </div>
         </div>
       </div>
@@ -581,10 +485,6 @@
           <div class="text-lg font-extrabold mb-3">Templates need to be felt, not just listed</div>
           <p class="text-gray-700 text-base">A category sidebar that looks like navigation and a static screenshot preview both fail to communicate what a template actually does. The redesign prioritized interactivity and clarity before the user commits.</p>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg hoverable right-card card-animation delay-300">
-          <div class="text-lg font-extrabold mb-3">Tracking is part of the design</div>
-          <p class="text-gray-700 text-base">PostHog events were built into the design spec from the start — measuring which creation paths users take was treated as a first-class requirement, not an afterthought.</p>
-        </div>
         <div class="bg-gray-50 p-6 rounded-lg hoverable left-card card-animation delay-400">
           <div class="text-lg font-extrabold mb-3">The gap between "open template" and "first successful run" was the real problem</div>
           <p class="text-gray-700 text-base">Templates looked finished but weren't — they required connections, knowledge bases, and configuration that users had no way of knowing about. The checklist makes the implicit explicit, turning a source of early errors into a guided activation flow.</p>
@@ -604,8 +504,10 @@
         <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
           <a href="organization-agent-library.html" class="flex justify-start items-center gap-8 w-full">
             <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <div class="w-full h-full bg-neutral-900 flex justify-center rounded-xl p-1 overflow-hidden">
-                <div class="w-full h-full bg-neutral-800 rounded-lg" aria-hidden="true"></div>
+              <div class="w-full h-full overflow-hidden">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Organization Agent Library preview">
+                  <source src="images/organization-agent-library/thumbnail_mobile.mp4" type="video/mp4">
+                </video>
               </div>
             </div>
             <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">ORGANIZATION AGENT LIBRARY</div>
@@ -615,7 +517,7 @@
         <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
           <a href="agentic-lifecycle.html" class="flex justify-start items-center gap-8 w-full">
             <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+              <div class="w-full h-full overflow-hidden">
                 <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Agentic Development Lifecycle preview">
                   <source src="images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
                 </video>
@@ -628,7 +530,7 @@
         <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
           <a href="agent-evaluator.html" class="flex justify-start items-center gap-8 w-full">
             <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <div class="w-full h-full bg-[#ABABAB] flex justify-center rounded-xl p-1 overflow-hidden">
+              <div class="w-full h-full overflow-hidden">
                 <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Workflow Analytics and Agent Evaluator preview">
                   <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
                 </video>

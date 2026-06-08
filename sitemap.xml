@@ -11,6 +11,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://heydavid.work/cards/new-project.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://heydavid.work/cards/organization-agent-library.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://heydavid.work/cards/agent-evaluator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

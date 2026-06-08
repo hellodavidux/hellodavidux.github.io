@@ -3,4 +3,7 @@ Allow: /
 
 Disallow: /portfolio-95dh15rm22rn.html
 
+# LLM-friendly site summary
+# https://heydavid.work/llms.txt
+
 Sitemap: https://heydavid.work/sitemap.xml

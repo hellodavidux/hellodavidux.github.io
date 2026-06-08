@@ -53,7 +53,7 @@ Source profile:
 - Nov 2025 - Present (8 mos)
 - Leading product design for an enterprise AI platform used to build and operate LLM-powered workflows.
 - Owns end-to-end design across workflow builder, observability, and enterprise controls (permissions, auditability, compliance).
-- Designed features including Agent Evaluator, trace debugging, Organisation Shared Agents grid, ADLC (Agent Development Life Cycle), and multi-source knowledge bases.
+- Designed features including Prompt to Flow, New Project Creation, Organization Agent Library, Agent Evaluator, Workflow Analytics, Organisation Shared Agents grid, ADLC (Agentic Development Life Cycle), and multi-source knowledge bases.
 - Optimizes critical journeys for builders, admins, and end users.
 - Defines UX patterns for complex systems (multi-step pipelines, data ingestion, agent orchestration).
 - Partners with engineering and product to translate ambiguous AI capabilities into deterministic, production-ready interfaces.
@@ -203,7 +203,74 @@ Insights/outcomes presented:
 - Concept was externally validated before implementation (customer-originated language and need).
 - The governance pain pattern appeared broadly applicable across customers.
 
-### 2) Workflow Analytics and Agent Evaluator
+### 2) Prompt to Flow & New Project Creation
+URL: `https://heydavid.work/cards/new-project.html`
+
+Project framing:
+- Creating something new is one of the product's most critical moments. This project redesigns that path end-to-end — a creation modal, Prompt to Flow (describe-to-build), an in-builder AI assistant, and improved template discovery.
+
+Project details:
+- Company: StackAI
+- Product: Enterprise AI workflow platform
+- Role: Product Designer
+
+Discovery highlights:
+- The new project modal had flat hierarchy and weak affordance — buttons didn't feel interactive and copy didn't guide users.
+- Templates were buried; the category sidebar didn't read as a filter.
+- Prompt to Flow had no entry point, and AskAI in the builder was hard to find and understand.
+
+Design process highlights:
+- UX audit mapping discoverability, flow, and UI issues in FigJam, plus analysis of what builders asked the AI assistant to do.
+- Competitor mapping for blank-canvas-paralysis solutions (Relay.app, n8n, Lindy, Zapier).
+- End-to-end UX flow mapping: P2F as primary action in the modal, prompt-to-workflow entry with PostHog tracking, and three in-builder AskAI journeys.
+- Flow design for in-builder AskAI, template preview/category filters, contextual checklist prototype, and P2F as centerpiece of the projects landing page.
+
+Solution highlights:
+- New project creation modal with prompt-first entry, three clear paths (New Workflow, Use Template, New Agent), and quickstart suggestions.
+- Prompt to Flow: describe a workflow in plain language with nodes streaming onto the canvas in real time; validated in an A/B test.
+- Redesigned template experience: preview navigation, expand prompt box, multi-select category filter, Save as Template from any workflow.
+- Project setup checklist auto-opens on template load, surfaces missing connections/knowledge bases/config, and guides run/interface/publish before first run.
+
+Insights/outcomes presented:
+- The blank canvas is the real competitor — most drop-off comes from not knowing where to start.
+- When P2F is the primary action, builders frame the experience as "describe → generate → refine."
+- Templates need to be felt, not just listed — interactivity and clarity before commitment.
+- The gap between "open template" and "first successful run" was the real problem; the checklist makes the implicit explicit.
+
+### 3) Organization Agent Library
+URL: `https://heydavid.work/cards/organization-agent-library.html`
+
+Project framing:
+- The Agent Grid is where employees discover and use their organization's AI workflows. This project covers its full evolution — from structure and curation to on-demand agents, background automations, and a chat-first entry point.
+
+Project details:
+- Company: StackAI
+- Product: Enterprise AI workflow platform
+- Role: Product Designer
+
+Discovery highlights:
+- The grid had no filtering, structure, or at-a-glance clarity; at scale it became an overwhelming, undifferentiated list.
+- No curation, access control, or branded feel as the customer's own product.
+- Trigger-based automations had no home — shoehorned into the same card pattern as on-demand agents.
+
+Design process highlights:
+- Competitive research on internal app portals (Okta-style) and core model: builders curate, end users personalize, grid feels customer-owned.
+- Full grid redesign: card proportions, icon placement, title hierarchy, label CRUD, sort options.
+- Chat-first exploration benchmarking Lindy, Langdock, and Gumloop for conversational entry points.
+- Automations model: dedicated surface for trigger-based workflows with its own interaction model.
+
+Solution highlights:
+- Organization Agent Grid with department/category labels, access control, white-label styling, favorites, and recently used agents.
+- Chat as primary landing surface; agent grid moves below as catalog and shortcut layer.
+- Dedicated Automations screen for discover, configure/test, and manage/debug trigger-based workflows.
+
+Insights/outcomes presented:
+- The grid is evolving into an org-wide AI operating surface — chat, agents, and automations in one place.
+- Chat and agents are complementary — chat gives a faster on-ramp when users don't know which agent to pick.
+- Automations need their own UX contract — different states, failure modes, and ownership than on-demand agents.
+- The grid is a trust surface — white-labeling and curation are table stakes for enterprise adoption.
+
+### 4) Workflow Analytics and Agent Evaluator
 URL: `https://heydavid.work/cards/agent-evaluator.html`
 
 Project framing:
@@ -241,7 +308,7 @@ Insights:
 - Reducing setup friction is critical for evaluator adoption.
 - ADLC turns evaluation into a strategic pre-ship requirement.
 
-### 3) Holistic Training Builder Redesign
+### 5) Holistic Training Builder Redesign
 URL: `https://heydavid.work/cards/project1.html`
 
 Project framing:
@@ -287,7 +354,7 @@ Reported outcomes (3 months post-implementation):
 - ~10% increase in coaches creating at least 3 templates.
 - NPS increased from 3.7 to 4.1.
 
-### 4) Sports Media Concepts for Gen Z
+### 6) Sports Media Concepts for Gen Z
 URL: `https://heydavid.work/cards/project2.html`
 
 Project framing:
@@ -325,7 +392,7 @@ Insights/outcomes shown:
 - A feature inspired by research launched on an existing company platform.
 - An A/B test launched based on one concept.
 
-### 5) Rental Service for Exchange Students (Easy Semester)
+### 7) Rental Service for Exchange Students (Easy Semester)
 URL: `https://heydavid.work/cards/project3.html`
 
 Project framing:
@@ -368,6 +435,8 @@ Insights/outcomes shown:
 ## Homepage Project Links
 
 - `https://heydavid.work/cards/agentic-lifecycle.html`
+- `https://heydavid.work/cards/new-project.html`
+- `https://heydavid.work/cards/organization-agent-library.html`
 - `https://heydavid.work/cards/agent-evaluator.html`
 - `https://heydavid.work/cards/project1.html`
 - `https://heydavid.work/cards/project2.html`
