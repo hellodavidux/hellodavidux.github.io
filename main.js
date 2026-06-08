@@ -75,28 +75,52 @@ function handleDirectHashNavigation() {
 // Animation for project cards when they enter viewport
 const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
 
+function playProjectCardVideo(video) {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+
+  const attemptPlay = () => {
+    video.play().catch(() => {});
+  };
+
+  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+    attemptPlay();
+  } else {
+    video.addEventListener('canplay', attemptPlay, { once: true });
+  }
+}
+
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
-    const source = video.querySelector('source[data-src]');
-    if (!source) return;
-
     const isMobileOnly = video.classList.contains('md:hidden');
+    const lazySource = video.querySelector('source[data-src]');
+
+    if (isMobileOnly && !lazySource) {
+      if (isDesktop) {
+        video.pause();
+      } else {
+        playProjectCardVideo(video);
+      }
+      return;
+    }
+
+    if (!lazySource) return;
+
     const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
 
     if (shouldPlay) {
-      if (!source.getAttribute('src')) {
-        source.setAttribute('src', source.dataset.src);
-        video.load();
-        video.play().catch(() => {});
-      }
-    } else {
-      if (source.getAttribute('src')) {
-        source.removeAttribute('src');
-        video.pause();
-        video.removeAttribute('src');
+      if (!lazySource.getAttribute('src')) {
+        lazySource.setAttribute('src', lazySource.dataset.src);
         video.load();
       }
+      playProjectCardVideo(video);
+    } else if (lazySource.getAttribute('src')) {
+      lazySource.removeAttribute('src');
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
     }
   });
 }
@@ -731,6 +755,7 @@ function updateSections() {
 
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
+    syncProjectCardVideos();
 }
 
 function resetContactSectionScrollIfNeeded() {
