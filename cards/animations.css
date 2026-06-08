@@ -75,11 +75,31 @@
   }
 }
 
+/* Other Projects — last section; skip scroll fade so heading/cards stay visible */
+#next-project .section-heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Other Projects card titles — smaller on mobile */
 @media (max-width: 767px) {
+  #next-project {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+    overflow-x: visible;
+  }
+
+  #next-project-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    overflow-x: visible;
+  }
+
   #next-project .text-2xl.font-black {
     font-size: 1rem;
     line-height: 1.375rem;
+    overflow-wrap: anywhere;
   }
 }
 
