@@ -50,7 +50,6 @@
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
   <script src="project-page.js" defer></script>
-  <script src="project-recommendations.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
   <script src="media-lightbox.js" defer></script>
@@ -659,7 +658,28 @@
       </div>
       
       <!-- Project cards container with new layout -->
-      <div id="next-project-cards" aria-live="polite"></div>
+      <div id="next-project-cards">
+        <article class="next-project-card hoverable left-card">
+          <a href="project1.html" class="next-project-card__link" aria-label="Holistic Training Builder Redesign preview">
+            <div class="next-project-card__thumb">
+              <video autoplay loop muted playsinline title="Holistic Training Builder Redesign preview">
+                <source src="images/project_1/cover.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h4 class="next-project-card__title">HOLISTIC TRAINING BUILDER REDESIGN</h4>
+          </a>
+        </article>
+        <article class="next-project-card hoverable right-card">
+          <a href="project2.html" class="next-project-card__link" aria-label="Sports Media Concepts for Gen Z preview">
+            <div class="next-project-card__thumb">
+              <video autoplay loop muted playsinline title="Sports Media Concepts for Gen Z preview">
+                <source src="images/project_2/thumbnail.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h4 class="next-project-card__title">SPORTS MEDIA CONCEPTS FOR GEN Z</h4>
+          </a>
+        </article>
+      </div>
     </div>
   </div>
 

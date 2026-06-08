@@ -50,7 +50,6 @@
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
   <script src="project-page.js" defer></script>
-  <script src="project-recommendations.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
   <script src="media-lightbox.js" defer></script>
@@ -485,7 +484,28 @@
         <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
       </div>
       
-      <div id="next-project-cards" aria-live="polite"></div>
+      <div id="next-project-cards">
+        <article class="next-project-card hoverable left-card">
+          <a href="agent-evaluator.html" class="next-project-card__link" aria-label="Workflow Analytics and Agent Evaluator preview">
+            <div class="next-project-card__thumb">
+              <video autoplay loop muted playsinline title="Workflow Analytics and Agent Evaluator preview">
+                <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h4 class="next-project-card__title">WORKFLOW ANALYTICS AND AGENT EVALUATOR</h4>
+          </a>
+        </article>
+        <article class="next-project-card hoverable right-card">
+          <a href="project1.html" class="next-project-card__link" aria-label="Holistic Training Builder Redesign preview">
+            <div class="next-project-card__thumb">
+              <video autoplay loop muted playsinline title="Holistic Training Builder Redesign preview">
+                <source src="images/project_1/cover.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h4 class="next-project-card__title">HOLISTIC TRAINING BUILDER REDESIGN</h4>
+          </a>
+        </article>
+      </div>
     </div>
   </div>
 

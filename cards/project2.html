@@ -50,7 +50,6 @@
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
   <script src="project-page.js" defer></script>
-  <script src="project-recommendations.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
   <script src="media-lightbox.js" defer></script>
@@ -686,7 +685,28 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
       </div>
       
       <!-- Project cards container with new layout -->
-      <div id="next-project-cards" aria-live="polite"></div>
+      <div id="next-project-cards">
+        <article class="next-project-card hoverable left-card">
+          <a href="agentic-lifecycle.html" class="next-project-card__link" aria-label="Agentic Development Lifecycle preview">
+            <div class="next-project-card__thumb">
+              <video autoplay loop muted playsinline title="Agentic Development Lifecycle preview">
+                <source src="images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h4 class="next-project-card__title">AGENTIC DEVELOPMENT LIFECYCLE</h4>
+          </a>
+        </article>
+        <article class="next-project-card hoverable right-card">
+          <a href="new-project.html" class="next-project-card__link" aria-label="Prompt to Flow preview">
+            <div class="next-project-card__thumb">
+              <video autoplay loop muted playsinline title="Prompt to Flow preview">
+                <source src="images/prompt-to-flow/mboile.mp4" type="video/mp4">
+              </video>
+            </div>
+            <h4 class="next-project-card__title">PROMPT TO FLOW</h4>
+          </a>
+        </article>
+      </div>
     </div>
   </div>
 
