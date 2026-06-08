@@ -263,13 +263,32 @@
       <header class="mb-8 text-center">
         <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">ORGANIZATION AGENT LIBRARY</h1>
         <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
-            The Agent Grid is the end-user-facing surface where employees discover and use the AI workflows their organization has built — an internal portal for AI. This project covers the full arc: from an initial redesign that introduced structure and curation, to evolving the grid into a richer platform that handles on-demand agents, background automations, and a chat-first entry point.
+            The Agent Grid is where employees discover and use their organization's AI workflows. This project covers its full evolution — from structure and curation to on-demand agents, background automations, and a chat-first entry point.
         </p>
       </header>
 
-      <!-- Placeholder media -->
+      <!-- Video thumbnail -->
       <div class="w-full flex justify-center mb-12 h-auto rounded-2xl video-animation md:p-4 bg-gray-200">
-        <div class="w-full aspect-video rounded-xl placeholder-media" aria-hidden="true"></div>
+        <video
+          class="w-full rounded-xl md:hidden"
+          autoplay
+          playsinline
+          loop
+          muted
+          preload="auto">
+          <source src="images/organization-agent-library/thumbnail_mobile.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video
+          class="w-full rounded-xl hidden md:block"
+          autoplay
+          playsinline
+          loop
+          muted
+          preload="auto">
+          <source src="images/organization-agent-library/agent-grid-demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <!-- Categories section -->
@@ -300,17 +319,14 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-on-scroll">
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-left">
           <p class="font-semibold text-gray-100 mb-1">End Users</p>
-          <p class="text-gray-400 text-xs tracking-wide mb-3">Employees using AI day-to-day</p>
           <p class="text-gray-300 text-sm">Find the right agent fast, understand what it does, personalize their view</p>
         </div>
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-left">
           <p class="font-semibold text-gray-100 mb-1">Admins / Builders</p>
-          <p class="text-gray-400 text-xs tracking-wide mb-3">IT leads, AI builders</p>
           <p class="text-gray-300 text-sm">Curate what's visible, control access, organize by department</p>
         </div>
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-left">
           <p class="font-semibold text-gray-100 mb-1">Executive Sponsors</p>
-          <p class="text-gray-400 text-xs tracking-wide mb-3">Org buyers</p>
           <p class="text-gray-300 text-sm">Feels like an internal product, not a third-party tool</p>
         </div>
       </div>
@@ -329,7 +345,7 @@
           <div class="feature-header-row mb-6">
             <h3 class="feature-header-row__title m-0 text-xl md:text-2xl font-bold text-white">What was broken</h3>
             <p class="text-white/90 feature-header-row__text">
-              The original grid had no filtering, no organization, and no way to understand what each agent did at a glance. As organizations added more workflows, it became an undifferentiated list — overwhelming for end users and unmanageable for admins. There was no curation, no access control at the grid level, and nothing that made it feel like the customer's own internal product.
+              The grid had no filtering, structure, or at-a-glance clarity. As workflows scaled, it became an overwhelming, undifferentiated list. No curation, access control, or branded feel as the customer's own product.
             </p>
           </div>
 
@@ -465,41 +481,42 @@
         <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
       </div>
       
-      <div class="max-w-5xl mx-auto mb-12 space-y-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="animate-on-scroll rounded-2xl bg-neutral-800/50 p-6 md:p-8 text-left">
-            <h3 class="text-lg font-bold text-white mb-2">Label-based filtering</h3>
-            <p class="text-white/80 text-sm">Builders assign department or category labels; end users filter to find relevant agents.</p>
+      <div class="max-w-5xl mx-auto mb-12 space-y-16">
+        <div class="animate-on-scroll">
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Organization<br>Agent Grid</h2>
+            <p class="text-white/80 feature-header-row__text">Builders assign department or category labels; end users filter to find relevant agents. Builders opt specific agents into the grid with access control so users only see what they have access to. The grid is styled to feel like an internal tool, not a branded third-party product — with tooltips, interface type indicators, and sort by most-used or last-updated. End users mark favorites and surface recently used agents.</p>
           </div>
-          <div class="animate-on-scroll delay-100 rounded-2xl bg-neutral-800/50 p-6 md:p-8 text-left">
-            <h3 class="text-lg font-bold text-white mb-2">Curation + access control</h3>
-            <p class="text-white/80 text-sm">Builders opt specific agents into the grid; users only see what they have access to.</p>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
+            <video
+              class="w-full rounded-xl"
+              autoplay
+              playsinline
+              loop
+              muted>
+              <source src="images/organization-agent-library/agent-grid-demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
-          <div class="animate-on-scroll delay-200 rounded-2xl bg-neutral-800/50 p-6 md:p-8 text-left">
-            <h3 class="text-lg font-bold text-white mb-2">White-label feel</h3>
-            <p class="text-white/80 text-sm">Grid is styled to feel like an internal tool, not a branded third-party product.</p>
+        </div>
+
+        <div class="animate-on-scroll delay-100">
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Chat as<br>Entry Point</h2>
+            <p class="text-white/80 feature-header-row__text">A persistent chat interface becomes the primary landing surface for day-to-day tasks; the agent grid moves below it as a catalog and shortcut layer.</p>
           </div>
-          <div class="animate-on-scroll delay-300 rounded-2xl bg-neutral-800/50 p-6 md:p-8 text-left">
-            <h3 class="text-lg font-bold text-white mb-2">Agent discoverability</h3>
-            <p class="text-white/80 text-sm">Tooltips, interface type indicators, and sort by most-used or last-updated help users find and understand agents quickly.</p>
-          </div>
-          <div class="animate-on-scroll rounded-2xl bg-neutral-800/50 p-6 md:p-8 text-left">
-            <h3 class="text-lg font-bold text-white mb-2">Favorites + personalization</h3>
-            <p class="text-white/80 text-sm">End users mark favorites and surface recently used agents.</p>
-          </div>
-          <div class="animate-on-scroll delay-100 rounded-2xl bg-neutral-800/50 p-6 md:p-8 text-left">
-            <h3 class="text-lg font-bold text-white mb-2">Chat as entry point</h3>
-            <p class="text-white/80 text-sm">A persistent chat interface becomes the primary landing surface for day-to-day tasks; the agent grid moves below it as a catalog and shortcut layer.</p>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
+            <img src="images/organization-agent-library/chat-entry-point.png" alt="Chat-first entry point with agent grid as catalog layer below" class="w-full rounded-xl">
           </div>
         </div>
 
         <div class="animate-on-scroll delay-200">
           <div class="feature-header-row mb-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Dedicated automations screen</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Dedicated<br>Automations Screen</h2>
             <p class="text-white/80 feature-header-row__text">A separate surface for trigger-based workflows covering three jobs: discover (what's running in your org), configure + test (set up triggers and validate), and manage + debug (monitor health, inspect errors, act on failures).</p>
           </div>
-          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
-            <div class="w-full aspect-video rounded-xl placeholder-media" aria-hidden="true"></div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
+            <img src="images/organization-agent-library/agent-grid-2.png" alt="My Automations overview with trigger-based workflow cards" class="w-full rounded-xl">
           </div>
         </div>
       </div>

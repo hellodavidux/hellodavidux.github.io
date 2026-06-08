@@ -263,13 +263,32 @@
       <header class="mb-8 text-center">
         <h1 class=" text-3xl md:text-5xl font-bold mb-4 section-heading">PROMPT TO FLOW</h1>
         <p class="text-gray-600 text-sm animate-on-scroll md:w-2/3 mx-auto text-center">
-            The moment a builder decides to create something new is one of the most critical in the product. This project covers the full "new project" experience: a redesigned creation modal, a text-to-workflow entry point (Prompt to Flow) that lets users describe what they want and have it generated automatically, an AI assistant embedded inside the workflow builder itself, and improved template discovery and previewing.
+            Creating something new is one of the product's most critical moments. This project redesigns that path end-to-end — a creation modal, Prompt to Flow (describe-to-build), an in-builder AI assistant, and improved template discovery.
         </p>
       </header>
 
-      <!-- Placeholder media -->
-      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl video-animation md:p-4 bg-gray-200">
-        <div class="w-full aspect-video rounded-xl placeholder-media" aria-hidden="true"></div>
+      <!-- Video thumbnail -->
+      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl video-animation">
+        <video
+          class="w-full rounded-xl md:hidden"
+          autoplay
+          playsinline
+          loop
+          muted
+          preload="auto">
+          <source src="images/prompt-to-flow/mboile.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video
+          class="w-full rounded-xl hidden md:block"
+          autoplay
+          playsinline
+          loop
+          muted
+          preload="auto">
+          <source src="images/prompt-to-flow/desktop.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <!-- Categories section -->
@@ -300,17 +319,14 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-on-scroll">
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-left">
           <p class="font-semibold text-gray-100 mb-1">New builders</p>
-          <p class="text-gray-400 text-xs tracking-wide mb-3">Goal</p>
           <p class="text-gray-300 text-sm">Get started without facing a blank canvas</p>
         </div>
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-left">
           <p class="font-semibold text-gray-100 mb-1">Experienced builders</p>
-          <p class="text-gray-400 text-xs tracking-wide mb-3">Goal</p>
           <p class="text-gray-300 text-sm">Move fast — skip setup, describe what they want</p>
         </div>
         <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-left">
           <p class="font-semibold text-gray-100 mb-1">Template users</p>
-          <p class="text-gray-400 text-xs tracking-wide mb-3">Goal</p>
           <p class="text-gray-300 text-sm">Browse options, preview before committing</p>
         </div>
       </div>
@@ -329,7 +345,7 @@
           <div class="feature-header-row mb-6">
             <h3 class="feature-header-row__title m-0 text-xl md:text-2xl font-bold text-white">What was broken</h3>
             <p class="text-white/90 feature-header-row__text">
-              The new project modal had no clear hierarchy — buttons didn't look interactive, copy was repetitive and unhelpful, and there were no hover states or animations. Templates were hard to discover: users didn't know they existed, and those who found them couldn't tell the category sidebar was a filter. Prompt to Flow existed as a backend capability but had no front-door entry point — builders had no obvious way to know they could just describe a workflow and have it generated. Inside the builder, the AskAI assistant had usability gaps around discoverability and clarity of what it could do.
+              The modal had flat hierarchy and weak affordance — buttons didn't feel interactive and copy didn't guide users. Templates were buried; the category sidebar didn't read as a filter. Prompt to Flow had no entry point, and AskAI in the builder was hard to find and understand.
             </p>
           </div>
 
@@ -503,48 +519,53 @@
         <h2 class="text-4xl font-bold mb-16 text-black bg-white px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
       </div>
       
-      <div class="max-w-5xl mx-auto mb-12 space-y-8">
-        <div class="animate-on-scroll rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">New project modal</h3>
-          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
-            <li>P2F prompt field is the primary visual element — the first thing a builder sees when creating a project</li>
-            <li>Three clear options below: New Workflow, Use Template, New Agent — with proper hover states, icons, and short descriptions</li>
-            <li>Quickstart prompt suggestions to tackle blank canvas paralysis</li>
-            <li>Same component reused on empty folder states</li>
-          </ul>
-          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+      <div class="max-w-5xl mx-auto mb-12 space-y-16">
+        <div class="animate-on-scroll">
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">New Project<br>Modal</h2>
+            <p class="text-white/80 feature-header-row__text">P2F prompt field is the primary visual element — the first thing a builder sees when creating a project. Three clear options below: New Workflow, Use Template, New Agent — with proper hover states, icons, and short descriptions. Quickstart prompt suggestions tackle blank canvas paralysis, and the same component is reused on empty folder states.</p>
+          </div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
+            <img src="images/prompt-to-flow/ux-flow-figjam.png" alt="New project modal with P2F prompt field and creation options" class="w-full rounded-xl">
+          </div>
         </div>
 
-        <div class="animate-on-scroll delay-100 rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Prompt to Flow</h3>
-          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
-            <li>Builder describes what they want to build in natural language; the system generates a complete workflow on the canvas</li>
-            <li>Nodes stream to the canvas in real-time as the LLM generates them — no waiting for a full response</li>
-            <li>Handles triggers, HITL nodes, subflows, and integrations as part of generation</li>
-            <li>A/B tested against the old creation popup to measure impact</li>
-          </ul>
-          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        <div class="animate-on-scroll delay-100">
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Prompt to<br>Flow</h2>
+            <p class="text-white/80 feature-header-row__text">Builder describes what they want to build in natural language; the system generates a complete workflow on the canvas. Nodes stream in real-time as the LLM generates them — no waiting for a full response. Handles triggers, HITL nodes, subflows, and integrations as part of generation. A/B tested against the old creation popup to measure impact.</p>
+          </div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
+            <video
+              class="w-full rounded-xl"
+              autoplay
+              playsinline
+              loop
+              muted>
+              <source src="images/prompt-to-flow/desktop.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
 
-        <div class="animate-on-scroll delay-200 rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">AskAI in the workflow builder</h3>
-          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
-            <li>Embedded AI assistant for modifying, extending, or debugging a workflow mid-build</li>
-            <li>Mapped to three core jobs: generate from scratch, fix an error, get contextual help</li>
-            <li>Discoverability and feedback improvements based on usage analysis</li>
-          </ul>
-          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        <div class="animate-on-scroll delay-200">
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">AskAI in the<br>Workflow Builder</h2>
+            <p class="text-white/80 feature-header-row__text">Embedded AI assistant for modifying, extending, or debugging a workflow mid-build. Mapped to three core jobs: generate from scratch, fix an error, get contextual help. Discoverability and feedback improvements based on usage analysis.</p>
+          </div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
+            <img src="images/prompt-to-flow/flow-design.png" alt="AskAI analysis and proposal for in-builder chat flow" class="w-full rounded-xl">
+          </div>
         </div>
 
-        <div class="animate-on-scroll delay-300 rounded-2xl bg-neutral-800/50 p-6 md:p-10 text-left">
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Template experience</h3>
-          <ul class="text-white/80 text-sm space-y-2 list-disc pl-5">
-            <li>Template preview redesigned: proper back/use-template navigation, expand prompt box, and correct node rendering in standard mode</li>
-            <li>Category sidebar clarified as a multi-select filter, not navigation</li>
-            <li>"Save as Template" accessible from within any workflow</li>
-            <li>Template discoverability improved with separate entry points for browsing vs. starting blank</li>
-          </ul>
-          <div class="w-full aspect-video rounded-xl placeholder-media image-animation mt-6" aria-hidden="true"></div>
+        <div class="animate-on-scroll delay-300">
+          <div class="feature-header-row mb-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Template<br>Experience</h2>
+            <p class="text-white/80 feature-header-row__text">Template preview redesigned: proper back/use-template navigation, expand prompt box, and correct node rendering in standard mode. Category sidebar clarified as a multi-select filter, not navigation. Save as Template accessible from within any workflow, with separate entry points for browsing vs. starting blank.</p>
+          </div>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
+            <div class="w-full aspect-video rounded-xl placeholder-media" aria-hidden="true"></div>
+          </div>
         </div>
       </div>
     </div>
