@@ -155,30 +155,6 @@
       border: 1px dashed #d1d5db;
     }
 
-    #personas .persona-card {
-      cursor: default;
-      transition:
-        opacity 0.8s ease,
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.35s ease,
-        background-color 0.35s ease,
-        box-shadow 0.35s ease;
-    }
-
-    #personas .persona-card.visible:hover {
-      transform: translateY(-6px);
-      border-color: #525252;
-      background-color: #262626;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-      transition-delay: 0s;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #personas .persona-card.visible:hover {
-        transform: none;
-      }
-    }
-
     .scroll-spy-wide {
       width: min(920px, calc(100vw - 2rem));
     }
@@ -234,9 +210,6 @@
     <div class="scroll-spy-wide px-6 py-2 relative bg-gray-200/50 rounded-2xl backdrop-blur-sm inline-flex justify-center items-center gap-4 overflow-hidden">
       <a href="#intro" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="intro">
         <div class="justify-start text-black text-base font-normal ">INTRODUCTION</div>
-      </a>
-      <a href="#personas" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="personas">
-        <div class="justify-start text-black text-base font-normal ">PERSONAS</div>
       </a>
       <a href="#discovery" class="py-2 rounded-2xl flex justify-center items-center gap-2.5 scroll-spy-section" data-section="discovery">
         <div class="justify-start text-black text-base font-normal ">DISCOVERY</div>
@@ -309,30 +282,6 @@
     </div>
   </div>
 
-  <!-- Personas Section -->
-  <div id="personas" class="personas pt-24 p-4 md:p-16 lg:p-24 mx-auto bg-gray-950 text-gray-100">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-black bg-white px-6 py-2 rounded inline-block section-heading">PERSONAS</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 animate-on-scroll">
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation text-left">
-          <p class="font-semibold text-gray-100 mb-1">End Users</p>
-          <p class="text-gray-300 text-sm">Find the right agent fast, understand what it does, personalize their view</p>
-        </div>
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-100 text-left">
-          <p class="font-semibold text-gray-100 mb-1">Admins / Builders</p>
-          <p class="text-gray-300 text-sm">Curate what's visible, control access, organize by department</p>
-        </div>
-        <div class="persona-card bg-neutral-900 p-6 rounded-xl border border-neutral-800 shadow-sm card-animation delay-200 text-left">
-          <p class="font-semibold text-gray-100 mb-1">Executive Sponsors</p>
-          <p class="text-gray-300 text-sm">Feels like an internal product, not a third-party tool</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Discovery Section -->
   <div id="discovery" class="research bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
@@ -341,7 +290,7 @@
       </div>
       
       <div class="max-w-4xl mx-auto mb-12 space-y-8">
-        <div class="rounded-2xl bg-neutral-800/50 p-6 md:p-10 animate-on-scroll">
+        <div class="animate-on-scroll">
           <div class="feature-header-row mb-6">
             <h3 class="feature-header-row__title m-0 text-xl md:text-2xl font-bold text-white">What was broken</h3>
             <p class="text-white/90 feature-header-row__text">
@@ -349,7 +298,7 @@
             </p>
           </div>
 
-          <div class="w-full aspect-[16/10] rounded-xl placeholder-media image-animation mb-6" aria-hidden="true"></div>
+          <img src="images/organization-agent-library/ux-feedback.png" alt="User feedback and must-have requirements for the agent grid" class="w-full rounded-xl image-animation mb-6">
 
           <p class="text-lg text-white/90">
             Separately, trigger-based automations had no home at all — they were being shoehorned into the same card pattern as on-demand agents, creating confusion about setup, status, and ownership.
@@ -369,10 +318,10 @@
       <div class="mb-12">
         <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
           <div class="md:w-1/2 relative h-[400px] design-desktop-image-container">
-            <div id="design-desktop-image-0" class="w-full h-full placeholder-media design-slide-image active image-animation" aria-hidden="true"></div>
-            <div id="design-desktop-image-1" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
-            <div id="design-desktop-image-2" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
-            <div id="design-desktop-image-3" class="w-full h-full placeholder-media design-slide-image image-animation" aria-hidden="true"></div>
+            <img id="design-desktop-image-0" class="w-full h-full object-contain bg-gray-100 design-slide-image active image-animation" src="images/organization-agent-library/comps.png" alt="Competitive research — internal app portal benchmarks">
+            <img id="design-desktop-image-1" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/organization-agent-library/agent-grid-curation.png" alt="Grid redesign — curation and personalization controls">
+            <img id="design-desktop-image-2" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/organization-agent-library/conceptual-brainstorm.png" alt="Chat-first exploration — conceptual brainstorm session">
+            <img id="design-desktop-image-3" class="w-full h-full object-contain bg-gray-100 design-slide-image image-animation" src="images/organization-agent-library/flow.png" alt="Automations model — trigger-based workflow discovery and configuration">
           </div>
 
           <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
@@ -392,7 +341,7 @@
                     Benchmarked internal app portals (Okta-style), mapped user needs in FigJam, and established the core model: builders curate, end users personalize, and the grid feels owned by the customer.
                   </div>
                   <div id="design-mobile-image-0" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/organization-agent-library/comps.png" alt="Competitive research — internal app portal benchmarks">
                   </div>
                 </div>
               </div>
@@ -412,7 +361,7 @@
                     Full redesign pass covering card proportions, icon placement, title hierarchy, label CRUD, sort options, and wasted space removal.
                   </div>
                   <div id="design-mobile-image-1" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/organization-agent-library/agent-grid-curation.png" alt="Grid redesign — curation and personalization controls">
                   </div>
                 </div>
               </div>
@@ -432,7 +381,7 @@
                     As conversational workflows grew, researched how tools like Lindy, Langdock, and Gumloop made chat the primary entry point — and explored what that shift would mean for StackAI's published agents surface.
                   </div>
                   <div id="design-mobile-image-2" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/organization-agent-library/conceptual-brainstorm.png" alt="Chat-first exploration — conceptual brainstorm session">
                   </div>
                 </div>
               </div>
@@ -452,7 +401,7 @@
                     Defined how trigger-based, background automations should be discovered, configured, and monitored — concluding they need a dedicated surface with its own interaction model rather than being forced into the agent card grid.
                   </div>
                   <div id="design-mobile-image-3" class="design-mobile-image">
-                    <div class="w-full aspect-[4/3] rounded-lg placeholder-media image-animation" aria-hidden="true"></div>
+                    <img class="w-full h-auto object-contain rounded-lg bg-gray-100 image-animation" src="images/organization-agent-library/flow.png" alt="Automations model — trigger-based workflow discovery and configuration">
                   </div>
                 </div>
               </div>
@@ -461,16 +410,6 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        <div class="animate-on-scroll delay-100 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
-          <h3 class="text-base font-bold mb-2">Builders curate, users personalize</h3>
-          <p class="text-sm text-gray-600">The core model separates who controls visibility from who controls their own view — admins shape the catalog, end users tailor it to their work.</p>
-        </div>
-        <div class="animate-on-scroll delay-200 bg-gray-50 border border-gray-200 rounded-xl p-6 text-left">
-          <h3 class="text-base font-bold mb-2">Three surfaces, three contracts</h3>
-          <p class="text-sm text-gray-600">On-demand agents, chat, and background automations each need distinct interaction models — not one card pattern stretched across all three.</p>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -487,16 +426,8 @@
             <h2 class="text-2xl md:text-3xl font-bold text-white section-heading feature-header-row__title">Organization<br>Agent Grid</h2>
             <p class="text-white/80 feature-header-row__text">Builders assign department or category labels; end users filter to find relevant agents. Builders opt specific agents into the grid with access control so users only see what they have access to. The grid is styled to feel like an internal tool, not a branded third-party product — with tooltips, interface type indicators, and sort by most-used or last-updated. End users mark favorites and surface recently used agents.</p>
           </div>
-          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl video-animation">
-            <video
-              class="w-full rounded-xl"
-              autoplay
-              playsinline
-              loop
-              muted>
-              <source src="images/organization-agent-library/agent-grid-demo.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
+            <img src="images/organization-agent-library/ai-agent-grid.png" alt="Organization agent grid" class="w-full rounded-xl">
           </div>
         </div>
 
@@ -506,7 +437,7 @@
             <p class="text-white/80 feature-header-row__text">A persistent chat interface becomes the primary landing surface for day-to-day tasks; the agent grid moves below it as a catalog and shortcut layer.</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
-            <img src="images/organization-agent-library/chat-entry-point.png" alt="Chat-first entry point with agent grid as catalog layer below" class="w-full rounded-xl">
+            <img src="images/organization-agent-library/new-chat-agentgrid.png" alt="Chat-first entry point with agent grid as catalog layer below" class="w-full rounded-xl">
           </div>
         </div>
 
@@ -516,7 +447,7 @@
             <p class="text-white/80 feature-header-row__text">A separate surface for trigger-based workflows covering three jobs: discover (what's running in your org), configure + test (set up triggers and validate), and manage + debug (monitor health, inspect errors, act on failures).</p>
           </div>
           <div class="w-full flex justify-center mb-6 bg-black p-4 rounded-2xl image-animation">
-            <img src="images/organization-agent-library/agent-grid-2.png" alt="My Automations overview with trigger-based workflow cards" class="w-full rounded-xl">
+            <img src="images/organization-agent-library/agent-grid-3-automation-details.png" alt="Automation details screen for configuring and testing trigger-based workflows" class="w-full rounded-xl">
           </div>
         </div>
       </div>
