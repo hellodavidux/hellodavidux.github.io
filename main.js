@@ -76,19 +76,15 @@ function handleDirectHashNavigation() {
 const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
 
 function playProjectCardVideo(video) {
+  if (window.VideoAutoplay) {
+    window.VideoAutoplay.attemptPlay(video);
+    return;
+  }
+
   video.muted = true;
   video.defaultMuted = true;
   video.playsInline = true;
-
-  const attemptPlay = () => {
-    video.play().catch(() => {});
-  };
-
-  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-    attemptPlay();
-  } else {
-    video.addEventListener('canplay', attemptPlay, { once: true });
-  }
+  video.play().catch(() => {});
 }
 
 function syncProjectCardVideos() {
@@ -546,6 +542,12 @@ document.addEventListener('DOMContentLoaded', function() {
     setupNavbarLinkNavigation();
     syncProjectCardVideos();
     window.matchMedia(PROJECT_CARD_VIDEO_QUERY).addEventListener('change', syncProjectCardVideos);
+    document.addEventListener('video-autoplay:unlock', syncProjectCardVideos);
+
+    window.addEventListener('touchstart', function() {
+        if (!isMobileViewport()) return;
+        syncProjectCardVideos();
+    }, { passive: true });
 
     // Handle direct hash navigation as the first operation
     handleDirectHashNavigation();
