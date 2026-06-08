@@ -355,14 +355,29 @@
       </header>
 
       <!-- Video container with no background -->
-      <div class="w-full flex justify-center mb-12 h-auto rounded-2xl  video-animation  md:p-4 bg-white">
+      <div class="intro-hero-video w-full flex justify-center mb-12 h-auto video-animation md:p-4 md:rounded-2xl">
         <video
-          class="w-full rounded-xl"
+          class="intro-hero-video__media w-full h-auto md:rounded-xl md:hidden"
           autoplay
           playsinline
           loop
-          muted>
-          <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+          muted
+          preload="auto"
+          width="1364"
+          height="1080">
+          <source src="images/agent-evaluator/thumbnail-mobile.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <video
+          class="intro-hero-video__media w-full h-auto md:rounded-xl hidden md:block"
+          autoplay
+          playsinline
+          loop
+          muted
+          preload="auto"
+          width="1920"
+          height="1080">
+          <source src="images/agent-evaluator/thumbnail-desktop.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>

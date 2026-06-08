@@ -364,10 +364,12 @@
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="w-full md:w-[700px] projectcard projectcard--agent-evaluator flex flex-col justify-start items-start gap-2.5">
                     <div class="project-agent-evaluator__card w-full rounded-lg overflow-hidden hover:scale-110 transition-transform duration-500">
-                        <a href="cards/agent-evaluator.html" class="block w-full">
-                            <img src="cards/images/agent-evaluator/gantt-mobile-thumbnail.png" alt="" width="683" height="836" class="w-full h-auto md:hidden" loading="lazy" decoding="async">
-                            <video class="w-full h-auto hidden md:block" autoplay loop muted playsinline preload="none">
-                                <source data-src="/cards/images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
+                        <a href="cards/agent-evaluator.html" class="block w-full" aria-label="Workflow Analytics and Agent Evaluator project preview">
+                            <video class="project-agent-evaluator__video md:hidden" autoplay loop muted playsinline preload="auto" width="1364" height="1080">
+                                <source src="cards/images/agent-evaluator/thumbnail-mobile.mp4" type="video/mp4">
+                            </video>
+                            <video class="project-agent-evaluator__video hidden md:block" autoplay loop muted playsinline preload="none" width="1920" height="1080">
+                                <source data-src="/cards/images/agent-evaluator/thumbnail-desktop.mp4" type="video/mp4">
                             </video>
                         </a>
                     </div>
@@ -381,11 +383,15 @@
         <!-- Project 1 Section -->
         <section id="project1" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-[#1E2F2F] text-white">
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
-                <div class="h-96 w-full md:h-[493px] md:w-[700px] projectcard bg-cyan-50/5 flex flex-col justify-start items-start gap-2.5 ">
-                    <div class="w-full  h-full  rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] flex flex-col justify-end items-center overflow-hidden hover:scale-110 transition-transform duration-500">
-                        <a href="cards/project1.html" class="w-full h-full">
-                            <img src="cards/images/project_1/lenu-mobile-lenu.png" alt="" width="683" height="835" class="w-full h-full object-cover md:hidden" loading="lazy" decoding="async">
-                            <div class="w-full h-full bg-cover bg-center hidden md:block" style="background-image: url('cards/images/project_1/thumbnail.gif');"></div>
+                <div class="w-full md:w-[700px] projectcard projectcard--project1 bg-cyan-50/5 flex flex-col justify-start items-start gap-2.5">
+                    <div class="project1__card w-full rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] overflow-hidden hover:scale-110 transition-transform duration-500">
+                        <a href="cards/project1.html" class="block w-full" aria-label="Holistic Training Builder Redesign project preview">
+                            <video class="project1__video md:hidden" autoplay loop muted playsinline preload="auto" width="1072" height="776">
+                                <source src="cards/images/project_1/cover.mp4" type="video/mp4">
+                            </video>
+                            <video class="project1__video hidden md:block" autoplay loop muted playsinline preload="none" width="1072" height="776">
+                                <source data-src="/cards/images/project_1/cover.mp4" type="video/mp4">
+                            </video>
                         </a>
                     </div>
                 </div>
@@ -441,10 +447,10 @@
                 <div class="about-content" data-about-highlight>
                     <h1 class="about-heading">About me</h1>
                     <p class="about-text">
-                        I'm a <span class="about-highlight">product designer</span> specializing in <span class="about-highlight">0→1</span> at <span class="about-highlight">StackAI</span> (YC W23), which has just been acquired by <span class="about-highlight">Asana</span>.
+                        I'm a <span class="about-highlight">product designer</span> at <span class="about-highlight">StackAI</span> (YC W23), which has just been acquired by <span class="about-highlight">Asana</span>.
                     </p>
                     <p class="about-text">
-                        I'm a <span class="about-highlight">digital product specialist</span>. I've worked across AI enterprise SaaS, B2B services, sports media, iGaming, affiliate marketing, and e-commerce.
+                        I'm a <span class="about-highlight">digital product lead</span> specializing in <span class="about-highlight">0→1</span>. I've worked across AI enterprise SaaS, B2B services, sports media, iGaming, affiliate marketing, and e-commerce.
                     </p>
                     <p class="about-text">
                         I've brought the same <span class="about-highlight">systems thinking, principles, and craft</span> to <span class="about-highlight">digital services</span>.

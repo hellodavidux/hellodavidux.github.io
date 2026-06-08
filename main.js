@@ -509,7 +509,7 @@ function setupIntroHeroCardsLink() {
 
     setupCursorFollowingTooltip([link], 'View projects');
 
-    const projectCardLinks = document.querySelectorAll('.projectcard a.w-full.h-full');
+    const projectCardLinks = document.querySelectorAll('.projectcard > div > a[href^="cards/"]');
     setupCursorFollowingTooltip([...projectCardLinks], 'View project');
 }
 
@@ -758,6 +758,17 @@ function updateSections() {
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
     syncProjectCardVideos();
+    animateActiveSectionProjectCard();
+}
+
+function animateActiveSectionProjectCard() {
+    const activeSection = sections[currentSectionIndex];
+    if (!activeSection) return;
+
+    const projectCard = activeSection.querySelector('.projectcard');
+    if (projectCard) {
+        projectCard.classList.add('animate');
+    }
 }
 
 function resetContactSectionScrollIfNeeded() {
