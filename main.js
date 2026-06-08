@@ -75,6 +75,31 @@ function handleDirectHashNavigation() {
 // Animation for project cards when they enter viewport
 const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
 
+function playProjectCardVideo(video) {
+  const attemptPlay = () => {
+    if (window.VideoAutoplay) {
+      window.VideoAutoplay.playVideo(video, { ignoreViewport: true });
+      return;
+    }
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.play().catch(() => {});
+  };
+
+  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+    attemptPlay();
+  } else {
+    video.addEventListener('canplay', attemptPlay, { once: true });
+  }
+}
+
+function isVideoInActiveSection(video) {
+  const activeSection = sections[currentSectionIndex];
+  return Boolean(activeSection && activeSection.contains(video));
+}
+
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
@@ -84,6 +109,8 @@ function syncProjectCardVideos() {
     if (isMobileOnly && !lazySource) {
       if (isDesktop) {
         video.pause();
+      } else if (isVideoInActiveSection(video)) {
+        playProjectCardVideo(video);
       }
       return;
     }
@@ -96,6 +123,9 @@ function syncProjectCardVideos() {
       if (!lazySource.getAttribute('src')) {
         lazySource.setAttribute('src', lazySource.dataset.src);
         video.load();
+      }
+      if (isVideoInActiveSection(video)) {
+        playProjectCardVideo(video);
       }
     } else if (lazySource.getAttribute('src')) {
       lazySource.removeAttribute('src');
@@ -776,8 +806,8 @@ function updateSections() {
 
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
-    syncProjectCardVideos();
     refreshActiveSectionVideos();
+    syncProjectCardVideos();
     animateActiveSectionProjectCard();
 }
 
