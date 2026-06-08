@@ -7,12 +7,14 @@
   const MOBILE_QUERY = '(max-width: 767px)';
   const SECTION_SELECTOR =
     '.video-animation, .video-frame, .intro-hero-video, .animate-on-scroll';
+  const FULLPAGE_ACTIVE_SECTION_SELECTOR = '#fullpage .section.active';
   const VIDEO_SELECTOR = 'video[autoplay]';
   const VIEWPORT_OPTIONS = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
   let gestureUnlocked = false;
   let viewportObserver = null;
   let sectionObserver = null;
   let visibilityObserver = null;
+  let fullpageObserver = null;
   let scrollRefreshFrame = null;
 
   function prepareMutedInlineVideo(video) {
@@ -57,6 +59,15 @@
     }
   }
 
+  function getActiveFullpageSection() {
+    return document.querySelector(FULLPAGE_ACTIVE_SECTION_SELECTOR);
+  }
+
+  function isVideoInActiveFullpageSection(video) {
+    const activeSection = getActiveFullpageSection();
+    return Boolean(activeSection && activeSection.contains(video));
+  }
+
   function isVideoInViewport(video) {
     if (!isVideoDisplayed(video)) return false;
     const rect = video.getBoundingClientRect();
@@ -74,6 +85,7 @@
 
   function pauseOffscreenAutoplayVideos() {
     document.querySelectorAll(VIDEO_SELECTOR).forEach((video) => {
+      if (isVideoInActiveFullpageSection(video)) return;
       if (!isVideoInViewport(video)) {
         pauseVideo(video);
       }
@@ -102,10 +114,16 @@
   }
 
   function unlockFromUserGesture() {
-    if (gestureUnlocked) return;
+    const wasUnlocked = gestureUnlocked;
     gestureUnlocked = true;
-    document.dispatchEvent(new CustomEvent('video-autoplay:unlock'));
+    if (!wasUnlocked) {
+      document.dispatchEvent(new CustomEvent('video-autoplay:unlock'));
+    }
     playVisibleAutoplayVideos();
+    const activeSection = getActiveFullpageSection();
+    if (activeSection) {
+      playVideosInContainer(activeSection);
+    }
   }
 
   function registerPassiveUnlockListeners() {
@@ -132,9 +150,10 @@
           const video = entry.target;
           if (entry.isIntersecting) {
             attemptPlayWhenReady(video);
-          } else {
-            pauseVideo(video);
+            return;
           }
+          if (isVideoInActiveFullpageSection(video)) return;
+          pauseVideo(video);
         });
       },
       VIEWPORT_OPTIONS
@@ -175,6 +194,41 @@
 
     sections.forEach((section) => {
       sectionObserver.observe(section);
+    });
+  }
+
+  function observeFullpageSections() {
+    const fullpage = document.getElementById('fullpage');
+    if (!fullpage) return;
+
+    const sections = fullpage.querySelectorAll('.section');
+    if (!sections.length) return;
+
+    if (fullpageObserver) {
+      fullpageObserver.disconnect();
+    }
+
+    fullpageObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') {
+          return;
+        }
+
+        const section = mutation.target;
+        if (!section.classList.contains('active')) return;
+        playVideosInContainer(section);
+      });
+    });
+
+    sections.forEach((section) => {
+      fullpageObserver.observe(section, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+
+      if (section.classList.contains('active')) {
+        playVideosInContainer(section);
+      }
     });
   }
 
@@ -228,6 +282,7 @@
     observeAutoplayVideos();
     observeVideoSections();
     observeVisibleClass();
+    observeFullpageSections();
   }
 
   function handleViewportModeChange() {
@@ -268,6 +323,7 @@
     setupObservers,
     observeAutoplayVideos,
     observeVideoSections,
+    observeFullpageSections,
     unlockFromUserGesture,
   };
 })();

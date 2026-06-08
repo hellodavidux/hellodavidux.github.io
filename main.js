@@ -116,24 +116,32 @@ function scheduleActiveSectionVideoRefresh() {
   const activeSection = sections[currentSectionIndex];
   if (!activeSection) return;
 
-  const refresh = () => {
+  const playActiveSectionVideos = () => {
     window.VideoAutoplay.playVideosInContainer(activeSection);
+  };
+
+  const finalizePlayback = () => {
+    playActiveSectionVideos();
     window.VideoAutoplay.refreshVisible();
   };
 
-  refresh();
-  requestAnimationFrame(() => requestAnimationFrame(refresh));
+  playActiveSectionVideos();
 
-  if (!isScrolling) return;
+  if (!isScrolling) {
+    finalizePlayback();
+    return;
+  }
+
+  requestAnimationFrame(() => requestAnimationFrame(playActiveSectionVideos));
 
   const onTransitionEnd = (event) => {
     if (event.target !== activeSection || event.propertyName !== 'transform') return;
     activeSection.removeEventListener('transitionend', onTransitionEnd);
-    refresh();
+    finalizePlayback();
   };
 
   activeSection.addEventListener('transitionend', onTransitionEnd);
-  setTimeout(refresh, 1100);
+  setTimeout(finalizePlayback, 1100);
 }
 
 const observeProjectCards = () => {
@@ -658,6 +666,9 @@ window.addEventListener('touchend', function(e) {
     const threshold = isActiveContactSection() && atScrollEdge ? 35 : touchThreshold;
 
     if (Math.abs(deltaY) > threshold) {
+        if (window.VideoAutoplay) {
+            window.VideoAutoplay.unlockFromUserGesture();
+        }
         handleScroll(deltaY > 0);
     }
 });
@@ -724,6 +735,10 @@ function navigateToSection(index) {
         index = 0;
     } else if (index >= sections.length) {
         index = sections.length - 1;
+    }
+
+    if (window.VideoAutoplay) {
+        window.VideoAutoplay.unlockFromUserGesture();
     }
     
     // Set scrolling state and update current section index
