@@ -76,28 +76,15 @@ function handleDirectHashNavigation() {
 const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
 
 function playProjectCardVideo(video) {
-  const attemptPlay = () => {
-    if (window.VideoAutoplay) {
-      window.VideoAutoplay.playVideo(video, { ignoreViewport: true });
-      return;
-    }
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-    video.play().catch(() => {});
-  };
-
-  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-    attemptPlay();
-  } else {
-    video.addEventListener('canplay', attemptPlay, { once: true });
+  if (window.VideoAutoplay) {
+    window.VideoAutoplay.attemptPlay(video);
+    return;
   }
-}
 
-function isVideoInActiveSection(video) {
-  const activeSection = sections[currentSectionIndex];
-  return Boolean(activeSection && activeSection.contains(video));
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.play().catch(() => {});
 }
 
 function syncProjectCardVideos() {
@@ -109,7 +96,7 @@ function syncProjectCardVideos() {
     if (isMobileOnly && !lazySource) {
       if (isDesktop) {
         video.pause();
-      } else if (isVideoInActiveSection(video)) {
+      } else {
         playProjectCardVideo(video);
       }
       return;
@@ -117,16 +104,14 @@ function syncProjectCardVideos() {
 
     if (!lazySource) return;
 
-    const shouldLoad = isMobileOnly ? !isDesktop : isDesktop;
+    const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
 
-    if (shouldLoad) {
+    if (shouldPlay) {
       if (!lazySource.getAttribute('src')) {
         lazySource.setAttribute('src', lazySource.dataset.src);
         video.load();
       }
-      if (isVideoInActiveSection(video)) {
-        playProjectCardVideo(video);
-      }
+      playProjectCardVideo(video);
     } else if (lazySource.getAttribute('src')) {
       lazySource.removeAttribute('src');
       video.pause();
@@ -134,24 +119,6 @@ function syncProjectCardVideos() {
       video.load();
     }
   });
-
-  if (window.VideoAutoplay) {
-    window.VideoAutoplay.refreshVisible();
-  }
-}
-
-function refreshActiveSectionVideos() {
-  if (!window.VideoAutoplay) return;
-
-  const activeSection = sections[currentSectionIndex];
-  if (!activeSection) return;
-
-  window.VideoAutoplay.setActiveFullpageSection(activeSection);
-}
-
-function primeSectionVideosForNavigation(targetIndex) {
-  if (!window.VideoAutoplay || targetIndex < 0 || targetIndex >= sections.length) return;
-  window.VideoAutoplay.primeSectionVideos(sections[targetIndex]);
 }
 
 const observeProjectCards = () => {
@@ -676,18 +643,7 @@ window.addEventListener('touchend', function(e) {
     const threshold = isActiveContactSection() && atScrollEdge ? 35 : touchThreshold;
 
     if (Math.abs(deltaY) > threshold) {
-        const scrollDown = deltaY > 0;
-        const targetIndex = scrollDown
-            ? Math.min(currentSectionIndex + 1, sections.length - 1)
-            : Math.max(currentSectionIndex - 1, 0);
-
-        if (window.VideoAutoplay) {
-            window.VideoAutoplay.unlockFromUserGesture();
-            if (targetIndex !== currentSectionIndex) {
-                primeSectionVideosForNavigation(targetIndex);
-            }
-        }
-        handleScroll(scrollDown);
+        handleScroll(deltaY > 0);
     }
 });
 
@@ -755,11 +711,6 @@ function navigateToSection(index) {
         index = sections.length - 1;
     }
 
-    if (window.VideoAutoplay) {
-        window.VideoAutoplay.unlockFromUserGesture();
-        primeSectionVideosForNavigation(index);
-    }
-    
     // Set scrolling state and update current section index
     isScrolling = true;
     currentSectionIndex = index;
@@ -806,19 +757,7 @@ function updateSections() {
 
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
-    refreshActiveSectionVideos();
     syncProjectCardVideos();
-    animateActiveSectionProjectCard();
-}
-
-function animateActiveSectionProjectCard() {
-    const activeSection = sections[currentSectionIndex];
-    if (!activeSection) return;
-
-    const projectCard = activeSection.querySelector('.projectcard');
-    if (projectCard) {
-        projectCard.classList.add('animate');
-    }
 }
 
 function resetContactSectionScrollIfNeeded() {
