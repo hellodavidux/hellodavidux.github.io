@@ -44,9 +44,9 @@
   ];
 
   function getCurrentFile() {
-    const path = window.location.pathname || '';
-    const file = path.split('/').pop();
-    return file || '';
+    const segments = (window.location.pathname || '').split('/').filter(Boolean);
+    const file = segments[segments.length - 1] || '';
+    return file.endsWith('.html') ? file : '';
   }
 
   function getCurrentIndex(file) {
@@ -81,7 +81,7 @@
   function renderThumbnail(project) {
     if (project.media.type === 'video') {
       return `
-        <video class="w-full h-full object-cover" autoplay loop muted playsinline title="${project.previewTitle}">
+        <video autoplay loop muted playsinline title="${project.previewTitle}">
           <source src="${project.media.src}" type="video/mp4">
         </video>
       `;
@@ -89,7 +89,6 @@
 
     return `
       <img
-        class="w-full h-full object-cover"
         src="${project.media.src}"
         alt=""
         loading="lazy"
@@ -102,16 +101,14 @@
     const cardClass = index === 0 ? 'left-card' : 'right-card';
 
     return `
-      <div class="w-full min-w-0 hoverable ${cardClass} p-4 md:p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] transition-all duration-300 hover:shadow-lg">
-        <a href="${project.file}" class="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-4 md:gap-8 w-full min-w-0">
-          <div class="w-full sm:w-40 h-28 shrink-0 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] overflow-hidden">
-            <div class="w-full h-full overflow-hidden">
-              ${renderThumbnail(project)}
-            </div>
+      <article class="next-project-card hoverable ${cardClass}">
+        <a href="${project.file}" class="next-project-card__link" aria-label="${project.previewTitle}">
+          <div class="next-project-card__thumb">
+            ${renderThumbnail(project)}
           </div>
-          <div class="min-w-0 w-full sm:flex-1 text-zinc-950 text-2xl font-black">${project.title}</div>
+          <h4 class="next-project-card__title">${project.title}</h4>
         </a>
-      </div>
+      </article>
     `;
   }
 
@@ -123,7 +120,12 @@
 
     const recommendations = getRecommendations(getCurrentFile());
     container.innerHTML = recommendations.map(renderCard).join('');
+    container.setAttribute('data-loaded', 'true');
   }
 
-  document.addEventListener('DOMContentLoaded', renderRecommendations);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderRecommendations);
+  } else {
+    renderRecommendations();
+  }
 })();
