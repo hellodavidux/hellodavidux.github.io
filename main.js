@@ -110,6 +110,32 @@ function syncProjectCardVideos() {
   }
 }
 
+function scheduleActiveSectionVideoRefresh() {
+  if (!window.VideoAutoplay) return;
+
+  const activeSection = sections[currentSectionIndex];
+  if (!activeSection) return;
+
+  const refresh = () => {
+    window.VideoAutoplay.playVideosInContainer(activeSection);
+    window.VideoAutoplay.refreshVisible();
+  };
+
+  refresh();
+  requestAnimationFrame(() => requestAnimationFrame(refresh));
+
+  if (!isScrolling) return;
+
+  const onTransitionEnd = (event) => {
+    if (event.target !== activeSection || event.propertyName !== 'transform') return;
+    activeSection.removeEventListener('transitionend', onTransitionEnd);
+    refresh();
+  };
+
+  activeSection.addEventListener('transitionend', onTransitionEnd);
+  setTimeout(refresh, 1100);
+}
+
 const observeProjectCards = () => {
   const projectCards = document.querySelectorAll('.projectcard');
   
@@ -747,6 +773,7 @@ function updateSections() {
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
     syncProjectCardVideos();
+    scheduleActiveSectionVideoRefresh();
     animateActiveSectionProjectCard();
 }
 

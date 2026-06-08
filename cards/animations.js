@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // If element is in view
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          if (
+            entry.target.matches('.video-animation, .video-frame, .animate-on-scroll') &&
+            window.VideoAutoplay
+          ) {
+            window.VideoAutoplay.playSectionVideos(entry.target);
+          }
           // If the animation only needs to happen once, unobserve
           observer.unobserve(entry.target);
         }
@@ -45,7 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
       outer.classList.add('video-frame-outer');
     }
   });
-  
+
+  if (window.VideoAutoplay) {
+    window.VideoAutoplay.setupObservers();
+    window.VideoAutoplay.refreshVisible();
+  }
+
   // Handle any dynamically loaded content
   document.addEventListener('load', animateOnScroll);
 }); 

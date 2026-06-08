@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
   <script src="project-page.js" defer></script>
+  <script src="project-recommendations.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
   <script src="media-lightbox.js" defer></script>
@@ -484,46 +485,7 @@
         <h3 class="text-3xl font-bold mb-16 text-white bg-black px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
       </div>
       
-      <div class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full">
-        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
-          <a href="new-project.html" class="flex justify-start items-center gap-8 w-full">
-            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <div class="w-full h-full overflow-hidden">
-                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Prompt to Flow preview">
-                  <source src="images/prompt-to-flow/mboile.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">PROMPT TO FLOW</div>
-          </a>
-        </div>
-
-        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
-          <a href="agentic-lifecycle.html" class="flex justify-start items-center gap-8 w-full">
-            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <div class="w-full h-full overflow-hidden">
-                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Agentic Development Lifecycle preview">
-                  <source src="images/agentic-lifecycle/thumbnail.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">AGENTIC DEVELOPMENT LIFECYCLE</div>
-          </a>
-        </div>
-        
-        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
-          <a href="agent-evaluator.html" class="flex justify-start items-center gap-8 w-full">
-            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <div class="w-full h-full overflow-hidden">
-                <video class="w-full h-full object-cover" autoplay loop muted playsinline title="Workflow Analytics and Agent Evaluator preview">
-                  <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">WORKFLOW ANALYTICS AND AGENT EVALUATOR</div>
-          </a>
-        </div>
-      </div>
+      <div id="next-project-cards" class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full"></div>
     </div>
   </div>
 

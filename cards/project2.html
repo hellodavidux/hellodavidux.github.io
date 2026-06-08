@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
   <script src="project-page.js" defer></script>
+  <script src="project-recommendations.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
   <script src="media-lightbox.js" defer></script>
@@ -685,33 +686,7 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
       </div>
       
       <!-- Project cards container with new layout -->
-      <div class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full">
-        
-        <!-- Holistic Training Builder Card -->
-        <div class="w-full hoverable left-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
-          <a href="project1.html" class="flex justify-start items-center gap-8 w-full">
-            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-                <source src="images/project_1/cover.mp4" type="video/mp4" title="Holistic Training Builder Preview">
-              </video>
-            </div>
-            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">HOLISTIC TRAINING BUILDER</div>
-          </a>
-        </div>
-        
-        <!-- Rental Service Card -->
-        <div class="w-full hoverable right-card flex-1 p-8 bg-white rounded-lg shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.14)] flex justify-start items-center gap-8 transition-all duration-300 hover:shadow-lg">
-          <a href="project3.html" class="flex justify-start items-center gap-8 w-full">
-            <div class="w-40 h-28 rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] inline-flex flex-col justify-end items-center overflow-hidden">
-              <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-                <source src="images/project_3/easy-thumbnail.mp4" type="video/mp4" title="Rental Service for Exchange Students Preview">
-              </video>
-            </div>
-            <div class="flex-1 justify-center text-zinc-950 text-2xl font-black ">RENTAL SERVICE FOR EXCHANGE STUDENTS</div>
-          </a>
-        </div>
-        
-      </div>
+      <div id="next-project-cards" class="inline-flex justify-start items-center gap-8 flex-wrap content-center w-full"></div>
     </div>
   </div>
 
