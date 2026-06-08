@@ -76,12 +76,15 @@ function handleDirectHashNavigation() {
 const PROJECT_CARD_VIDEO_QUERY = '(min-width: 768px)';
 
 function syncProjectCardVideos() {
-  const useVideo = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
+  const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
     const source = video.querySelector('source[data-src]');
     if (!source) return;
 
-    if (useVideo) {
+    const isMobileOnly = video.classList.contains('md:hidden');
+    const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
+
+    if (shouldPlay) {
       if (!source.getAttribute('src')) {
         source.setAttribute('src', source.dataset.src);
         video.load();
