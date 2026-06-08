@@ -110,38 +110,18 @@ function syncProjectCardVideos() {
   }
 }
 
-function scheduleActiveSectionVideoRefresh() {
+function refreshActiveSectionVideos() {
   if (!window.VideoAutoplay) return;
 
   const activeSection = sections[currentSectionIndex];
   if (!activeSection) return;
 
-  const playActiveSectionVideos = () => {
-    window.VideoAutoplay.playVideosInContainer(activeSection);
-  };
+  window.VideoAutoplay.setActiveFullpageSection(activeSection);
+}
 
-  const finalizePlayback = () => {
-    playActiveSectionVideos();
-    window.VideoAutoplay.refreshVisible();
-  };
-
-  playActiveSectionVideos();
-
-  if (!isScrolling) {
-    finalizePlayback();
-    return;
-  }
-
-  requestAnimationFrame(() => requestAnimationFrame(playActiveSectionVideos));
-
-  const onTransitionEnd = (event) => {
-    if (event.target !== activeSection || event.propertyName !== 'transform') return;
-    activeSection.removeEventListener('transitionend', onTransitionEnd);
-    finalizePlayback();
-  };
-
-  activeSection.addEventListener('transitionend', onTransitionEnd);
-  setTimeout(finalizePlayback, 1100);
+function primeSectionVideosForNavigation(targetIndex) {
+  if (!window.VideoAutoplay || targetIndex < 0 || targetIndex >= sections.length) return;
+  window.VideoAutoplay.primeSectionVideos(sections[targetIndex]);
 }
 
 const observeProjectCards = () => {
@@ -666,10 +646,18 @@ window.addEventListener('touchend', function(e) {
     const threshold = isActiveContactSection() && atScrollEdge ? 35 : touchThreshold;
 
     if (Math.abs(deltaY) > threshold) {
+        const scrollDown = deltaY > 0;
+        const targetIndex = scrollDown
+            ? Math.min(currentSectionIndex + 1, sections.length - 1)
+            : Math.max(currentSectionIndex - 1, 0);
+
         if (window.VideoAutoplay) {
             window.VideoAutoplay.unlockFromUserGesture();
+            if (targetIndex !== currentSectionIndex) {
+                primeSectionVideosForNavigation(targetIndex);
+            }
         }
-        handleScroll(deltaY > 0);
+        handleScroll(scrollDown);
     }
 });
 
@@ -739,6 +727,7 @@ function navigateToSection(index) {
 
     if (window.VideoAutoplay) {
         window.VideoAutoplay.unlockFromUserGesture();
+        primeSectionVideosForNavigation(index);
     }
     
     // Set scrolling state and update current section index
@@ -788,7 +777,7 @@ function updateSections() {
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
     syncProjectCardVideos();
-    scheduleActiveSectionVideoRefresh();
+    refreshActiveSectionVideos();
     animateActiveSectionProjectCard();
 }
 

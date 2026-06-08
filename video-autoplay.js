@@ -1,21 +1,31 @@
 /**
- * Muted video autoplay when videos enter the viewport.
- * Videos pause when they leave the viewport. Browsers may block programmatic play()
- * without a user gesture on mobile; unlock listeners retry on first touch.
+ * Muted inline video autoplay.
+ * Fullpage homepage: play/pause is driven by section activation (transform-based nav).
+ * Card pages: play/pause is driven by IntersectionObserver on video containers.
+ * iOS requires play() inside a user-gesture handler — primeSectionVideos() is called
+ * synchronously from touch/pointer handlers before section transitions.
  */
 (function () {
   const MOBILE_QUERY = '(max-width: 767px)';
-  const SECTION_SELECTOR =
-    '.video-animation, .video-frame, .intro-hero-video, .animate-on-scroll';
-  const FULLPAGE_ACTIVE_SECTION_SELECTOR = '#fullpage .section.active';
   const VIDEO_SELECTOR = 'video[autoplay]';
+  const CARD_SECTION_SELECTOR =
+    '.video-animation, .video-frame, .intro-hero-video, .animate-on-scroll';
+  const FULLPAGE_SELECTOR = '#fullpage';
+  const ACTIVE_SECTION_SELECTOR = '#fullpage .section.active';
   const VIEWPORT_OPTIONS = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const RETRY_DELAYS_MS = [0, 50, 150, 400, 900];
+
   let gestureUnlocked = false;
   let viewportObserver = null;
-  let sectionObserver = null;
-  let visibilityObserver = null;
-  let fullpageObserver = null;
+  let cardSectionObserver = null;
+  let cardVisibilityObserver = null;
+  let fullpageClassObserver = null;
   let scrollRefreshFrame = null;
+  let activeFullpageSection = null;
+
+  function isFullpageSite() {
+    return Boolean(document.querySelector(FULLPAGE_SELECTOR));
+  }
 
   function prepareMutedInlineVideo(video) {
     video.muted = true;
@@ -23,33 +33,26 @@
     video.playsInline = true;
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
   }
 
   function isVideoDisplayed(video) {
     const rect = video.getBoundingClientRect();
-    if (rect.width <= 0 || rect.height <= 0) {
-      return false;
-    }
+    if (rect.width <= 0 || rect.height <= 0) return false;
 
     const style = window.getComputedStyle(video);
     return style.display !== 'none' && style.visibility !== 'hidden';
   }
 
-  function attemptPlay(video) {
-    if (!video || video.tagName !== 'VIDEO' || !isVideoDisplayed(video)) return;
+  function playVideo(video, options) {
+    const ignoreViewport = options && options.ignoreViewport;
+    if (!video || video.tagName !== 'VIDEO') return;
+    if (!ignoreViewport && !isVideoDisplayed(video)) return;
+
     prepareMutedInlineVideo(video);
     const promise = video.play();
     if (promise !== undefined) {
-      promise.catch(() => {});
-    }
-  }
-
-  function attemptPlayWhenReady(video) {
-    if (!video || video.tagName !== 'VIDEO' || !isVideoDisplayed(video)) return;
-    attemptPlay(video);
-    if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
-      video.addEventListener('canplay', () => attemptPlay(video), { once: true });
-      video.addEventListener('loadeddata', () => attemptPlay(video), { once: true });
+      promise.catch(function () {});
     }
   }
 
@@ -59,13 +62,73 @@
     }
   }
 
-  function getActiveFullpageSection() {
-    return document.querySelector(FULLPAGE_ACTIVE_SECTION_SELECTOR);
+  function playVideosInContainer(container, options) {
+    if (!container) return;
+    container.querySelectorAll(VIDEO_SELECTOR).forEach(function (video) {
+      if (ignoreViewportOrDisplayed(options, video)) {
+        playVideo(video, options);
+      }
+    });
   }
 
-  function isVideoInActiveFullpageSection(video) {
-    const activeSection = getActiveFullpageSection();
-    return Boolean(activeSection && activeSection.contains(video));
+  function ignoreViewportOrDisplayed(options, video) {
+    if (options && options.ignoreViewport) return true;
+    return isVideoDisplayed(video);
+  }
+
+  function pauseVideosInContainer(container) {
+    if (!container) return;
+    container.querySelectorAll(VIDEO_SELECTOR).forEach(pauseVideo);
+  }
+
+  function schedulePlaybackRetries(container) {
+    RETRY_DELAYS_MS.forEach(function (delay) {
+      window.setTimeout(function () {
+        playVideosInContainer(container);
+      }, delay);
+    });
+  }
+
+  function getActiveFullpageSection() {
+    return document.querySelector(ACTIVE_SECTION_SELECTOR);
+  }
+
+  function setActiveFullpageSection(section) {
+    if (!isFullpageSite() || !section) return;
+
+    if (activeFullpageSection && activeFullpageSection !== section) {
+      pauseVideosInContainer(activeFullpageSection);
+    }
+
+    activeFullpageSection = section;
+    playVideosInContainer(section);
+    schedulePlaybackRetries(section);
+  }
+
+  function primeSectionVideos(section) {
+    if (!section) return;
+
+    gestureUnlocked = true;
+    playVideosInContainer(section, { ignoreViewport: true });
+  }
+
+  function unlockFromUserGesture() {
+    const wasUnlocked = gestureUnlocked;
+    gestureUnlocked = true;
+
+    if (!wasUnlocked) {
+      document.dispatchEvent(new CustomEvent('video-autoplay:unlock'));
+    }
+
+    if (isFullpageSite()) {
+      const activeSection = getActiveFullpageSection();
+      if (activeSection) {
+        playVideosInContainer(activeSection, { ignoreViewport: true });
+      }
+      return;
+    }
+
+    playVisibleAutoplayVideos();
   }
 
   function isVideoInViewport(video) {
@@ -76,58 +139,24 @@
   }
 
   function playVisibleAutoplayVideos() {
-    document.querySelectorAll(VIDEO_SELECTOR).forEach((video) => {
+    document.querySelectorAll(VIDEO_SELECTOR).forEach(function (video) {
       if (isVideoInViewport(video)) {
-        attemptPlayWhenReady(video);
+        playVideo(video);
       }
     });
   }
 
   function pauseOffscreenAutoplayVideos() {
-    document.querySelectorAll(VIDEO_SELECTOR).forEach((video) => {
-      if (isVideoInActiveFullpageSection(video)) return;
+    document.querySelectorAll(VIDEO_SELECTOR).forEach(function (video) {
+      if (activeFullpageSection && activeFullpageSection.contains(video)) return;
       if (!isVideoInViewport(video)) {
         pauseVideo(video);
       }
     });
   }
 
-  function pauseSectionVideos(section) {
-    section.querySelectorAll(VIDEO_SELECTOR).forEach(pauseVideo);
-  }
-
-  function playSectionVideos(section) {
-    section.querySelectorAll(VIDEO_SELECTOR).forEach((video) => {
-      if (isVideoDisplayed(video) && isVideoInViewport(video)) {
-        attemptPlayWhenReady(video);
-      }
-    });
-  }
-
-  function playVideosInContainer(container) {
-    if (!container) return;
-    container.querySelectorAll(VIDEO_SELECTOR).forEach((video) => {
-      if (isVideoDisplayed(video)) {
-        attemptPlayWhenReady(video);
-      }
-    });
-  }
-
-  function unlockFromUserGesture() {
-    const wasUnlocked = gestureUnlocked;
-    gestureUnlocked = true;
-    if (!wasUnlocked) {
-      document.dispatchEvent(new CustomEvent('video-autoplay:unlock'));
-    }
-    playVisibleAutoplayVideos();
-    const activeSection = getActiveFullpageSection();
-    if (activeSection) {
-      playVideosInContainer(activeSection);
-    }
-  }
-
   function registerPassiveUnlockListeners() {
-    ['touchstart', 'pointerdown', 'keydown'].forEach((eventName) => {
+    ['touchstart', 'pointerdown', 'keydown'].forEach(function (eventName) {
       document.addEventListener(eventName, unlockFromUserGesture, {
         once: true,
         passive: true,
@@ -145,55 +174,86 @@
     }
 
     viewportObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      function (entries) {
+        entries.forEach(function (entry) {
           const video = entry.target;
           if (entry.isIntersecting) {
-            attemptPlayWhenReady(video);
+            playVideo(video);
             return;
           }
-          if (isVideoInActiveFullpageSection(video)) return;
+          if (activeFullpageSection && activeFullpageSection.contains(video)) return;
           pauseVideo(video);
         });
       },
       VIEWPORT_OPTIONS
     );
 
-    videos.forEach((video) => {
+    videos.forEach(function (video) {
       prepareMutedInlineVideo(video);
       viewportObserver.observe(video);
     });
   }
 
-  function getVideoSections() {
-    return Array.from(document.querySelectorAll(SECTION_SELECTOR)).filter(
-      (section) => section.querySelector(VIDEO_SELECTOR)
-    );
+  function getCardVideoSections() {
+    return Array.from(document.querySelectorAll(CARD_SECTION_SELECTOR)).filter(function (section) {
+      return section.querySelector(VIDEO_SELECTOR);
+    });
   }
 
-  function observeVideoSections() {
-    const sections = getVideoSections();
+  function observeCardVideoSections() {
+    const sections = getCardVideoSections();
     if (!sections.length) return;
 
-    if (sectionObserver) {
-      sectionObserver.disconnect();
+    if (cardSectionObserver) {
+      cardSectionObserver.disconnect();
     }
 
-    sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+    cardSectionObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            playSectionVideos(entry.target);
+            playVideosInContainer(entry.target);
           } else {
-            pauseSectionVideos(entry.target);
+            pauseVideosInContainer(entry.target);
           }
         });
       },
       VIEWPORT_OPTIONS
     );
 
-    sections.forEach((section) => {
-      sectionObserver.observe(section);
+    sections.forEach(function (section) {
+      cardSectionObserver.observe(section);
+    });
+  }
+
+  function observeCardVisibleClass() {
+    const sections = getCardVideoSections();
+    if (!sections.length) return;
+
+    if (cardVisibilityObserver) {
+      cardVisibilityObserver.disconnect();
+    }
+
+    cardVisibilityObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') return;
+
+        const section = mutation.target;
+        if (section.classList.contains('visible')) {
+          playVideosInContainer(section);
+        }
+      });
+    });
+
+    sections.forEach(function (section) {
+      cardVisibilityObserver.observe(section, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+
+      if (section.classList.contains('visible')) {
+        playVideosInContainer(section);
+      }
     });
   }
 
@@ -204,75 +264,45 @@
     const sections = fullpage.querySelectorAll('.section');
     if (!sections.length) return;
 
-    if (fullpageObserver) {
-      fullpageObserver.disconnect();
+    if (fullpageClassObserver) {
+      fullpageClassObserver.disconnect();
     }
 
-    fullpageObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') {
-          return;
-        }
-
-        const section = mutation.target;
-        if (!section.classList.contains('active')) return;
-        playVideosInContainer(section);
+    fullpageClassObserver = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') return;
+        if (!mutation.target.classList.contains('active')) return;
+        setActiveFullpageSection(mutation.target);
       });
     });
 
-    sections.forEach((section) => {
-      fullpageObserver.observe(section, {
+    sections.forEach(function (section) {
+      fullpageClassObserver.observe(section, {
         attributes: true,
         attributeFilter: ['class'],
       });
 
       if (section.classList.contains('active')) {
-        playVideosInContainer(section);
-      }
-    });
-  }
-
-  function observeVisibleClass() {
-    const sections = getVideoSections();
-    if (!sections.length) return;
-
-    if (visibilityObserver) {
-      visibilityObserver.disconnect();
-    }
-
-    visibilityObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') {
-          return;
-        }
-
-        const section = mutation.target;
-        if (section.classList.contains('visible')) {
-          playSectionVideos(section);
-        }
-      });
-    });
-
-    sections.forEach((section) => {
-      visibilityObserver.observe(section, {
-        attributes: true,
-        attributeFilter: ['class'],
-      });
-
-      if (section.classList.contains('visible')) {
-        playSectionVideos(section);
+        setActiveFullpageSection(section);
       }
     });
   }
 
   function refreshVisible() {
+    if (isFullpageSite()) {
+      if (activeFullpageSection) {
+        playVideosInContainer(activeFullpageSection);
+      }
+      return;
+    }
+
     pauseOffscreenAutoplayVideos();
     playVisibleAutoplayVideos();
   }
 
   function scheduleRefreshVisible() {
     if (scrollRefreshFrame !== null) return;
-    scrollRefreshFrame = window.requestAnimationFrame(() => {
+    scrollRefreshFrame = window.requestAnimationFrame(function () {
       scrollRefreshFrame = null;
       refreshVisible();
     });
@@ -280,9 +310,41 @@
 
   function setupObservers() {
     observeAutoplayVideos();
-    observeVideoSections();
-    observeVisibleClass();
-    observeFullpageSections();
+
+    if (isFullpageSite()) {
+      observeFullpageSections();
+      return;
+    }
+
+    observeCardVideoSections();
+    observeCardVisibleClass();
+  }
+
+  function initFullpageVideos() {
+    const fullpage = document.getElementById('fullpage');
+    if (!fullpage) return;
+
+    fullpage.querySelectorAll(VIDEO_SELECTOR).forEach(function (video) {
+      prepareMutedInlineVideo(video);
+    });
+
+    fullpage.querySelectorAll('.section').forEach(function (section) {
+      if (!section.classList.contains('active')) {
+        pauseVideosInContainer(section);
+      }
+    });
+
+    const activeSection = getActiveFullpageSection();
+    if (activeSection) {
+      setActiveFullpageSection(activeSection);
+    }
+  }
+
+  function initCardVideos() {
+    document.querySelectorAll(VIDEO_SELECTOR).forEach(function (video) {
+      prepareMutedInlineVideo(video);
+      video.pause();
+    });
   }
 
   function handleViewportModeChange() {
@@ -291,19 +353,30 @@
   }
 
   function init() {
-    document.querySelectorAll(VIDEO_SELECTOR).forEach((video) => {
-      prepareMutedInlineVideo(video);
-      video.pause();
-    });
+    if (isFullpageSite()) {
+      initFullpageVideos();
+    } else {
+      initCardVideos();
+    }
+
     setupObservers();
     registerPassiveUnlockListeners();
     refreshVisible();
-    window.addEventListener('load', () => {
-      setupObservers();
-      refreshVisible();
-      requestAnimationFrame(refreshVisible);
-    }, { once: true });
-    window.addEventListener('scroll', scheduleRefreshVisible, { passive: true });
+
+    window.addEventListener(
+      'load',
+      function () {
+        setupObservers();
+        refreshVisible();
+        window.requestAnimationFrame(refreshVisible);
+      },
+      { once: true }
+    );
+
+    if (!isFullpageSite()) {
+      window.addEventListener('scroll', scheduleRefreshVisible, { passive: true });
+    }
+
     window.addEventListener('resize', scheduleRefreshVisible, { passive: true });
     window.addEventListener('hashchange', scheduleRefreshVisible);
     window.matchMedia(MOBILE_QUERY).addEventListener('change', handleViewportModeChange);
@@ -316,14 +389,13 @@
   }
 
   window.VideoAutoplay = {
-    attemptPlay: attemptPlayWhenReady,
-    playSectionVideos,
-    playVideosInContainer,
-    refreshVisible,
-    setupObservers,
-    observeAutoplayVideos,
-    observeVideoSections,
-    observeFullpageSections,
-    unlockFromUserGesture,
+    playVideo: playVideo,
+    playVideosInContainer: playVideosInContainer,
+    primeSectionVideos: primeSectionVideos,
+    setActiveFullpageSection: setActiveFullpageSection,
+    refreshVisible: refreshVisible,
+    setupObservers: setupObservers,
+    unlockFromUserGesture: unlockFromUserGesture,
+    playSectionVideos: playVideosInContainer,
   };
 })();
