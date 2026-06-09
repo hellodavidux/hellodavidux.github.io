@@ -422,10 +422,9 @@ body:has(#fullpage) #contact {
 }
 
 .about-heading {
-  font-size: 1.75rem;
-  font-weight: 700;
   color: #111827;
   margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
 .about-text {
@@ -579,10 +578,6 @@ body:has(#fullpage) #contact {
     min-width: 0;
     max-width: 36rem;
     padding-right: 1rem;
-  }
-
-  .about-heading {
-    font-size: 2rem;
   }
 
   .about-text {
@@ -898,6 +893,7 @@ body:has(#fullpage) #intro {
   width: 100%;
   line-height: 0;
   background: linear-gradient(135deg, #171717 0%, #0a0a0a 50%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 1.5px rgba(255, 255, 255, 0.12), 0 6px 12px rgba(0, 0, 0, 0.14);
   overflow: hidden;
 }
@@ -950,6 +946,10 @@ body:has(#fullpage) #intro {
 }
 
 @media (min-width: 768px) {
+  .intro-hero-video__media {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
   .intro-hero-video__media.md\:hidden {
     display: none;
   }
@@ -1009,37 +1009,9 @@ body.page-agent-evaluator .navbar-fixed {
   box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.06);
 }
 
-#project-agent-evaluator .project-agent-evaluator__media {
-  position: relative;
-  line-height: 0;
-}
-
 #project-agent-evaluator .project-agent-evaluator__link {
   display: block;
   line-height: 0;
-}
-
-#project-agent-evaluator .project-agent-evaluator__menu-hotspots {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-#project-agent-evaluator .project-agent-evaluator__menu-hotspots.is-active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#project-agent-evaluator .project-agent-evaluator__menu-hotspot {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: default;
 }
 
 #project-agent-evaluator .project-agent-evaluator__video {
