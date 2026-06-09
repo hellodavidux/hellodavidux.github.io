@@ -402,14 +402,21 @@
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="w-full md:w-[700px] projectcard projectcard--agent-evaluator flex flex-col justify-start items-start gap-2.5">
                     <div class="project-agent-evaluator__card w-full rounded-lg overflow-hidden hover:scale-110 transition-transform duration-500">
-                        <a href="cards/agent-evaluator.html" class="block w-full" aria-label="Workflow Analytics and Agent Evaluator project preview">
-                            <video class="project-agent-evaluator__video md:hidden" autoplay loop muted playsinline preload="auto" width="1364" height="1080">
-                                <source src="cards/images/agent-evaluator/thumbnail-mobile.mp4" type="video/mp4">
-                            </video>
-                            <video class="project-agent-evaluator__video hidden md:block" autoplay loop muted playsinline preload="none" width="1920" height="1080">
-                                <source data-src="/cards/images/agent-evaluator/thumbnail-desktop.mp4" type="video/mp4">
-                            </video>
-                        </a>
+                        <div class="project-agent-evaluator__media">
+                            <a href="cards/agent-evaluator.html" class="project-agent-evaluator__link block w-full" aria-label="Workflow Analytics and Agent Evaluator project preview">
+                                <video class="project-agent-evaluator__video md:hidden" autoplay loop muted playsinline preload="auto" width="1364" height="1080">
+                                    <source src="cards/images/agent-evaluator/thumbnail-mobile.mp4" type="video/mp4">
+                                </video>
+                                <video class="project-agent-evaluator__video hidden md:block" autoplay loop muted playsinline preload="none" width="1920" height="1080">
+                                    <source data-src="/cards/images/agent-evaluator/thumbnail-desktop.mp4" type="video/mp4">
+                                </video>
+                            </a>
+                            <div class="project-agent-evaluator__menu-hotspots hidden md:block" aria-hidden="true">
+                                <button type="button" class="project-agent-evaluator__menu-hotspot" data-tooltip="Save Run to dataset" style="top: 32.7%; left: 51.1%; width: 17%; height: 4.2%;" aria-label="Save Run to dataset"></button>
+                                <button type="button" class="project-agent-evaluator__menu-hotspot" data-tooltip="Rerun with changes" style="top: 36.9%; left: 51.1%; width: 17%; height: 4.2%;" aria-label="Rerun with changes"></button>
+                                <button type="button" class="project-agent-evaluator__menu-hotspot" data-tooltip="Evaluate Run" style="top: 41%; left: 51.1%; width: 17%; height: 4.2%;" aria-label="Evaluate Run"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">

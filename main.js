@@ -321,6 +321,74 @@ function setupAboutPhotoStackTooltips() {
     }, { variant: 'light' });
 }
 
+const AGENT_EVALUATOR_MENU_FRAME_TIME = 12.75;
+
+function setupAgentEvaluatorMenuTooltips() {
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const desktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
+    if (!finePointer || !desktop) return;
+
+    const media = document.querySelector('#project-agent-evaluator .project-agent-evaluator__media');
+    const hotspots = document.querySelector('#project-agent-evaluator .project-agent-evaluator__menu-hotspots');
+    const video = media ? media.querySelector('.project-agent-evaluator__video.hidden') : null;
+    const hotspotButtons = hotspots
+        ? [...hotspots.querySelectorAll('.project-agent-evaluator__menu-hotspot[data-tooltip]')]
+        : [];
+
+    if (!media || !hotspots || !video || !hotspotButtons.length) return;
+
+    let previewPaused = false;
+
+    function showHotspots() {
+        hotspots.classList.add('is-active');
+        hotspots.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideHotspots() {
+        hotspots.classList.remove('is-active');
+        hotspots.setAttribute('aria-hidden', 'true');
+    }
+
+    function pauseOnMenuFrame() {
+        const seekToMenu = function() {
+            if (Math.abs(video.currentTime - AGENT_EVALUATOR_MENU_FRAME_TIME) > 0.05) {
+                video.currentTime = AGENT_EVALUATOR_MENU_FRAME_TIME;
+            }
+            video.pause();
+            previewPaused = true;
+            showHotspots();
+        };
+
+        if (video.readyState >= 1) {
+            seekToMenu();
+        } else {
+            video.addEventListener('loadeddata', seekToMenu, { once: true });
+        }
+    }
+
+    function resumePreview() {
+        if (!previewPaused) return;
+        previewPaused = false;
+        hideHotspots();
+        video.play().catch(function() {});
+    }
+
+    media.addEventListener('mouseenter', pauseOnMenuFrame);
+    media.addEventListener('mouseleave', resumePreview);
+    media.addEventListener('focusin', pauseOnMenuFrame);
+    media.addEventListener('focusout', function(event) {
+        if (!media.contains(event.relatedTarget)) {
+            resumePreview();
+        }
+    });
+
+    hideHotspots();
+
+    setupCursorFollowingTooltip(hotspotButtons, function(target) {
+        return target.getAttribute('data-tooltip') || '';
+    }, { variant: 'light' });
+}
+
 let aboutHighlightRaf = null;
 let aboutHighlightController = null;
 let aboutHighlightSectionActive = false;
@@ -509,8 +577,8 @@ function setupIntroHeroCardsLink() {
 
     setupCursorFollowingTooltip([link], 'View projects');
 
-    const projectCardLinks = document.querySelectorAll('.projectcard > div > a[href^="cards/"]');
-    setupCursorFollowingTooltip([...projectCardLinks], 'View project');
+    const projectCardHoverTargets = document.querySelectorAll('.projectcard > div');
+    setupCursorFollowingTooltip([...projectCardHoverTargets], 'View project');
 }
 
 // Initialize the page
@@ -537,6 +605,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupIntroHeroHover();
     setupIntroHeroCardsLink();
     setupAboutPhotoStackTooltips();
+    setupAgentEvaluatorMenuTooltips();
     aboutHighlightController = setupAboutTextHighlight();
     setupIntroCompanyLogosTooltips();
     setupNavbarLinkNavigation();

@@ -747,6 +747,14 @@ body:has(#fullpage) #contact {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+.projectcard > div:has(a[href^="cards/"]) {
+  cursor: pointer;
+}
+
+.projectcard video {
+  pointer-events: none;
+}
+
 .projectcard.animate {
   opacity: 1;
   transform: scale(1);
@@ -1001,9 +1009,37 @@ body.page-agent-evaluator .navbar-fixed {
   box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.06);
 }
 
-#project-agent-evaluator .project-agent-evaluator__card a {
+#project-agent-evaluator .project-agent-evaluator__media {
+  position: relative;
+  line-height: 0;
+}
+
+#project-agent-evaluator .project-agent-evaluator__link {
   display: block;
   line-height: 0;
+}
+
+#project-agent-evaluator .project-agent-evaluator__menu-hotspots {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+#project-agent-evaluator .project-agent-evaluator__menu-hotspots.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#project-agent-evaluator .project-agent-evaluator__menu-hotspot {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
 }
 
 #project-agent-evaluator .project-agent-evaluator__video {
