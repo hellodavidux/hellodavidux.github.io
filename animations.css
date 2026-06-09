@@ -950,6 +950,10 @@ body:has(#fullpage) #intro {
     border: 1px solid rgba(0, 0, 0, 0.08);
   }
 
+  body.page-agentic-lifecycle .intro-hero-video__media {
+    border: none;
+  }
+
   .intro-hero-video__media.md\:hidden {
     display: none;
   }

@@ -177,7 +177,7 @@ Project framing:
 - Context: enterprises deploying agents without governance, with no version history, approval process, or rollback safeguards.
 
 Project details:
-- Company: StackAI
+- Company: StackAI (YC W23)
 - Role: Product Design Lead
 - Team: Platform Team
 - Timeline: Q1-Q2 2026
@@ -210,7 +210,7 @@ Project framing:
 - Creating something new is one of the product's most critical moments. This project redesigns that path end-to-end — a creation modal, Prompt to Flow (describe-to-build), an in-builder AI assistant, and improved template discovery.
 
 Project details:
-- Company: StackAI
+- Company: StackAI (YC W23)
 - Product: Enterprise AI workflow platform
 - Role: Product Designer
 
@@ -244,7 +244,7 @@ Project framing:
 - The Agent Grid is where employees discover and use their organization's AI workflows. This project covers its full evolution — from structure and curation to on-demand agents, background automations, and a chat-first entry point.
 
 Project details:
-- Company: StackAI
+- Company: StackAI (YC W23)
 - Product: Enterprise AI workflow platform
 - Role: Product Designer
 
@@ -277,7 +277,7 @@ Project framing:
 - Two connected initiatives at StackAI: analytics observability and evaluator-driven quality gating for AI workflows.
 
 Project details:
-- Company: StackAI
+- Company: StackAI (YC W23)
 - Product: Enterprise AI workflow platform
 - Role: Product Designer
 - Year: 2026

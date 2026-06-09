@@ -1,6 +1,7 @@
 /* Research Slider Styles (Dark Theme) */
 .headline-group, .design-headline-group {
   position: relative;
+  cursor: pointer;
 }
 
 .progress-container {
@@ -100,6 +101,26 @@
   margin-bottom: 1.5rem;
 }
 
+@media (min-width: 768px) {
+  .headline-content,
+  .design-headline-content {
+    transition: opacity 0.4s ease;
+  }
+
+  .headline-content:not(.active),
+  .design-headline-content:not(.active) {
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: none;
+  }
+
+  .headline-content.active,
+  .design-headline-content.active {
+    transition: opacity 0.4s ease;
+  }
+}
+
 .slide-image, .design-slide-image {
   opacity: 0;
   visibility: hidden;
@@ -116,22 +137,38 @@
 /* Desktop layout */
 @media (min-width: 768px) {
   .slide-image, .design-slide-image {
-    position: static;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: auto;
     object-fit: contain;
-    vertical-align: top;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .desktop-image-container .slide-image:not(.active),
+  .design-desktop-image-container .design-slide-image:not(.active) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .desktop-image-container .slide-image.active,
+  .design-desktop-image-container .design-slide-image.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 1;
+    pointer-events: auto;
   }
   
   .desktop-image-container, .design-desktop-image-container {
     position: relative;
     overflow: hidden;
-    height: auto;
     align-self: flex-start;
     border-radius: 0.75rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: #f3f4f6;
-    transition: height 0.4s ease;
   }
 
   .desktop-image-container {
@@ -151,6 +188,11 @@
   .design-slider-container {
     border-radius: 0.75rem;
     overflow: visible;
+  }
+
+  .slider-container > div:not(.desktop-image-container),
+  .design-slider-container > div:not(.design-desktop-image-container) {
+    align-self: flex-start;
   }
 }
 

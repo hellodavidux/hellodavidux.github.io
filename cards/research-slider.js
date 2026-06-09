@@ -15,6 +15,137 @@ let designIsTransitioning = false;
 let researchSliderPaused = false;
 let designSliderPaused = false;
 
+function getSliderTextColumn(container, imageContainerClass) {
+  return container.querySelector(`:scope > div:not(.${imageContainerClass})`);
+}
+
+function measureTextColumnHeight(textColumn, contentIdPrefix, slideCount) {
+  if (!textColumn || slideCount === 0) return;
+
+  const savedStates = [];
+  let maxHeight = 0;
+  const previousVisibility = textColumn.style.visibility;
+  textColumn.style.visibility = 'hidden';
+
+  for (let i = 0; i < slideCount; i++) {
+    const content = document.getElementById(`${contentIdPrefix}${i}`);
+    savedStates[i] = content ? content.classList.contains('active') : false;
+  }
+
+  for (let i = 0; i < slideCount; i++) {
+    for (let j = 0; j < slideCount; j++) {
+      const content = document.getElementById(`${contentIdPrefix}${j}`);
+      if (content) {
+        content.classList.toggle('active', j === i);
+      }
+    }
+    maxHeight = Math.max(maxHeight, textColumn.offsetHeight);
+  }
+
+  for (let j = 0; j < slideCount; j++) {
+    const content = document.getElementById(`${contentIdPrefix}${j}`);
+    if (content) {
+      content.classList.toggle('active', savedStates[j]);
+    }
+  }
+
+  textColumn.style.minHeight = `${maxHeight}px`;
+  textColumn.style.visibility = previousVisibility;
+}
+
+function measureImageContainerHeight(imageContainer, imageSelector) {
+  if (!imageContainer) return;
+
+  const images = imageContainer.querySelectorAll(imageSelector);
+  if (images.length === 0) return;
+
+  const containerWidth = imageContainer.offsetWidth;
+  if (!containerWidth) return;
+
+  let maxHeight = 0;
+
+  images.forEach((img) => {
+    if (img.naturalWidth > 0) {
+      const scaledHeight = containerWidth * (img.naturalHeight / img.naturalWidth);
+      maxHeight = Math.max(maxHeight, scaledHeight);
+    }
+  });
+
+  if (maxHeight > 0) {
+    imageContainer.style.minHeight = `${Math.ceil(maxHeight)}px`;
+  }
+}
+
+function stabilizeSliderLayout() {
+  if (isMobile) {
+    document.querySelectorAll('.slider-container, .design-slider-container').forEach((container) => {
+      const textColumn = container.querySelector(':scope > div:not(.desktop-image-container):not(.design-desktop-image-container)');
+      const imageContainer = container.querySelector('.desktop-image-container, .design-desktop-image-container');
+      if (textColumn) textColumn.style.minHeight = '';
+      if (imageContainer) imageContainer.style.minHeight = '';
+      container.style.minHeight = '';
+    });
+    return;
+  }
+
+  stabilizeSingleSliderLayout(
+    document.querySelector('.slider-container'),
+    'desktop-image-container',
+    'content-',
+    document.querySelectorAll('[id^="desktop-image-"]').length,
+    '.slide-image'
+  );
+
+  stabilizeSingleSliderLayout(
+    document.querySelector('.design-slider-container'),
+    'design-desktop-image-container',
+    'design-content-',
+    document.querySelectorAll('[id^="design-desktop-image-"]').length,
+    '.design-slide-image'
+  );
+}
+
+function stabilizeSingleSliderLayout(container, imageContainerClass, contentIdPrefix, slideCount, imageSelector) {
+  if (!container || slideCount === 0) return;
+
+  const textColumn = getSliderTextColumn(container, imageContainerClass);
+  const imageContainer = container.querySelector(`.${imageContainerClass}`);
+  measureTextColumnHeight(textColumn, contentIdPrefix, slideCount);
+  measureImageContainerHeight(imageContainer, imageSelector);
+
+  const containerHeight = Math.max(
+    textColumn ? parseFloat(textColumn.style.minHeight) || 0 : 0,
+    imageContainer ? parseFloat(imageContainer.style.minHeight) || 0 : 0
+  );
+
+  if (containerHeight > 0) {
+    container.style.minHeight = `${containerHeight}px`;
+  }
+}
+
+function stabilizeSliderLayoutWhenReady() {
+  const images = document.querySelectorAll('.slide-image, .design-slide-image');
+  const pendingImages = Array.from(images).filter((img) => !img.complete);
+
+  if (pendingImages.length === 0) {
+    stabilizeSliderLayout();
+    return;
+  }
+
+  let loadedCount = 0;
+  const onImageReady = () => {
+    loadedCount += 1;
+    if (loadedCount === pendingImages.length) {
+      stabilizeSliderLayout();
+    }
+  };
+
+  pendingImages.forEach((img) => {
+    img.addEventListener('load', onImageReady, { once: true });
+    img.addEventListener('error', onImageReady, { once: true });
+  });
+}
+
 function startProgress() {
   const researchSlideCount = document.querySelectorAll('[id^="desktop-image-"]').length;
   if (isMobile) {
@@ -170,39 +301,45 @@ function updateDesignImages() {
 }
 
 function hideContent(callback) {
-  // Hide the current content first
-  if (previousSlide !== currentSlide) {
-    const prevContent = document.getElementById(`content-${previousSlide}`);
-    if (prevContent) prevContent.classList.remove('active');
-    
-    // Also hide mobile image if on mobile
-    const prevMobileImage = document.getElementById(`mobile-image-${previousSlide}`);
-    if (prevMobileImage) prevMobileImage.classList.remove('active');
-    
-    // Wait for the transition to complete before showing the new content
-    setTimeout(callback, 400); // Match this to the CSS transition time
-  } else {
-    // If it's the first load or same slide, just call the callback immediately
+  if (previousSlide === currentSlide) {
     callback();
+    return;
   }
+
+  const prevContent = document.getElementById(`content-${previousSlide}`);
+  const prevMobileImage = document.getElementById(`mobile-image-${previousSlide}`);
+
+  if (isMobile) {
+    if (prevContent) prevContent.classList.remove('active');
+    if (prevMobileImage) prevMobileImage.classList.remove('active');
+    setTimeout(callback, 400);
+    return;
+  }
+
+  if (prevContent) prevContent.classList.remove('active');
+  if (prevMobileImage) prevMobileImage.classList.remove('active');
+  callback();
 }
 
 function hideDesignContent(callback) {
-  // Hide the current content first
-  if (designPreviousSlide !== designCurrentSlide) {
-    const prevContent = document.getElementById(`design-content-${designPreviousSlide}`);
-    if (prevContent) prevContent.classList.remove('active');
-    
-    // Also hide mobile image if on mobile
-    const prevMobileImage = document.getElementById(`design-mobile-image-${designPreviousSlide}`);
-    if (prevMobileImage) prevMobileImage.classList.remove('active');
-    
-    // Wait for the transition to complete before showing the new content
-    setTimeout(callback, 400); // Match this to the CSS transition time
-  } else {
-    // If it's the first load or same slide, just call the callback immediately
+  if (designPreviousSlide === designCurrentSlide) {
     callback();
+    return;
   }
+
+  const prevContent = document.getElementById(`design-content-${designPreviousSlide}`);
+  const prevMobileImage = document.getElementById(`design-mobile-image-${designPreviousSlide}`);
+
+  if (isMobile) {
+    if (prevContent) prevContent.classList.remove('active');
+    if (prevMobileImage) prevMobileImage.classList.remove('active');
+    setTimeout(callback, 400);
+    return;
+  }
+
+  if (prevContent) prevContent.classList.remove('active');
+  if (prevMobileImage) prevMobileImage.classList.remove('active');
+  callback();
 }
 
 function showContent() {
@@ -386,11 +523,12 @@ function initResearchSlider() {
   console.log('Initializing research slider');
   console.log(`Detected ${researchSlideCount} slides for research slider`);
   
-  // Add click event listeners to headlines
+  // Add click event listeners to headline groups
   for (let i = 0; i < researchSlideCount; i++) {
-    const headline = document.getElementById(`headline-${i}`);
-    if (headline) {
-      headline.addEventListener('click', () => {
+    const headlineGroup = document.getElementById(`headline-group-${i}`);
+    if (headlineGroup) {
+      headlineGroup.addEventListener('click', (event) => {
+        if (event.target.closest('.slider-control-btn')) return;
         goToSlide(i);
       });
     }
@@ -467,11 +605,12 @@ function initDesignSlider() {
   console.log('Initializing design slider');
   console.log(`Detected ${designSlideCount} slides for design slider`);
   
-  // Add click event listeners to headlines
+  // Add click event listeners to headline groups
   for (let i = 0; i < designSlideCount; i++) {
-    const headline = document.getElementById(`design-headline-${i}`);
-    if (headline) {
-      headline.addEventListener('click', () => {
+    const headlineGroup = document.getElementById(`design-headline-group-${i}`);
+    if (headlineGroup) {
+      headlineGroup.addEventListener('click', (event) => {
+        if (event.target.closest('.slider-control-btn')) return;
         goToDesignSlide(i);
       });
     }
@@ -544,6 +683,8 @@ window.addEventListener('resize', () => {
   const wasMobile = isMobile;
   isMobile = window.innerWidth < 768;
   
+  stabilizeSliderLayoutWhenReady();
+
   // If switching from mobile to desktop, start auto-rotation (if not paused)
   if (wasMobile && !isMobile) {
     // Research slider
@@ -590,6 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Manually trigger initial slide display
     updateImages();
     updateDesignImages();
+    stabilizeSliderLayoutWhenReady();
     console.log('Sliders initialized');
   }, 100);
 });
