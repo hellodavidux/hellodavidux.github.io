@@ -1,4 +1,4 @@
-/* Sum Up — opens chat.dk with profile summary prompt */
+/* Sum Up, opens chat.dk with profile summary prompt */
 
 .sum-up-toast {
   --sum-up-bg: #ffffff;
@@ -147,7 +147,7 @@
   outline-offset: 2px;
 }
 
-/* Footer — bottom of About section */
+/* Footer, bottom of About section */
 .about-sum-up-footer {
   flex-shrink: 0;
   display: flex;

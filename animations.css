@@ -98,7 +98,7 @@ body {
   position: relative;
 }
 
-/* Navbar CTA — overrides Tailwind preflight (transparent bg, zero padding on button) */
+/* Navbar CTA, overrides Tailwind preflight (transparent bg, zero padding on button) */
 #navbar .nav-book-btn {
   position: relative;
   display: inline-flex;
@@ -190,7 +190,7 @@ body {
   }
 }
 
-/* Solid bar on project pages — transparent navbar would show #intro's white radial gradient */
+/* Solid bar on project pages, transparent navbar would show #intro's white radial gradient */
 .navbar-fixed {
   background-color: #f0f1f3;
 }
@@ -656,7 +656,7 @@ body:has(#fullpage) #contact {
   animation-delay: 0.6s;
 }
 
-/* Homepage project titles — two lines on mobile without clipping */
+/* Homepage project titles, two lines on mobile without clipping */
 @media (max-width: 767px) {
   .project-section-title {
     display: block;
@@ -671,7 +671,7 @@ body:has(#fullpage) #contact {
   }
 }
 
-/* Project title hover — color only, no layout shift */
+/* Project title hover, color only, no layout shift */
 .project-title-hover:hover {
   color: #9ca3af;
   text-decoration: none;
@@ -776,7 +776,7 @@ body:has(#fullpage) #contact {
   background-color: #f0f1f3;
 }
 
-/* Project pages — breathing room below fixed navbar before title */
+/* Project pages, breathing room below fixed navbar before title */
 #intro.intro {
   padding-top: 8rem;
 }
@@ -1110,13 +1110,13 @@ body.page-agent-evaluator .navbar-fixed {
 
 @media (min-width: 768px) {
   .intro-hero-headline {
-    font-size: 2.875rem;
+    font-size: 2.625rem;
   }
 }
 
 @media (min-width: 1024px) {
   .intro-hero-headline {
-    font-size: 3.125rem;
+    font-size: 2.875rem;
   }
 }
 
@@ -1180,7 +1180,7 @@ body.page-agent-evaluator .navbar-fixed {
   #intro .intro-hero-stack {
     flex: 1 1 0;
     min-height: 0;
-    gap: 1.25rem;
+    gap: 3rem;
     padding-top: 1.5rem;
     padding-left: 0;
     padding-right: 0;
@@ -1234,6 +1234,22 @@ body.page-agent-evaluator .navbar-fixed {
   }
 }
 
+.intro-hero-phrase {
+  display: block;
+}
+
+.intro-hero-phrase--1 {
+  color: #111827;
+}
+
+.intro-hero-phrase--2 {
+  color: #374151;
+}
+
+.intro-hero-phrase--3 {
+  color: #52525b;
+}
+
 .intro-hero-item {
   cursor: default;
   transition: color 0.25s ease;
@@ -1250,6 +1266,10 @@ body.page-agent-evaluator .navbar-fixed {
 .intro-hero-headline:has(.intro-hero-item:hover) .intro-hero-sep {
   opacity: 0.35;
   transition: opacity 0.25s ease;
+}
+
+.intro-hero-line {
+  display: block;
 }
 
 .intro-hero-current {
@@ -1434,7 +1454,7 @@ a.intro-hero-cards__stack {
   filter: brightness(1.25) contrast(0.97);
 }
 
-/* Main card — center-left, middle layer */
+/* Main card, center-left, middle layer */
 .intro-hero-card--1 {
   z-index: 2;
   top: 6%;
@@ -1444,7 +1464,7 @@ a.intro-hero-cards__stack {
   aspect-ratio: 2986 / 1670;
 }
 
-/* Back card — top-right */
+/* Back card, top-right */
 .intro-hero-card--2 {
   z-index: 1;
   top: -5%;
@@ -1454,7 +1474,7 @@ a.intro-hero-cards__stack {
   aspect-ratio: 1440 / 900;
 }
 
-/* Front card — bottom-right */
+/* Front card, bottom-right */
 .intro-hero-card--3 {
   z-index: 3;
   right: 2%;

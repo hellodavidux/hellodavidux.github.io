@@ -1,5 +1,5 @@
 /**
- * Liquid blob hero — fixed shape mask + cursor reveal spotlight with particles.
+ * Liquid blob hero, fixed shape mask + cursor reveal spotlight with particles.
  */
 (function () {
   const ROOT_ID = "liquid-blob-root";
@@ -43,7 +43,7 @@
       opacity: 0.94,
     },
 
-    /** Cursor spotlight — undoes the photo mask locally */
+    /** Cursor spotlight, undoes the photo mask locally */
     reveal: {
       radiusPx: 102,
       softness: 0.45,

@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { useEffect } from "react";
 
-/** Default athletic / nature collage — replace with your own URLs */
+/** Default athletic / nature collage, replace with your own URLs */
 export const DEFAULT_COLLAGE_IMAGES = [
   "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80",
   "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80",
@@ -307,7 +307,7 @@ function BlobStage({
         <CollageLayer images={collageImages} reduced={reduced} />
       </motion.div>
 
-      {/* Dark liquid silhouette (metaball goo) — subtle depth on edges */}
+      {/* Dark liquid silhouette (metaball goo), subtle depth on edges */}
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-[0.88] mix-blend-multiply"
         style={{ filter: `url(#${gooId})` }}
@@ -331,7 +331,7 @@ function BlobStage({
         </div>
       </motion.div>
 
-      {/* Outer soft edge — blurred pseudo-metaball halo */}
+      {/* Outer soft edge, blurred pseudo-metaball halo */}
       <div
         className="pointer-events-none absolute inset-[-8%]"
         style={{

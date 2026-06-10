@@ -207,7 +207,7 @@ Insights/outcomes presented:
 URL: `https://heydavid.work/cards/new-project.html`
 
 Project framing:
-- Creating something new is one of the product's most critical moments. This project redesigns that path end-to-end — a creation modal, Prompt to Flow (describe-to-build), an in-builder AI assistant, and improved template discovery.
+- Creating something new is one of the product's most critical moments. This project redesigns that path end-to-end, a creation modal, Prompt to Flow (describe-to-build), an in-builder AI assistant, and improved template discovery.
 
 Project details:
 - Company: StackAI (YC W23)
@@ -215,7 +215,7 @@ Project details:
 - Role: Product Designer
 
 Discovery highlights:
-- The new project modal had flat hierarchy and weak affordance — buttons didn't feel interactive and copy didn't guide users.
+- The new project modal had flat hierarchy and weak affordance, buttons didn't feel interactive and copy didn't guide users.
 - Templates were buried; the category sidebar didn't read as a filter.
 - Prompt to Flow had no entry point, and AskAI in the builder was hard to find and understand.
 
@@ -232,16 +232,16 @@ Solution highlights:
 - Project setup checklist auto-opens on template load, surfaces missing connections/knowledge bases/config, and guides run/interface/publish before first run.
 
 Insights/outcomes presented:
-- The blank canvas is the real competitor — most drop-off comes from not knowing where to start.
+- The blank canvas is the real competitor, most drop-off comes from not knowing where to start.
 - When P2F is the primary action, builders frame the experience as "describe → generate → refine."
-- Templates need to be felt, not just listed — interactivity and clarity before commitment.
+- Templates need to be felt, not just listed, interactivity and clarity before commitment.
 - The gap between "open template" and "first successful run" was the real problem; the checklist makes the implicit explicit.
 
 ### 3) Organization Agent Library
 URL: `https://heydavid.work/cards/organization-agent-library.html`
 
 Project framing:
-- The Agent Grid is where employees discover and use their organization's AI workflows. This project covers its full evolution — from structure and curation to on-demand agents, background automations, and a chat-first entry point.
+- The Agent Grid is where employees discover and use their organization's AI workflows. This project covers its full evolution, from structure and curation to on-demand agents, background automations, and a chat-first entry point.
 
 Project details:
 - Company: StackAI (YC W23)
@@ -251,7 +251,7 @@ Project details:
 Discovery highlights:
 - The grid had no filtering, structure, or at-a-glance clarity; at scale it became an overwhelming, undifferentiated list.
 - No curation, access control, or branded feel as the customer's own product.
-- Trigger-based automations had no home — shoehorned into the same card pattern as on-demand agents.
+- Trigger-based automations had no home, shoehorned into the same card pattern as on-demand agents.
 
 Design process highlights:
 - Competitive research on internal app portals (Okta-style) and core model: builders curate, end users personalize, grid feels customer-owned.
@@ -265,10 +265,10 @@ Solution highlights:
 - Dedicated Automations screen for discover, configure/test, and manage/debug trigger-based workflows.
 
 Insights/outcomes presented:
-- The grid is evolving into an org-wide AI operating surface — chat, agents, and automations in one place.
-- Chat and agents are complementary — chat gives a faster on-ramp when users don't know which agent to pick.
-- Automations need their own UX contract — different states, failure modes, and ownership than on-demand agents.
-- The grid is a trust surface — white-labeling and curation are table stakes for enterprise adoption.
+- The grid is evolving into an org-wide AI operating surface, chat, agents, and automations in one place.
+- Chat and agents are complementary, chat gives a faster on-ramp when users don't know which agent to pick.
+- Automations need their own UX contract, different states, failure modes, and ownership than on-demand agents.
+- The grid is a trust surface, white-labeling and curation are table stakes for enterprise adoption.
 
 ### 4) Workflow Analytics and Agent Evaluator
 URL: `https://heydavid.work/cards/agent-evaluator.html`

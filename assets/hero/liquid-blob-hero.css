@@ -87,7 +87,7 @@
   mask-repeat: no-repeat;
 }
 
-/* White spotlight on top of photos — clipped to blob, erases mask locally */
+/* White spotlight on top of photos, clipped to blob, erases mask locally */
 .liquid-blob-reveal {
   position: absolute;
   inset: 0;

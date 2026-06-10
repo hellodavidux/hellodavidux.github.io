@@ -6,7 +6,7 @@ import {
 } from "../components/LiquidBlobHero";
 import "./hero.css";
 
-/** Customize overlay hero — swap images, sizes, or switch to mode="full" */
+/** Customize overlay hero, swap images, sizes, or switch to mode="full" */
 const HERO_CONFIG = {
   mode: "overlay" as const,
   collageImages: DEFAULT_COLLAGE_IMAGES,

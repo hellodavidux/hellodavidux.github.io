@@ -75,7 +75,7 @@
   }
 }
 
-/* Other Projects — last section; skip scroll fade so heading/cards stay visible */
+/* Other Projects, last section; skip scroll fade so heading/cards stay visible */
 #next-project .section-heading {
   opacity: 1;
   transform: translateY(0);
@@ -173,7 +173,7 @@
   }
 }
 
-/* Other Projects card titles — smaller on mobile */
+/* Other Projects card titles, smaller on mobile */
 @media (max-width: 767px) {
   #next-project {
     padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
@@ -238,7 +238,7 @@
   line-height: 1.5;
 }
 
-/* Badge section labels (DISCOVERY, DESIGN PROCESS, etc.) — smaller on mobile */
+/* Badge section labels (DISCOVERY, DESIGN PROCESS, etc.), smaller on mobile */
 @media (max-width: 767px) {
   h2.section-heading.inline-block,
   h3.section-heading.inline-block {

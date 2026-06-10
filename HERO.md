@@ -4,7 +4,7 @@ Podium-inspired metaball hero animation for the `#intro` section.
 
 ## Setup (no build required)
 
-The intro section loads **`assets/hero/liquid-blob-hero.js`** and **`liquid-blob-hero.css`** directly — refresh the page and you should see the animation.
+The intro section loads **`assets/hero/liquid-blob-hero.js`** and **`liquid-blob-hero.css`** directly, refresh the page and you should see the animation.
 
 ### Optional React build
 
