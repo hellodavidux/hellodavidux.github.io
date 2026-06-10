@@ -2,29 +2,56 @@
   cursor: pointer;
 }
 
-/* Subtle zoom on hover for project images (not before/after or comparison widgets) */
-@media (hover: hover) and (pointer: fine) {
-  img.image-animation.visible:hover,
-  .image-animation.visible > img:hover {
-    transform: scale(1.04);
+/* Subtle scale on hover for project images (desktop only) */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  img.image-animation.visible:not(.slide-image):not(.design-slide-image):hover {
+    transform: scale(1.02);
     transition: opacity 1s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Scale the frame so overflow:hidden does not crop into a zoom-in effect */
+  .image-animation.visible:not(.slider-container):not(.design-slider-container):not(.desktop-image-container):not(.design-desktop-image-container):not(.mobile-image):not(.design-mobile-image):has(> img):hover {
+    transform: scale(1.02);
+    transition: opacity 1s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .image-animation.visible:not(.slider-container):not(.design-slider-container):not(.desktop-image-container):not(.design-desktop-image-container):not(.mobile-image):not(.design-mobile-image):has(> img):hover > img {
+    transform: none;
+  }
+
+  /* Carousel slides: scale the image container, not the inner slide */
+  .desktop-image-container,
+  .design-desktop-image-container {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .desktop-image-container:has(.slide-image.active:hover),
+  .design-desktop-image-container:has(.design-slide-image.active:hover) {
+    transform: scale(1.02);
+  }
+
+  .desktop-image-container:has(.slide-image.active:hover) .slide-image.active,
+  .design-desktop-image-container:has(.design-slide-image.active:hover) .design-slide-image.active {
+    transform: none;
   }
 
   img.slide-image.active.image-animation.visible:hover,
   img.design-slide-image.active.image-animation.visible:hover {
-    transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
   }
 
   .before-after-container img.image-animation.visible:hover,
   .benchmark-panels img.image-animation.visible:hover {
-    transform: scale(1);
+    transform: none;
     transition: opacity 1s ease, transform 1s ease;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  img.image-animation.visible:hover,
-  .image-animation.visible > img:hover {
+  img.image-animation.visible:not(.slide-image):not(.design-slide-image):hover,
+  .image-animation.visible:has(> img):hover,
+  .desktop-image-container:has(.slide-image.active:hover),
+  .design-desktop-image-container:has(.design-slide-image.active:hover) {
     transform: scale(1);
   }
 }

@@ -5,7 +5,7 @@ const navbar = document.getElementById('navbar');
 const navbarLinks = document.querySelectorAll('.navbar-links');
 const rightNavLinks = navbar ? navbar.querySelector('div.flex.justify-end.items-center.gap-4') : null;
 const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"]') : null;
-const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-agentic-lifecycle"]') : null;
+const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-org-agent-library"]') : null;
 const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
 const navBookBtn = rightNavLinks ? rightNavLinks.querySelector('.nav-book-btn') : null;
 const DARK_NAV_SECTIONS = new Set(['project-agentic-lifecycle', 'project-org-agent-library', 'project1', 'project2']);
@@ -523,7 +523,7 @@ function setupIntroHeroCardsLink() {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         if (!isScrolling) {
-            navigateToSection(getSectionIndex('project-agentic-lifecycle'));
+            navigateToSection(getSectionIndex('project-org-agent-library'));
         }
     });
 
