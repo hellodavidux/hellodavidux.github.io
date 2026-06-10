@@ -500,3 +500,27 @@
     background-position: 0% 50%;
   }
 }
+
+/* Stay above navbar + full-bleed scrolling sections on mobile */
+.back-home {
+  z-index: 1000015 !important;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.back-home:hover {
+  -webkit-transform: scale(1.1) translateZ(0);
+  transform: scale(1.1) translateZ(0);
+}
+
+.back-home.visible {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@media (max-width: 767px) {
+  .back-home {
+    top: max(12px, calc(env(safe-area-inset-top, 0px) + 8px)) !important;
+    right: max(12px, calc(env(safe-area-inset-right, 0px) + 8px)) !important;
+  }
+}
