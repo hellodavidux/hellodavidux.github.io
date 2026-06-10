@@ -122,13 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
       scrollSpy.classList.remove('opacity-100', 'translate-y-0');
     }
 
-    // Back button stays visible once scrolled past the top, in either direction
-    if (scrollPosition > 800) {
-      backButton.classList.add('visible');
-    } else {
-      backButton.classList.remove('visible');
-    }
-    
     // Track active section for navigation highlighting
     let activeNavIndex = 0;
     let activeMainSection = null;
@@ -235,6 +228,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add scroll event handler
   window.addEventListener('scroll', handleScroll);
   
+  // Back button stays visible at all scroll positions
+  backButton.classList.add('visible');
+
   // Initialize on load
   handleScroll();
   
