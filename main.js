@@ -87,11 +87,34 @@ function playProjectCardVideo(video) {
   video.play().catch(() => {});
 }
 
+function isVideoInActiveSection(video) {
+  const section = video.closest('.section');
+  if (!section) return true;
+  const sectionIndex = Array.from(sections).indexOf(section);
+  return sectionIndex === currentSectionIndex;
+}
+
+function pauseProjectCardVideo(video) {
+  video.pause();
+  const lazySource = video.querySelector('source[data-src]');
+  if (lazySource && lazySource.getAttribute('src')) {
+    lazySource.removeAttribute('src');
+    video.removeAttribute('src');
+    video.load();
+  }
+}
+
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
     const isMobileOnly = video.classList.contains('md:hidden');
     const lazySource = video.querySelector('source[data-src]');
+    const inActiveSection = isVideoInActiveSection(video);
+
+    if (!inActiveSection) {
+      pauseProjectCardVideo(video);
+      return;
+    }
 
     if (isMobileOnly && !lazySource) {
       if (isDesktop) {
@@ -113,10 +136,7 @@ function syncProjectCardVideos() {
       }
       playProjectCardVideo(video);
     } else if (lazySource.getAttribute('src')) {
-      lazySource.removeAttribute('src');
-      video.pause();
-      video.removeAttribute('src');
-      video.load();
+      pauseProjectCardVideo(video);
     }
   });
 }
