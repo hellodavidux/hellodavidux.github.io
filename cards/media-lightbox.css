@@ -131,12 +131,14 @@
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
 }
 
-.media-lightbox__media-wrap img.media-lightbox__zoomable {
-  cursor: zoom-in;
-}
+@media (hover: hover) and (pointer: fine) {
+  .media-lightbox__media-wrap img.media-lightbox__zoomable {
+    cursor: zoom-in;
+  }
 
-.media-lightbox__media-wrap img.media-lightbox__zoomable.is-zoomed {
-  cursor: zoom-out;
+  .media-lightbox__media-wrap img.media-lightbox__zoomable.is-zoomed {
+    cursor: zoom-out;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -178,7 +180,7 @@
   right: 1rem;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: 9999px;
+  border-radius: 10px;
   font-size: 1.25rem;
 }
 

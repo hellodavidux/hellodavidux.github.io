@@ -113,18 +113,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Calculate if we're near the bottom of the page
     const isNearBottom = (documentHeight - (scrollPosition + windowHeight)) < bottomThreshold;
     
-    // Handle scroll spy and back button visibility
+    // Handle scroll spy visibility
     if (scrollPosition > 800 && !isNearBottom) {
       scrollSpy.classList.remove('opacity-0', 'translate-y-10');
       scrollSpy.classList.add('opacity-100', 'translate-y-0');
-      backButton.classList.add('visible');
     } else {
       scrollSpy.classList.add('opacity-0', 'translate-y-10');
       scrollSpy.classList.remove('opacity-100', 'translate-y-0');
-      // Only hide back button if we're at the top, not at the bottom
-      if (scrollPosition <= 800) {
-        backButton.classList.remove('visible');
-      }
+    }
+
+    // Back button stays visible once scrolled past the top, in either direction
+    if (scrollPosition > 800) {
+      backButton.classList.add('visible');
+    } else {
+      backButton.classList.remove('visible');
     }
     
     // Track active section for navigation highlighting

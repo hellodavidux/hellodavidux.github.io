@@ -238,6 +238,17 @@
   line-height: 1.5;
 }
 
+@media (max-width: 767px) {
+  .feature-header-row__title {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .feature-header-row__title br {
+    display: none;
+  }
+}
+
 /* Badge section labels (DISCOVERY, DESIGN PROCESS, etc.), smaller on mobile */
 @media (max-width: 767px) {
   h2.section-heading.inline-block,

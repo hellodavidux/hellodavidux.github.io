@@ -170,6 +170,11 @@
   }
 
   const ZOOM_SCALE = 2;
+  const DESKTOP_ZOOM_QUERY = '(hover: hover) and (pointer: fine)';
+
+  function isDesktopZoomEnabled() {
+    return window.matchMedia(DESKTOP_ZOOM_QUERY).matches;
+  }
 
   function resetImageZoom(image) {
     image.classList.remove('is-zoomed');
@@ -229,6 +234,10 @@
   }
 
   function setupImageZoom(image) {
+    if (!isDesktopZoomEnabled()) {
+      return;
+    }
+
     image.classList.add('media-lightbox__zoomable');
     image.addEventListener('click', (event) => toggleImageZoom(image, event));
   }

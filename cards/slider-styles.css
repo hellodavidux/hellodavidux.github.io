@@ -220,4 +220,8 @@
     margin-top: 0.75rem;
     display: block; /* Show only active mobile images */
   }
+
+  .slider-control-btn {
+    display: none !important;
+  }
 } 
