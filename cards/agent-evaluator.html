@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
+  <script src="../dot-cursor.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -77,31 +78,6 @@
     }
     .like-btn:hover {
       transform: scale(1.05);
-    }
-    .back-home {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: rgb(119 119 119 / 58%);
-      color: white;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .back-home:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-      transform: scale(1.1) translateY(0);
-    }
-    .back-home.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     #personas .persona-card {
       cursor: default;
@@ -136,13 +112,6 @@
         display: none !important;
       }
     }
-    @media (min-width: 768px) {
-      .back-home {
-        top: 50px;
-        right: 50px;
-      }
-    }
-    
     /* Slider control button styles */
     .slider-control-btn {
       background: none;
@@ -315,7 +284,7 @@
     </div>
   </nav>
   <!-- Close button to return to homepage -->
-  <a href="../index.html#project-agent-evaluator" class="back-home visible" id="back-home">
+  <a href="../index.html#project-agent-evaluator" class="back-home" id="back-home" aria-label="Close and return to projects">
     <i class="fas fa-times"></i>
   </a>
   
@@ -409,7 +378,7 @@
   <div id="personas" class="personas pt-24 p-4 md:p-16 lg:p-24 mx-auto bg-gray-950 text-gray-100">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">Discovery</h2>
+        <h2 class="text-4xl font-bold text-white section-heading">Discovery</h2>
       </div>
 
       <p class="text-gray-400 text-xs tracking-wide mb-4 text-left">Personas</p>
@@ -454,7 +423,7 @@
   <div id="design-process" class="design-process bg-white pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">DESIGN PROCESS</h2>
       </div>
       
       <div class="space-y-12 md:space-y-16 mb-12">
@@ -564,7 +533,7 @@
   <div id="solution" class="solution bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agent-evaluator/grey-dot-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white section-heading">SOLUTION</h2>
       </div>
       
       <div class="feature-header-row mb-6">
@@ -572,7 +541,7 @@
         <p class="text-white/80 animate-on-scroll delay-200 feature-header-row__text">Org-wide analytics with caller context, feedback filtering, and a simplified layout that puts debugging first.</p>
       </div>
 
-      <div class="w-full flex justify-center mb-12 video-animation md:bg-black md:p-4 md:rounded-2xl">
+      <div class="w-full flex justify-center mb-12 video-animation md:rounded-2xl">
         <video
           class="w-full md:rounded-xl"
           autoplay
@@ -625,7 +594,7 @@
  <div id="insights" class="pt-24 p-4 md:p-16 lg:p-24 mx-auto">
   <div class="max-w-5xl mx-auto">
     <div class="text-center">
-      <h2 class="text-3xl font-bold mb-8 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+      <h2 class="text-3xl font-bold mb-8 text-black section-heading">INSIGHTS</h2>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-8">

@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
+  <script src="../dot-cursor.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -78,31 +79,6 @@
     .like-btn:hover {
       transform: scale(1.05);
     }
-    .back-home {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: rgb(119 119 119 / 58%);
-      color: white;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .back-home:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-      transform: scale(1.1) translateY(0);
-    }
-    .back-home.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
     @media (max-width: 768px) {
       .left-card:hover, 
       .right-card:hover {
@@ -112,13 +88,6 @@
         display: none !important;
       }
     }
-    @media (min-width: 768px) {
-      .back-home {
-        top: 50px;
-        right: 50px;
-      }
-    }
-    
     /* Slider control button styles */
     .slider-control-btn {
       background: none;
@@ -190,7 +159,7 @@
     </div>
   </nav>
   <!-- Close button to return to homepage -->
-  <a href="../index.html#project2" class="back-home visible" id="back-home">
+  <a href="../index.html#project2" class="back-home" id="back-home" aria-label="Close and return to projects">
     <i class="fas fa-times"></i>
   </a>
   
@@ -314,7 +283,7 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
     <div class="max-w-5xl mx-auto">
       <!-- Section heading -->
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white section-heading">DISCOVERY</h2>
       </div>
       
       <h3 class="text-gray-300 text-l mb-4 tracking-wide animate-on-scroll md:w-1/2 mx-auto text-center">Research question
@@ -453,7 +422,7 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
   <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">DESIGN PROCESS</h2>
       </div>
       
  <!-- We wanted to know section -->
@@ -468,19 +437,15 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
       <!-- Design Process Slider -->
       <div class="mb-12">
         
-        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
-          <!-- Left side - Images (Desktop only) -->
+                        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
           <div class="md:w-1/2 relative design-desktop-image-container">
-            <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/project_2/brainstorm.png" alt="Team brainstorming session for Gen Z sports media concepts" >
-            <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/project_2/concept-validation.png" alt="Concept validation framework with key metrics and testing approach" >
-            <img id="design-desktop-image-2" class="w-full design-slide-image image-animation" src="images/project_2/tiktok.png" alt="TikTok ad design and landing page concept for user acquisition testing" >
+            <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/project_2/brainstorm.png" alt="Team brainstorming session for Gen Z sports media concepts">
+            <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/project_2/concept-validation.png" alt="Concept validation framework with key metrics and testing approach">
+            <img id="design-desktop-image-2" class="w-full design-slide-image image-animation" src="images/project_2/tiktok.png" alt="TikTok ad design and landing page concept for user acquisition testing">
           </div>
-          
-          <!-- Right side - Content -->
+
           <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
-            <!-- Headlines with vertical lines -->
             <div class="space-y-6">
-              <!-- Headline 1 -->
               <div id="design-headline-group-0" class="design-headline-group pl-6 relative animate-on-scroll">
                 <div id="design-progress-container-0" class="design-progress-container">
                   <div id="design-progress-0" class="design-progress-line"></div>
@@ -493,16 +458,14 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                     </button>
                   </div>
                   <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
-                    I organized a workshop where together with different stakeholders in the company, we brainstormed solutions to address these 2 opportunities by separate. 
+                    I organized a workshop where together with different stakeholders in the company, we brainstormed solutions to address these 2 opportunities by separate.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-0" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_2/brainstorm.png" alt="Team brainstorming session for Gen Z sports media concepts" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_2/brainstorm.png" alt="Team brainstorming session for Gen Z sports media concepts">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 2 -->
+
               <div id="design-headline-group-1" class="design-headline-group pl-6 relative animate-on-scroll delay-100">
                 <div id="design-progress-container-1" class="design-progress-container">
                   <div id="design-progress-1" class="design-progress-line"></div>
@@ -517,14 +480,12 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
                     We ran small scale tests with the concepts, and validated the assumptions for both concepts.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-1" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_2/concept-validation.png" alt="Concept validation framework with key metrics and testing approach" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_2/concept-validation.png" alt="Concept validation framework with key metrics and testing approach">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 3 -->
+
               <div id="design-headline-group-2" class="design-headline-group pl-6 relative animate-on-scroll delay-200">
                 <div id="design-progress-container-2" class="design-progress-container">
                   <div id="design-progress-2" class="design-progress-line"></div>
@@ -539,9 +500,8 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
                   <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
                     We created a TikTok ad and a painted door landing page to test the concepts with our target audience. The TikTok ad directed users to the landing page featuring a visual representation of the app, where they could sign up for beta access. This allowed us to collect contact details for follow-up interviews.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-2" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_2/tiktok.png" alt="TikTok ad design and landing page concept for user acquisition testing" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_2/tiktok.png" alt="TikTok ad design and landing page concept for user acquisition testing">
                   </div>
                 </div>
               </div>
@@ -556,7 +516,7 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
   <div id="solution" class="solution bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-color: #030712; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.22) 1.1px, transparent 1.1px); background-size: 18px 18px;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-4 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">SOLUTIONS</h2>
+        <h2 class="text-4xl font-bold mb-4 text-white section-heading">SOLUTIONS</h2>
       </div>
       
       <!-- We wanted to know section -->
@@ -647,7 +607,7 @@ As a design strategist in the Innovation Lab, I developed new sports media conce
  <div id="insights" class="pt-24 p-4 md:p-16 lg:p-24 mx-auto">
   <div class="max-w-5xl mx-auto">
     <div class="text-center">
-      <h2 class="text-3xl font-bold mb-8 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+      <h2 class="text-3xl font-bold mb-8 text-black section-heading">INSIGHTS</h2>
     </div>
     
    

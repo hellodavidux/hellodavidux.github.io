@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
+  <script src="../dot-cursor.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -78,31 +79,6 @@
     .like-btn:hover {
       transform: scale(1.05);
     }
-    .back-home {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: rgb(119 119 119 / 58%);
-      color: white;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .back-home:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-      transform: scale(1.1) translateY(0);
-    }
-    .back-home.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
     @media (max-width: 768px) {
       .left-card:hover, 
       .right-card:hover {
@@ -112,13 +88,6 @@
         display: none !important;
       }
     }
-    @media (min-width: 768px) {
-      .back-home {
-        top: 50px;
-        right: 50px;
-      }
-    }
-
     .slider-control-btn {
       background: none;
       border: none;
@@ -188,7 +157,7 @@
     </div>
   </nav>
   <!-- Close button to return to homepage -->
-  <a href="../index.html#project-agentic-lifecycle" class="back-home visible" id="back-home">
+  <a href="../index.html#project-agentic-lifecycle" class="back-home" id="back-home" aria-label="Close and return to projects">
     <i class="fas fa-times"></i>
   </a>
   
@@ -288,7 +257,7 @@
     <div class="max-w-5xl mx-auto">
       <!-- Section heading -->
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white section-heading">DISCOVERY</h2>
       </div>
       
       <div class="max-w-4xl mx-auto mb-12 space-y-8">
@@ -320,12 +289,12 @@
   <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">DESIGN PROCESS</h2>
       </div>
       
       <!-- Design Process Slider -->
       <div class="mb-12">
-        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
+                        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
           <div class="md:w-1/2 relative design-desktop-image-container">
             <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/agentic-lifecycle/benchmark.png" alt="Benchmark, GitBook and other product inspiration">
             <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/agentic-lifecycle/proposal%201.png" alt="Iteration 1, first design iteration">
@@ -425,7 +394,7 @@
   <div id="solution" class="solution bg-neutral-900 pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/agentic-lifecycle/grey-dot-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white section-heading">SOLUTION</h2>
       </div>
       
       <div class="max-w-5xl mx-auto mb-12 space-y-16">
@@ -528,7 +497,7 @@
  <div id="insights" class="bg-white pt-24 p-4 md:p-16 lg:p-24 mx-auto">
   <div class="max-w-5xl mx-auto">
     <div class="text-center">
-      <h2 class="text-3xl font-bold mb-8 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+      <h2 class="text-3xl font-bold mb-8 text-black section-heading">INSIGHTS</h2>
     </div>
     <div class="self-stretch inline-flex justify-start items-start gap-4 md:gap-12 flex-col md:flex-row content-start mt-8">
       <div class="flex-1 flex justify-start items-center gap-4">

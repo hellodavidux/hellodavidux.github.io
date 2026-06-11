@@ -249,8 +249,12 @@
   }
 }
 
-/* Badge section labels (DISCOVERY, DESIGN PROCESS, etc.), smaller on mobile */
+/* Section labels (DISCOVERY, DESIGN PROCESS, etc.) */
 @media (max-width: 767px) {
+  .text-center > h2.section-heading {
+    text-align: left;
+  }
+
   h2.section-heading.inline-block,
   h3.section-heading.inline-block {
     font-size: 1.5rem !important;
@@ -499,4 +503,39 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Floating close button — visible only after navbar scrolls away */
+.back-home {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(119 119 119 / 58%);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000020;
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.back-home:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.back-home.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-home.visible:hover {
+  transform: scale(1.1);
 }

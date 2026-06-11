@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
+  <script src="../dot-cursor.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -78,32 +79,6 @@
     .like-btn:hover {
       transform: scale(1.05);
     }
-    .back-home {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: rgb(119 119 119 / 58%);
-      color: white;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .back-home:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-      transform: scale(1.1) translateY(0);
-    }
-    .back-home.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
     /* Custom styles for project3 slider */
     .project3-slider .headline.active,
     .project3-slider .headline:not(.active),
@@ -132,13 +107,6 @@
         background-color: black !important;
       }
     }
-    @media (min-width: 768px) {
-      .back-home {
-        top: 50px;
-        right: 50px;
-      }
-    }
-    
     /* Slider control button styles */
     .slider-control-btn {
       background: none;
@@ -210,7 +178,7 @@
     </div>
   </nav>
   <!-- Close button to return to homepage -->
-  <a href="../index.html#project3" class="back-home visible" id="back-home">
+  <a href="../index.html#project3" class="back-home" id="back-home" aria-label="Close and return to projects">
     <i class="fas fa-times"></i>
   </a>
   
@@ -314,7 +282,7 @@
     <div class="max-w-5xl mx-auto">
       <!-- Section heading -->
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">DISCOVERY</h2>
       </div>
       
       <h3 class="text-gray-500 text-l mb-4 tracking-wide animate-on-scroll md:w-1/2 mx-auto text-center">Research Question
@@ -448,25 +416,21 @@
   <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto border-b border-gray-200">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">MVP PROCESS</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">MVP PROCESS</h2>
       </div>
       
       <!-- Design Process Slider -->
       <div class="mb-12">
-        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
-          <!-- Left side - Images (Desktop only) -->
+                        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
           <div class="md:w-1/2 relative design-desktop-image-container">
-            <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/project_3/BUSINESS-CANVAS.png" alt="Designing a Circular, Student-Centric Service - Business model canvas" >
-            <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/project_3/model.png" alt="The Business Blueprint - Service blueprint for Easy Semester" >
-            <img id="design-desktop-image-2" class="w-full design-slide-image image-animation" src="images/project_3/mvp.png" alt="Our MVP - Minimum viable product of rental service" >
-            <img id="design-desktop-image-3" class="w-full design-slide-image image-animation" src="images/project_3/delivery.png" alt="The Website We Built - Easy Semester web platform" >
+            <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/project_3/BUSINESS-CANVAS.png" alt="Designing a Circular, Student-Centric Service - Business model canvas">
+            <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/project_3/model.png" alt="The Business Blueprint - Service blueprint for Easy Semester">
+            <img id="design-desktop-image-2" class="w-full design-slide-image image-animation" src="images/project_3/mvp.png" alt="Our MVP - Minimum viable product of rental service">
+            <img id="design-desktop-image-3" class="w-full design-slide-image image-animation" src="images/project_3/delivery.png" alt="The Website We Built - Easy Semester web platform">
           </div>
-          
-          <!-- Right side - Content -->
+
           <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
-            <!-- Headlines with vertical lines -->
             <div class="space-y-6">
-              <!-- Headline 1 -->
               <div id="design-headline-group-0" class="design-headline-group pl-6 relative animate-on-scroll">
                 <div id="design-progress-container-0" class="design-progress-container">
                   <div id="design-progress-0" class="design-progress-line"></div>
@@ -481,14 +445,12 @@
                   <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
                     We used the Business Model Canvas to map out our value proposition, key partners, activities, resources, channels, customer relationships, cost structure, and revenue streams, ensuring a holistic and scalable solution.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-0" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/BUSINESS-CANVAS.png" alt="Designing a Circular, Student-Centric Service - Business model canvas" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/BUSINESS-CANVAS.png" alt="Designing a Circular, Student-Centric Service - Business model canvas">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 2 -->
+
               <div id="design-headline-group-1" class="design-headline-group pl-6 relative animate-on-scroll delay-100">
                 <div id="design-progress-container-1" class="design-progress-container">
                   <div id="design-progress-1" class="design-progress-line"></div>
@@ -501,15 +463,14 @@
                     </button>
                   </div>
                   <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
-                    The plan was to reuse material from leaving exchange students, and sell it to incoming students. We reached out to our university housing office, but they didn't want to collaborate, as they were selling their own new linen packs. </div>
-                  <!-- Mobile image -->
+                    The plan was to reuse material from leaving exchange students, and sell it to incoming students. We reached out to our university housing office, but they didn't want to collaborate, as they were selling their own new linen packs.
+                  </div>
                   <div id="design-mobile-image-1" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/model.png" alt="The Business Blueprint - Service blueprint for Easy Semester" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/model.png" alt="The Business Blueprint - Service blueprint for Easy Semester">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 3 -->
+
               <div id="design-headline-group-2" class="design-headline-group pl-6 relative animate-on-scroll delay-200">
                 <div id="design-progress-container-2" class="design-progress-container">
                   <div id="design-progress-2" class="design-progress-line"></div>
@@ -524,14 +485,12 @@
                   <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
                     A simple e-commerce site allowed students to reserve linen packs before arrival. We sent 800 emails to exchange students promoting our service. We got the email addresses by figuring out the university email structure.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-2" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/mvp.png" alt="Our MVP - Minimum viable product of rental service" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/mvp.png" alt="Our MVP - Minimum viable product of rental service">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 4 -->
+
               <div id="design-headline-group-3" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
                 <div id="design-progress-container-3" class="design-progress-container">
                   <div id="design-progress-3" class="design-progress-line"></div>
@@ -545,11 +504,9 @@
                   </div>
                   <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
                     We launched a minimum viable product by collecting donated linens, preparing rental packs, building a basic website for orders, and managing logistics and deliveries ourselves, primarily by bike and GreenMobility
-
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-3" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/delivery.png" alt="The Website We Built - Easy Semester web platform" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_3/delivery.png" alt="The Website We Built - Easy Semester web platform">
                   </div>
                 </div>
               </div>
@@ -565,7 +522,7 @@
  <div id="insights" class="py-24 p-4 md:p-16 lg:p-24 mx-auto">
   <div class="max-w-5xl mx-auto">
     <div class="text-center">
-      <h2 class="text-3xl font-bold mb-8 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+      <h2 class="text-3xl font-bold mb-8 text-black section-heading">INSIGHTS</h2>
     </div>
     
     <div class="self-stretch inline-flex justify-start items-start gap-4 md:gap-12 flex-col md:flex-row content-start mt-8">

@@ -4,6 +4,10 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+  if (typeof setupDotCursor === 'function') {
+    setupDotCursor();
+  }
+
   // Get references to DOM elements
   const navItems = document.querySelectorAll('.scroll-spy-section');
   const mainSections = Array.from(navItems)
@@ -23,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const scrollSpy = document.getElementById('scroll-spy');
   const progressIndicator = document.getElementById('progress-indicator');
   const backButton = document.getElementById('back-home');
+
+  if (scrollSpy) {
+    scrollSpy.style.display = 'none';
+  }
   
   function navigateToHome() {
     window.location.href = backButton.getAttribute('href');
@@ -101,27 +109,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    const bottomThreshold = 500; // Threshold from bottom in pixels
-    
     // Handle navbar visibility - only show at top of page
     if (scrollPosition > 50) {
       navbar.style.transform = 'translateY(-100%)';
+      backButton.classList.add('visible');
     } else {
       navbar.style.transform = 'translateY(0)';
+      backButton.classList.remove('visible');
     }
     
-    // Calculate if we're near the bottom of the page
-    const isNearBottom = (documentHeight - (scrollPosition + windowHeight)) < bottomThreshold;
-    
-    // Handle scroll spy visibility
-    if (scrollPosition > 800 && !isNearBottom) {
-      scrollSpy.classList.remove('opacity-0', 'translate-y-10');
-      scrollSpy.classList.add('opacity-100', 'translate-y-0');
-    } else {
-      scrollSpy.classList.add('opacity-0', 'translate-y-10');
-      scrollSpy.classList.remove('opacity-100', 'translate-y-0');
-    }
-
     // Track active section for navigation highlighting
     let activeNavIndex = 0;
     let activeMainSection = null;
@@ -206,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Calculate final progress width
         const progressWidth = ((adjustedSectionIndex + solutionProgress) / progressSectionCount) * 100;
-        progressIndicator.style.width = `${progressWidth}%`;
+        if (progressIndicator) progressIndicator.style.width = `${progressWidth}%`;
         return; // Exit early since we've calculated the width
       }
       else if (sectionId === 'insights') {
@@ -221,16 +217,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Calculate final progress width
       const progressWidth = ((adjustedSectionIndex + clampedProgress) / progressSectionCount) * 100;
-      progressIndicator.style.width = `${progressWidth}%`;
+      if (progressIndicator) progressIndicator.style.width = `${progressWidth}%`;
     }
   }
   
   // Add scroll event handler
   window.addEventListener('scroll', handleScroll);
   
-  // Back button stays visible at all scroll positions
-  backButton.classList.add('visible');
-
   // Initialize on load
   handleScroll();
   

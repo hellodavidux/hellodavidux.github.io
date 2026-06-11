@@ -148,6 +148,123 @@ const observeProjectCards = () => {
   });
 };
 
+function revealIntroHeroSubheadline() {
+    const wrap = document.querySelector('.intro-hero-subheadline-wrap');
+    if (!wrap) return;
+
+    wrap.classList.remove('intro-hero-subheadline-wrap--waiting');
+    wrap.classList.add('fade-in-up');
+}
+
+function setupIntroHeroTypewriter() {
+    const headline = document.querySelector('.intro-hero-headline');
+    if (!headline) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+        revealIntroHeroSubheadline();
+        return;
+    }
+
+    const segments = [];
+
+    function collectSegments(node) {
+        node.childNodes.forEach(child => {
+            if (child.nodeType === Node.TEXT_NODE) {
+                const full = child.textContent;
+                if (!full.trim()) return;
+                segments.push({ type: 'text', node: child, full });
+            } else if (child.nodeType === Node.ELEMENT_NODE) {
+                if (child.classList.contains('intro-hero-sep')) {
+                    segments.push({ type: 'reveal', element: child });
+                } else {
+                    collectSegments(child);
+                }
+            }
+        });
+    }
+
+    collectSegments(headline);
+    if (!segments.length) return;
+
+    const sizer = headline.cloneNode(true);
+    sizer.classList.add('intro-hero-headline-sizer');
+    sizer.setAttribute('aria-hidden', 'true');
+    headline.insertAdjacentElement('afterend', sizer);
+
+    const syncHeadlineHeight = () => {
+        const height = sizer.offsetHeight;
+        if (height) headline.style.minHeight = `${height}px`;
+    };
+
+    syncHeadlineHeight();
+    new ResizeObserver(syncHeadlineHeight).observe(sizer);
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncHeadlineHeight);
+    }
+
+    segments.forEach(segment => {
+        if (segment.type === 'text') {
+            segment.node.textContent = '';
+        } else if (segment.type === 'reveal') {
+            segment.element.classList.add('intro-hero-sep--hidden');
+        }
+    });
+
+    const charDelay = 36;
+    const startDelay = 200;
+    let segIndex = 0;
+    let charIndex = 0;
+
+    const cursor = document.createElement('span');
+    cursor.className = 'intro-hero-typewriter-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+
+    function placeCursor(segment) {
+        if (!segment || segment.type !== 'text') return;
+        segment.node.parentNode.appendChild(cursor);
+    }
+
+    function removeCursor() {
+        cursor.remove();
+    }
+
+    function typeNext() {
+        if (segIndex >= segments.length) {
+            removeCursor();
+            syncHeadlineHeight();
+            sizer.remove();
+            revealIntroHeroSubheadline();
+            return;
+        }
+
+        const segment = segments[segIndex];
+
+        if (segment.type === 'reveal') {
+            removeCursor();
+            segment.element.classList.remove('intro-hero-sep--hidden');
+            segIndex += 1;
+            setTimeout(typeNext, charDelay * 2);
+            return;
+        }
+
+        placeCursor(segment);
+
+        if (charIndex < segment.full.length) {
+            segment.node.textContent += segment.full[charIndex];
+            charIndex += 1;
+            setTimeout(typeNext, charDelay);
+            return;
+        }
+
+        segIndex += 1;
+        charIndex = 0;
+        typeNext();
+    }
+
+    setTimeout(typeNext, startDelay);
+}
+
 function setupIntroHeroHover() {
     const headline = document.querySelector('.intro-hero-headline');
     const subheadline = document.querySelector('.intro-hero-subheadline');
@@ -294,7 +411,7 @@ function setupCursorFollowingTooltip(targets, text, options) {
 const INTRO_COMPANY_LOGO_TOOLTIPS = {
     stackai: 'AI agent no-code workflow builder for Enterprises',
     jabra: 'Ecommerce digital design for Audio Equipment',
-    asana: 'Acquired StackAI, joined the team as designer',
+    asana: 'Acquired StackAI in 2026. I joined Asana as the StackAI Product Design Lead',
     lenus: 'Fitness & Health tools and dashboards for coaches and their clients',
     bc: 'Sports Media, Fantasy and iGaming, and Affiliate Marketing'
 };
@@ -534,7 +651,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    setupIntroHeroTypewriter();
     setupIntroHeroHover();
+    setupDotCursor();
     setupIntroHeroCardsLink();
     setupAboutPhotoStackTooltips();
     aboutHighlightController = setupAboutTextHighlight();

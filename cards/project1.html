@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
+  <script src="../dot-cursor.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -78,31 +79,6 @@
     .like-btn:hover {
       transform: scale(1.05);
     }
-    .back-home {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background-color: rgb(119 119 119 / 58%);
-      color: white;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: all 0.3s ease;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .back-home:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-      transform: scale(1.1) translateY(0);
-    }
-    .back-home.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
     @media (max-width: 768px) {
       .left-card:hover, 
       .right-card:hover {
@@ -112,13 +88,6 @@
         display: none !important;
       }
     }
-    @media (min-width: 768px) {
-      .back-home {
-        top: 50px;
-        right: 50px;
-      }
-    }
-    
     /* Slider control button styles */
     .slider-control-btn {
       background: none;
@@ -231,7 +200,7 @@
     </div>
   </nav>
   <!-- Close button to return to homepage -->
-  <a href="../index.html#project1" class="back-home visible" id="back-home">
+  <a href="../index.html#project1" class="back-home" id="back-home" aria-label="Close and return to projects">
     <i class="fas fa-times"></i>
   </a>
   
@@ -334,7 +303,7 @@
     <div class="max-w-5xl mx-auto">
       <!-- Section heading -->
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">DISCOVERY</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white section-heading">DISCOVERY</h2>
       </div>
       
       <h3 class="text-gray-300 text-l mb-8 tracking-wide animate-on-scroll md:w-1/2 mx-auto text-center">Research questions
@@ -495,26 +464,22 @@
   <div id="design-process" class="design-process pt-24 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">DESIGN PROCESS</h2>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">DESIGN PROCESS</h2>
       </div>
       
       <!-- Design Process Slider -->
       <div class="mb-12">
         
-        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
-          <!-- Left side - Images (Desktop only) -->
+                        <div class="design-slider-container flex flex-col md:flex-row rounded-xl">
           <div class="md:w-1/2 relative design-desktop-image-container">
-            <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/project_1/designprocess1.png" alt="Brainstorming Session - Team collaborating on initial solution ideas" >
-            <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/project_1/designprocess2.png" alt="Validation Strategy - Framework for testing key assumptions with users" >
-            <img id="design-desktop-image-2" class="w-full design-slide-image image-animation" src="images/project_1/designprocess3.png" alt="Wireframing Process - Early interface designs for improved workout builder" >
-            <img id="design-desktop-image-3" class="w-full design-slide-image image-animation" src="images/project_1/designprocess4.png" alt="Usability Testing - Coach providing feedback on prototype interface" >
+            <img id="design-desktop-image-0" class="w-full design-slide-image active image-animation" src="images/project_1/designprocess1.png" alt="Brainstorming Session - Team collaborating on initial solution ideas">
+            <img id="design-desktop-image-1" class="w-full design-slide-image image-animation" src="images/project_1/designprocess2.png" alt="Validation Strategy - Framework for testing key assumptions with users">
+            <img id="design-desktop-image-2" class="w-full design-slide-image image-animation" src="images/project_1/designprocess3.png" alt="Wireframing Process - Early interface designs for improved workout builder">
+            <img id="design-desktop-image-3" class="w-full design-slide-image image-animation" src="images/project_1/designprocess4.png" alt="Usability Testing - Coach providing feedback on prototype interface">
           </div>
-          
-          <!-- Right side - Content -->
+
           <div class="md:w-1/2 p-6 md:p-8 md:pl-12">
-            <!-- Headlines with vertical lines -->
             <div class="space-y-6">
-              <!-- Headline 1 -->
               <div id="design-headline-group-0" class="design-headline-group pl-6 relative animate-on-scroll">
                 <div id="design-progress-container-0" class="design-progress-container">
                   <div id="design-progress-0" class="design-progress-line"></div>
@@ -529,14 +494,12 @@
                   <div id="design-content-0" class="design-headline-content text-gray-600 text-sm">
                     I organized a workshop where the team sketched solutions to address our most critical, prioritized user opportunities.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-0" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess1.png" alt="Brainstorming Session - Team collaborating on initial solution ideas" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess1.png" alt="Brainstorming Session - Team collaborating on initial solution ideas">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 2 -->
+
               <div id="design-headline-group-1" class="design-headline-group pl-6 relative animate-on-scroll delay-100">
                 <div id="design-progress-container-1" class="design-progress-container">
                   <div id="design-progress-1" class="design-progress-line"></div>
@@ -551,21 +514,19 @@
                   <div id="design-content-1" class="design-headline-content text-gray-600 text-sm">
                     We created initial Figma wireframes and ran a team session where everyone gave feedback using "I like, I wish, I wonder" sticky notes.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-1" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess2.png" alt="Validation Strategy - Framework for testing key assumptions with users" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess2.png" alt="Validation Strategy - Framework for testing key assumptions with users">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 3 -->
+
               <div id="design-headline-group-2" class="design-headline-group pl-6 relative animate-on-scroll delay-200">
                 <div id="design-progress-container-2" class="design-progress-container">
                   <div id="design-progress-2" class="design-progress-line"></div>
                 </div>
                 <div>
                   <div class="flex items-center gap-2">
-                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. Listing and prioritizing assumptions </h3>
+                    <h3 id="design-headline-2" class="design-headline text-xl font-medium">3. Listing and prioritizing assumptions</h3>
                     <button class="slider-control-btn" data-slider="design" title="Pause/Resume auto-rotation">
                       <i class="fas fa-pause text-xs opacity-60 hover:opacity-100 transition-opacity"></i>
                     </button>
@@ -573,14 +534,12 @@
                   <div id="design-content-2" class="design-headline-content text-gray-600 text-sm">
                     We identified and ranked the key assumptions behind our solutions to test what must be true for the solution to succeed.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-2" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess3.png" alt="Wireframing Process - Early interface designs for improved workout builder" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess3.png" alt="Wireframing Process - Early interface designs for improved workout builder">
                   </div>
                 </div>
               </div>
-              
-              <!-- Headline 4 -->
+
               <div id="design-headline-group-3" class="design-headline-group pl-6 relative animate-on-scroll delay-300">
                 <div id="design-progress-container-3" class="design-progress-container">
                   <div id="design-progress-3" class="design-progress-line"></div>
@@ -595,9 +554,8 @@
                   <div id="design-content-3" class="design-headline-content text-gray-600 text-sm">
                     We tested critical assumptions directly with coaches, using their feedback to refine and improve our designs.
                   </div>
-                  <!-- Mobile image -->
                   <div id="design-mobile-image-3" class="design-mobile-image">
-                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess4.png" alt="Usability Testing - Coach providing feedback on prototype interface" >
+                    <img class="w-full h-auto object-cover rounded-lg image-animation" src="images/project_1/designprocess4.png" alt="Usability Testing - Coach providing feedback on prototype interface">
                   </div>
                 </div>
               </div>
@@ -612,7 +570,7 @@
   <div id="solution" class="solution bg-[#1E2F2F] pt-24 p-4 md:p-16 lg:p-24 mx-auto" style="background-image: url('images/project_1/grey-square-bg.svg'); background-repeat: repeat;">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h2 class="text-4xl font-bold mb-16 text-white border border-white bg-transparent px-6 py-2 rounded inline-block section-heading">SOLUTION</h2>
+        <h2 class="text-4xl font-bold mb-16 text-white section-heading">SOLUTION</h2>
       </div>
       
       <!-- We wanted to know section -->
@@ -732,7 +690,7 @@
  <div id="insights" class="pt-24 p-4 md:p-16 lg:p-24 mx-auto">
   <div class="max-w-5xl mx-auto">
     <div class="text-center">
-      <h2 class="text-3xl font-bold mb-8 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">INSIGHTS</h2>
+      <h2 class="text-3xl font-bold mb-8 text-black section-heading">INSIGHTS</h2>
     </div>
     
     <div class="md:h-[52px]">

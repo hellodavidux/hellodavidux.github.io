@@ -205,6 +205,16 @@
   .slider-container, .design-slider-container {
     background-color: transparent;
   }
+
+  .slider-container > div:not(.desktop-image-container),
+  .design-slider-container > div:not(.design-desktop-image-container) {
+    padding: 0.25rem 0 !important;
+  }
+
+  .headline-group,
+  .design-headline-group {
+    padding-left: 1rem;
+  }
   
   .mobile-image, .design-mobile-image {
     max-height: 0;
