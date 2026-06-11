@@ -13,11 +13,6 @@ body:has(#fullpage) {
   :root {
     --site-padding-x: 2rem;
   }
-
-  .navbar-inner {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 }
 
 html {
@@ -52,6 +47,14 @@ body {
   padding-right: 1rem;
 }
 
+@media (min-width: 768px) {
+  .navbar-inner,
+  .intro-hero-stack {
+    padding-left: var(--site-padding-x);
+    padding-right: var(--site-padding-x);
+  }
+}
+
 .intro-hero-stack {
   display: flex;
   flex: 1 1 0%;
@@ -60,11 +63,90 @@ body {
   justify-content: center;
   gap: 2.5rem;
   min-height: 0;
-  position: relative;
-  isolation: isolate;
 }
 
-.intro-hero-stack::before,
+body:has(#fullpage) #intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(150, 158, 170, 0.62) 1.15px, transparent 1.15px);
+  background-size: 21px 21px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 48%,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.4) 46%,
+    rgba(0, 0, 0, 0.4) 64%,
+    rgba(0, 0, 0, 0.22) 82%,
+    transparent 96%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 48%,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.4) 46%,
+    rgba(0, 0, 0, 0.4) 64%,
+    rgba(0, 0, 0, 0.22) 82%,
+    transparent 96%
+  );
+}
+
+body:has(#fullpage) #intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 48% 54% at 50% 44%,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(255, 255, 255, 0.14) 40%,
+    transparent 66%
+  );
+}
+
+@media (min-width: 768px) {
+  body:has(#fullpage) #intro::before {
+    -webkit-mask-image: radial-gradient(
+      ellipse 140% 90% at 50% 48%,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.18) 16%,
+      rgba(0, 0, 0, 0.4) 38%,
+      rgba(0, 0, 0, 0.4) 54%,
+      rgba(0, 0, 0, 0.32) 68%,
+      rgba(0, 0, 0, 0.16) 84%,
+      transparent 96%
+    );
+    mask-image: radial-gradient(
+      ellipse 140% 90% at 50% 48%,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.18) 16%,
+      rgba(0, 0, 0, 0.4) 38%,
+      rgba(0, 0, 0, 0.4) 54%,
+      rgba(0, 0, 0, 0.32) 68%,
+      rgba(0, 0, 0, 0.16) 84%,
+      transparent 96%
+    );
+  }
+
+  body:has(#fullpage) #intro::after {
+    background: radial-gradient(
+      ellipse 58% 60% at 50% 44%,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.12) 44%,
+      transparent 72%
+    );
+  }
+}
+
+body:has(#fullpage) #intro > * {
+  position: relative;
+  z-index: 1;
+}
+
 #contact::before {
   content: '';
   position: absolute;
@@ -90,7 +172,6 @@ body {
   );
 }
 
-.intro-hero-stack > *,
 #contact > * {
   position: relative;
   z-index: 1;
@@ -819,6 +900,16 @@ body:has(#fullpage) #contact {
   background-color: #f0f1f3;
 }
 
+body:has(#fullpage) #intro {
+  isolation: isolate;
+  background-image: radial-gradient(
+    ellipse 75% 78% at 50% 42%,
+    #ffffff 0%,
+    #fafbfc 48%,
+    #f0f1f3 100%
+  );
+}
+
 /* Project pages, breathing room below fixed navbar before title */
 #intro.intro {
   padding-top: 8rem;
@@ -834,15 +925,6 @@ body:has(#fullpage) #contact {
   #intro.intro {
     padding-top: 9rem;
   }
-}
-
-body:has(#fullpage) #intro {
-  background-image: radial-gradient(
-    ellipse 90% 80% at 50% 42%,
-    #ffffff 0%,
-    #f9fafb 55%,
-    #f0f1f3 100%
-  );
 }
 
 /* Homepage hero cards: let default shadows render outside the stack */
