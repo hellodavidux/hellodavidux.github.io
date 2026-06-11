@@ -673,6 +673,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupIntroHeroTypewriter();
     setupIntroHeroHover();
     setupDotCursor();
+    setupIntroDotGrid();
     setupIntroHeroCardsLink();
     setupAboutPhotoStackTooltips();
     aboutHighlightController = setupAboutTextHighlight();

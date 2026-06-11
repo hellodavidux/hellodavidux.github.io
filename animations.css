@@ -65,6 +65,45 @@ body {
   min-height: 0;
 }
 
+body:has(#fullpage) #intro > .intro-dot-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: auto;
+  height: auto;
+}
+
+.intro-dot-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 48%,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.4) 46%,
+    rgba(0, 0, 0, 0.4) 64%,
+    rgba(0, 0, 0, 0.22) 82%,
+    transparent 96%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 48%,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.4) 46%,
+    rgba(0, 0, 0, 0.4) 64%,
+    rgba(0, 0, 0, 0.22) 82%,
+    transparent 96%
+  );
+}
+
+.intro-dot-grid__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 body:has(#fullpage) #intro::before {
   content: '';
   position: absolute;
@@ -94,6 +133,10 @@ body:has(#fullpage) #intro::before {
   );
 }
 
+body:has(#fullpage) #intro.intro-dot-grid-active::before {
+  opacity: 0;
+}
+
 body:has(#fullpage) #intro::after {
   content: '';
   position: absolute;
@@ -109,25 +152,48 @@ body:has(#fullpage) #intro::after {
 }
 
 @media (min-width: 768px) {
-  body:has(#fullpage) #intro::before {
+  .intro-dot-grid {
     -webkit-mask-image: radial-gradient(
       ellipse 140% 90% at 50% 48%,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.18) 16%,
-      rgba(0, 0, 0, 0.4) 38%,
-      rgba(0, 0, 0, 0.4) 54%,
-      rgba(0, 0, 0, 0.32) 68%,
-      rgba(0, 0, 0, 0.16) 84%,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.24) 16%,
+      rgba(0, 0, 0, 0.48) 38%,
+      rgba(0, 0, 0, 0.48) 54%,
+      rgba(0, 0, 0, 0.38) 68%,
+      rgba(0, 0, 0, 0.2) 84%,
       transparent 96%
     );
     mask-image: radial-gradient(
       ellipse 140% 90% at 50% 48%,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.18) 16%,
-      rgba(0, 0, 0, 0.4) 38%,
-      rgba(0, 0, 0, 0.4) 54%,
-      rgba(0, 0, 0, 0.32) 68%,
-      rgba(0, 0, 0, 0.16) 84%,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.24) 16%,
+      rgba(0, 0, 0, 0.48) 38%,
+      rgba(0, 0, 0, 0.48) 54%,
+      rgba(0, 0, 0, 0.38) 68%,
+      rgba(0, 0, 0, 0.2) 84%,
+      transparent 96%
+    );
+  }
+
+  body:has(#fullpage) #intro::before {
+    -webkit-mask-image: radial-gradient(
+      ellipse 140% 90% at 50% 48%,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.24) 16%,
+      rgba(0, 0, 0, 0.48) 38%,
+      rgba(0, 0, 0, 0.48) 54%,
+      rgba(0, 0, 0, 0.38) 68%,
+      rgba(0, 0, 0, 0.2) 84%,
+      transparent 96%
+    );
+    mask-image: radial-gradient(
+      ellipse 140% 90% at 50% 48%,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.24) 16%,
+      rgba(0, 0, 0, 0.48) 38%,
+      rgba(0, 0, 0, 0.48) 54%,
+      rgba(0, 0, 0, 0.38) 68%,
+      rgba(0, 0, 0, 0.2) 84%,
       transparent 96%
     );
   }
@@ -135,16 +201,49 @@ body:has(#fullpage) #intro::after {
   body:has(#fullpage) #intro::after {
     background: radial-gradient(
       ellipse 58% 60% at 50% 44%,
-      rgba(255, 255, 255, 0.34) 0%,
-      rgba(255, 255, 255, 0.12) 44%,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.1) 44%,
       transparent 72%
     );
   }
 }
 
-body:has(#fullpage) #intro > * {
+body:has(#fullpage) #intro > *:not(.intro-dot-grid) {
   position: relative;
   z-index: 1;
+}
+
+body:has(#fullpage) #contact > .intro-dot-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  -webkit-mask-image: radial-gradient(
+    ellipse 130% 115% at 50% 50%,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.68) 38%,
+    rgba(0, 0, 0, 0.68) 62%,
+    rgba(0, 0, 0, 0.42) 90%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 130% 115% at 50% 50%,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.68) 38%,
+    rgba(0, 0, 0, 0.68) 62%,
+    rgba(0, 0, 0, 0.42) 90%,
+    transparent 100%
+  );
+}
+
+body:has(#fullpage) #contact > *:not(.intro-dot-grid) {
+  position: relative;
+  z-index: 1;
+}
+
+body:has(#fullpage) #contact.about-dot-grid-active::before {
+  opacity: 0;
 }
 
 #contact::before {
@@ -172,7 +271,7 @@ body:has(#fullpage) #intro > * {
   );
 }
 
-#contact > * {
+#contact > *:not(.intro-dot-grid) {
   position: relative;
   z-index: 1;
 }
