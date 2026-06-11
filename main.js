@@ -104,6 +104,35 @@ function pauseProjectCardVideo(video) {
   }
 }
 
+function playVideosInSection(section) {
+  const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
+  section.querySelectorAll('.projectcard video').forEach((video) => {
+    const isMobileOnly = video.classList.contains('md:hidden');
+    const lazySource = video.querySelector('source[data-src]');
+
+    if (isMobileOnly && !lazySource) {
+      if (!isDesktop) playProjectCardVideo(video);
+      return;
+    }
+
+    if (!lazySource) return;
+
+    const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
+    if (shouldPlay) {
+      if (!lazySource.getAttribute('src')) {
+        lazySource.setAttribute('src', lazySource.dataset.src);
+        video.load();
+      }
+      playProjectCardVideo(video);
+    }
+  });
+}
+
+function primeSectionVideosForNavigation(targetIndex) {
+  if (targetIndex < 0 || targetIndex >= sections.length) return;
+  playVideosInSection(sections[targetIndex]);
+}
+
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
@@ -663,7 +692,18 @@ window.addEventListener('touchend', function(e) {
     const threshold = isActiveContactSection() && atScrollEdge ? 35 : touchThreshold;
 
     if (Math.abs(deltaY) > threshold) {
-        handleScroll(deltaY > 0);
+        const scrollDown = deltaY > 0;
+        const targetIndex = scrollDown
+            ? Math.min(currentSectionIndex + 1, sections.length - 1)
+            : Math.max(currentSectionIndex - 1, 0);
+
+        if (window.VideoAutoplay) {
+            window.VideoAutoplay.unlockFromUserGesture();
+        }
+        if (targetIndex !== currentSectionIndex) {
+            primeSectionVideosForNavigation(targetIndex);
+        }
+        handleScroll(scrollDown);
     }
 });
 
@@ -730,6 +770,11 @@ function navigateToSection(index) {
     } else if (index >= sections.length) {
         index = sections.length - 1;
     }
+
+    if (window.VideoAutoplay) {
+        window.VideoAutoplay.unlockFromUserGesture();
+    }
+    primeSectionVideosForNavigation(index);
 
     // Set scrolling state and update current section index
     isScrolling = true;

@@ -228,9 +228,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add scroll event handler
   window.addEventListener('scroll', handleScroll);
   
-  // Back button stays visible at all scroll positions, above scrolling content
+  // Back button stays visible at all scroll positions
   backButton.classList.add('visible');
-  document.body.appendChild(backButton);
 
   // Initialize on load
   handleScroll();
