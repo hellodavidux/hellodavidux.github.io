@@ -13,6 +13,11 @@ body:has(#fullpage) {
   :root {
     --site-padding-x: 2rem;
   }
+
+  .navbar-inner {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 html {
@@ -28,7 +33,6 @@ body {
 }
 
 .site-container,
-.navbar-inner,
 .intro-hero-stack {
   width: 100%;
   max-width: var(--site-max-width);
@@ -36,6 +40,16 @@ body {
   margin-right: auto;
   padding-left: var(--site-padding-x);
   padding-right: var(--site-padding-x);
+}
+
+.navbar-inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .intro-hero-stack {
@@ -103,10 +117,6 @@ body {
     justify-content: flex-end;
     margin-left: auto;
   }
-}
-
-.navbar-inner {
-  position: relative;
 }
 
 /* Navbar CTA, overrides Tailwind preflight (transparent bg, zero padding on button) */
@@ -1275,8 +1285,8 @@ body.page-agent-evaluator .navbar-fixed {
 
   .intro-content {
     text-align: left;
-    padding-left: var(--site-padding-x);
-    padding-right: var(--site-padding-x);
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .intro-hero-cards {
