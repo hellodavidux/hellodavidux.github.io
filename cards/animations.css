@@ -526,8 +526,17 @@
   transform: translateY(-8px);
 }
 
+.back-home i {
+  display: inline-block;
+  line-height: 1;
+}
+
 .back-home:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.back-home:hover i {
+  animation: back-home-spin 0.45s ease;
 }
 
 .back-home.visible {
@@ -538,4 +547,13 @@
 
 .back-home.visible:hover {
   transform: scale(1.1);
+}
+
+@keyframes back-home-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

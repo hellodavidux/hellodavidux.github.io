@@ -33,7 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function navigateToHome() {
-    window.location.href = backButton.getAttribute('href');
+    const url = backButton.getAttribute('href');
+    if (window.PageTransition) {
+      window.PageTransition.navigate(url, { direction: 'back', color: '#f0f1f3' });
+      return;
+    }
+    window.location.href = url;
   }
 
   // Handle back button click - return to previous page

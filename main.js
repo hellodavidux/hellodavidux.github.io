@@ -48,6 +48,25 @@ function resetIntroAnimations() {
     });
 }
 
+function syncHomepageFromHash() {
+    if (!document.getElementById('fullpage')) {
+        return;
+    }
+
+    handleDirectHashNavigation();
+    updateSections();
+    updateIndicators();
+    updateNavbarLinks();
+    isScrolling = false;
+    syncProjectCardVideos();
+
+    const homepageNavbar = document.getElementById('navbar');
+    if (homepageNavbar) {
+        homepageNavbar.classList.remove('below-content');
+        homepageNavbar.classList.add('above-content');
+    }
+}
+
 // Function to handle direct URL with hash
 function handleDirectHashNavigation() {
     if (window.location.hash) {
@@ -726,6 +745,16 @@ document.addEventListener('DOMContentLoaded', function() {
     observeProjectCards();
 });
 
+document.addEventListener('homepage:restore', syncHomepageFromHash);
+
+window.addEventListener('pageshow', function(event) {
+    if (!document.getElementById('fullpage') || !event.persisted) {
+        return;
+    }
+
+    syncHomepageFromHash();
+});
+
 // Handle mouse wheel scrolling with debouncing and sensitivity control
 window.addEventListener('wheel', function(e) {
     // Only trigger scroll if the delta is significant enough to be intentional
@@ -877,6 +906,9 @@ function updateSections() {
     syncAboutTextHighlight();
     resetContactSectionScrollIfNeeded();
     syncProjectCardVideos();
+    document.dispatchEvent(new CustomEvent('portfolio:section-change', {
+        detail: { sectionId: currentSectionId },
+    }));
 }
 
 function resetContactSectionScrollIfNeeded() {
