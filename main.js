@@ -87,63 +87,11 @@ function playProjectCardVideo(video) {
   video.play().catch(() => {});
 }
 
-function isVideoInActiveSection(video) {
-  const section = video.closest('.section');
-  if (!section) return true;
-  const sectionIndex = Array.from(sections).indexOf(section);
-  return sectionIndex === currentSectionIndex;
-}
-
-function pauseProjectCardVideo(video) {
-  video.pause();
-  const lazySource = video.querySelector('source[data-src]');
-  if (lazySource && lazySource.getAttribute('src')) {
-    lazySource.removeAttribute('src');
-    video.removeAttribute('src');
-    video.load();
-  }
-}
-
-function playVideosInSection(section) {
-  const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
-  section.querySelectorAll('.projectcard video').forEach((video) => {
-    const isMobileOnly = video.classList.contains('md:hidden');
-    const lazySource = video.querySelector('source[data-src]');
-
-    if (isMobileOnly && !lazySource) {
-      if (!isDesktop) playProjectCardVideo(video);
-      return;
-    }
-
-    if (!lazySource) return;
-
-    const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
-    if (shouldPlay) {
-      if (!lazySource.getAttribute('src')) {
-        lazySource.setAttribute('src', lazySource.dataset.src);
-        video.load();
-      }
-      playProjectCardVideo(video);
-    }
-  });
-}
-
-function primeSectionVideosForNavigation(targetIndex) {
-  if (targetIndex < 0 || targetIndex >= sections.length) return;
-  playVideosInSection(sections[targetIndex]);
-}
-
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
   document.querySelectorAll('.projectcard video').forEach((video) => {
     const isMobileOnly = video.classList.contains('md:hidden');
     const lazySource = video.querySelector('source[data-src]');
-    const inActiveSection = isVideoInActiveSection(video);
-
-    if (!inActiveSection) {
-      pauseProjectCardVideo(video);
-      return;
-    }
 
     if (isMobileOnly && !lazySource) {
       if (isDesktop) {
@@ -165,7 +113,10 @@ function syncProjectCardVideos() {
       }
       playProjectCardVideo(video);
     } else if (lazySource.getAttribute('src')) {
-      pauseProjectCardVideo(video);
+      lazySource.removeAttribute('src');
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
     }
   });
 }
@@ -692,18 +643,7 @@ window.addEventListener('touchend', function(e) {
     const threshold = isActiveContactSection() && atScrollEdge ? 35 : touchThreshold;
 
     if (Math.abs(deltaY) > threshold) {
-        const scrollDown = deltaY > 0;
-        const targetIndex = scrollDown
-            ? Math.min(currentSectionIndex + 1, sections.length - 1)
-            : Math.max(currentSectionIndex - 1, 0);
-
-        if (window.VideoAutoplay) {
-            window.VideoAutoplay.unlockFromUserGesture();
-        }
-        if (targetIndex !== currentSectionIndex) {
-            primeSectionVideosForNavigation(targetIndex);
-        }
-        handleScroll(scrollDown);
+        handleScroll(deltaY > 0);
     }
 });
 
@@ -770,11 +710,6 @@ function navigateToSection(index) {
     } else if (index >= sections.length) {
         index = sections.length - 1;
     }
-
-    if (window.VideoAutoplay) {
-        window.VideoAutoplay.unlockFromUserGesture();
-    }
-    primeSectionVideosForNavigation(index);
 
     // Set scrolling state and update current section index
     isScrolling = true;
