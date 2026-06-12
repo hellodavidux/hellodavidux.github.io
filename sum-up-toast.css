@@ -277,6 +277,12 @@
 
 @media (min-width: 768px) {
   .about-sum-up-footer {
+    max-width: none;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: calc((100% - min(100%, var(--site-max-width))) / 2 + var(--site-padding-x));
+    padding-right: calc((100% - min(100%, var(--site-max-width))) / 2 + var(--site-padding-x));
     padding-bottom: 1.5rem;
   }
 }

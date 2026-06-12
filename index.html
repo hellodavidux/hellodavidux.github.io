@@ -223,7 +223,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Navigation Bar -->
-    <nav class="navbar-fixed fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
+    <nav class="navbar-fixed navbar--with-border fixed top-0 left-0 w-full py-4 text-black z-[1000010] transition-transform duration-300 above-content" id="navbar">
         <div class="navbar-inner flex justify-between items-center">
         <!-- Left side: Logo and name with fixed width -->
         <div class="logoname flex items-center w-auto">
@@ -237,18 +237,14 @@
         </div>
         
         <!-- Center: Navigation Links -->
-        <div class="navbar-links hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 transition-opacity duration-300">
-            <a href="#project-org-agent-library" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
-            <a href="#contact" class="text-sm hidden font-medium text-gray-400 hover:text-gray-600 transition-colors">Contact</a>
+        <div class="navbar-center-links hidden md:flex items-center gap-4 absolute left-1/2 transform -translate-x-1/2">
+            <a href="#intro" class="nav-text-link text-sm font-medium text-gray-600">Home</a>
+            <a href="#project-org-agent-library" class="nav-text-link text-sm font-medium text-gray-400">Projects</a>
+            <a href="#contact" class="nav-text-link text-sm font-medium text-gray-400">About</a>
         </div>
         
-        <!-- Right side: links on desktop only; Book button always visible -->
+        <!-- Right side: Book button -->
         <div class="flex justify-end items-center gap-4">
-            <div class="hidden md:flex items-center gap-4">
-                <a href="#intro" class="nav-text-link text-sm font-medium text-gray-600">Home</a>
-                <a href="#project-org-agent-library" class="nav-text-link text-sm font-medium text-gray-400">Projects</a>
-                <a href="#contact" class="nav-text-link text-sm font-medium text-gray-400">About</a>
-            </div>
             <button type="button" data-cal-link="david-hr-15min-chat/15min" data-cal-namespace="15min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="nav-book-btn" aria-label="Book a 15-minute call">Book 15-min</button>
         </div>
         </div>
@@ -271,21 +267,30 @@
 
         <!-- Intro Section -->
         <section id="intro" class="section h-screen w-full absolute top-0 left-0 flex flex-col items-center justify-between pt-8 pb-6 md:pb-8 active overflow-hidden">
-            <div class="intro-hero-stack flex-1 flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-10 md:gap-10 min-h-0">
-                <div class="intro-content w-full md:flex-1 md:min-w-0 text-left">
+            <div class="intro-hero-stack flex-1 flex flex-col items-center justify-center gap-10 min-h-0">
+                <div class="intro-content w-full text-center">
+                    <p class="intro-hero-kicker intro-hero-kicker--waiting">
+                        <span class="intro-hero-kicker__pill">
+                            <span class="intro-hero-kicker__inner">
+                                <img class="intro-hero-kicker__icon" src="images/stackai-icon.png" alt="" width="16" height="16" aria-hidden="true" decoding="async" />
+                                <span class="intro-hero-current" data-tooltip="Joined as the first Product Design hire">Currently at StackAI (YC W23)</span>
+                            </span>
+                        </span>
+                    </p>
                     <h2 class="intro-hero-headline text-gray-900">
-                        <span class="intro-hero-item intro-hero-phrase intro-hero-phrase--1" data-description="Partnering with founders and engineers to translate research and user feedback into products people actually use">I help founders and engineers</span>
-                        <span class="intro-hero-item intro-hero-phrase intro-hero-phrase--2" data-description="Weekly customer sessions and continuous discovery, turning qualitative feedback into clear product direction">turn user insights</span>
-                        <span class="intro-hero-item intro-hero-phrase intro-hero-phrase--3" data-description="Six years designing 0→1 products across AI SaaS, sports media, and enterprise tools">into product experiences.</span>
-                        <span class="intro-hero-line"><span class="intro-hero-item intro-hero-current" data-description="joined StackAI (YC W23) as the first product designer, and became a Lead until the acquisition by Asana">Now at StackAI (YC23)</span><span class="intro-hero-sep" aria-hidden="true"><img src="images/cube.svg" alt="" width="24" height="24" /></span></span>
+                        <span class="intro-hero-phrase intro-hero-phrase--1">I help founders and engineers</span>
+                        <span class="intro-hero-phrase-line">
+                            <span class="intro-hero-phrase intro-hero-phrase--2">turn user insights</span>
+                            <span class="intro-hero-phrase intro-hero-phrase--3">into product experiences.</span>
+                        </span>
                     </h2>
-                    <div class="intro-hero-subheadline-wrap intro-hero-subheadline-wrap--waiting hidden md:block">
+                    <div class="intro-hero-subheadline-wrap intro-hero-subheadline-wrap--waiting hidden">
                         <p class="intro-hero-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400" data-default="Product Design Lead. Passionate about sports tech and enterprise tools">
                             Product Design Lead. Passionate about sports tech and enterprise tools
                         </p>
                     </div>
                 </div>
-                <div class="intro-hero-cards flex w-full md:w-auto md:flex-shrink-0 justify-center md:justify-end fade-in-up delay-300">
+                <div class="intro-hero-cards flex w-full justify-center fade-in-up delay-300">
                     <a href="#project-org-agent-library" class="intro-hero-cards__stack intro-hero-cards__link" aria-label="View projects">
                         <div class="intro-hero-card intro-hero-card--1">
                             <div class="intro-hero-card__media">
@@ -339,7 +344,7 @@
         </section>
 
         <!-- Organization Agent Library Section -->
-        <section id="project-org-agent-library" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-black text-white">
+        <section id="project-org-agent-library" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 text-white">
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="w-full md:w-[700px] projectcard projectcard--org-agent-library flex flex-col justify-start items-center gap-2.5">
                     <div class="project-org-agent-library__card rounded-lg hover:scale-110 transition-transform duration-500">
@@ -355,8 +360,8 @@
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
                     <div class="project-section-header flex flex-col items-center text-center">
-                        <a href="cards/organization-agent-library.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">Redesigning the Agent Library<br>to increase agent usage in the org.</a>
-                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">Engagement grew <span class="impact-stat">3.4×</span> in the first month, from <span class="impact-stat">~1,400–1,900</span> to <span class="impact-stat">6,200+</span> monthly users with <span class="impact-stat">80–105k</span> chat page views from end users.</p>
+                        <a href="cards/organization-agent-library.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">Redesigning the Agent Library<br>to increase agent usage in the org.</a>
+                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">Engagement grew 3.4× in month one. 6,200+ monthly users and 80–105k chat page views.</p>
                     </div>
                 </div>
             </div>
@@ -380,7 +385,7 @@
                 <div class="w-full flex flex-col justify-start items-center gap-8">
                     <div class="project-section-header flex flex-col items-center text-center">
                         <a href="cards/new-project.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-gray-900 text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">Redesigning how to start<br>new AI workflows.</a>
-                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">Raised the % of users who run a workflow after creating a project from <span class="impact-stat">50%</span> to <span class="impact-stat">78%</span>. <span class="impact-stat">1,400+</span> builders across organizations adopted templates in a month.</p>
+                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">Post-creation workflow runs rose from 50% to 78%. 1,400+ builders adopted templates in month one.</p>
                     </div>
                 </div>
             </div>
@@ -390,7 +395,7 @@
         <section id="project-agentic-lifecycle" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-black text-white">
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="w-full md:w-[700px] projectcard projectcard--agentic-lifecycle flex flex-col justify-start items-start gap-2.5">
-                    <div class="project-agentic-lifecycle__card w-full rounded-lg overflow-hidden hover:scale-110 transition-transform duration-500">
+                    <div class="project-agentic-lifecycle__card w-full rounded-lg hover:scale-110 transition-transform duration-500">
                         <a href="cards/agentic-lifecycle.html" class="block w-full">
                             <video class="w-full h-auto md:hidden" autoplay loop muted playsinline preload="auto" width="683" height="836">
                                 <source src="cards/images/agentic-lifecycle/thumbnail-ezgif.com-crop-video.mp4" type="video/mp4">
@@ -403,8 +408,8 @@
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
                     <div class="project-section-header flex flex-col items-center text-center">
-                        <a href="cards/agentic-lifecycle.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">Governing AI deployments<br>with approvals and rollback.</a>
-                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400"><span class="impact-stat">~250</span> users followed the approval-gated publishing flow, and environment keys went from zero to <span class="impact-stat">644</span> in 3 months.</p>
+                        <a href="cards/agentic-lifecycle.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">Governing AI deployments<br>with approvals and rollback.</a>
+                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">~250 users on the approval-gated flow. Environment keys grew from 0 to 644 in three months.</p>
                     </div>
                 </div>
             </div>
@@ -414,7 +419,7 @@
         <section id="project-agent-evaluator" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 text-gray-900">
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="w-full md:w-[700px] projectcard projectcard--agent-evaluator flex flex-col justify-start items-start gap-2.5">
-                    <div class="project-agent-evaluator__card w-full rounded-lg overflow-hidden hover:scale-110 transition-transform duration-500">
+                    <div class="project-agent-evaluator__card w-full rounded-lg hover:scale-110 transition-transform duration-500">
                         <a href="cards/agent-evaluator.html" class="project-agent-evaluator__link block w-full" aria-label="Workflow Analytics and Agent Evaluator project preview">
                             <video class="project-agent-evaluator__video md:hidden" autoplay loop muted playsinline preload="auto" width="1364" height="1080">
                                 <source src="cards/images/agent-evaluator/thumbnail-mobile.mp4" type="video/mp4">
@@ -428,7 +433,7 @@
                 <div class="w-full flex flex-col justify-start items-center gap-8">
                     <div class="project-section-header flex flex-col items-center text-center">
                         <a href="cards/agent-evaluator.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-gray-900 text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">Auditability and evaluation<br>of agentic workflows.</a>
-                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">Usage grew <span class="impact-stat">5.5×</span> with <span class="impact-stat">3×</span> deeper user engagement. Runs drill downs drove <span class="impact-stat">22,000+</span> views in six months.</p>
+                        <p class="project-section-subheadline text-base sm:text-lg md:text-xl leading-relaxed font-extralight text-gray-400">Usage grew 5.5× with 3× deeper engagement. Run drill-downs hit 22,000+ views in six months.</p>
                     </div>
                 </div>
             </div>
@@ -438,7 +443,7 @@
         <section id="project1" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-[#1E2F2F] text-white">
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="w-full md:w-[700px] projectcard projectcard--project1 bg-cyan-50/5 flex flex-col justify-start items-start gap-2.5">
-                    <div class="project1__card w-full rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] overflow-hidden hover:scale-110 transition-transform duration-500">
+                    <div class="project1__card w-full rounded-lg hover:scale-110 transition-transform duration-500">
                         <a href="cards/project1.html" class="block w-full" aria-label="Fitness training session Builder project preview">
                             <video class="project1__video md:hidden" autoplay loop muted playsinline preload="auto" width="1072" height="776">
                                 <source src="cards/images/project_1/cover.mp4" type="video/mp4">
@@ -450,7 +455,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
-                    <a href="cards/project1.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">Enabling coaches build flexible<br>and reusable sessions</a>
+                    <a href="cards/project1.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">Enabling coaches build flexible<br>and reusable sessions</a>
                 </div>
             </div>
         </section>
@@ -459,7 +464,7 @@
         <section id="project2" class="section h-screen w-full absolute top-0 left-0 flex items-center justify-center p-8 bg-gray-950 text-gray-900">
             <div class="h-[741px] w-full fade-in-up inline-flex flex-col justify-center items-center gap-10">
                 <div class="h-96 w-full md:h-[493px] md:w-[700px] projectcard bg-cyan-50/5 flex flex-col justify-start items-start gap-2.5">
-                    <div class="w-full h-full rounded-lg shadow-[0px_0px_1.5px_0px_rgba(255,255,255,0.12)] shadow-[0px_6px_12px_0px_rgba(0,0,0,0.14)] flex flex-col justify-end items-center overflow-hidden hover:scale-110 transition-transform duration-500">
+                    <div class="w-full h-full rounded-lg flex flex-col justify-end items-center hover:scale-110 transition-transform duration-500">
                         <a href="cards/project2.html" class="w-full h-full">
                             <img src="cards/images/project_2/ballerz-mobile-thumbnail.png" alt="" width="683" height="835" class="w-full h-full object-cover md:hidden" loading="lazy" decoding="async">
                             <div class="w-full h-full bg-[#ABABAB] hidden md:flex justify-center rounded-xl video-animation p-4 md:p-8">
@@ -471,7 +476,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
-                    <a href="cards/project2.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">Follow football player<br>performances.</a>
+                    <a href="cards/project2.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">Follow football player<br>performances.</a>
                 </div>
             </div>
         </section>
@@ -490,7 +495,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-start items-center gap-8">
-                    <a href="cards/project3.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px] [text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.12)]">RENTAL SERVICE<br>FOR EXCHANGE STUDENTS</a>
+                    <a href="cards/project3.html" class="project-section-title block max-w-[calc(100vw-4rem)] md:inline-block md:w-fit mx-auto text-center text-white text-3xl md:text-4xl font-black project-title-hover leading-tight md:leading-[30px]">RENTAL SERVICE<br>FOR EXCHANGE STUDENTS</a>
                 </div>
             </div>
         </section>

@@ -1,8 +1,8 @@
 (function () {
   const GRID_SPACING = 21;
   const DOT_RADIUS = 1.15;
-  const DOT_COLOR = 'rgba(150, 158, 170, 0.74)';
-  const ABOUT_DOT_COLOR = 'rgba(150, 158, 170, 0.64)';
+  const DOT_COLOR = 'rgba(150, 158, 170, 0.52)';
+  const ABOUT_DOT_COLOR = 'rgba(150, 158, 170, 0.46)';
   const INFLUENCE_RADIUS = 108;
   const MAX_PUSH = 26;
   const PUSH_POWER = 1.45;

@@ -505,7 +505,7 @@
   }
 }
 
-/* Floating close button — visible only after navbar scrolls away */
+/* Floating close button, visible only after navbar scrolls away */
 .back-home {
   position: fixed;
   top: 20px;

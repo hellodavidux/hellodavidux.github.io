@@ -3,10 +3,11 @@ const sections = document.querySelectorAll('.section:not(.section--hidden)');
 const sectionIndicators = document.querySelectorAll('.section-indicator:not(.section-indicator--hidden)');
 const navbar = document.getElementById('navbar');
 const navbarLinks = document.querySelectorAll('.navbar-links');
+const centerNavLinks = navbar ? navbar.querySelector('.navbar-center-links') : null;
+const homeNavLink = centerNavLinks ? centerNavLinks.querySelector('a[href="#intro"]') : null;
+const projectsNavLink = centerNavLinks ? centerNavLinks.querySelector('a[href="#project-org-agent-library"]') : null;
+const aboutNavLink = centerNavLinks ? centerNavLinks.querySelector('a[href="#contact"]') : null;
 const rightNavLinks = navbar ? navbar.querySelector('div.flex.justify-end.items-center.gap-4') : null;
-const homeNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#intro"]') : null;
-const projectsNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#project-org-agent-library"]') : null;
-const aboutNavLink = rightNavLinks ? rightNavLinks.querySelector('a[href="#contact"]') : null;
 const navBookBtn = rightNavLinks ? rightNavLinks.querySelector('.nav-book-btn') : null;
 const DARK_NAV_SECTIONS = new Set(['project-agentic-lifecycle', 'project-org-agent-library', 'project1', 'project2']);
 const logoName = document.getElementById('logo-name');
@@ -175,12 +176,20 @@ function revealIntroHeroSubheadline() {
     wrap.classList.add('fade-in-up');
 }
 
+function revealIntroHeroKicker() {
+    const kicker = document.querySelector('.intro-hero-kicker');
+    if (!kicker) return;
+
+    kicker.classList.remove('intro-hero-kicker--waiting');
+}
+
 function setupIntroHeroTypewriter() {
     const headline = document.querySelector('.intro-hero-headline');
     if (!headline) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) {
+        revealIntroHeroKicker();
         revealIntroHeroSubheadline();
         return;
     }
@@ -206,6 +215,8 @@ function setupIntroHeroTypewriter() {
     collectSegments(headline);
     if (!segments.length) return;
 
+    revealIntroHeroKicker();
+
     const sizer = headline.cloneNode(true);
     sizer.classList.add('intro-hero-headline-sizer');
     sizer.setAttribute('aria-hidden', 'true');
@@ -224,116 +235,61 @@ function setupIntroHeroTypewriter() {
 
     segments.forEach(segment => {
         if (segment.type === 'text') {
-            segment.node.textContent = '';
+            const container = segment.node.parentNode;
+            const words = segment.full.trim().split(/\s+/);
+            const wordEls = [];
+
+            segment.node.remove();
+
+            words.forEach((word, i) => {
+                const span = document.createElement('span');
+                span.className = 'intro-hero-word intro-hero-word--hidden';
+                span.textContent = word + (i < words.length - 1 ? ' ' : '');
+                container.appendChild(span);
+                wordEls.push(span);
+            });
+
+            segment.type = 'words';
+            segment.words = wordEls;
         } else if (segment.type === 'reveal') {
             segment.element.classList.add('intro-hero-sep--hidden');
         }
     });
 
-    const charDelay = 36;
+    const steps = [];
+    segments.forEach(segment => {
+        if (segment.type === 'words') {
+            segment.words.forEach(el => steps.push({ type: 'word', element: el }));
+        } else if (segment.type === 'reveal') {
+            steps.push({ type: 'reveal', element: segment.element });
+        }
+    });
+
+    const wordDelay = 120;
     const startDelay = 200;
-    let segIndex = 0;
-    let charIndex = 0;
+    let stepIndex = 0;
 
-    const cursor = document.createElement('span');
-    cursor.className = 'intro-hero-typewriter-cursor';
-    cursor.setAttribute('aria-hidden', 'true');
-
-    function placeCursor(segment) {
-        if (!segment || segment.type !== 'text') return;
-        segment.node.parentNode.appendChild(cursor);
-    }
-
-    function removeCursor() {
-        cursor.remove();
-    }
-
-    function typeNext() {
-        if (segIndex >= segments.length) {
-            removeCursor();
+    function revealNext() {
+        if (stepIndex >= steps.length) {
             syncHeadlineHeight();
             sizer.remove();
             revealIntroHeroSubheadline();
             return;
         }
 
-        const segment = segments[segIndex];
+        const step = steps[stepIndex];
 
-        if (segment.type === 'reveal') {
-            removeCursor();
-            segment.element.classList.remove('intro-hero-sep--hidden');
-            segIndex += 1;
-            setTimeout(typeNext, charDelay * 2);
-            return;
+        if (step.type === 'reveal') {
+            step.element.classList.remove('intro-hero-sep--hidden');
+        } else {
+            step.element.classList.remove('intro-hero-word--hidden');
         }
 
-        placeCursor(segment);
-
-        if (charIndex < segment.full.length) {
-            segment.node.textContent += segment.full[charIndex];
-            charIndex += 1;
-            setTimeout(typeNext, charDelay);
-            return;
-        }
-
-        segIndex += 1;
-        charIndex = 0;
-        typeNext();
+        stepIndex += 1;
+        setTimeout(revealNext, wordDelay);
     }
 
-    setTimeout(typeNext, startDelay);
-}
-
-function setupIntroHeroHover() {
-    const headline = document.querySelector('.intro-hero-headline');
-    const subheadline = document.querySelector('.intro-hero-subheadline');
-    const subheadlineWrap = document.querySelector('.intro-hero-subheadline-wrap');
-    if (!headline || !subheadline || !subheadlineWrap) return;
-
-    const defaultText = subheadline.dataset.default || subheadline.textContent.trim();
-    const allTexts = [
-        defaultText,
-        ...Array.from(headline.querySelectorAll('.intro-hero-item'))
-            .map(item => item.dataset.description)
-            .filter(Boolean)
-    ];
-
-    const lockSubheadlineHeight = () => {
-        const width = subheadline.offsetWidth;
-        if (!width) return;
-
-        const probe = subheadline.cloneNode(false);
-        probe.className = subheadline.className;
-        probe.setAttribute('aria-hidden', 'true');
-        probe.style.cssText = `visibility:hidden;position:absolute;inset:0 auto auto 0;pointer-events:none;width:${width}px;margin:0;`;
-        subheadlineWrap.appendChild(probe);
-
-        let maxHeight = 0;
-        allTexts.forEach(text => {
-            probe.textContent = text;
-            maxHeight = Math.max(maxHeight, probe.offsetHeight);
-        });
-
-        probe.remove();
-        subheadlineWrap.style.minHeight = `${maxHeight}px`;
-    };
-
-    lockSubheadlineHeight();
-    new ResizeObserver(lockSubheadlineHeight).observe(subheadline);
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(lockSubheadlineHeight);
-    }
-
-    headline.querySelectorAll('.intro-hero-item').forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            const description = item.dataset.description;
-            if (description) subheadline.textContent = description;
-        });
-    });
-
-    headline.addEventListener('mouseleave', () => {
-        subheadline.textContent = defaultText;
-    });
+    setTimeout(revealNext, startDelay);
 }
 
 function getSectionIndex(sectionId) {
@@ -361,11 +317,11 @@ function setupNavbarLinkNavigation() {
 }
 
 const INTRO_COMPANY_LOGO_TOOLTIPS = {
-    stackai: 'AI agent no-code workflow builder for Enterprises',
-    jabra: 'Ecommerce digital design for Audio Equipment',
-    asana: 'Acquired StackAI in 2026. I joined Asana as the StackAI Product Design Lead',
-    lenus: 'Fitness & Health tools and dashboards for coaches and their clients',
-    bc: 'Sports Media, Fantasy and iGaming, and Affiliate Marketing'
+    stackai: 'Enterprise AI workflows',
+    jabra: 'Audio equipment ecommerce',
+    asana: 'Acquired StackAI, 2026',
+    lenus: 'Fitness coach platform',
+    bc: 'Sports media & iGaming'
 };
 
 function getIntroCompanyLogoTooltip(logo) {
@@ -630,7 +586,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     setupIntroHeroTypewriter();
-    setupIntroHeroHover();
     setupDotCursor();
     setupIntroDotGrid();
     setupIntroHeroCardsLink();
@@ -965,6 +920,14 @@ function updateNavbarLinks() {
     if (navBookBtn) {
         navBookBtn.classList.toggle('nav-book-btn--light', onDarkBg);
     }
+
+    if (logoName) {
+        logoName.classList.toggle('logo-name-dark', onDarkBg);
+        logoName.classList.toggle('logo-name-light', !onDarkBg);
+    }
+
+    navbar.classList.toggle('navbar--on-dark', onDarkBg);
+    navbar.classList.toggle('navbar--with-border', isIntro || isContact);
 }
 
 // Set up the navbar scroll behavior
