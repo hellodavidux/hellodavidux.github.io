@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setupDotCursor();
   }
 
+  if (typeof setupDataTooltips === 'function') {
+    setupDataTooltips();
+  }
+
   // Get references to DOM elements
   const navItems = document.querySelectorAll('.scroll-spy-section');
   const mainSections = Array.from(navItems)

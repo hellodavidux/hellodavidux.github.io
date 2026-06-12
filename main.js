@@ -360,73 +360,6 @@ function setupNavbarLinkNavigation() {
     });
 }
 
-let cursorFollowingTooltip = null;
-let cursorFollowingTooltipActiveCount = 0;
-
-function getCursorFollowingTooltip() {
-    if (cursorFollowingTooltip) return cursorFollowingTooltip;
-
-    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!finePointer || reducedMotion) return null;
-
-    cursorFollowingTooltip = document.createElement('div');
-    cursorFollowingTooltip.className = 'intro-hero-cards-tooltip';
-    cursorFollowingTooltip.setAttribute('role', 'tooltip');
-    cursorFollowingTooltip.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(cursorFollowingTooltip);
-    return cursorFollowingTooltip;
-}
-
-function setupCursorFollowingTooltip(targets, text, options) {
-    const elements = targets.filter(Boolean);
-    const tooltip = getCursorFollowingTooltip();
-    if (!elements.length || !tooltip) return;
-
-    const offsetX = 14;
-    const offsetY = 14;
-    const variantClass = options && options.variant === 'light'
-        ? 'intro-hero-cards-tooltip--light'
-        : null;
-
-    function resolveText(target) {
-        return typeof text === 'function' ? text(target) : text;
-    }
-
-    function positionAt(clientX, clientY) {
-        tooltip.style.transform =
-            'translate3d(' + (clientX + offsetX) + 'px, ' + (clientY + offsetY) + 'px, 0)';
-    }
-
-    elements.forEach(function(target) {
-        target.addEventListener('mouseenter', function(e) {
-            const message = resolveText(target);
-            if (!message) return;
-
-            cursorFollowingTooltipActiveCount += 1;
-            tooltip.textContent = message;
-            tooltip.classList.remove('intro-hero-cards-tooltip--light');
-            if (variantClass) tooltip.classList.add(variantClass);
-            tooltip.classList.add('is-visible');
-            positionAt(e.clientX, e.clientY);
-        });
-
-        target.addEventListener('mousemove', function(e) {
-            if (!cursorFollowingTooltipActiveCount) return;
-            positionAt(e.clientX, e.clientY);
-        });
-
-        target.addEventListener('mouseleave', function() {
-            cursorFollowingTooltipActiveCount = Math.max(0, cursorFollowingTooltipActiveCount - 1);
-            if (!cursorFollowingTooltipActiveCount) {
-                // Keep --light during fade-out; removing it instantly swaps to the dark
-                // "View projects" palette while opacity is still animating to 0.
-                tooltip.classList.remove('is-visible');
-            }
-        });
-    });
-}
-
 const INTRO_COMPANY_LOGO_TOOLTIPS = {
     stackai: 'AI agent no-code workflow builder for Enterprises',
     jabra: 'Ecommerce digital design for Audio Equipment',
@@ -448,13 +381,34 @@ function setupIntroCompanyLogosTooltips() {
     setupCursorFollowingTooltip([...logos], getIntroCompanyLogoTooltip, { variant: 'light' });
 }
 
-function setupAboutPhotoStackTooltips() {
-    const cards = document.querySelectorAll('.about-photo-card[data-tooltip]');
-    if (!cards.length) return;
+function setupLogoLinkTooltip() {
+    const link = document.querySelector('.logoname > a[href*="linkedin.com"]');
+    if (!link) return;
 
-    setupCursorFollowingTooltip([...cards], function(target) {
-        return target.getAttribute('data-tooltip') || '';
-    }, { variant: 'light' });
+    setupCursorFollowingTooltip([link], 'Visit Linkedin');
+}
+
+function setupLogoLinkNavigation() {
+    const link = document.querySelector('.logoname > a[href*="linkedin.com"]');
+    if (!link) return;
+
+    link.addEventListener('click', function(e) {
+        if (!isMobileViewport()) return;
+
+        e.preventDefault();
+        if (!isScrolling) {
+            navigateToSection(0);
+        }
+    });
+}
+
+function setupFooterLinkTooltips() {
+    const links = document.querySelectorAll('.about-sum-up-footer__right a[aria-label]');
+    if (!links.length) return;
+
+    setupCursorFollowingTooltip([...links], function(target) {
+        return target.getAttribute('aria-label') || '';
+    });
 }
 
 let aboutHighlightRaf = null;
@@ -525,8 +479,13 @@ function setupAboutTextHighlight() {
         aboutContent.querySelectorAll('.about-highlight').forEach(function(phrase) {
             if (phrase.dataset.charsSplit === 'true') return;
 
-            const text = phrase.textContent;
+            const chipLogo = phrase.querySelector('.about-chip__logo');
+            const text = phrase.textContent.trim();
             phrase.textContent = '';
+
+            if (chipLogo) {
+                phrase.appendChild(chipLogo);
+            }
 
             const srOnly = document.createElement('span');
             srOnly.className = 'sr-only';
@@ -675,9 +634,12 @@ document.addEventListener('DOMContentLoaded', function() {
     setupDotCursor();
     setupIntroDotGrid();
     setupIntroHeroCardsLink();
-    setupAboutPhotoStackTooltips();
+    setupDataTooltips();
     aboutHighlightController = setupAboutTextHighlight();
     setupIntroCompanyLogosTooltips();
+    setupLogoLinkTooltip();
+    setupLogoLinkNavigation();
+    setupFooterLinkTooltips();
     setupNavbarLinkNavigation();
     syncProjectCardVideos();
     window.matchMedia(PROJECT_CARD_VIDEO_QUERY).addEventListener('change', syncProjectCardVideos);
@@ -926,7 +888,7 @@ function updateIndicators() {
 
     const sectionIndicatorsContainer = document.getElementById('section-indicators');
     if (sectionIndicatorsContainer) {
-        sectionIndicatorsContainer.classList.toggle('hidden', !currentSection.startsWith('project'));
+        sectionIndicatorsContainer.classList.toggle('hidden', !(currentSection === 'intro' || currentSection.startsWith('project')));
     }
     
     // Determine the background color for inactive indicators based on current section

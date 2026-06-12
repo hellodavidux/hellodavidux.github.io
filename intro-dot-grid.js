@@ -2,6 +2,7 @@
   const GRID_SPACING = 21;
   const DOT_RADIUS = 1.15;
   const DOT_COLOR = 'rgba(150, 158, 170, 0.74)';
+  const ABOUT_DOT_COLOR = 'rgba(150, 158, 170, 0.64)';
   const INFLUENCE_RADIUS = 108;
   const MAX_PUSH = 26;
   const PUSH_POWER = 1.45;
@@ -16,10 +17,11 @@
     return a + (b - a) * t;
   }
 
-  function DotGrid(container, activeSection, activeClass) {
+  function DotGrid(container, activeSection, activeClass, dotColor) {
     this.container = container;
     this.activeSection = activeSection;
     this.activeClass = activeClass;
+    this.dotColor = dotColor || DOT_COLOR;
     this.canvas = null;
     this.ctx = null;
     this.dots = [];
@@ -112,7 +114,7 @@
     if (!this.ctx) return;
 
     this.ctx.clearRect(0, 0, this.width, this.height);
-    this.ctx.fillStyle = DOT_COLOR;
+    this.ctx.fillStyle = this.dotColor;
 
     this.dots.forEach((dot) => {
       this.ctx.beginPath();
@@ -196,7 +198,7 @@
     }
 
     if (contact) {
-      grids.push(new DotGrid(contact, contact, 'about-dot-grid-active'));
+      grids.push(new DotGrid(contact, contact, 'about-dot-grid-active', ABOUT_DOT_COLOR));
     }
 
     if (grids.length === 0) return;

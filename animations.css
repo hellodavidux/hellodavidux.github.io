@@ -206,6 +206,15 @@ body:has(#fullpage) #intro::after {
       transparent 72%
     );
   }
+
+  body:has(#fullpage) #contact::after {
+    background: radial-gradient(
+      ellipse 58% 60% at 50% 44%,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.1) 44%,
+      transparent 72%
+    );
+  }
 }
 
 body:has(#fullpage) #intro > *:not(.intro-dot-grid) {
@@ -219,22 +228,6 @@ body:has(#fullpage) #contact > .intro-dot-grid {
   z-index: 0;
   width: auto;
   height: auto;
-  -webkit-mask-image: radial-gradient(
-    ellipse 130% 115% at 50% 50%,
-    rgba(0, 0, 0, 0.42) 0%,
-    rgba(0, 0, 0, 0.68) 38%,
-    rgba(0, 0, 0, 0.68) 62%,
-    rgba(0, 0, 0, 0.42) 90%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 130% 115% at 50% 50%,
-    rgba(0, 0, 0, 0.42) 0%,
-    rgba(0, 0, 0, 0.68) 38%,
-    rgba(0, 0, 0, 0.68) 62%,
-    rgba(0, 0, 0, 0.42) 90%,
-    transparent 100%
-  );
 }
 
 body:has(#fullpage) #contact > *:not(.intro-dot-grid) {
@@ -242,8 +235,46 @@ body:has(#fullpage) #contact > *:not(.intro-dot-grid) {
   z-index: 1;
 }
 
+body:has(#fullpage) #contact::before {
+  background-image: radial-gradient(circle, rgba(150, 158, 170, 0.52) 1.15px, transparent 1.15px);
+  background-size: 21px 21px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 48%,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.36) 46%,
+    rgba(0, 0, 0, 0.36) 64%,
+    rgba(0, 0, 0, 0.2) 82%,
+    transparent 96%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 88% at 50% 48%,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.2) 22%,
+    rgba(0, 0, 0, 0.36) 46%,
+    rgba(0, 0, 0, 0.36) 64%,
+    rgba(0, 0, 0, 0.2) 82%,
+    transparent 96%
+  );
+}
+
 body:has(#fullpage) #contact.about-dot-grid-active::before {
   opacity: 0;
+}
+
+body:has(#fullpage) #contact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 48% 54% at 50% 44%,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(255, 255, 255, 0.14) 40%,
+    transparent 66%
+  );
 }
 
 #contact::before {
@@ -253,8 +284,8 @@ body:has(#fullpage) #contact.about-dot-grid-active::before {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(209, 213, 219, 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(209, 213, 219, 0.55) 1px, transparent 1px);
+    linear-gradient(to right, rgba(209, 213, 219, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(209, 213, 219, 0.45) 1px, transparent 1px);
   background-size: 96px 96px;
   background-position: center;
   -webkit-mask-image: radial-gradient(
@@ -388,6 +419,68 @@ body:has(#fullpage) #contact.about-dot-grid-active::before {
 @media (prefers-reduced-motion: reduce) {
   #navbar .nav-book-btn::before {
     display: none;
+  }
+}
+
+/* Navbar text links — shimmer sweep on hover (mirrors nav-book-btn) */
+#navbar a.nav-text-link:not(.hidden) {
+  position: relative;
+  display: inline-block;
+  transition: color 0.2s ease;
+  --nav-link-base: #9ca3af;
+  --nav-link-shine: #111827;
+}
+
+#navbar a.nav-text-link.text-gray-400 {
+  --nav-link-base: #9ca3af;
+  --nav-link-shine: #111827;
+}
+
+#navbar a.nav-text-link.text-gray-600 {
+  --nav-link-base: #4b5563;
+  --nav-link-shine: #111827;
+}
+
+#navbar a.nav-text-link.text-white {
+  --nav-link-base: #9ca3af;
+  --nav-link-shine: #ffffff;
+}
+
+#navbar a.nav-text-link.text-white.font-medium {
+  --nav-link-base: #e5e7eb;
+  --nav-link-shine: #ffffff;
+}
+
+#navbar a.nav-text-link:hover {
+  background-image: linear-gradient(
+    100deg,
+    var(--nav-link-base) 0%,
+    var(--nav-link-base) 34%,
+    var(--nav-link-shine) 50%,
+    var(--nav-link-base) 66%,
+    var(--nav-link-base) 100%
+  );
+  background-size: 260% 100%;
+  background-position: 100% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: nav-text-link-shimmer 0.9s ease-out;
+}
+
+@keyframes nav-text-link-shimmer {
+  to {
+    background-position: -15% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #navbar a.nav-text-link:hover {
+    -webkit-text-fill-color: unset;
+    background-image: none;
+    color: var(--nav-link-shine);
+    animation: none;
   }
 }
 
@@ -645,6 +738,97 @@ body:has(#fullpage) #contact {
   font-weight: inherit;
 }
 
+.about-text .about-chip {
+  display: inline;
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.1em 0.5em 0.12em 0.38em;
+  margin: 0 0.05em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.company-chip {
+  display: inline;
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.about-text .about-chip__logo,
+.company-chip__logo {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.28em;
+  vertical-align: -0.12em;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.company-chip__logo[src*="letter.svg"] {
+  filter: brightness(0);
+}
+
+.about-text .about-chip .about-char,
+.about-text .about-chip .about-char.is-active {
+  font-weight: 300;
+  color: #4b5563;
+  text-shadow: none;
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.about-text .about-chip:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(17, 24, 39, 0.18);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+.company-chip:hover {
+  color: #111827;
+}
+
+.about-text .about-chip:hover .about-char,
+.about-text .about-chip:hover .about-char.is-active {
+  color: #111827;
+  text-shadow:
+    0.018em 0 0 currentColor,
+    -0.018em 0 0 currentColor;
+}
+
+.about-text .about-chip:hover .about-chip__logo,
+.company-chip:hover .company-chip__logo {
+  opacity: 0.92;
+  transform: scale(1.04);
+}
+
+.about-text .about-chip:focus-visible,
+.company-chip:focus-visible {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
+
 .about-text .about-highlight__visual {
   display: inline;
 }
@@ -669,8 +853,18 @@ body:has(#fullpage) #contact {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-text .about-char {
+  .about-text .about-char,
+  .about-text .about-chip,
+  .about-text .about-chip .about-char,
+  .about-text .about-chip__logo,
+  .company-chip,
+  .company-chip__logo {
     transition: none;
+  }
+
+  .about-text .about-chip:hover .about-chip__logo,
+  .company-chip:hover .company-chip__logo {
+    transform: none;
   }
 }
 
@@ -1226,9 +1420,15 @@ body:has(#fullpage) #intro:not(.intro) {
     overflow-x: clip;
   }
 
-  #intro.intro .max-w-5xl > :not(.intro-hero-video) {
+  #intro.intro .max-w-5xl > :not(.intro-hero-video):not(.impact-callout):not(.intro-highlight-cards) {
     padding-left: var(--site-padding-x);
     padding-right: var(--site-padding-x);
+  }
+
+  #intro.intro .max-w-5xl > .impact-callout,
+  #intro.intro .max-w-5xl > .intro-highlight-cards {
+    margin-left: var(--site-padding-x);
+    margin-right: var(--site-padding-x);
   }
 
   #intro.intro .intro-hero-video {
@@ -1252,6 +1452,10 @@ body.page-agent-evaluator:not(:has(#fullpage)) {
 
 body.page-agent-evaluator .navbar-fixed {
   background-color: #e4e4e7;
+}
+
+body.page-agent-evaluator #intro .impact-callout {
+  background-color: #e8e8eb;
 }
 
 #project-agent-evaluator .projectcard--agent-evaluator {
@@ -1413,6 +1617,67 @@ body.page-agent-evaluator .navbar-fixed {
 .intro-hero-subheadline {
   letter-spacing: -0.02em;
   margin-top: 0;
+}
+
+.project-section-header {
+  width: 100%;
+  max-width: 42rem;
+  padding-inline: 1rem;
+  gap: 1rem;
+}
+
+.project-section-subheadline {
+  letter-spacing: -0.02em;
+  margin-top: 0;
+  max-width: 42rem;
+}
+
+.impact-callout {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.intro-highlight-cards > .impact-callout {
+  margin-top: 0;
+}
+
+.impact-callout .impact-stat {
+  background-color: transparent;
+  border: none;
+  padding: 0.1em 0.3em;
+  font-weight: inherit;
+  border-radius: 0.25rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color 0.2s ease;
+}
+
+.impact-callout:hover .impact-stat {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.impact-stat {
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+#project-org-agent-library .impact-stat,
+#project-agentic-lifecycle .impact-stat {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (min-width: 768px) {
+  .project-section-header {
+    padding-inline: 0;
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1674,11 +1939,9 @@ a.intro-hero-cards__stack {
 }
 
 .intro-hero-cards-tooltip--light {
-  padding: 0.5rem 0.625rem;
   background: #ffffff;
   color: #000000;
   font-weight: 400;
-  line-height: 1.4;
   white-space: normal;
   max-width: min(17.5rem, calc(100vw - 2rem));
   border: 1.5px solid #000000;
@@ -2140,31 +2403,31 @@ a.intro-hero-cards__stack {
   background-repeat: no-repeat;
 }
 
-/* Custom dot cursor (home page, fine pointer only) */
-.dot-cursor {
+/* Custom pointer cursor (home + project pages, fine pointer only) */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #fff;
-  mix-blend-mode: difference;
+  width: 24px;
+  height: 24px;
   pointer-events: none;
-  z-index: 1000020;
+  z-index: 1000030;
   opacity: 0;
-  transition:
-    width 0.22s ease,
-    height 0.22s ease,
-    opacity 0.15s ease;
-  will-change: transform, width, height;
+  transition: opacity 0.15s ease;
+  will-change: transform;
 }
 
-.dot-cursor.is-visible {
+.custom-cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-cursor.is-visible {
   opacity: 1;
-}
-
-.dot-cursor--image {
-  width: 32px;
-  height: 32px;
 }

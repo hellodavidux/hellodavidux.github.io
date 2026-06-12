@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="media-lightbox.css">
   <script src="../video-autoplay.js" defer></script>
   <script src="../dot-cursor.js" defer></script>
+  <script src="../cursor-tooltip.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -193,9 +194,11 @@
       </div>
 
       <div class="flex justify-end items-center gap-4">
-        <a href="../index.html" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Home</a>
-        <a href="../index.html#project1" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">Projects</a>
-        <a href="../index.html#contact" class="hidden md:inline text-sm font-medium text-gray-400 hover:text-gray-600 transition-colors">About</a>
+        <div class="hidden md:flex items-center gap-4">
+          <a href="../index.html" class="nav-text-link text-sm font-medium text-gray-400">Home</a>
+          <a href="../index.html#project1" class="nav-text-link text-sm font-medium text-gray-400">Projects</a>
+          <a href="../index.html#contact" class="nav-text-link text-sm font-medium text-gray-400">About</a>
+        </div>
         <button type="button" data-cal-link="david-hr-15min-chat/15min" data-cal-namespace="15min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="nav-book-btn" aria-label="Book a 15-minute call">Book 15-min</button>
       </div>
     </div>
@@ -257,7 +260,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6">
         <div class="animate-on-scroll delay-100">
           <p class="text-gray-400 text-sm mb-1 tracking-wide">Company</p>
-          <p class="font-medium">Lenus</p>
+          <p class="font-medium"><a href="https://lenushealth.com" class="company-chip" target="_blank" rel="noopener noreferrer" aria-label="Visit Lenus" data-tooltip="visit site"><img class="company-chip__logo" src="../images/letter.svg" alt="" width="14" height="14" aria-hidden="true" decoding="async" />Lenus</a></p>
         </div>
         <div class="animate-on-scroll delay-200">
           <p class="text-gray-400 text-sm mb-1 tracking-wide">Product</p>
@@ -742,7 +745,7 @@
   <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
-        <h3 class="text-3xl font-bold mb-16 text-black border border-black bg-transparent px-6 py-2 rounded inline-block section-heading">OTHER PROJECTS</h3>
+        <h2 class="text-4xl font-bold mb-16 text-black section-heading">OTHER PROJECTS</h2>
       </div>
       
       <!-- Project cards container with new layout -->
