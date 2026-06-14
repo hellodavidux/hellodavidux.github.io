@@ -1893,6 +1893,10 @@ body.page-agent-evaluator #intro .impact-callout {
   margin-top: 1rem;
 }
 
+.intro-highlight-cards {
+  margin-bottom: 1rem;
+}
+
 .intro-highlight-cards > .impact-callout {
   margin-top: 0;
 }
@@ -1910,6 +1914,34 @@ body.page-agent-evaluator #intro .impact-callout {
 
 .impact-callout:hover .impact-stat {
   background-color: rgba(0, 0, 0, 0.06);
+}
+
+.intro-scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0.25rem auto 0;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.intro-scroll-hint__icon {
+  display: block;
+  animation: intro-scroll-hint-pulse 2.4s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes intro-scroll-hint-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(5px);
+  }
 }
 
 .impact-stat {
@@ -2022,6 +2054,9 @@ body.page-agent-evaluator #intro .impact-callout {
   .intro-hero-cards {
     width: 100%;
     max-width: 100%;
+  }
+
+  .intro-hero-cards__cards {
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 92%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 92%);
   }
@@ -2262,6 +2297,12 @@ body.page-agent-evaluator #intro .impact-callout {
   overflow: visible;
   padding: 1.75rem 0.75rem 1.5rem 0.5rem;
   margin: -1.75rem -0.75rem -1.5rem -0.5rem;
+}
+
+.intro-hero-cards__cards {
+  display: block;
+  position: absolute;
+  inset: 0;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 40%, transparent 73%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 40%, transparent 73%);
 }
@@ -2280,6 +2321,39 @@ a.intro-hero-cards__stack {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+}
+
+.intro-hero-cards__scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: #9ca3af;
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: intro-hero-scroll-hint-pulse 2.4s ease-in-out infinite;
+  animation-delay: 0.9s;
+}
+
+.intro-hero-cards__scroll-hint-icon {
+  display: block;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.85));
+}
+
+@keyframes intro-hero-scroll-hint-pulse {
+  0%, 100% {
+    opacity: 0.28;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.52;
+    transform: translateX(-50%) translateY(5px);
+  }
 }
 
 .intro-hero-cards-tooltip {
@@ -2310,6 +2384,19 @@ a.intro-hero-cards__stack {
   visibility: visible;
 }
 
+.intro-hero-cards-tooltip__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.intro-hero-cards-tooltip__icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  display: block;
+}
+
 .intro-hero-cards-tooltip--light {
   background: #ffffff;
   color: #000000;
@@ -2318,6 +2405,43 @@ a.intro-hero-cards__stack {
   max-width: min(17.5rem, calc(100vw - 2rem));
   border: 1.5px solid rgba(0, 0, 0, 0.12);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.section-indicator {
+  position: relative;
+}
+
+.section-indicator::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  padding: 0.4375rem 0.625rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.16s ease, visibility 0.16s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .section-indicator:hover::after,
+  .section-indicator:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2466,6 +2590,11 @@ a.intro-hero-cards__stack {
 @media (prefers-reduced-motion: reduce) {
   .intro-hero-card {
     transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .intro-hero-cards__scroll-hint {
+    animation: none;
+    opacity: 0.32;
   }
 
   .intro-hero-cards__stack:hover .intro-hero-card--1,

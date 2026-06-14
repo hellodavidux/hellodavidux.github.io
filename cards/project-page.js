@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function navigateToHome() {
+    if (!backButton) {
+      return;
+    }
     const url = backButton.getAttribute('href');
     if (window.PageTransition) {
       window.PageTransition.navigate(url, { direction: 'back', color: '#f0f1f3' });
@@ -46,10 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Handle back button click - return to previous page
-  backButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    navigateToHome();
-  });
+  if (backButton) {
+    backButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      navigateToHome();
+    });
+  }
 
   // Allow Esc to close the project page, unless another overlay owns Esc
   document.addEventListener('keydown', function(event) {

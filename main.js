@@ -109,6 +109,8 @@ function playProjectCardVideo(video) {
 
 function syncProjectCardVideos() {
   const isDesktop = window.matchMedia(PROJECT_CARD_VIDEO_QUERY).matches;
+  const activeSectionId = sections[currentSectionIndex]?.id ?? null;
+
   document.querySelectorAll('.projectcard video').forEach((video) => {
     const isMobileOnly = video.classList.contains('md:hidden');
     const lazySource = video.querySelector('source[data-src]');
@@ -124,7 +126,9 @@ function syncProjectCardVideos() {
 
     if (!lazySource) return;
 
-    const shouldPlay = isMobileOnly ? !isDesktop : isDesktop;
+    const section = video.closest('.section');
+    const isActiveSection = Boolean(section && section.id === activeSectionId);
+    const shouldPlay = isMobileOnly ? !isDesktop : (isDesktop && isActiveSection);
 
     if (shouldPlay) {
       if (!lazySource.getAttribute('src')) {
@@ -341,7 +345,9 @@ function setupLogoLinkTooltip() {
     const link = document.querySelector('.logoname > a[href*="linkedin.com"]');
     if (!link) return;
 
-    setupCursorFollowingTooltip([link], 'Visit Linkedin');
+    setupCursorFollowingTooltip([link], 'Visit LinkedIn', {
+        iconSrc: 'images/linkedin-svgrepo-com.svg'
+    });
 }
 
 function setupLogoLinkNavigation() {

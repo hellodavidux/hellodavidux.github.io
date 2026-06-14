@@ -195,7 +195,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="animations.css">
     <link rel="stylesheet" href="sum-up-toast.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -254,15 +253,15 @@
     <div class="sections-container h-screen w-full relative overflow-hidden" id="fullpage">
         <!-- Section Indicators -->
         <div class="hidden absolute right-3 md:right-8 top-1/2 transform -translate-y-1/2 z-50 w-2 inline-flex flex-col justify-start items-start gap-[5px]" id="section-indicators">
-            <a href="#intro" class="section-indicator self-stretch h-4 bg-gray-500 rounded-lg transition-all duration-300" data-section="intro"></a>
-            <a href="#project-org-agent-library" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-org-agent-library"></a>
-            <a href="#project-new" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-new"></a>
-            <a href="#project-agentic-lifecycle" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agentic-lifecycle"></a>
-            <a href="#project-agent-evaluator" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agent-evaluator"></a>
-            <a href="#project1" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project1"></a>
-            <a href="#project2" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project2"></a>
-            <a href="#project3" class="section-indicator section-indicator--hidden self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project3" aria-hidden="true"></a>
-            <a href="#contact" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="contact"></a>
+            <a href="#intro" class="section-indicator self-stretch h-4 bg-gray-500 rounded-lg transition-all duration-300" data-section="intro" data-tooltip="Home" aria-label="Home"></a>
+            <a href="#project-org-agent-library" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-org-agent-library" data-tooltip="Agent Library" aria-label="Agent Library"></a>
+            <a href="#project-new" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-new" data-tooltip="Prompt to Flow" aria-label="Prompt to Flow"></a>
+            <a href="#project-agentic-lifecycle" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agentic-lifecycle" data-tooltip="Agentic Lifecycle" aria-label="Agentic Lifecycle"></a>
+            <a href="#project-agent-evaluator" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project-agent-evaluator" data-tooltip="Agent Evaluator" aria-label="Agent Evaluator"></a>
+            <a href="#project1" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project1" data-tooltip="Workout planning" aria-label="Workout planning"></a>
+            <a href="#project2" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project2" data-tooltip="Football performances" aria-label="Football performances"></a>
+            <a href="#project3" class="section-indicator section-indicator--hidden self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="project3" data-tooltip="Easy Semester" aria-label="Easy Semester" aria-hidden="true"></a>
+            <a href="#contact" class="section-indicator self-stretch h-4 bg-zinc-300 rounded-lg transition-all duration-300" data-section="contact" data-tooltip="About" aria-label="About"></a>
         </div>
 
         <!-- Intro Section -->
@@ -292,21 +291,28 @@
                 </div>
                 <div class="intro-hero-cards flex w-full justify-center fade-in-up delay-300">
                     <a href="#project-org-agent-library" class="intro-hero-cards__stack intro-hero-cards__link" aria-label="View projects">
-                        <div class="intro-hero-card intro-hero-card--1">
-                            <div class="intro-hero-card__media">
-                                <img src="images/home1.jpg" alt="" width="2986" height="1670" />
+                        <span class="intro-hero-cards__cards">
+                            <div class="intro-hero-card intro-hero-card--1">
+                                <div class="intro-hero-card__media">
+                                    <img src="images/home1.webp" alt="" width="2986" height="1670" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="intro-hero-card intro-hero-card--2">
-                            <div class="intro-hero-card__media">
-                                <img src="images/home3.jpg" alt="" width="1579" height="1173" />
+                            <div class="intro-hero-card intro-hero-card--2">
+                                <div class="intro-hero-card__media">
+                                    <img src="images/home3.webp" alt="" width="1579" height="1173" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="intro-hero-card intro-hero-card--3">
-                            <div class="intro-hero-card__media">
-                                <img src="images/home2.jpg" alt="" width="1440" height="900" />
+                            <div class="intro-hero-card intro-hero-card--3">
+                                <div class="intro-hero-card__media">
+                                    <img src="images/home2.webp" alt="" width="1440" height="900" />
+                                </div>
                             </div>
-                        </div>
+                        </span>
+                        <span class="intro-hero-cards__scroll-hint" aria-hidden="true">
+                            <svg class="intro-hero-cards__scroll-hint-icon" width="28" height="28" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </a>
                 </div>
             </div>
@@ -557,10 +563,10 @@
                         <span class="sum-up-toast__label">Sum Up</span>
                     </a>
                     <a href="https://www.linkedin.com/in/hidalgodavid/" target="_blank" rel="noopener noreferrer" class="about-sum-up-footer__linkedin" aria-label="David Ruiz on LinkedIn">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        <img src="images/linkedin-svgrepo-com.svg" alt="" width="18" height="18" decoding="async" aria-hidden="true">
                     </a>
                     <a href="https://www.behance.net/hidalgodavace3" target="_blank" rel="noopener noreferrer" class="about-sum-up-footer__behance" aria-label="David Ruiz on Behance">
-                        <i class="fab fa-behance" aria-hidden="true"></i>
+                        <img src="images/behance-icon.svg" alt="" width="18" height="18" decoding="async" aria-hidden="true">
                     </a>
                 </div>
             </footer>

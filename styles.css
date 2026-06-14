@@ -3659,6 +3659,10 @@ video {
   }
 }
 
+#section-indicators {
+  overflow: visible;
+}
+
 @media (max-width: 767px) {
   #section-indicators {
     display: none !important;

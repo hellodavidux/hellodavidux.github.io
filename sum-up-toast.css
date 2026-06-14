@@ -204,14 +204,19 @@
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.about-sum-up-footer__linkedin i,
-.about-sum-up-footer__behance i {
-  font-size: 1.125rem;
+.about-sum-up-footer__linkedin img,
+.about-sum-up-footer__behance img {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: block;
+}
+
+.about-sum-up-footer__behance img {
+  opacity: 0.72;
 }
 
 .about-sum-up-footer__linkedin:hover,
 .about-sum-up-footer__linkedin:focus-visible {
-  color: #0a66c2;
   transform: scale(1.08);
 }
 
@@ -222,8 +227,12 @@
 
 .about-sum-up-footer__behance:hover,
 .about-sum-up-footer__behance:focus-visible {
-  color: #1769ff;
   transform: scale(1.08);
+}
+
+.about-sum-up-footer__behance:hover img,
+.about-sum-up-footer__behance:focus-visible img {
+  opacity: 1;
 }
 
 .about-sum-up-footer__behance:focus-visible {

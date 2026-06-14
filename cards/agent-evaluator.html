@@ -51,6 +51,7 @@
   <script src="../video-autoplay.js" defer></script>
   <script src="../dot-cursor.js" defer></script>
   <script src="../cursor-tooltip.js" defer></script>
+  <script src="next-project-nav.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -198,12 +199,26 @@
     }
     .benchmark-copy-panel--evaluator {
       opacity: 0;
+      pointer-events: none;
     }
     .benchmark-showcase.benchmark-showcase--evaluator .benchmark-copy-panel--analytics {
       opacity: 0;
+      pointer-events: none;
     }
     .benchmark-showcase.benchmark-showcase--evaluator .benchmark-copy-panel--evaluator {
       opacity: 1;
+      pointer-events: auto;
+    }
+    .benchmark-copy-panel.feature-header-row .copy-kw {
+      border-radius: 0.2em;
+      padding: 0.05em 0.15em;
+      margin: 0 -0.05em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      transition: background-color 0.2s ease;
+    }
+    .benchmark-copy-panel.feature-header-row:hover .copy-kw {
+      background-color: rgba(107, 114, 128, 0.22);
     }
     .benchmark-panels {
       position: relative;
@@ -366,10 +381,15 @@
           <p class="font-medium">2026</p>
         </div>
       </div>
-      <div class="animate-on-scroll delay-500 impact-callout card-animation mb-8">
+      <div class="animate-on-scroll delay-500 impact-callout card-animation mb-4">
         <p class="text-gray-400 text-sm mb-4 tracking-wide">Impact</p>
         <p class="text-gray-600">Usage grew <span class="impact-stat">5.5×</span> with <span class="impact-stat">3×</span> deeper user engagement. Runs drill downs drove <span class="impact-stat">22,000+</span> views in six months.</p>
       </div>
+      <a href="#discovery" class="intro-scroll-hint mb-8" aria-label="Scroll to discovery section">
+        <svg class="intro-scroll-hint__icon" width="28" height="28" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
 
     </div>
   </div>
@@ -432,13 +452,13 @@
             <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark evaluator</h2>
               <p class="text-gray-600 feature-header-row__text">
-                Conducted competitive research (Laminar, Langfuse, Arize Phoenix), mapped the full eval journey, iterated from lo-fi proposal → interactive prototype → stakeholder testing → engineering handoff.
+                Conducted <span class="copy-kw">competitive research</span> (<span class="copy-kw">Laminar, Langfuse, Arize Phoenix</span>), mapped the <span class="copy-kw">full eval journey</span>, iterated from <span class="copy-kw">lo-fi proposal</span> → <span class="copy-kw">interactive prototype</span> → <span class="copy-kw">stakeholder testing</span> → <span class="copy-kw">engineering handoff</span>.
               </p>
             </div>
             <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Benchmark analytics</h2>
               <p class="text-gray-600 feature-header-row__text">
-                Mapped the opportunity space in FigJam, ran multiple design iterations across global and project-level views, and validated with stakeholders before handing off specs to engineering.
+                Mapped the <span class="copy-kw">opportunity space</span> in <span class="copy-kw">FigJam</span>, ran multiple <span class="copy-kw">design iterations</span> across <span class="copy-kw">global and project-level views</span>, and <span class="copy-kw">validated with stakeholders</span> before handing off <span class="copy-kw">specs to engineering</span>.
               </p>
             </div>
           </div>
@@ -465,13 +485,13 @@
             <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Evaluator user flow</h2>
               <p class="text-gray-600 feature-header-row__text">
-                Mapped the end-to-end journey from sandbox testing through production, covering build, publish, monitor, and continuous evaluation with human-in-the-loop gates.
+                Mapped the <span class="copy-kw">end-to-end journey</span> from <span class="copy-kw">sandbox testing</span> through <span class="copy-kw">production</span>, covering <span class="copy-kw">build, publish, monitor</span>, and <span class="copy-kw">continuous evaluation</span> with <span class="copy-kw">human-in-the-loop gates</span>.
               </p>
             </div>
             <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">User journeys</h2>
               <p class="text-gray-600 feature-header-row__text">
-                Documented how builders run workflows, debug failures, and loop back through analytics to audit runs and fix issues.
+                Documented how builders <span class="copy-kw">run workflows</span>, <span class="copy-kw">debug failures</span>, and loop back through <span class="copy-kw">analytics</span> to <span class="copy-kw">audit runs</span> and fix issues.
               </p>
             </div>
           </div>
@@ -498,13 +518,13 @@
             <div class="benchmark-copy-panel benchmark-copy-panel--analytics feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Analytics concepts</h2>
               <p class="text-gray-600 feature-header-row__text">
-                Sketched run-level detail views, trace timelines, and error clustering patterns for the analytics experience.
+                Sketched <span class="copy-kw">run-level detail views</span>, <span class="copy-kw">trace timelines</span>, and <span class="copy-kw">error clustering patterns</span> for the analytics experience.
               </p>
             </div>
             <div class="benchmark-copy-panel benchmark-copy-panel--evaluator feature-header-row">
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 section-heading feature-header-row__title">Ideation with PM + Eng</h2>
               <p class="text-gray-600 feature-header-row__text">
-                Ran collaborative design sessions exploring multiple UI directions, annotating trade-offs across node editors, data tables, and evaluation workflows before converging on a shared concept.
+                Ran <span class="copy-kw">collaborative design sessions</span> exploring multiple UI directions, annotating trade-offs across <span class="copy-kw">node editors, data tables, and evaluation workflows</span> before converging on a <span class="copy-kw">shared concept</span>.
               </p>
             </div>
           </div>
@@ -620,35 +640,14 @@
 </div>
 
   <!-- next project  -->
-  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
+  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto" data-current-project="agent-evaluator.html">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
         <h2 class="text-4xl font-bold mb-16 text-black section-heading">OTHER PROJECTS</h2>
       </div>
       
       <!-- Project cards container with new layout -->
-      <div id="next-project-cards">
-        <article class="next-project-card hoverable left-card">
-          <a href="project1.html" class="next-project-card__link" aria-label="Holistic Training Builder Redesign preview">
-            <div class="next-project-card__thumb">
-              <video autoplay loop muted playsinline title="Holistic Training Builder Redesign preview">
-                <source src="images/project_1/cover.mp4" type="video/mp4">
-              </video>
-            </div>
-            <h4 class="next-project-card__title">Faster, flexible workout planning for coaches.</h4>
-          </a>
-        </article>
-        <article class="next-project-card hoverable right-card">
-          <a href="project2.html" class="next-project-card__link" aria-label="Follow football player performances preview">
-            <div class="next-project-card__thumb">
-              <video autoplay loop muted playsinline title="Follow football player performances preview">
-                <source src="images/project_2/thumbnail.mp4" type="video/mp4">
-              </video>
-            </div>
-            <h4 class="next-project-card__title">Follow football player performances.</h4>
-          </a>
-        </article>
-      </div>
+      <div id="next-project-cards"></div>
     </div>
   </div>
 

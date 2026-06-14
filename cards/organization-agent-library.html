@@ -51,6 +51,7 @@
   <script src="../video-autoplay.js" defer></script>
   <script src="../dot-cursor.js" defer></script>
   <script src="../cursor-tooltip.js" defer></script>
+  <script src="next-project-nav.js" defer></script>
   <script src="project-page.js" defer></script>
   <script src="research-slider.js" defer></script>
   <script src="animations.js" defer></script>
@@ -248,10 +249,15 @@
           <p class="font-medium">Q4 2025</p>
         </div>
       </div>
-      <div class="animate-on-scroll delay-500 impact-callout card-animation mb-8">
+      <div class="animate-on-scroll delay-500 impact-callout card-animation mb-4">
         <p class="text-gray-400 text-sm mb-4 tracking-wide">Impact</p>
         <p class="text-gray-600">Engagement grew <span class="impact-stat">3.4×</span> in the first month, from <span class="impact-stat">~1,400–1,900</span> to <span class="impact-stat">6,200+</span> monthly users with <span class="impact-stat">80–105k</span> chat page views from end users.</p>
       </div>
+      <a href="#discovery" class="intro-scroll-hint mb-8" aria-label="Scroll to discovery section">
+        <svg class="intro-scroll-hint__icon" width="28" height="28" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 
@@ -449,34 +455,13 @@
   </div>
 
   <!-- Other projects -->
-  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto">
+  <div id="next-project" class="pt-24 bg-gray-100 p-4 md:p-16 lg:p-24 mx-auto" data-current-project="organization-agent-library.html">
     <div class="max-w-5xl mx-auto">
       <div class="text-center">
         <h2 class="text-4xl font-bold mb-16 text-black section-heading">OTHER PROJECTS</h2>
       </div>
       
-      <div id="next-project-cards">
-        <article class="next-project-card hoverable left-card">
-          <a href="agent-evaluator.html" class="next-project-card__link" aria-label="Workflow Analytics and Agent Evaluator preview">
-            <div class="next-project-card__thumb">
-              <video autoplay loop muted playsinline title="Workflow Analytics and Agent Evaluator preview">
-                <source src="images/agent-evaluator/main-thumbnail.mp4" type="video/mp4">
-              </video>
-            </div>
-            <h4 class="next-project-card__title">Auditability and evaluation of agentic workflows.</h4>
-          </a>
-        </article>
-        <article class="next-project-card hoverable right-card">
-          <a href="project1.html" class="next-project-card__link" aria-label="Holistic Training Builder Redesign preview">
-            <div class="next-project-card__thumb">
-              <video autoplay loop muted playsinline title="Holistic Training Builder Redesign preview">
-                <source src="images/project_1/cover.mp4" type="video/mp4">
-              </video>
-            </div>
-            <h4 class="next-project-card__title">Faster, flexible workout planning for coaches.</h4>
-          </a>
-        </article>
-      </div>
+      <div id="next-project-cards"></div>
     </div>
   </div>
 

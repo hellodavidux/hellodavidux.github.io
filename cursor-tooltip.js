@@ -16,6 +16,20 @@ function getCursorFollowingTooltip() {
     return cursorFollowingTooltip;
 }
 
+function setCursorFollowingTooltipContent(tooltip, message, options) {
+    const iconSrc = options && options.iconSrc;
+    if (iconSrc) {
+        tooltip.innerHTML =
+            '<span class="intro-hero-cards-tooltip__inner">' +
+            '<img src="' + iconSrc + '" alt="" width="14" height="14" decoding="async" aria-hidden="true" class="intro-hero-cards-tooltip__icon">' +
+            '<span>' + message + '</span>' +
+            '</span>';
+        return;
+    }
+
+    tooltip.textContent = message;
+}
+
 function setupCursorFollowingTooltip(targets, text, options) {
     const elements = targets.filter(Boolean);
     const tooltip = getCursorFollowingTooltip();
@@ -42,7 +56,7 @@ function setupCursorFollowingTooltip(targets, text, options) {
             if (!message) return;
 
             cursorFollowingTooltipActiveCount += 1;
-            tooltip.textContent = message;
+            setCursorFollowingTooltipContent(tooltip, message, options);
             tooltip.classList.remove('intro-hero-cards-tooltip--light');
             if (variantClass) tooltip.classList.add(variantClass);
             tooltip.classList.add('is-visible');
@@ -71,6 +85,8 @@ function setupDataTooltips() {
     const darkElements = [];
 
     elements.forEach(function(el) {
+        if (el.classList.contains('section-indicator')) return;
+
         if (el.classList.contains('about-chip') || el.classList.contains('company-chip')) {
             darkElements.push(el);
         } else {
